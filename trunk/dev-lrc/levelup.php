@@ -1,16 +1,16 @@
-<?php 
+<?php
 	if(isset($_GET['onglet'])&&$_GET['onglet']=='levelup'&&isset($_GET['perso'])){
 		$perso=$persoController->fetchPerso($_GET['perso']);
 		$inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
-		
+
 		if($pourc<100){
 			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 		}
 		if(isset($_GET['stat'])&&$pourc>=100){
-		
+
 			$stat = (int) htmlentities($_GET['stat']);
 			$valStat = 0;
-			
+
 			switch($stat){
 				case 0 :
 					$valStat = $perso->getEndurance();
@@ -35,7 +35,7 @@
 				echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 			}
 		}
-		
+
 	}else{
 		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 	}
@@ -56,17 +56,16 @@
 	<tr>
 		<td width='50%' align=right class='title2'>Endurance :</td>
 		<td width='20%' align=center><?php echo $perso->getEndurance();?></td>
-		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=0"><img src="plus.png" width='20px' height='20px'/></a></td>
+		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=0"><img src="pic/plus.png" width='20px' height='20px'/></a></td>
 	</tr>
 	<tr>
 		<td width='50%' align=right class='title2'>Dextérité :</td>
 		<td width='20%' align=center><?php echo $perso->getDexterite();?></td>
-		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=1"><img src="plus.png" width='20px' height='20px'/></a></td>
+		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=1"><img src="pic/plus.png" width='20px' height='20px'/></a></td>
 	</tr>
 	<tr>
 		<td	width='50%' align=right class='title2'>Esquive :</td>
 		<td width='20%' align=center><?php echo $perso->getEsquive();?></td>
-		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=2"><img src="plus.png" width='20px' height='20px'/></a></td>
+		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=2"><img src="pic/plus.png" width='20px' height='20px'/></a></td>
 	</tr>
 </table>
-	

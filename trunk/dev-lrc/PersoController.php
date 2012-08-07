@@ -2,6 +2,8 @@
 require_once 'PersoClass.php';
 require_once 'LogClass.php';
 require_once 'ConnectionSingleton.php';
+require_once 'ArmeController.php';
+
 
 class PersoController{
 	public function fetchAll(){
@@ -39,6 +41,7 @@ class PersoController{
 		return $tabPerso;
 	}
 	public function fetchPerso($id){
+		$armeCont = new ArmeController();
 		$query = 'select * from perso where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array('id' => $id));
@@ -63,33 +66,34 @@ class PersoController{
 				->setNb_zomb_kill($data->zombiekill)
 				->setNb_zfast_kill($data->zombiefast)
 				->setNb_zpois_kill($data->zombiepois)
-				->setDead($data->enterrer);
+				->setDead($data->enterrer)
+				->setInvArme($armeCont->fetchPerso($data->id));
 		return $perso;
 	}
 	public function savePerso($perso){
-		$query = 
-			'update perso set 
-				vie = :vie, 
-				energie = :ener, 
-				argent = :agt, 
-				competance = :xp, 
-				level = :lvl, 
+		$query =
+			'update perso set
+				vie = :vie,
+				energie = :ener,
+				argent = :agt,
+				competance = :xp,
+				level = :lvl,
 				endurance = :endu,
 				dexterite = :dext,
 				esquive = :esq,
-				jourvague = :vague, 
-				crabe = :crab, 
+				jourvague = :vague,
+				crabe = :crab,
 				zombiekill = :zomb,
 				zombiefast = :zf,
 				zombiepois = :zp,
-				enterrer = :dead 
+				enterrer = :dead
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
 			'vie' 	=> $perso->getVie(),
 			'ener' 	=> $perso->getEnergie(),
 			'agt'	=> $perso->getArgent(),
-			'xp'	=> $perso->getXp(),		
+			'xp'	=> $perso->getXp(),
 			'lvl'	=> $perso->getLevel(),
 			'endu'	=> $perso->getEndurance(),
 			'vague'	=> $perso->getNb_vague(),
@@ -105,7 +109,7 @@ class PersoController{
 		return true;
 	}
 	public function createPerso($nom,$avatar,$id_membre){
-		$query = 'insert into perso (nom,photo,id_membre) 
+		$query = 'insert into perso (nom,photo,id_membre)
 							values (:nom,:ava,:memb);';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
