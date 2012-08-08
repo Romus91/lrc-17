@@ -1,9 +1,9 @@
-<?php  
+<?php
 	require_once 'PersoController.php';
 	$persoController = new PersoController();
 	$perso = $persoController->fetchPerso($_GET['perso']);
-	
-	$_SESSION['erreur']=false; 
+
+	$_SESSION['erreur']=false;
 	if($pourc>=100)
 	{
 		$divLevel = '<div align="center"><p>Niveau suivant atteind :</p><a href="index.php?page=perso&onglet=levelup&perso='.$perso->getId().'"><h2>Level UP!</h2></a></div>';
@@ -33,7 +33,7 @@
 					<tr>
 						<td width='5%' align=center class='color3'>EXP</td><td class='small' width='70%'>
 						<img src='pic/viergej.png' width='<?php echo $pourc;?>%' height='10'></td>
-						<td width='25%' align=right class='color3'><?php echo $perso->getXp();?> | <?php echo ($level[$perso->getLevel()+1]);?></td>
+						<td width='25%' align=right class='color3'><?php echo $perso->getXp();?> | <?php echo floor($perso->getXpForNextLevel());?></td>
 					</tr>
 				</table>
 				<table class='button' width='100%'>
@@ -72,13 +72,13 @@
 						<td align=center class='small'><?php echo $perso->getNb_crabe_kill();?></td>
 
 						<td align=center class='small'><?php echo $perso->getNb_zomb_kill();?></td>
-			
+
 						<td align=center class='small'><?php echo $perso->getNb_zfast_kill();?></td>
-			
+
 						<td align=center class='small'><?php echo $perso->getNb_zpois_kill();?></td>
 					</tr>
 				</table>
-					
+
 
 			</td>
 			<td colspan=2>
@@ -111,7 +111,7 @@
 		<tr>
 			<td colspan=2 align=center>ARMES</td>
 			<td  colspan='4' rowspan=9 align=center valign=top>
-								
+
 					<?php
 						if (isset($_GET['type'])&&$_GET['type'] == "arme")
 						{
@@ -122,15 +122,15 @@
 							include("piegeinfo.php");
 						}else
 							echo "<img src='pic/".$perso->getAvatar().".JPG' width='295'>";
-						
+
 					?>
-			
+
 			</td>
 		</tr>
 		<tr>
 			<td class='title2' colspan=2 align=center>
 				<table class='title2'>
-					<tr>	
+					<tr>
 						<?php
 							$inventaire=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
 							for ($i=1;$i<=2;$i++)
@@ -147,7 +147,7 @@
 												{?>
 													<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $i;?>' >
 												<?php echo"<img src='pic/".$inventaire['arm'.$i].".png' width='90'></a>";
-												
+
 												}
 												echo"
 												</td>
@@ -172,7 +172,7 @@
 		<tr width='25%'>
 			<td  class='title2' colspan=2 align=center >
 				<table class='title2'>
-					<tr>	
+					<tr>
 						<?php
 							$inventaire=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
 							for ($i=3;$i<=4;$i++)
@@ -189,7 +189,7 @@
 												{?>
 													<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $i;?>' >
 												<?php echo"<img src='pic/".$inventaire['arm'.$i].".png' width='90'></a>";
-												
+
 												}
 												echo"
 												</td>
@@ -232,7 +232,7 @@
 												{
 													?>
 														<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=piege&i=<?php echo $i;?>' >
-							
+
 													<?php
 													echo  "<img src='pic/".$inventaire['pie'.$i].".png' width='80'></a>";
 												}
@@ -250,7 +250,7 @@
 									</td>
 								";
 							}
-						?>					
+						?>
 					</tr>
 				</table>
 			</td>
@@ -272,7 +272,7 @@
 												<td align=center>";
 												if ($inventaire['conso'.$i])
 												{
-												?>												
+												?>
 													<a href="useconso.php?perso=<?php echo $perso->getId();?>&conso=<?php echo $inventaire['conso'.$i];?>&i=<?php echo $i;?>">
 													<?php echo "<img src='pic/".$inventaire['conso'.$i].".png' width='120' height='85'></a>";
 												}
@@ -283,7 +283,7 @@
 									</td>
 								";
 							}
-						?>	
+						?>
 					</tr>
 				</table>
 			</td>

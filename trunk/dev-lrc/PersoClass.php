@@ -34,7 +34,7 @@ class Perso{
 	protected $_invArme;
 	protected $_invPiege;
 	protected $_invConso;
-	
+
 	public function __set($name, $value){
 		$method = 'set'.$name;
 		if(($name == 'mapper') || !method_exists($this, $method)){
@@ -319,8 +319,8 @@ class Perso{
 				$this->_esquive++;
 			break;
 		}
-		$this->_nbPtsAmMax+=3;
-		$this->_nbPtsAmDispo+=3;
+		$this->_nbPtsAmMax+=1;
+		$this->_nbPtsAmDispo+=1;
 		$this->_level++;
 	}
 	public function addXP($xp){
@@ -344,7 +344,7 @@ class Perso{
 	}
 	public static function getXpForLevel($i){
 		if($i==1) return 1;
-		else return 2*pow($i,3)+3*pow($i,2)+self::getXpForLevel($i-1)+100;
+		else return 2*pow($i,3)+3*pow($i,2)+(self::getXpForLevel($i-1)/1.75)+15;
 	}
 	public function getXpForNextLevel(){
 		return self::getXpForLevel($this->getLevel()+1);

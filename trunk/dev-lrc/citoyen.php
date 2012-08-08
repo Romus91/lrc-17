@@ -1,12 +1,12 @@
-<?php  
+<?php
 	include_once ("verif.php");
 	require_once 'PersoController.php';?>
 <center>
-<?php 				 
+<?php
 	//Affichage des perso du membre connecté
 	$ent=0;
 	if (isset($_GET['status'])) $ent=$_GET['status'];
-	
+
 	$tabPersos = $persoController->fetchMembre($_SESSION['member_id']);
 	$nb=count($tabPersos);
 	$nb2=0;
@@ -15,21 +15,21 @@
 	}
 	/*
 	// on prépare une requete SQL cherchant le nom,sexe,photo,id_membre,argent,vie,date,jourvague,arme,piege du perso du memebre connecté par ordre croissant de l'id des perso
-	$sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,competance,id,level,energie FROM perso WHERE  "'.$login.'" = id_membre AND enterrer = '.$ent.' ORDER BY id ASC'; 
-	// lancement de la requete SQL  
+	$sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,competance,id,level,energie FROM perso WHERE  "'.$login.'" = id_membre AND enterrer = '.$ent.' ORDER BY id ASC';
+	// lancement de la requete SQL
 	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error()); 
+	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
 	$nb = mysql_num_rows($req);	//Nombre de resultat trouvé
-	
+
 	$sql2='SELECT count(*) FROM perso WHERE "'.$login.'" = id_membre AND enterrer = 1';
-	$req2 = mysql_query($sql2) or die('Erreur SQL !'.$sql2.''.mysql_error()); 
+	$req2 = mysql_query($sql2) or die('Erreur SQL !'.$sql2.''.mysql_error());
 	$nb2 = mysql_fetch_array($req2);
 	*/
-	
+
 	include_once("level.php");
 
 
-	
+
 	//On affiche le tout
 ?>
 <table align='center' class='small' width='550'>
@@ -41,7 +41,7 @@
 						<table class='button'>
 							<tr>
 								<td id='button'>
-									<?php 
+									<?php
 										if ($ent==0)
 										echo '<a href="index.php?page=citoyencreer">NOUVEAU</a>';
 									?>
@@ -56,7 +56,7 @@
 						<table class='button'>
 							<tr>
 								<td id='button'>
-									<?php 
+									<?php
 										if ($ent == 1)
 											echo "<a href='index.php?page=citoyen&status=0'><b>VIVANTS</b></a>";
 										else
@@ -73,7 +73,7 @@
 	<tr>
 		<td colspan=6 align=center bgcolor=BC6600></td>
 	</tr>
-	<?php 
+	<?php
 	//Si il n'y a aucun resultat, on affiche qu'il n'y en a pas
 	if ($nb == 0)
 	{
@@ -91,11 +91,11 @@
 		";
 	}else//Sinon, on affiche les resultat
 	{
-        foreach($tabPersos as $perso)	 
+        foreach($tabPersos as $perso)
         {
 			if($perso->isDead() && $ent==0) continue;
 			if(!$perso->isDead() && $ent==1) continue;
-		
+
 		echo "
 	<tr valign=bottom height='60'>
 		<td width='100%' align=center valign=bottom colspan=3>
@@ -106,8 +106,8 @@
 					</td>
 				</tr>
 			</table>
-			"; 
-		if($perso->getVie() > 0 ) 
+			";
+		if($perso->getVie() > 0 )
 		{
 		echo"
 
@@ -123,8 +123,8 @@
 		</td>
 			";
 		}else
-		{ 
-			if ($ent ==0) 
+		{
+			if ($ent ==0)
 				echo"
 			<table class='button'>
 				<tr>
@@ -133,17 +133,17 @@
 					</td>
 				</tr>
 			</table>
-		</td>    
+		</td>
 				";
 			else
 				echo"
 						<font size=4>&nbsp;</font>
-		</td>    
+		</td>
 				";
 		}
 		//On affiche les jours de vagues, l'argent, la vie, la photo, la date et l'heure de l'insciption, la photo de l'arme et du piege.
-		  
-		
+
+
 			echo"
 
 		<td rowspan='2' align=center background='pic/".$perso->getAvatar().".JPG' width='130' hight='70'>
@@ -152,12 +152,12 @@
 				echo"<img src='pic/rouge.png' width='185' height='170'></td>";
 			else
 				echo"<a href='index.php?page=perso&perso=".$perso->getId()."'><img src='pic/blanc.png' width='185' height='170'></a></td>";
-				
-	
+
+
 		echo"
 	</tr>
 	<tr >";
-		if($perso->getVie() > 0 ) 
+		if($perso->getVie() > 0 )
 		{
 			echo"
 				<td align='center' >
@@ -203,8 +203,8 @@
 		echo"
 		</td>
 		<td>";
-			
-		
+
+
 		echo"
 	<table class='hev'>
 
@@ -230,14 +230,7 @@
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>";
-									$sql=mysql_query("SELECT * FROM level ORDER BY id ASC");
-										$i=1;
-										while ($exp = mysql_fetch_array($sql))
-										{
-											$level[$i]=$exp['exp'];
-											$i++;
-										}
-										$pourc=ceil((($perso->getXp()-$level[$perso->getLevel()]) / ($level[$perso->getLevel()+1]-$level[$perso->getLevel()]))*100);
+										$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
 										if ($pourc < 0)
 											$pourc=0;
 									echo"
@@ -250,17 +243,16 @@
 
 	</table>
 	";
-	
+
 	echo"
 		</td>
 	</tr>
 	<tr>
 		<td colspan=6 align=center bgcolor=BC6600></td>
-	</tr>";					 
+	</tr>";
 		}
 	}
     echo"
 </table>";
 $_SESSION['erreur']='';
 ?>
-			    
