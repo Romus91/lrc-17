@@ -26,6 +26,7 @@ if($pourc>=100){
 if ($perso->getEnergie() > 0)
 {
 	$saveEnergie = $energie = $perso->getEnergie();
+	$vieperdue=0;
 
 	$inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId()."")); //Va chercher tout l'inventaire
 	for ($cpt=1;$cpt<=4;$cpt++) //Compte le nombre d'armes dans l'inventaire
@@ -113,6 +114,7 @@ if ($perso->getEnergie() > 0)
 						$shootGoal++;
 					}else{
 						$shootMissed++;
+						$vieperdue+=$perso->damage(1);
 					}
 					$mun[$randArme]--;
 				}else{
@@ -122,6 +124,7 @@ if ($perso->getEnergie() > 0)
 						$shootGoal++;
 					}else{
 						$shootMissed++;
+						$vieperdue+=$perso->damage(1);
 					}
 					$munp[$randPiege]--;
 				}
@@ -150,6 +153,7 @@ if ($perso->getEnergie() > 0)
 					$shootGoal++;
 				}else{
 					$shootMissed++;
+					$vieperdue+=$perso->damage(0.33);
 				}
 				$mun[$randArme]--;
 			}else{
@@ -159,6 +163,7 @@ if ($perso->getEnergie() > 0)
 					$shootGoal++;
 				}else{
 					$shootMissed++;
+					$vieperdue+=$perso->damage(0.33);
 				}
 				$munp[$randPiege]--;
 			}
@@ -184,6 +189,7 @@ if ($perso->getEnergie() > 0)
 					$shootGoal++;
 				}else{
 					$shootMissed++;
+					$vieperdue+=$perso->damage(0.25);
 				}
 				$mun[$randArme]--;
 			}else{
@@ -193,6 +199,7 @@ if ($perso->getEnergie() > 0)
 					$shootGoal++;
 				}else{
 					$shootMissed++;
+					$vieperdue+=$perso->damage(0.25);
 				}
 				$munp[$randPiege]--;
 			}
@@ -204,7 +211,8 @@ if ($perso->getEnergie() > 0)
 	###############################
 
 	####VIES####
-	$vieperdue=((floor($crabenb/4))+(ceil($zombienb/3))+(ceil($zombiefastnb)));
+	//$vieperdue=((floor($crabenb/4))+(ceil($zombienb/3))+(ceil($zombiefastnb)));
+	$vieperdue=round($vieperdue);
 	$vie=$perso->getVie()-$vieperdue;
 	if ($vie < 0)//Si la vie descend en dessous de 0, on la planche à 0
 	$vie = 0;
