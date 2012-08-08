@@ -31,11 +31,10 @@
 				$perso->levelUp($_GET['stat']);
 				$persoController->savePerso($perso);
 				mysql_query("UPDATE inventaire SET ptamelio = ".($inv['ptamelio']+3)." WHERE id_perso = ".$perso->getId()."") or die (mysql_error());
-				$log->insertLog("ptamelio",$perso->getId(),"Point ajouté, total : ".($inv['ptamelio']+3));
+				$log->insertLog("ptamelio",$_SESSION['member_id'],$perso->getId(),"Point ajouté, total : ".($inv['ptamelio']+3));
 				echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 			}
 		}
-
 	}else{
 		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 	}

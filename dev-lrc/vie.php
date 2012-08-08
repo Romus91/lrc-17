@@ -12,7 +12,7 @@
 				<table class='small' width='100%' >
 					<tr height='120'>
 						<?php
-							if ($perso->getLevel() > $consArray[0]->getLevelRequis())
+							if ($perso->getLevel() >= $consArray[0]->getLevelRequis())
 							{
 							?>
 						<td align=center bgcolor='222222' width='33%'>
@@ -30,7 +30,7 @@
 							}
 							?>
 							<?php
-							if ($perso->getLevel() > $consArray[1]->getLevelRequis())
+							if ($perso->getLevel() >= $consArray[1]->getLevelRequis())
 							{
 							?>
 						<td align=center bgcolor='222222' width='33%'>
@@ -48,7 +48,7 @@
 							}
 							?>
 							<?php
-							if ($perso->getLevel() > $consArray[2]->getLevelRequis())
+							if ($perso->getLevel() >= $consArray[2]->getLevelRequis())
 							{
 							?>
 						<td align=center bgcolor='222222' width='33%'>
@@ -71,7 +71,7 @@
 				<table class='small' width='100%' >
 					<tr height='120'>
 						<?php
-							if ($perso->getLevel() > $consArray[3]->getLevelRequis())
+							if ($perso->getLevel() >= $consArray[3]->getLevelRequis())
 							{
 							?>
 						<td align=center bgcolor='222222' width='33%'>
@@ -89,7 +89,7 @@
 							}
 							?>
 							<?php
-							if ($perso->getLevel() > $consArray[4]->getLevelRequis())
+							if ($perso->getLevel() >= $consArray[4]->getLevelRequis())
 							{
 							?>
 						<td align=center bgcolor='222222' width='33%'>
@@ -107,7 +107,7 @@
 							}
 							?>
 							<?php
-							if ($perso->getLevel() > $consArray[5]->getLevelRequis())
+							if ($perso->getLevel() >= $consArray[5]->getLevelRequis())
 							{
 							?>
 						<td align=center bgcolor='222222' width='33%'>
