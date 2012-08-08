@@ -7,7 +7,7 @@ class Conso{
 	protected $_levelRequis;
 	protected $_image;
 	protected $_type;
-	
+
 	public function getId(){
 		return $this->_id;
 	}
@@ -50,8 +50,8 @@ class Conso{
 		$this->_type = (int) $type;
 		return $this;
 	}
-	public function getValeur($maxEnergie){
-		return (($maxEnergie*$this->_valeur)/100);
+	public function getEnergie($maxEnergie){
+		return (($maxEnergie*$this->_valeurBase)/100);
 	}
 	public function getPrix($level){
 		return (ceil($level/4)*$this->_prixBase);

@@ -2,38 +2,32 @@
 	include_once("verif.php");
 	require_once 'PersoController.php';
 	require_once 'LogClass.php';
+	require_once 'ConsoClass.php';
+	require_once 'ConsoController.php';
 	include_once("pass.php");
-	
+
 	$log = new Log();
 	$persoController = new PersoController();
 	$perso=$persoController->fetchPerso($_GET['perso']);
-	$conso=$_GET['conso'];
-	
+	$consoCont = new ConsoController();
+
 	$inv=mysql_fetch_array(mysql_query("SELECT conso".$_GET['i']." FROM inventaire WHERE id_perso = '".$perso->getId()."'"));
-	
+
 	if (isset($inv['conso'.$_GET['i']])){
-		if ($conso == 'v10'){
-			$perso->addVie(10);
-			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),"V10");
-		}else if ($conso == 'v50'){
-			$perso->addVie(50);
-			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),"V50");
-		}else if ($conso == 'vf'){
-			$perso->addVie(100);
-			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),"VF");
-		}else if ($conso == 'n20'){
-			$perso->addEnergie(20);
-			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),"N20");
-		}else if ($conso == 'n70') {
-			$perso->addEnergie(70);
-			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),"N70");
-		}else if($conso == 'n100'){
-			$perso->addEnergie(100);
-			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),"N100");
-		}else {
-			$_SESSION['text']= "<font color='FF0000'><b>ERROR</b></font>";
-			$_SESSION['erreur']=true;
+		$conso = $inv['conso'.$_GET['i']];
+		$pack = $consoCont->fetch($conso);
+
+		switch($pack->getType()){
+			case 1:
+				$perso->addVie($pack->getValeurBase());
+				$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),'Valeur : '.$pack->getValeurBase());
+				break;
+			case 2:
+				$perso->addEnergie($pack->getEnergie($perso->getMaxEnergie()));
+				$log->insertLog("Use nrgpack",$_SESSION['member_id'],$perso->getId(),'Valeur : '.$pack->getValeurBase());
+				break;
 		}
+
 	}else {
 		$_SESSION['text']= "<font color='FF0000'><b>CHEATER</b></font>";
 		$_SESSION['erreur']=true;
