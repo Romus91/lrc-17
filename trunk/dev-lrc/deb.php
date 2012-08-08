@@ -7,7 +7,7 @@
   <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery.js"></script>
   <meta http-equiv="content-language" content="fr">
  <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
-  <?php 
+  <?php
 	if (isset($_GET['reloadcit'])&&$_GET['reloadcit'])
 		echo'<meta http-equiv="refresh" content="0; url=index.php?page=citoyen" />';
   ?>
@@ -20,7 +20,7 @@
 		<td>
 			<table border="0" class='color5' width="800">
 			<tr>
-				<td width="200%" background="blanc.png" bgcolor="000000" colspan="3" align=center>
+				<td width="200%" background="pic/blanc.png" bgcolor="000000" colspan="3" align=center>
 				   <a href="index.php"><img border="0" src="pic/banneralpha.png" width="500" height="70" ></a>
 				</td>
 			</tr>
@@ -36,8 +36,8 @@
 												<tr>
 													<td align=center>
 														<!--Bonjour intel-->
-														<?php  
-															echo"<font color=FFFFFF><b>Bonjour ",$_SESSION['login']," !</b></font>"; 
+														<?php
+															echo"<font color=FFFFFF><b>Bonjour ",$_SESSION['login']," !</b></font>";
 															$lien=$_SERVER["PHP_SELF"];
 														?>
 														<!--/bonjour intel-->
@@ -47,21 +47,21 @@
 											<table  valign=top align=center>
 												<tr>
 													<td colspan='3' align=center>
-													<!--menu-->			
+													<!--menu-->
 														<table id='menu'>
 															<tr>
 																<td><a href="index.php?page=home">HOME</a></td>
-															</tr>  
+															</tr>
 															<!--<tr>
 																<td><a href="index.php">PLANQUE</a></td>
-															</tr> 		-->													
+															</tr> 		-->
 															<tr>
 																<td>
 																	<a href="index.php?page=citoyen">
 																		CITOYEN
 																	</a>
 																</td>
-															</tr> 
+															</tr>
 															<tr>
 																<td>
 																	<a href='index.php?page=scores'>
@@ -73,7 +73,7 @@
 																<td>
 																	<a href="index.php?page=wall">
 																		WALL
-																		<?php 
+																		<?php
 																			$cptwall=0;
 																			$sql="SELECT messages.timestamp, membre.walltimestamp FROM messages, membre WHERE membre.login =  '".$_SESSION['login']."' AND messages.timestamp > membre.walltimestamp";
 																			$res=mysql_query($sql);
@@ -84,12 +84,12 @@
 																		?>
 																	</a>
 																</td>
-															</tr> 
+															</tr>
 															<tr>
 																<td>
 																	<a href="index.php?page=maj">
 																		MISE A JOURS
-																		<?php 
+																		<?php
 																			$cpt=0;
 																			$sql="SELECT maj.timestamp, membre.majtimestamp FROM maj, membre WHERE membre.login =  '".$_SESSION['login']."' AND maj.timestamp > membre.majtimestamp";
 																			$res=mysql_query($sql);
@@ -107,8 +107,8 @@
 														</table>
 													</td>
 												</tr>
-											
-											
+
+
 											<script type="text/javascript">
 											string='';
 											function writediv(texte)
@@ -119,15 +119,15 @@
 												 {
 												 document.getElementById('online').innerHTML = file;
 												 }
-											
+
 											function construcMessage(text)
 											{
 												string=text;
-												
+
 												string = string.replace(/\\/g,"\\\\");
 												string = string.replace(/\'/g,"\\'");
 												string = string.replace(/\"/g,"\\\"");
-												
+
 												window.addEventListener('keydown', function(e)
 															{
 																//kkeys.push(e.keyCode);
@@ -140,7 +140,7 @@
 																	}
 															}, true);
 											}
-											
+
 											function sendMessage(message)
 												{
 													if (message)
@@ -148,15 +148,15 @@
 													writediv(file('selectchat.php'));
 													document.getElementById('pseudo').focus();
 													document.getElementById('pseudo').value='';
-													
+
 												}
-											
+
 											function writeChat()
 												 {
 													writediv(file('selectchat.php'));
 													setTimeout('writeChat()', 2000);
 												 }
-												 
+
 											function whoIsOnline()
 											 {
 												writedivonline(file('online.php'));
@@ -166,19 +166,19 @@
 											function file(fichier)
 												 {
 												 if(window.XMLHttpRequest) // FIREFOX
-													  xhr_object = new XMLHttpRequest(); 
+													  xhr_object = new XMLHttpRequest();
 												 else if(window.ActiveXObject) // IE
-													  xhr_object = new ActiveXObject("Microsoft.XMLHTTP"); 
-												 else 
-													  return(false); 
-												 xhr_object.open("GET", fichier, false); 
-												 xhr_object.send(null); 
+													  xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
+												 else
+													  return(false);
+												 xhr_object.open("GET", fichier, false);
+												 xhr_object.send(null);
 												 if(xhr_object.readyState == 4) return(xhr_object.responseText);
 												 else return(false);
 												 }
-												 
+
 											</script>
-											
+
 											<table class='small' width='100%' >
 												<tr>
 													<td class='color2'align=center>
@@ -196,23 +196,23 @@
 														<input type='submit' name='ok' value='ENVOYER' onclick='sendMessage(string)' >
 													</td>
 												</tr>
-											</table>										
-											
+											</table>
+
 											<table class='small' width='100%'>
 												<tr>
 													<td class='color2' align=center>
 														<font size=3>EN LIGNE</font>
 													</td>
-												</tr>	
-												
+												</tr>
+
 												<tr class='title2'>
 													<td >
 														<div id="online" ><img src='pic/charg.gif' width='100%'></div>
 													</td>
 												</tr>
-												
+
 											</table>
-												
+
 											<table>
 												<tr>
 													<td><img src='pic/r<?php  echo $_SESSION['nb'];?>.bmp' width='260'></td>
@@ -223,7 +223,7 @@
 													<td align=center>&nbsp;</td>
 												</tr>
 											</table>
-										</td>	
+										</td>
 									</tr>
 								</table>
 							</td>
