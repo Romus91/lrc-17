@@ -1,7 +1,10 @@
 <?php
 	require_once 'PersoController.php';
+	require_once 'ConsoController.php';
 	$persoController = new PersoController();
 	$perso = $persoController->fetchPerso($_GET['perso']);
+	$consoController = new ConsoController();
+
 
 	$_SESSION['erreur']=false;
 	if($pourc>=100)
@@ -273,8 +276,8 @@
 												if ($inventaire['conso'.$i])
 												{
 												?>
-													<a href="useconso.php?perso=<?php echo $perso->getId();?>&conso=<?php echo $inventaire['conso'.$i];?>&i=<?php echo $i;?>">
-													<?php echo "<img src='pic/".$inventaire['conso'.$i].".png' width='120' height='85'></a>";
+													<a href="useconso.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>">
+													<?php echo "<img src='".$consoController->fetch($inventaire['conso'.$i])->getImage()."' width='120' height='85'></a>";
 												}
 												echo"
 												</td>

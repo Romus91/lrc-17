@@ -571,6 +571,7 @@
 																$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
 																if ($pourc < 0)
 																	$pourc=0;
+																if($pourc>100)$pourc=100;
 														?>
 													<img src='pic/viergej.png' width='<?php echo $pourc;?>%' height='10'>
 												</td>
