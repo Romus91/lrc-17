@@ -1,10 +1,10 @@
-<?php 
-	include_once ("verif.php");	
-	
+<?php
+	include_once ("verif.php");
+
 	$idMembre = $_SESSION['member_id'];
 	$idPerso = (int) htmlentities($_GET['perso']);
 	$perso=$persoController->fetchPerso($idPerso);
-	
+
 	if($idMembre!=$perso->getId_membre()){
 		echo '<script language="javascript" type="text/javascript">
 				window.location.replace("deconnexion.php");
@@ -12,42 +12,37 @@
 		exit;
 	}
 	/*
-	$nom=$_GET['perso'];  
+	$nom=$_GET['perso'];
     $login=$_SESSION['login'];
-    $sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,zombiekill,zombiepois,crabe,competance,zombiefast,id,level,energie FROM perso WHERE  "'.$login.'" = id_membre and "'.$nom.'" = nom'; 
-    // lancement de la requete SQL  
+    $sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,zombiekill,zombiepois,crabe,competance,zombiefast,id,level,energie FROM perso WHERE  "'.$login.'" = id_membre and "'.$nom.'" = nom';
+    // lancement de la requete SQL
     $res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
 	$t=mysql_fetch_array($res);
 
 	$_SESSION['tune']=$t['argent'];
 	$_SESSION['vie']=$t['vie'];
-	
+
 	$localtime=localtime($t['date'], true);
-	$localtime['tm_sec']=0; 
-	$localtime['tm_min']=0; 
+	$localtime['tm_sec']=0;
+	$localtime['tm_min']=0;
 	$localtime['tm_hour']=0; */
-	
+
 	include_once 'pass.php';
-	$sql=mysql_query("SELECT * FROM level ORDER BY id ASC");
-	$i=1;
-	while ($exp = mysql_fetch_array($sql)){
-		$level[$i]=$exp['exp'];
-		$i++;
-	}
-	$pourc=floor((($perso->getXp()-$level[$perso->getLevel()]) / ($level[$perso->getLevel()+1]-$level[$perso->getLevel()]))*100);
+
+	$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
 	if ($pourc < 0) $pourc=0;
-	
-	include ("level.php");						
- 
+
+	include ("level.php");
+
 	if ($perso->getVie()==0)
 	{
 		echo '<script language="javascript" type="text/javascript">
 				window.location.replace("index.php?page=citoyen");
 			</script>';
 	}
-	
+
 	if ($_SESSION['erreur'] == false)
-	{	
+	{
 		if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop'))
 			$_SESSION['text']="INFOS GENERALE";
 		if (isset($_GET['onglet'])&&$_GET['onglet'] == 'achat')
@@ -75,8 +70,8 @@
 								</tr>
 							</table>
 						</td>
-						<?php 
-								if ($perso->getEnergie() > 0&&$pourc<100){   
+						<?php
+								if ($perso->getEnergie() > 0&&$pourc<100){
 									echo"
 											<td id='button' align=center width='100%'>
 												<a href='index.php?page=vague&perso=".$perso->getId()."' ><font color='FF0000'>A L'ATTAQUE</font></a>
@@ -111,7 +106,7 @@
 							<font color=1EB117 size=5>$</font></div>
 						</td>
 					</tr>
-				</table>		
+				</table>
 				<table class='button' width='100%'>
 					<tr>
 						<td>ARMURERIE : </td>
@@ -128,12 +123,12 @@
 				</table>
 			</td>
 		</tr>
-	<?php  
+	<?php
 	if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop'))
 		include ("infop.php");
-		
+
 	if (isset($_GET['onglet'])&&$_GET['onglet'] == 'achat')
 		include ("achat.php");
-		
+
 	if (isset($_GET['onglet'])&&$_GET['onglet'] =='levelup') include 'levelup.php';
 		?>
