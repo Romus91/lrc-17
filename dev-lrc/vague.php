@@ -468,6 +468,7 @@
 					<td align=center>";
 					if ($inv['arm'.$i])
 						echo "<img src='pic/".$inv['arm'.$i].".png' width='90'>";
+					if(isset($arme[$i])){
 					echo"</td>
 				</tr>
 			</table>
@@ -481,6 +482,21 @@
 		</td>
 
 				";
+					}else{
+						echo"</td>
+				</tr>
+			</table>
+			<table class='small' width='105'>
+				<tr>
+					<td align=center>
+						0 | 0
+					</td>
+				</tr>
+			</table>
+		</td>
+
+				";
+					}
 			}
 		?>
 				</tr>
