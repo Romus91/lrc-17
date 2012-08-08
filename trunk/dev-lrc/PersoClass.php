@@ -294,7 +294,7 @@ class Perso{
 	public function regenEnergie(){
 		if($this->_energie<$this->getMaxEnergie() && !$this->isDead()) $this->_energie++;
 		if($this->_energie<$this->getMaxEnergie() && !$this->isDead()){
-			for($i=0;$i<100;$i++) $rand = rand(1,50);
+			for($i=0;$i<25;$i++) $rand = rand(1,50);
 			if($rand<=$this->getComfort()) $this->_energie++;
 		}
 		return $this;

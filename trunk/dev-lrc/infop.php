@@ -26,7 +26,7 @@
 					<tr>
 						<td width='5%' align=center class='color3'>NRG</td><td class='small' width='70%'>
 						<img src='pic/viergeb.png' width='<?php echo ($perso->getEnergie()/$perso->getMaxEnergie())*100;?>%' height='10'></td>
-						<td width='25%' align=right class='color3'><?php echo ceil($perso->getEnergie());?> | <?php echo $perso->getMaxEnergie();?></td>
+						<td width='25%' align=right class='color3'><?php echo floor($perso->getEnergie());?> | <?php echo $perso->getMaxEnergie();?></td>
 					</tr>
 				</table>
 				<table class='button' width='100%'>
