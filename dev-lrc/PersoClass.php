@@ -17,6 +17,7 @@ class Perso{
 	protected $_xp;
 	protected $_level;
 	protected $_dead;
+	protected $_xpafk;
 	//caracteristiques
 	protected $_endurance;
 	protected $_dexterite;
@@ -159,6 +160,19 @@ class Perso{
 	 */
 	public function setXp($_xp) {
 		$this->_xp = $_xp;
+		return $this;
+	}
+	/**
+	 * @return the $_xp
+	 */
+	public function getXpWhenAfk() {
+		return $this->_xpafk;
+	}
+	/**
+	 * @param field_type $_xp
+	 */
+	public function setXpWhenAfk($_xp) {
+		$this->_xpafk = $_xp;
 		return $this;
 	}
 	/**
@@ -326,6 +340,17 @@ class Perso{
 	public function addXP($xp){
 		$this->_xp+=(int)$xp;
 		return $this;
+	}
+	public function addXpAfk(){
+		$amount= floor($this->_xp*0.01);
+		$this->_xp-=$amount;
+		$this->_xpafk+=$amount;
+	}
+	public function retribXp(){
+		$amount= floor($this->_xpafk*0.75);
+		$this->_xp+=$amount;
+		$this->_xpafk-=$amount;
+		return $amount;
 	}
 	public function addVie($vie){
 		$this->_vie+=(int)$vie;
