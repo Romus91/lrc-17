@@ -36,7 +36,7 @@
 									</tr>
 									<tr align=center class='small'>
 										<td>
-											<font color="00ff00" size=3 ><? echo $inv['ptamelio'];?></font>
+											<font color="00ff00" size=3 ><?php echo $inv['ptamelio'];?></font>
 										</td>
 									</tr>
 								</table>
