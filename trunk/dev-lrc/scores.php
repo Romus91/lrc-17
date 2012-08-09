@@ -96,8 +96,8 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 		<td colspan=3 class='color3'>&nbsp;</td>
 		<td class='color4' style='padding-left:3px;'><div>Endurance : ".$perso['endurance']."</div><div>Dexterite : ".$perso['dexterite']."</div><div>Esquive : ".$perso['esquive']."</div></td>
 		<td colspan=3 class='color3'>";
-		for($j=1;$j<=4;$j++) echo "<img src='pic/".$inv['arm'.$j].".png' height='40'>";
-		for($j=1;$j<=2;$j++) echo "<img src='pic/".$inv['pie'.$j].".png' height='40'>";
+		for($j=1;$j<=4;$j++)if($inv['arm'.$j]!=null) echo "<img src='pic/".$inv['arm'.$j].".png' height='40'>";
+		for($j=1;$j<=2;$j++)if($inv['pie'.$j]!=null) echo "<img src='pic/".$inv['pie'.$j].".png' height='40'>";
 		echo "</td>
 	</tr>
 	";
