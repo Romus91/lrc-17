@@ -1,6 +1,5 @@
 <?php
 require_once 'PersoClass.php';
-require_once 'LogClass.php';
 require_once 'ConnectionSingleton.php';
 require_once 'ArmeController.php';
 
@@ -69,6 +68,7 @@ class PersoController{
 				->setNbPtsAmDispo($data->pt_amelio_dispo)
 				->setNbPtsAmMax($data->pt_amelio_max)
 				->setDead($data->enterrer)
+				->setXpWhenAfk($data->xpafk)
 				->setInvArme($armeCont->fetchPerso($data->id));
 		return $perso;
 	}
@@ -90,7 +90,8 @@ class PersoController{
 				zombiepois = :zp,
 				enterrer = :dead,
 				pt_amelio_dispo = :pad,
-				pt_amelio_max = :pam
+				pt_amelio_max = :pam,
+				xpafk = :xpafk
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -110,7 +111,8 @@ class PersoController{
 			'dext'	=> $perso->getDexterite(),
 			'esq'	=> $perso->getEsquive(),
 			'pad'	=> $perso->getNbPtsAmDispo(),
-			'pam'	=> $perso->getNbPtsAmMax()
+			'pam'	=> $perso->getNbPtsAmMax(),
+			'xpafk' => $perso->getXpWhenAfk()
 		));
 		return true;
 	}

@@ -298,6 +298,7 @@ if ($perso->getEnergie() > 0)
 
 	####CALCUL DES EXP#######
 	$comp=ceil(($zombiefastkill*10)+($zombiekillpois*1000)+($zombiekill*2)+$crabekill);
+	$bonusXP = $perso->retribXp();
 	$perso->addXp($comp);
 	################################
 
@@ -537,8 +538,7 @@ if ($perso->getEnergie() > 0)
 						<td class='title2' align=center>
 							<table class='small' width='105'>
 								<tr>
-									<td align=center><font color='00FF00'>+ <?php  echo $comp;?> </font>
-									</td>
+									<td align=center><font color='00FF00'>+ <?php  echo $comp;?></font></td>
 								</tr>
 							</table>
 							<table class='hev'>
@@ -632,6 +632,7 @@ if ($perso->getEnergie() > 0)
 							</table>
 						</td>
 					</tr>
+					<tr class=color4><td colspan=4 align=center>La bataille fait remonter en vous les souvenirs des gloires passées : <br><font color='00FF00'>+ <?php echo $bonusXP;?> EXP</font></td></tr>
 				</table>
 			</td>
 		</tr>

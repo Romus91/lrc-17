@@ -48,7 +48,7 @@
 											<td align=center>
 												<table>
 													<tr>
-														<td colspan='3'>					
+														<td colspan='3'>
 															<table align=center>
 																<form action="login.php" method='post'>
 																	<tr>
@@ -56,7 +56,7 @@
 																	</tr>
 																	<tr>
 																		<td align=right><font color='FFFFFF'><b>MOT DE PASSE </b></font><input type="password" name="pass" maxlength="20"></td>
-																	</tr>	
+																	</tr>
 																	<tr>
 																		<td align=center>
 																			<table class='button'>
@@ -66,7 +66,7 @@
 																					</td>
 																				</tr>
 																			</table>
-																		</td>	
+																		</td>
 																	</tr>
 																	<tr>
 																		<td align=center>
@@ -84,10 +84,10 @@
 																</tr>
 																<tr>
 																	<td>
-																		est un jeu de survie, le but étant de contrer des vagues de zombies chaque jours.<br>
+																		est un jeu de survie, le but étant de contrer des vagues de zombies chaque jour.<br>
 																		Avec pour seul amis, vos armes, vos pièges et vos précieuses munitions...
 																		<br><br>
-																		
+
 																	</td>
 																</tr>
 															</table>
@@ -143,12 +143,12 @@
 																<td colspan=2>
 																	<? echo $_SESSION['erreur3']; ?>
 																</td>
-															</tr>					 
+															</tr>
 														  </table>
 															</center>
 															<br>
 														</td>
-													</tr>					
+													</tr>
 												</table>
 											</td>
 										</tr>
@@ -160,7 +160,7 @@
 													</tr>
 												</table>
 												</font>
-											</td>	
+											</td>
 										</tr>
 									</table>
 								</td>
@@ -175,7 +175,7 @@
 									<center><!-- 52636B -->
 									<table border="0" cellpadding="0" cellspacing="0" width="557">
 										<tr>
-											<td valign="top" align=center> 
+											<td valign="top" align=center>
 											<font color=FFFFFF>
 												<table class='color2' width="100%">
 													<tr>
@@ -185,7 +185,7 @@
 												<table  valign=top align=center>
 													<tr>
 														<td><img src='pic/ravenholm.JPG' width="550"></td>
-													</tr>					
+													</tr>
 												</table>
 											</font>
 												<table class='color2' width="100%">
@@ -193,7 +193,7 @@
 														<td align=center>&nbsp;</td>
 													</tr>
 												</table>
-											</td>	
+											</td>
 										</tr>
 									</table>
 									</center>
@@ -204,8 +204,8 @@
 				</tr>
 				<tr align="left">
 					<td colspan="2"><a href='http://romustech.dyndns.org'>Created by Romus</a><font color="FAC21D"> -- Copyright © LES RESCAPES DE CITE 17 -- </font></td>
-				</tr> 
-				</center>   
+				</tr>
+				</center>
 			</table>
 		</td>
 	</tr>
