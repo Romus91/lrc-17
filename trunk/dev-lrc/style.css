@@ -3,8 +3,8 @@
 table
 {
 	FONT-SIZE: 8pt;
-	FONT-FAMILY:Verdana; 
-	COLOR: #FFFFFF; 
+	FONT-FAMILY:Verdana;
+	COLOR: #FFFFFF;
 	background-color : #333333;
 	font-weight:bold;
 }
@@ -76,18 +76,18 @@ td .title2
 body
 {
 	FONT-SIZE: 8pt;
-	FONT-FAMILY:New time roman; 
-	background-color : #000000; 
+	FONT-FAMILY:New time roman;
+	background-color : #000000;
 	font-weight:bold;
 }
-	
+
  a
   {
     color:#FF9900;
     text-decoration:none;
     font-weight:bold;
   }
-  
+
   a:hover
   {
     color:#CC6600;
@@ -103,7 +103,7 @@ body
 	height : 79px;
 }
 
-  
+
 .hide {
   display: none;
 }
@@ -152,7 +152,7 @@ body
 
 /* Bouton */
 
-.button 
+.button
 {
 	background : #111111;
 }
@@ -194,4 +194,7 @@ body
 
 .current_page_item {
 	background: url(images/img03.png) repeat left top;
+}
+tr.perso td.hover{
+	background-color: #666666;
 }
