@@ -622,7 +622,8 @@ if ($perso->getEnergie() > 0)
 											<tr height='10' valign=bottom>
 												<td class='small' width='100'><img src='pic/viergeb.png'
 													width='<?php
-													echo ($perso->getEnergie()/$perso->getMaxEnergie())*100;?>?>%'
+													$pourcEn = ($perso->getEnergie()/$perso->getMaxEnergie())*100;
+													echo (($pourcEn>100)?100:$pourcEn);?>?>%'
 													height='10'>
 												</td>
 											</tr>
