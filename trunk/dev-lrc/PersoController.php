@@ -66,6 +66,8 @@ class PersoController{
 				->setNb_zomb_kill($data->zombiekill)
 				->setNb_zfast_kill($data->zombiefast)
 				->setNb_zpois_kill($data->zombiepois)
+				->setNbPtsAmDispo($data->pt_amelio_dispo)
+				->setNbPtsAmMax($data->pt_amelio_max)
 				->setDead($data->enterrer)
 				->setInvArme($armeCont->fetchPerso($data->id));
 		return $perso;
@@ -86,7 +88,9 @@ class PersoController{
 				zombiekill = :zomb,
 				zombiefast = :zf,
 				zombiepois = :zp,
-				enterrer = :dead
+				enterrer = :dead,
+				pt_amelio_dispo = :pad,
+				pt_amelio_max = :pam
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -104,7 +108,9 @@ class PersoController{
 			'id'	=> $perso->getId(),
 			'dead'	=> $perso->isDead(),
 			'dext'	=> $perso->getDexterite(),
-			'esq'	=> $perso->getEsquive()
+			'esq'	=> $perso->getEsquive(),
+			'pad'	=> $perso->getNbPtsAmDispo(),
+			'pam'	=> $perso->getNbPtsAmMax()
 		));
 		return true;
 	}

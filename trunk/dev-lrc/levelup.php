@@ -14,12 +14,15 @@
 			switch($stat){
 				case 0 :
 					$valStat = $perso->getEndurance();
+					$statChosen = 'endu';
 				break;
 				case 1 :
 					$valStat = $perso->getDexterite();
+					$statChosen = 'dext';
 				break;
 				case 2 :
 					$valStat = $perso->getEsquive();
+					$statChosen = 'esq';
 				break;
 			}
 			if(($valStat+1)>ceil($perso->getLevel()/2)){
@@ -28,10 +31,9 @@
 				echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&onglet=levelup&perso=".$perso->getId()."');</script>";
 			}else{
 				$_SESSION['erreur']=false;
-				$perso->levelUp($_GET['stat']);
+				$perso->levelUp($stat);
 				$persoController->savePerso($perso);
-				mysql_query("UPDATE inventaire SET ptamelio = ".($inv['ptamelio']+3)." WHERE id_perso = ".$perso->getId()."") or die (mysql_error());
-				$log->insertLog("ptamelio",$_SESSION['member_id'],$perso->getId(),"Point ajouté, total : ".($inv['ptamelio']+3));
+				$log->insertLog("Level up",$_SESSION['member_id'],$perso->getId(),"+1 ".$statChosen);
 				echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 			}
 		}
@@ -42,7 +44,7 @@
 <table width='100%' class='small'>
 	<tr>
 		<td class='title2' align=center>
-			<font color='00FF00' size = 3> 3 </font> points d'amélioration gagné !
+			<font color='00FF00' size = 3> 2 </font> points d'amélioration gagné !
 		</td>
 	</tr>
 </table>

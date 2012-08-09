@@ -319,8 +319,8 @@ class Perso{
 				$this->_esquive++;
 			break;
 		}
-		$this->_nbPtsAmMax+=1;
-		$this->_nbPtsAmDispo+=1;
+		$this->_nbPtsAmMax+=2;
+		$this->_nbPtsAmDispo+=2;
 		$this->_level++;
 	}
 	public function addXP($xp){
