@@ -221,8 +221,9 @@
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>";
+						$pourcEn = (($perso->getEnergie()/$perso->getMaxEnergie())*100);
 						echo"
-							<img src='pic/viergeb.png' width='".(($perso->getEnergie()/$perso->getMaxEnergie())*100)."%' height='10'>
+							<img src='pic/viergeb.png' width='".(($pourcEn>100)?100:$pourcEn)."%' height='10'>
 						</td>
 					</tr>
 				</table>
@@ -231,8 +232,8 @@
 					<tr>
 						<td class='small' width='100%'>";
 										$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
-										if ($pourc < 0)
-											$pourc=0;
+										if($pourc < 0) $pourc = 0;
+										if($pourc>100) $pourc = 100;
 									echo"
 									<img src='pic/viergej.png' width='".$pourc."%' height='10'>
 						</td>

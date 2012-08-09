@@ -109,7 +109,7 @@ if ($perso->getEnergie() > 0)
 
 				if ($munEncore[$randArme] == true){
 					$random=rand(1,100);
-					if ($random <= ($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))){
+					if ($random <= ((($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))+$perso->getPrecision())/2)){
 						$zombiefastnb--;
 						$shootGoal++;
 					}else{
@@ -148,12 +148,12 @@ if ($perso->getEnergie() > 0)
 
 			if ($munEncore[$randArme] == true){
 				$random=rand(1,100);
-				if ($random <= $arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10))){
+				if ($random <= ((($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))+$perso->getPrecision())/2)){
 					$zombienb--;
 					$shootGoal++;
 				}else{
 					$shootMissed++;
-					$vieperdue+=$perso->damage(0.33);
+					$vieperdue+=$perso->damage(0.5);
 				}
 				$mun[$randArme]--;
 			}else{
@@ -163,7 +163,7 @@ if ($perso->getEnergie() > 0)
 					$shootGoal++;
 				}else{
 					$shootMissed++;
-					$vieperdue+=$perso->damage(0.33);
+					$vieperdue+=$perso->damage(0.5);
 				}
 				$munp[$randPiege]--;
 			}
@@ -184,7 +184,7 @@ if ($perso->getEnergie() > 0)
 
 			if ($munEncore[$randArme] == true){
 				$random=rand(1,100);
-				if ($random <= $arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10))){
+				if ($random <= ((($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))+$perso->getPrecision())/2)){
 					$crabenb--;
 					$shootGoal++;
 				}else{

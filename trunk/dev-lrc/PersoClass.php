@@ -398,4 +398,7 @@ class Perso{
 		if($rand<=$rating) return 0;
 		else return $amount;
 	}
+	public function getPrecision(){
+		return floor((1-(1/(4+($this->_dexterite/1.5))))*10000)/100;
+	}
 }
