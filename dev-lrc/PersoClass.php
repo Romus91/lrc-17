@@ -415,7 +415,7 @@ class Perso{
 		return $this->_invConso;
 	}
 	public function getTauxEsquive(){
-		return floor((1-(1/(4+($this->_esquive/1.5))))*10000)/100;
+		return floor((1-(1/(2+($this->_esquive/3))))*10000)/100;
 	}
 	public function damage($amount){
 		$rating = $this->getTauxEsquive()*100;
