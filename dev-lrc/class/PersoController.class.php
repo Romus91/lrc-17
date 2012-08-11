@@ -1,8 +1,4 @@
 <?php
-require_once 'PersoClass.php';
-require_once 'ConnectionSingleton.php';
-require_once 'ArmeController.php';
-
 
 class PersoController{
 	public function fetchAll(){

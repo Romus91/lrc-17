@@ -1,6 +1,5 @@
 <?php  session_start();
 include_once('pass.php');
-include_once 'LogClass.php';
 
 $log = new Log();
 		$login=$_POST['login'];

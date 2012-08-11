@@ -1,30 +1,30 @@
-<?php include ("verif.php");
+<?php include_once ("verif.php");
    if ($_POST['demande'])
    {
 		if ($_POST['demande'] == 'Accepter')
-		{           
-			$sql3 = 'UPDATE planque SET id_perso2 = "'.$nom.'" WHERE id_perso = "'.$_SESSION['coloc'].'"'; 
+		{
+			$sql3 = 'UPDATE planque SET id_perso2 = "'.$nom.'" WHERE id_perso = "'.$_SESSION['coloc'].'"';
             mysql_query($sql3) or die('Erreur SQL !'.$sql3.''.mysql_error());
 		}else
-		{                     
-			$sql3 = 'UPDATE planque SET id_perso2 = "" WHERE id_perso = "'.$_SESSION['coloc'].'"'; 
+		{
+			$sql3 = 'UPDATE planque SET id_perso2 = "" WHERE id_perso = "'.$_SESSION['coloc'].'"';
             mysql_query($sql3) or die('Erreur SQL !'.$sql3.''.mysql_error());
-		}               
-			$sql4 = 'DELETE FROM coloc WHERE id_perso = "'.$nom.'"'; 
+		}
+			$sql4 = 'DELETE FROM coloc WHERE id_perso = "'.$nom.'"';
             mysql_query($sql4) or die('Erreur SQL !'.$sql4.''.mysql_error());
    }
-   
+
 	$login=$_SESSION['login'];
 	// on prépare une requete SQL cherchant tous les dates, message ainsi que l'auteur des messages  par ordre décroissant en se limitant à 10 message
-	$sql = 'SELECT planque.id,planque.ptdef,planque.planche,planque.id_perso2,planque.id_perso,perso.photo,perso.nom,planque.caisse FROM planque,perso WHERE planque.id_membre = "'.$login.'"'; 
-	// lancement de la requete SQL  
+	$sql = 'SELECT planque.id,planque.ptdef,planque.planche,planque.id_perso2,planque.id_perso,perso.photo,perso.nom,planque.caisse FROM planque,perso WHERE planque.id_membre = "'.$login.'"';
+	// lancement de la requete SQL
 	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error()); 
+	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
 	$nb = mysql_num_rows(mysql_query("SELECT count(*) FROM planque"));
 	$t=mysql_fetch_array($res);
-	
-	
-   ?>  
+
+
+   ?>
    	<center>
 	<table class='small' align=center width='550'>
 		<tr>
@@ -58,7 +58,7 @@
 							<font color=1EB117 size=5>$</font>
 						</td>
 					</tr>
-				</table>		
+				</table>
 				<table class='button' width='100%'>
 					<tr>
 						<td id='button' align=center>
@@ -71,7 +71,7 @@
 		<tr>
 			<td>
 				<?php  echo $nom;
-				if ($t[0]) 
+				if ($t[0])
 				{
 				echo "
 				<table width='100%'>
@@ -97,30 +97,30 @@
 						<td>";
 					if ($t[3] <> '')
 					{
-						echo $t[3];					 
+						echo $t[3];
 					}else
-					{                      
-						// on prépare une requete SQL selectionnant tous les login des membres du site en prenant soin de ne pas selectionner notre propre login, le tout, servant à alimenter le menu déroulant spécifiant le destinataire du message  
-						$sql = 'SELECT membre.login as nom_destinataire, membre.id as id_destinataire, perso.nom as id_perso,perso.id_membre as id_membre FROM membre,perso WHERE perso.id_membre=membre.login AND perso.nom <> "'.$nom.'" ORDER BY membre.id ASC';  
-						// on lance notre requete SQL  
-						$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-						$nb = mysql_num_rows ($req);   
-						// si au moins un membre qui n'est pas nous même a été trouvé, on affiche le formulaire d'envoie de message 
+					{
+						// on prépare une requete SQL selectionnant tous les login des membres du site en prenant soin de ne pas selectionner notre propre login, le tout, servant à alimenter le menu déroulant spécifiant le destinataire du message
+						$sql = 'SELECT membre.login as nom_destinataire, membre.id as id_destinataire, perso.nom as id_perso,perso.id_membre as id_membre FROM membre,perso WHERE perso.id_membre=membre.login AND perso.nom <> "'.$nom.'" ORDER BY membre.id ASC';
+						// on lance notre requete SQL
+						$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+						$nb = mysql_num_rows ($req);
+						// si au moins un membre qui n'est pas nous même a été trouvé, on affiche le formulaire d'envoie de message
 						echo"  <form action='coloc.php' method='post'>
 								<select name='colocdes'>";
-							// on alimente le menu déroulant avec les login des différents membres du site 
-							while ($data = mysql_fetch_array($req)) 
-							{ 
-								echo '<option value="' , $data['id_perso'] ,'">' , stripslashes(htmlentities(trim($data['nom_destinataire']))) , ' -- ',$data['id_perso'],'</option>'; 
+							// on alimente le menu déroulant avec les login des différents membres du site
+							while ($data = mysql_fetch_array($req))
+							{
+								echo '<option value="' , $data['id_perso'] ,'">' , stripslashes(htmlentities(trim($data['nom_destinataire']))) , ' -- ',$data['id_perso'],'</option>';
 							}
-					
+
 							echo "
 								</select>
 								<input type='submit' name='go' value='Demander !'>
 							</form>";
-				  
-				 mysql_free_result($req);  
-				 mysql_close();  
+
+				 mysql_free_result($req);
+				 mysql_close();
 					}
 				echo "
 							</td>
@@ -130,4 +130,4 @@
 				else
 					echo "Vous n'avez pas de planque";
 			?>
-	</table>               
+	</table>

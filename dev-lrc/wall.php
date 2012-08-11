@@ -1,4 +1,4 @@
-<?php include ("verif.php");?>
+<?php include_once ("verif.php");?>
 <center>
 	<table width='550' align='left'  class='small'>
 		<tr>
@@ -32,51 +32,51 @@
 							</td>
 						</tr>
 					</table>
-				</form>	
+				</form>
 				<script>document.wall.message.focus()</script>
 			</td>
 		</tr>
-<?php  	 
+<?php
 	$timestampMembre=mysql_fetch_array(mysql_query("SELECT walltimestamp FROM membre WHERE login =  '".mysql_real_escape_string($_SESSION['login'])."'"));
-           
-    if (isset($_POST['go']) AND($_POST['go']=='Envoyer') AND ($_POST['message'] <> '')) 
-    {   
+
+    if (isset($_POST['go']) AND($_POST['go']=='Envoyer') AND ($_POST['message'] <> ''))
+    {
 		$count = mysql_fetch_array(mysql_query("SELECT login FROM membre WHERE login =  '".mysql_real_escape_string($_SESSION['login'])."'"));
 		if ($count[0])
 		{
 
-			//si tout a été bien rempli, on insère le message dans la table SQL 
-			$sql = 'INSERT INTO messages(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.mysql_real_escape_string($_SESSION['login']).'", "'.mysql_real_escape_string($_POST['message']).'")'; 
+			//si tout a été bien rempli, on insère le message dans la table SQL
+			$sql = 'INSERT INTO messages(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.mysql_real_escape_string($_SESSION['login']).'", "'.mysql_real_escape_string($_POST['message']).'")';
 			mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
 			$sql = "UPDATE  membre SET walltimestamp = (SELECT MAX( TIMESTAMP ) FROM messages) WHERE login ='".$_SESSION['login']."'";
 			mysql_query($sql);
 		}
-    }   
+    }
 
 
-		
+
 	$data=mysql_fetch_assoc(mysql_query("SELECT COUNT(*) as nbArticle FROM messages"));
-	
+
 	//Affiche 30 logs et calcule le nombre de log par page
 	$nbArticle = $data['nbArticle'];
 	$perPage = 15;
 	$nbPage = ceil($nbArticle /$perPage);
 
-	// p = numéro de la page  
+	// p = numéro de la page
 	if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage)
 	{
 		$cPage = $_GET['nb'];
-	} else 
+	} else
 	{
 		$cPage = $_GET['nb'] = 1;
 	}
 
 
 	// on prépare une requete SQL cherchant tous les dates, message ainsi que l'auteur des messages  par ordre décroissant en se limitant à 10 message
-    $sql = 'SELECT date,id_expediteur,message,id,timestamp FROM messages ORDER BY id DESC LIMIT '.(($cPage-1)*$perPage).', '.$perPage.' ';  
-	// lancement de la requete SQL 
-	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-		
+    $sql = 'SELECT date,id_expediteur,message,id,timestamp FROM messages ORDER BY id DESC LIMIT '.(($cPage-1)*$perPage).', '.$perPage.' ';
+	// lancement de la requete SQL
+	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+
 	echo"
 	<tr>
 		<td class='color4'>
@@ -84,12 +84,12 @@
 				<tr>
 					<td >";
 						$i = $cPage; $i--;
-						if ($i != 0) 
+						if ($i != 0)
 						{
 							echo ('<a href="index.php?page=wall&nb='.$i.'">PRECEDENT</a>');
-						}else 
+						}else
 							echo ("PRECEDENT");
-							
+
 				echo"</td><td align=center>|";
 				for ($i=1; $i <= $nbPage ;$i++)
 				{
@@ -97,15 +97,15 @@
 						echo $i."|";
 					else
 						echo  "<a href='index.php?page=wall&nb=".$i."'>".$i."</a>|";
-					
+
 				}
 				echo"</td><td align='right'>";
-					
+
 						$i = $cPage; $i++;
-						if ($i <= $nbPage) 
+						if ($i <= $nbPage)
 						{
 							echo ('<a href="index.php?page=wall&nb='.$i.'">SUIVANT</a>');
-						}else 
+						}else
 							echo ("SUIVANT");
 					echo"
 					</td>
@@ -120,12 +120,12 @@
         if ($i <= $cptwall)
 		{
 			echo"
-		  
+
 		<tr>
 			<td>",$t[4]," -- <b>",$t[1],"</b></td>
 		</tr>
 		<tr>
-			<td><font color=FF6600>",$t[2],"</font></td> 
+			<td><font color=FF6600>",$t[2],"</font></td>
 		</tr>
 		<tr>
 			<td align=center class='color4'>&nbsp;</td>
@@ -139,7 +139,7 @@
 			<td>",$t[4]," -- <b>",$t[1],"</b></td>
 		</tr>
 		<tr>
-			<td>",$t[2],"</td> 
+			<td>",$t[2],"</td>
 		</tr>
 		<tr>
 			<td align=center class='color4'>&nbsp;</td>
@@ -155,29 +155,29 @@
 				<tr>
 					<td >";
 						$i = $cPage; $i--;
-						if ($i != 0) 
+						if ($i != 0)
 						{
 							echo ('<a href="index.php?page=wall&nb='.$i.'">PRECEDENT</a>');
-						}else 
+						}else
 							echo ("PRECEDENT");
-							
+
 			echo"</td><td align=center>|";
-				
+
 				for ($i=1; $i <= $nbPage ;$i++)
 				{
 					if ($_GET['nb'] == $i)
 						echo $i."|";
 					else
 						echo  "<a href='index.php?page=wall&nb=".$i."'>".$i."</a>|";
-					
+
 				}
 				echo"</td><td align='right'>";
-					
+
 						$i = $cPage; $i++;
-						if ($i <= $nbPage) 
+						if ($i <= $nbPage)
 						{
 							echo ('<a href="index.php?page=wall&nb='.$i.'">SUIVANT</a>');
-						}else 
+						}else
 							echo ("SUIVANT");
 					echo"
 					</td>
@@ -193,5 +193,5 @@
 	</table>
 </center>
 		";
-		
+
 ?>

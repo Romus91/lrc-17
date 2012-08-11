@@ -1,8 +1,6 @@
 	<tr>
 		<td align=center>
 				<?php
-					require_once 'ConsoClass.php';
-					require_once 'ConsoController.php';
 
 					$consoCont = new ConsoController();
 					$consArray = $consoCont->fetchAll();

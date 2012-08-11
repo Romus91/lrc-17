@@ -1,6 +1,6 @@
 <?php
 	include_once ("verif.php");
-	require_once 'PersoController.php';?>
+?>
 <center>
 <?php
 	//Affichage des perso du membre connecté

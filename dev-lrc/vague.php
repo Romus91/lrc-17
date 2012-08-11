@@ -1,7 +1,5 @@
 <?php
 include_once ("verif.php");
-require_once 'PersoController.php';
-require_once 'LogClass.php';
 
 $persoController = new PersoController();
 $log = new Log();

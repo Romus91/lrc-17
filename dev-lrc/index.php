@@ -1,11 +1,7 @@
 <?php
 
-include("verif.php");
-include('pass.php');
-
-require_once 'PersoClass.php';
-require_once 'PersoController.php';
-require_once 'LogClass.php';
+include_once("verif.php");
+include_once('pass.php');
 
 $persoController = new PersoController();
 $log = new Log();

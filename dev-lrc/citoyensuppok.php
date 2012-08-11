@@ -1,7 +1,7 @@
-<?php include ("verif.php");
-   $nom = $_GET['perso'];  
-   $sql = "UPDATE perso SET enterrer = 1 WHERE perso.id_membre = '".$_SESSION['login']."' and perso.nom = '".$nom."' "; 
-   $req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error()); 
+<?php include_once ("verif.php");
+   $nom = $_GET['perso'];
+   $sql = "UPDATE perso SET enterrer = 1 WHERE perso.id_membre = '".$_SESSION['login']."' and perso.nom = '".$nom."' ";
+   $req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
 ?>
 <html>
 <head>

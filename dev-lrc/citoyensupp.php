@@ -1,4 +1,4 @@
-<?php include ("verif.php");?>
+<?php include_once ("verif.php");?>
 <table bgcolor=000000>
 	<tr align=center >
 		<td colspan=2 bgcolor=<?php  echo $_SESSION['couleur4']; ?>>Supprimer ton perso ? </td>

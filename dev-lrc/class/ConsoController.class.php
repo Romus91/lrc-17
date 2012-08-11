@@ -1,8 +1,5 @@
 <?php
 
-require_once 'ConnectionSingleton.php';
-require_once 'ConsoClass.php';
-
 class ConsoController{
 	public function fetchAll(){
 		$query = 'select id from conso;';

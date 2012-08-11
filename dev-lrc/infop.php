@@ -1,6 +1,4 @@
 <?php
-	require_once 'PersoController.php';
-	require_once 'ConsoController.php';
 	$persoController = new PersoController();
 	$perso = $persoController->fetchPerso($_GET['perso']);
 	$consoController = new ConsoController();

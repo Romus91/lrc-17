@@ -1,7 +1,4 @@
 <?php
-require_once 'ArmeClass.php';
-require_once 'ConnectionSingleton.php';
-
 
 class ArmeController{
 	public function fetchAll(){

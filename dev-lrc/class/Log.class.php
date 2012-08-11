@@ -1,5 +1,4 @@
 <?php
-require_once 'ConnectionSingleton.php';
 
 class Log
 {
@@ -7,12 +6,12 @@ class Log
 	private $_id_membre;
 	private $_type;
 	private $_commentaire;
-	
+
 	public function getId()
 	{
 		return $this->_id;
 	}
-	
+
 	public function getId_membre()
 	{
 		return $this->_id_membre;
@@ -21,7 +20,7 @@ class Log
 	{
 		$this->_id_membre=$_id_membre;
 	}
-	
+
 	public function getType()
 	{
 		return $this->_type;
@@ -30,7 +29,7 @@ class Log
 	{
 		$this->_type=$_type;
 	}
-	
+
 	public function getCommentaire()
 	{
 		return $this->_commentaire;
@@ -39,10 +38,10 @@ class Log
 	{
 		$this->_commentaire=$_commentaire;
 	}
-	
-	
+
+
 	public function insertLog($typeLog,$id_membre,$id_perso,$commentaire)
-	{	
+	{
 		$query="INSERT INTO log (type,id_membre,id_perso,commentaire) VALUES (:typ,:id_mem,:id_pers,:com);";
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(

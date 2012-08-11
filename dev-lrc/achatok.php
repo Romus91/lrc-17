@@ -1,9 +1,6 @@
 <?php
 	include_once ("verif.php");
 	include_once ("pass.php");
-	require_once 'PersoController.php';
-	require_once 'ConsoController.php';
-	include_once 'LogClass.php';
 
 	$log = new Log();
 	$persoController=new PersoController();

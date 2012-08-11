@@ -1,9 +1,5 @@
 <?php
 	include_once("verif.php");
-	require_once 'PersoController.php';
-	require_once 'LogClass.php';
-	require_once 'ConsoClass.php';
-	require_once 'ConsoController.php';
 	include_once("pass.php");
 
 	$log = new Log();
