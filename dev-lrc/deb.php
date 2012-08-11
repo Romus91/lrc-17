@@ -1,4 +1,4 @@
-
+<?php if(file_exists('lrc.lock')) {echo "Le site est actuellement en maintenance, allez vous faire un café et revenez dans quelques minutes !";exit();} ?>
 <html>
 <head>
   <title>LES RESCAPES DE CITE 17</title>
