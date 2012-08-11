@@ -1,21 +1,21 @@
-<?php  include ("verif.php");?>
+<?php  include_once ''; ("verif.php");?>
 <center>
-<?php 				 
-	//Affichage des perso du membre connecté                     
+<?php
+	//Affichage des perso du membre connecté
 	$login=$_SESSION['login'];
 	if ($_GET['status'] == 1)
 		$ent=1;
 	else
 		$ent=0;
 	// on prépare une requete SQL cherchant le nom,sexe,photo,id_membre,argent,vie,date,jourvague,arme,piege du perso du memebre connecté par ordre croissant de l'id des perso
-	$sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,arme,piege,competance FROM perso WHERE enterrer = '.$ent.' ORDER BY id DESC'; 
-	// lancement de la requete SQL  
+	$sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,arme,piege,competance FROM perso WHERE enterrer = '.$ent.' ORDER BY id DESC';
+	// lancement de la requete SQL
 	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error()); 
+	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
 	$nb = mysql_num_rows($req);	//Nombre de resultat trouvé
-	
+
 	$sql2='SELECT count(*) FROM perso WHERE "'.$login.'" = id_membre AND enterrer = 1';
-	$req2 = mysql_query($sql2) or die('Erreur SQL !'.$sql2.''.mysql_error()); 
+	$req2 = mysql_query($sql2) or die('Erreur SQL !'.$sql2.''.mysql_error());
 	$nb2 = mysql_fetch_array($req2);
 
 	//On affiche le tout
@@ -49,7 +49,7 @@
 			</table>
 		</td>
 	</tr>
-	<?php 
+	<?php
 	//Si il n'y a aucun resultat, on affiche qu'il n'y en a pas
 	if ($nb == 0)
 	{
@@ -61,18 +61,18 @@
 	}else//Sinon, on affiche les resultat
 	{
         $a=1;
-        While($t=mysql_fetch_array($res))	 
+        While($t=mysql_fetch_array($res))
         {
-		$date= (ceil((time()-$t[5])/86400));//On calcule le nombre de jour du perso passé dans le jeu					  
+		$date= (ceil((time()-$t[5])/86400));//On calcule le nombre de jour du perso passé dans le jeu
 		$heure=date('H:i:s',$t[5]);//On calcule l'heure de l'insciption du perso
 		if (date('H:i:s') < $heure){$date = $date + 1;}//Si l'heure actuelle est plus petite que l'heure d'inscription, on ajoute 1 au jour du perso
-        $date2=$date-$t[6];  
-		
+        $date2=$date-$t[6];
+
 		echo "
 	<tr>
 		<td width='110' align=center>
-			"; 
-		if($t[4] <> 0 ) 
+			";
+		if($t[4] <> 0 )
 		{
 		echo"
 			<table class='button'>
@@ -90,8 +90,8 @@
 		</td>
 			";
 		}else
-		{ 
-			if ($_GET['status'] <> 1) 
+		{
+			if ($_GET['status'] <> 1)
 				echo"
 			<table class='button'>
 				<tr>
@@ -100,17 +100,17 @@
 					</td>
 				</tr>
 			</table>
-		</td>    
+		</td>
 				";
 			else
 				echo"
 						<font size=4>".$t[0]."</font>
-		</td>    
+		</td>
 				";
 		}
 		//On affiche les jours de vagues, l'argent, la vie, la photo, la date et l'heure de l'insciption, la photo de l'arme et du piege.
-		  
-		if($t[4] <> 0 ) 
+
+		if($t[4] <> 0 )
 		{
 			echo"
 				<td align='center'>
@@ -141,7 +141,7 @@
 				</td>
 			";
 		}
-		
+
 			echo"
 		<td align=left>
 			<table class='hev' >
@@ -177,7 +177,7 @@
 			<table class='hev'>
 				<tr>
 					<td align=center>
-						<img src='".$t[8].".png' width='70'>  
+						<img src='".$t[8].".png' width='70'>
 					</td>
 				</tr>
 			</table>
@@ -196,7 +196,7 @@
 		</td>
 		<td>";
 
-		
+
 		//$vieb=$t[4];
 	    $C=floor($t[4]/100);
 	    $D=floor(($t[4]%100)/10);
@@ -217,19 +217,18 @@
 				</tr>
 			</table>
 			";
-		
-		
-		
+
+
+
 		echo"
 		</td>
 	</tr>
 	<tr>
 		<td colspan=6 align=center bgcolor=111111>&nbsp;</td>
-	</tr>";					 
+	</tr>";
 		}
 	}
     echo"
 </table>";
 $_SESSION['erreur']='';
 ?>
-			    

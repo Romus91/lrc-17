@@ -1,7 +1,6 @@
 <?php
 
-require_once 'PersoClass.php';
-require_once 'PersoController.php';
+require_once 'autoload.php';
 
 $persocont = new PersoController();
 $tab = $persocont->fetchAll();

@@ -1,8 +1,6 @@
 <?php
 	include_once("verif.php");
 	include_once("pass.php");
-	require_once 'PersoController.php';
-	require_once 'LogClass.php';
 
 	$i = (int) htmlentities($_GET['i']);
 

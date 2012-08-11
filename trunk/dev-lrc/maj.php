@@ -1,11 +1,11 @@
-<?php include ("verif.php");
+<?php include_once("verif.php");
 $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESSION['login']."'"));?>
 <center>
 	<table width='550' align='left'  class='small'>
-	<?php 
+	<?php
 	if ($id[0] == 4)
 	{
-		echo "		
+		echo "
 		<tr>
 			<td>
 			   <form action = 'index.php?page=maj' method='post' name='wall'>
@@ -38,27 +38,27 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 						</tr>
 					</table>
 					<script>document.wall.message.focus()</script>
-					</form>					
+					</form>
 			</td>
 		</tr>";
-    if (($_POST['go']=='Envoyer') AND ($_POST['message'] <> '')) 
-    {   
-		//si tout a été bien rempli, on insère le message dans la table SQL 
-		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$_SESSION['login'].'", "'.mysql_escape_string($_POST['message']).'")'; 
+    if (($_POST['go']=='Envoyer') AND ($_POST['message'] <> ''))
+    {
+		//si tout a été bien rempli, on insère le message dans la table SQL
+		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$_SESSION['login'].'", "'.mysql_escape_string($_POST['message']).'")';
         mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
 		$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$_SESSION['login']."'";
 		mysql_query($sql);
-    } 
- }   
+    }
+ }
 	$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$_SESSION['login']."'";
 	mysql_query($sql);
 	// on prépare une requete SQL cherchant tous les dates, message ainsi que l'auteur des messages  par ordre décroissant en se limitant à 10 message
-    $sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,15 ';  
-	// lancement de la requete SQL 
-	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-	
+    $sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,15 ';
+	// lancement de la requete SQL
+	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+
 	echo"
-	
+
 		<tr>
 			<td align=center class='color4'>&nbsp;</td>
 		</tr>
@@ -66,15 +66,15 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 	$i=1;
 	While($t=mysql_fetch_array($res))
     {
-        if ($i <= $cpt) 
+        if ($i <= $cpt)
 		{
 			echo"
-		  
+
 		<tr>
 			<td><font size = 3>",$t[4],"</font></td>
 		</tr>
 		<tr>
-			<td><font color=FF6600>",$t[2],"</font></td> 
+			<td><font color=FF6600>",$t[2],"</font></td>
 		</tr>
 		<tr>
 			<td align=center class='color4'>&nbsp;</td>
@@ -88,7 +88,7 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 			<td><font size = 3>",$t[4],"</font></td>
 		</tr>
 		<tr>
-			<td>",$t[2],"</td> 
+			<td>",$t[2],"</td>
 		</tr>
 		<tr>
 			<td align=center class='color4'>&nbsp;</td>
@@ -101,5 +101,5 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 	</table>
 </center>
 		";
-		
+
 ?>

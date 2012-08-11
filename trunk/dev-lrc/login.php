@@ -3,9 +3,8 @@
 // on se connecte à la base de donnée
    include_once('pass.php');
    $_SESSION['erreur']= "";
-   include_once 'LogClass.php';
    $log = new Log();
-   		
+
 	if(isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['login']) && !empty($_POST['pass'])){
 		$_POST['login']=ucfirst($_POST['login']);
 		$_POST['login']=stripslashes(str_replace("'","_",$_POST['login']));
@@ -30,7 +29,7 @@
 		$_POST['login']=stripslashes(str_replace(";","_",$_POST['login']));
 		$_POST['login']=stripslashes(str_replace("#","_",$_POST['login']));
 		$_POST['login']=mysql_real_escape_string($_POST['login']);
-	
+
    //on vérifie que les champ ne sont pas vide
     // extract($_POST);
      // on recupère le password qui correspond au login du visiteur
@@ -45,19 +44,19 @@
 
      if(!$data['id']){
        $_SESSION['erreur']= '<center><font color="#FF0000"><b>Mauvais login/mot de passe...</b></font></center>';
-       include("loginb.php"); 
+       include("loginb.php");
 	   $_SESSION['erreur']="";// On inclut la page index.htm
        exit;
      }
-     else {//sinon   
+     else {//sinon
        $_SESSION['login'] = $_POST['login'];
 	   $_SESSION['member_id'] = $data['id'];
-      // on stocke ce login dans une variable de session 	
-	  
+      // on stocke ce login dans une variable de session
+
 	  $log->insertLog("Connecté",$_SESSION['member_id'],"NULL",$_SESSION['login']);
-     }   
+     }
    }
-   else 
+   else
    {//si un champ est vide on affiche une erreur
 		include("loginb.php");
 		exit;
