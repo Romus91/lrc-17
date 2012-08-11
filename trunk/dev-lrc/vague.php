@@ -211,7 +211,7 @@ if ($perso->getEnergie() > 0)
 	###############################
 
 	####VIES####
-	//$vieperdue=((floor($crabenb/4))+(ceil($zombienb/3))+(ceil($zombiefastnb)));
+	$vieperdue+=((floor($crabenb/4))+(ceil($zombienb/3))+(ceil($zombiefastnb)));
 	$vieperdue=round($vieperdue);
 	$vie=$perso->getVie()-$vieperdue;
 	if ($vie < 0)//Si la vie descend en dessous de 0, on la planche à 0
