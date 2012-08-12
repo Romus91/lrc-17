@@ -9,6 +9,8 @@ class Member{
 	protected $_theme;
 	protected $_walltimestamp;
 	protected $_majtimestamp;
+	protected $_argent;
+	protected $_xp;
 
 	public function __set($name, $value){
 		$method = 'set'.$name;
@@ -78,6 +80,20 @@ class Member{
 	}
 	public function setMajTimestamp($mt){
 		$this->_majtimestamp = $mt;
+		return $this;
+	}
+	public function getArgent(){
+		return $this->_argent;
+	}
+	public function setArgent($a){
+		$this->_argent =(int) $a;
+		return $this;
+	}
+	public function getXp(){
+		return $this->_xp;
+	}
+	public function setXp($xp){
+		$this->_xp = (int) $xp;
 		return $this;
 	}
 }
