@@ -1,5 +1,7 @@
 <?php session_start();
+require_once'autoload.php';
 include_once("pass.php");
+
 
 $persoCont = new PersoController();
 $perso = $persoCont->fetchPerso($_GET['perso']);

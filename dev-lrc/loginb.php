@@ -26,7 +26,7 @@
 			<table border="0" class='color5' width="800">
 			<tr>
 				<td width="200%" background="blanc.png" bgcolor="000000" colspan="3" align=center>
-				   <a href="index.php"><img border="0" src="pic/banneralpha.png" width="500" height="70" ></a>
+				   <a href="index.php"><img border="0" src="image.php?img=banneralpha.png" width="500" height="70" ></a>
 				</td>
 			</tr>
 			<tr>
@@ -62,7 +62,7 @@
 																			<table class='button'>
 																				<tr>
 																					<td id='button'>
-																						<input type="image" src='images/img02go.png' value='connexion' width='110' height='30' onmouseover="src='images/img03go.png'" onmouseout="src='images/img02go.png'">
+																						<input type="image" src='image.php?img=img02go.png' value='connexion' width='110' height='30' onmouseover="src='image.php?img=img03go.png'" onmouseout="src='image.php?img=img02go.png'">
 																					</td>
 																				</tr>
 																			</table>
@@ -101,7 +101,7 @@
 															 </tr>
 															 <tr>
 																<td colspan=2>
-																	<? echo $_SESSION['erreur2']; ?>
+																	<? if(isset($_SESSION['erreur2']))echo $_SESSION['erreur2']; ?>
 																</td>
 															</tr>
 															 <tr>
@@ -120,7 +120,7 @@
 															 </tr>
 															 <tr>
 																<td colspan=2>
-																	<? echo $_SESSION['erreur1']; ?>
+																	<? if(isset($_SESSION['erreur1'])) echo $_SESSION['erreur1']; ?>
 																</td>
 															</tr>
 															  <tr>
@@ -133,7 +133,7 @@
 																	<table class='button'>
 																		<tr>
 																			<td id='button'>
-																				<input type="image" src='images/img02ins.png' width='110' height='30' value='connexion' onmouseover="src='images/img03ins.png'" onmouseout="src='images/img02ins.png'">
+																				<input type="image" src='image.php?img=img02ins.png' width='110' height='30' value='connexion' onmouseover="src='image.php?img=img03ins.png'" onmouseout="src='image.php?img=img02ins.png'">
 																			</td>
 																		</tr>
 																	</table>
@@ -141,7 +141,7 @@
 															 </tr>
 															 <tr>
 																<td colspan=2>
-																	<? echo $_SESSION['erreur3']; ?>
+																	<? if(isset($_SESSION['erreur3'])) echo $_SESSION['erreur3']; ?>
 																</td>
 															</tr>
 														  </table>
@@ -184,7 +184,7 @@
 												</table>
 												<table  valign=top align=center>
 													<tr>
-														<td><img src='pic/ravenholm.JPG' width="550"></td>
+														<td><img src='image.php?img=ravenholm.JPG' width="550"></td>
 													</tr>
 												</table>
 											</font>

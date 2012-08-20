@@ -146,12 +146,12 @@
 
 			echo"
 
-		<td rowspan='2' align=center background='pic/".$perso->getAvatar().".JPG' width='130' hight='70'>
+		<td rowspan='2' align=center background='image.php?img=".$perso->getAvatar().".JPG' width='130' hight='70'>
 			";
 			if ($perso->getVie() == 0)
-				echo"<img src='pic/rouge.png' width='185' height='170'></td>";
+				echo"<img src='image.php?img=rouge.png' width='185' height='170'></td>";
 			else
-				echo"<a href='index.php?page=perso&perso=".$perso->getId()."'><img src='pic/blanc.png' width='185' height='170'></a></td>";
+				echo"<a href='index.php?page=perso&perso=".$perso->getId()."'><img src='image.php?img=blanc.png' width='185' height='170'></a></td>";
 
 
 		echo"
@@ -213,7 +213,7 @@
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>
-							<img src='pic/viergev.png' width='".$perso->getVie()."%' height='10'>
+							<img src='image.php?img=viergev.png' width='".$perso->getVie()."%' height='10'>
 						</td>
 					</tr>
 				</table>
@@ -223,7 +223,7 @@
 						<td class='small' width='100%'>";
 						$pourcEn = (($perso->getEnergie()/$perso->getMaxEnergie())*100);
 						echo"
-							<img src='pic/viergeb.png' width='".(($pourcEn>100)?100:$pourcEn)."%' height='10'>
+							<img src='image.php?img=viergeb.png' width='".(($pourcEn>100)?100:$pourcEn)."%' height='10'>
 						</td>
 					</tr>
 				</table>
@@ -235,7 +235,7 @@
 										if($pourc < 0) $pourc = 0;
 										if($pourc>100) $pourc = 100;
 									echo"
-									<img src='pic/viergej.png' width='".$pourc."%' height='10'>
+									<img src='image.php?img=viergej.png' width='".$pourc."%' height='10'>
 						</td>
 					</tr>
 				</table>

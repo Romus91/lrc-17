@@ -41,21 +41,21 @@ include_once("level.php");?>
 													</td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>DEGATS</td><td class='small' ><img src='pic/viergec.png' width='".(($piege['force']/20)*100)."%' height='10'></td>
+													<td class='color1' width=40>DEGATS</td><td class='small' ><img src='image.php?img=viergec.png' width='".(($piege['force']/20)*100)."%' height='10'></td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>PRECISION</td><td class='small' ><img src='pic/viergec.png' width='".$piege['precision']."%' height='10'></td>
+													<td class='color1' width=40>PRECISION</td><td class='small' ><img src='image.php?img=viergec.png' width='".$piege['precision']."%' height='10'></td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>CHARGEUR</td><td class='small' ><img src='pic/viergec.png' width='".(($piege['munmax']/250)*100)."%' height='10'></td>
+													<td class='color1' width=40>CHARGEUR</td><td class='small' ><img src='image.php?img=viergec.png' width='".(($piege['munmax']/250)*100)."%' height='10'></td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>&nbsp;</td><td class='small' ><img src='pic/viergec.png' width='0%' height='10'></td>
+													<td class='color1' width=40>&nbsp;</td><td class='small' ><img src='image.php?img=viergec.png' width='0%' height='10'></td>
 												</tr>
 											</table>
 										</td>
 										<td align=center class='color2'>
-											<img src='pic/".$piege['image'].".png' width='80' height='80'><br>
+											<img src='image.php?img=".$piege['image'].".png' width='80' height='80'><br>
 											
 										</td>
 										<td align=center class='color4'>
@@ -79,21 +79,21 @@ include_once("level.php");?>
 													</td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>DEGATS</td><td class='small' ><img src='pic/viergec.png' width='".(($piege['force']/20)*100)."%' height='10'></td>
+													<td class='color1' width=40>DEGATS</td><td class='small' ><img src='image.php?img=viergec.png' width='".(($piege['force']/20)*100)."%' height='10'></td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>PRECISION</td><td class='small' ><img src='pic/viergec.png' width='".$piege['precision']."%' height='10'></td>
+													<td class='color1' width=40>PRECISION</td><td class='small' ><img src='image.php?img=viergec.png' width='".$piege['precision']."%' height='10'></td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>CHARGEUR</td><td class='small' ><img src='pic/viergec.png' width='".(($piege['munmax']/250)*100)."%' height='10'></td>
+													<td class='color1' width=40>CHARGEUR</td><td class='small' ><img src='image.php?img=viergec.png' width='".(($piege['munmax']/250)*100)."%' height='10'></td>
 												</tr>
 												<tr>
-													<td class='color1' width=40>&nbsp;</td><td class='small' ><img src='pic/viergec.png' width='0%' height='10'></td>
+													<td class='color1' width=40>&nbsp;</td><td class='small' ><img src='image.php?img=viergec.png' width='0%' height='10'></td>
 												</tr>
 											</table>
 										</td>
 										<td align=center class='color3'>
-											<img src='pic/".$piege['image'].".png' width='80' height='80'><br>
+											<img src='image.php?img=".$piege['image'].".png' width='80' height='80'><br>
 											
 										</td>
 										<td align=center class='color4'>

@@ -50,7 +50,7 @@ if ($nb2 >= 5){
 		<?php  for ($i=1;$i<=5;$i++)
 				echo"
 		<td>
-			<img src='pic/".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG' width='105'>
 		</td>
 					";
 		?>
@@ -69,7 +69,7 @@ if ($nb2 >= 5){
 		<?php  for ($i=6;$i<=10;$i++)
 				echo"
 		<td>
-			<img src='pic/".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG' width='105'>
 		</td>
 					";
 		?>
@@ -88,7 +88,7 @@ if ($nb2 >= 5){
 		<?php  for ($i=11;$i<=15;$i++)
 				echo"
 		<td>
-			<img src='pic/".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG' width='105'>
 		</td>
 					";
 		?>
@@ -107,7 +107,7 @@ if ($nb2 >= 5){
 		<?php  for ($i=16;$i<=20;$i++)
 				echo"
 		<td>
-			<img src='pic/".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG' width='105'>
 		</td>
 					";
 		?>

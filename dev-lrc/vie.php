@@ -15,7 +15,7 @@
 							?>
 						<td align=center bgcolor='222222' width='33%'>
 							<a href='achatok.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $consArray[0]->getId();?>&type=JKREJI8HYJ444YT' >
-							<img src='pic/v10.png' width='120' height='85' onmouseover='src="pic/v10o.png"' onmouseout='src="pic/v10.png"'></a><br>
+							<img src='image.php?img=v10.png' width='120' height='85' onmouseover='src="image.php?img=v10o.png"' onmouseout='src="image.php?img=v10.png"'></a><br>
 							<?php echo $consArray[0]->getPrix($perso->getLevel()); ?> $
 						</td>
 							<?php
@@ -33,7 +33,7 @@
 							?>
 						<td align=center bgcolor='222222' width='33%'>
 							<a href='achatok.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $consArray[1]->getId();?>&type=JKREJI8HYJ444YT' >
-							<img src='pic/v50.png' width='120' height='85' onmouseover='src="pic/v50o.png"' onmouseout='src="pic/v50.png"'></a><br>
+							<img src='image.php?img=v50.png' width='120' height='85' onmouseover='src="image.php?img=v50o.png"' onmouseout='src="image.php?img=v50.png"'></a><br>
 							<?php echo $consArray[1]->getPrix($perso->getLevel()); ?> $
 						</td>
 							<?php
@@ -51,7 +51,7 @@
 							?>
 						<td align=center bgcolor='222222' width='33%'>
 							<a href='achatok.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $consArray[2]->getId();?>&type=JKREJI8HYJ444YT' >
-							<img src='pic/vf.png' width='120' height='85' onmouseover='src="pic/vfo.png"' onmouseout='src="pic/vf.png"'></a><br>
+							<img src='image.php?img=vf.png' width='120' height='85' onmouseover='src="image.php?img=vfo.png"' onmouseout='src="image.php?img=vf.png"'></a><br>
 							<?php echo $consArray[2]->getPrix($perso->getLevel()); ?> $
 						</td>
 							<?php
@@ -74,7 +74,7 @@
 							?>
 						<td align=center bgcolor='222222' width='33%'>
 							<a href='achatok.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $consArray[3]->getId();?>&type=JKREJI8HYJ444YT' >
-							<img src='pic/n20.png' width='120' height='85' onmouseover='src="pic/n20o.png"' onmouseout='src="pic/n20.png"'></a><br>
+							<img src='image.php?img=n20.png' width='120' height='85' onmouseover='src="image.php?img=n20o.png"' onmouseout='src="image.php?img=n20.png"'></a><br>
 							<?php echo $consArray[3]->getPrix($perso->getLevel()); ?> $
 						</td>
 							<?php
@@ -92,7 +92,7 @@
 							?>
 						<td align=center bgcolor='222222' width='33%'>
 							<a href='achatok.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $consArray[4]->getId();?>&type=JKREJI8HYJ444YT' >
-							<img src='pic/n70.png' width='120' height='85' onmouseover='src="pic/n70o.png"' onmouseout='src="pic/n70.png"'></a><br>
+							<img src='image.php?img=n70.png' width='120' height='85' onmouseover='src="image.php?img=n70o.png"' onmouseout='src="image.php?img=n70.png"'></a><br>
 							<?php echo $consArray[4]->getPrix($perso->getLevel()); ?> $
 						</td>
 							<?php
@@ -110,7 +110,7 @@
 							?>
 						<td align=center bgcolor='222222' width='33%'>
 							<a href='achatok.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $consArray[5]->getId();?>&type=JKREJI8HYJ444YT' >
-							<img src='pic/n100.png' width='120' height='85' onmouseover='src="pic/n100o.png"' onmouseout='src="pic/n100.png"'></a><br>
+							<img src='image.php?img=n100.png' width='120' height='85' onmouseover='src="image.php?img=n100o.png"' onmouseout='src="image.php?img=n100.png"'></a><br>
 							<?php echo $consArray[5]->getPrix($perso->getLevel()); ?> $
 						</td>
 							<?php
