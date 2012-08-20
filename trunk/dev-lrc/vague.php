@@ -20,6 +20,7 @@ $pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($per
 <?php
 if($pourc>=100){
 	echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
+	exit;
 }
 if ($perso->getEnergie() > 0)
 {
@@ -221,7 +222,7 @@ if ($perso->getEnergie() > 0)
 	$rand=rand(1,50);
 	$totmunForZP=0;
 
-	if (($perso->getLevel()-3) >= $rand)
+	if (($perso->getLevel()-3) >= $rand && $vie > 0)
 	{
 
 		$zombiepoison=$zombiepoisonnb=1 ;
