@@ -52,8 +52,8 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 </table>
 					</center>
 					</td>
-					</tr>					
-					
+					</tr>
+
 			    </table>
 	</font>
 
@@ -62,7 +62,7 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 		<td align=center>&nbsp;</td>
 	</tr>
 </table>
-</td>	
+</td>
              </tr>
            </table>
             </center>
@@ -125,7 +125,7 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 							<table class='button'>
 								<tr>
 									<td id='button'>
-										<input type="image" src='images/img02ins.png' width='110' height='30' value='connexion' onmouseover="src='images/img03ins.png'" onmouseout="src='images/img02ins.png'">
+										<input type="image" src='image.php?img=img02ins.png' width='110' height='30' value='connexion' onmouseover="src='image.php?img=img03ins.png'" onmouseout="src='image.php?img=img02ins.png'">
 									</td>
 								</tr>
 							</table>
@@ -135,7 +135,7 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 						<td colspan=2>
 							<?php  echo $_SESSION['erreur3']; ?>
 						</td>
-					</tr>					 
+					</tr>
                   </table>
 
 
@@ -144,7 +144,7 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 		<td align=center>&nbsp;</td>
 	</tr>
 </table>
-</td>	
+</td>
              </tr>
            </table>
             </center>
@@ -154,9 +154,9 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 	</td>
 	  <tr align="left">
 	    <td colspan="2"><a href='http://romustech.dyndns.org'>Created by Romus</a><font color="FAC21D"> -- Copyright © LES RESCAPES DE CITE 17 -- </font></td>
-      </tr> 
+      </tr>
   </tr>
-    </center>   
+    </center>
 </table>
 </td>
 </tr>

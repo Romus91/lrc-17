@@ -77,12 +77,12 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 		";
 		if ($perso['vie'] == 0)
 		{
-			echo"<td align=center bgcolor='AA0000'><img src='pic/".$perso['photo'].".JPG' height='50'></td>
-			<td class='color3' align=center width='20'><img src='pic/mort.png' width='20'></td>";
+			echo"<td align=center bgcolor='AA0000'><img src='image.php?img=".$perso['photo'].".JPG&h=50' height='50'></td>
+			<td class='color3' align=center width='20'><img src='image.php?img=mort.png' width='20'></td>";
 		}
 		else
 		{
-			echo"<td align=center bgcolor='999999' width='30'><img src='pic/".$perso['photo'].".JPG' height='50'></td>
+			echo"<td align=center bgcolor='999999' width='30'><img src='image.php?img=".$perso['photo'].".JPG&h=50' height='50'></td>
 			<td class='color3' align=center width='20'>&nbsp;</td>";
 		}
 
@@ -96,8 +96,8 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 		<td colspan=3 class='color3'>&nbsp;</td>
 		<td class='color4' style='padding-left:3px;'><div>Endurance : ".$perso['endurance']."</div><div>Dexterite : ".$perso['dexterite']."</div><div>Esquive : ".$perso['esquive']."</div></td>
 		<td colspan=3 class='color3'>";
-		for($j=1;$j<=4;$j++)if($inv['arm'.$j]!=null) echo "<img src='pic/".$inv['arm'.$j].".png' height='40'>";
-		for($j=1;$j<=2;$j++)if($inv['pie'.$j]!=null) echo "<img src='pic/".$inv['pie'.$j].".png' height='40'>";
+		for($j=1;$j<=4;$j++)if($inv['arm'.$j]!=null) echo "<img src='image.php?img=".$inv['arm'.$j].".png&h=40' height='40'>";
+		for($j=1;$j<=2;$j++)if($inv['pie'.$j]!=null) echo "<img src='image.php?img=".$inv['pie'.$j].".png&h=40' height='40'>";
 		echo "</td>
 	</tr>
 	";

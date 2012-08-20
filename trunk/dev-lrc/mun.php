@@ -2,7 +2,7 @@
 	$actp=$_GET['piege'];
 								###Attribution des points pour les armes###
 								$_SESSION['prix']=$prixballe['prixballes']=mysql_fetch_array(mysql_query("SELECT prixballe FROM armes WHERE image = '".$act."'"));
-								
+
 								###Attribution des points pour les pièges###
 								if ($actp == '')$_SESSION['prixp']=0;
 								if ($actp == 'piege1')$_SESSION['prixp']=10;
@@ -21,25 +21,25 @@
 								var p=0;
 								var pp=0;
 								function plusOne(mun,munp,munmax)
-								{			
-										
+								{
+
 										if ((i < munmax) && (calcul(i+1,ip,mun,munp) >= 0))
 										{
 											i++;
 											p=i-mun;
-											document.getElementById('action').innerHTML="<font color='FFFF00'>"+i+"</font> / <?php  echo $_SESSION['munmax'];?>";	
+											document.getElementById('action').innerHTML="<font color='FFFF00'>"+i+"</font> / <?php  echo $_SESSION['munmax'];?>";
 										}
 										result(i,ip,mun,munp);
 										document.getElementById('plus').innerHTML="<font color='00FF00'>+ "+p+"</font>";
 								}
 								function plusTen(mun,munp,munmax)
-								{		
+								{
 										if (calcul(munmax,ip,mun,munp) >=0)
 										{
-											i=munmax;	
+											i=munmax;
 											document.getElementById('action').innerHTML="<font color='FFFF00'>"+i+"</font> / <?php  echo $_SESSION['munmax'];?>";
 										}else
-										{		
+										{
 											i=mun+(Math.floor(calcul(i,ip,mun,munp)/<?php echo $_SESSION['prix'];?>));
 											document.getElementById('action').innerHTML="<font color='FFFF00'>"+i+"</font> / <?php  echo $_SESSION['munmax'];?>";
 										}
@@ -48,7 +48,7 @@
 										result(i,ip,mun,munp);
 								}
 								function minOne(mun,munp)
-								{				
+								{
 											if (i > mun)
 											{
 												i--;
@@ -63,37 +63,37 @@
 											p=i-mun;
 											document.getElementById('plus').innerHTML="<font color='00FF00'>+ "+p+"</font>";
 											result(i,ip,mun,munp);
-											
+
 								}
 								function minTen(mun,munp)
-								{		
+								{
 										i=mun;
 										document.getElementById('action').innerHTML=i+" / <?php  echo $_SESSION['munmax'];?>";
 										result(i,ip,mun,munp);
 										p=0;
 										document.getElementById('plus').innerHTML="<font color='00FF00'>+ "+p+"</font>";
 								}
-								
-								
-								
+
+
+
 								ip=<?php  echo $_SESSION['munp'];?>;
 								function plusOnep(mun,munp,munpmax)
-								{			
-										
+								{
+
 										if ((ip < munpmax) && (calcul(i,ip+1,mun,munp) >= 0))
 										{
 											ip++;
-											document.getElementById('actionp').innerHTML="<font color='FFFF00'>"+ip+"</font>"+" / <?php  echo $_SESSION['munpmax'];?>";	
+											document.getElementById('actionp').innerHTML="<font color='FFFF00'>"+ip+"</font>"+" / <?php  echo $_SESSION['munpmax'];?>";
 										}
 										pp=ip-munp;
 										document.getElementById('plusp').innerHTML="<font color='00FF00'>+ "+pp+"</font>";
 										result(i,ip,mun,munp);
 								}
 								function plusTenp(mun,munp,munpmax)
-								{		
+								{
 										if (calcul(i,munpmax,mun,munp) >=0)
 										{
-											ip=munpmax;		
+											ip=munpmax;
 											document.getElementById('actionp').innerHTML="<font color='FFFF00'>"+ip+"</font>"+" / <?php  echo $_SESSION['munpmax'];?>";
 										}else
 										{
@@ -105,7 +105,7 @@
 										result(i,ip,mun,munp);
 								}
 								function minOnep(mun,munp)
-								{				
+								{
 											if (ip > munp)
 											{
 												ip--;
@@ -120,18 +120,18 @@
 											pp=ip-munp;
 										document.getElementById('plusp').innerHTML="<font color='00FF00'>+ "+pp+"</font>";
 											result(i,ip,mun,munp);
-											
+
 								}
 								function minTenp(mun,munp)
-								{		
+								{
 										ip=munp;
 										document.getElementById('actionp').innerHTML=ip+" / <?php  echo $_SESSION['munpmax'];?>";
 										result(i,ip,mun,munp);
 										pp=0;
 										document.getElementById('plusp').innerHTML="<font color='00FF00'>+ "+pp+"</font>";
 								}
-								
-								
+
+
 								function result(i,ip,mun,munp)
 								{
 									calcul(i,ip,mun,munp);
@@ -147,27 +147,27 @@
 										document.getElementById('prix').innerHTML="<font color='FF0000' size=5>- "+neg+"</font>  <font color='FFFF00' size=5>"+argent+"</font> <font color=1EB117 size=5>$</font>";
 									}
 								}
-								
+
 								function calcul(i,ip,mun,munp)
 								{
 									argent=(tune-((<?php echo $_SESSION['prixp'];?>*((ip)-munp))+(<?php echo $_SESSION['prix'];?>*((i)- mun))));
 									return argent;
 								}
-								
+
 								function go(i,ip,mun,munp)
-								{	
+								{
 									//calcul(i,ip,mun,munp);
 									argent=calcul(i,ip,mun,munp);
 									window.location.replace("index.php?page=achatok&perso=<?php  echo $nom;?>&mun="+i+"&munp="+ip+"&type=FSG258NE547");
 								}
-								
-								
+
+
 							</script>
 							<noscript>Tu es nul !</noscript>
 	<tr>
 		<td>
 				<table class='small' width='100%'><!-- On fait un grand formulaire avec toutes les armes, piège, vie que l'on peut achetter -->
-					<?php 
+					<?php
 					if ($act <> 'piedbiche')
 					{
 					?>
@@ -179,27 +179,27 @@
 							<table class='small' width='210'>
 								<tr>
 									<td>
-										
-											<img src='images/mmo.png' name='img1' onClick="minTen(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img1.src='images/mmi.png'"   onMouseOut="img1.src='images/mmo.png'">
-										
+
+											<img src='image.php?img=mmo.png' name='img1' onClick="minTen(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img1.src='image.php?img=mmi.png'"   onMouseOut="img1.src='image.php?img=mmo.png'">
+
 									</td>
 									<td>
-										
-											<img src='images/mo.png' name='img2' onClick="minOne(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img2.src='images/mi.png'"   onMouseOut="img2.src='images/mo.png'">
-										
+
+											<img src='image.php?img=mo.png' name='img2' onClick="minOne(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img2.src='image.php?img=mi.png'"   onMouseOut="img2.src='image.php?img=mo.png'">
+
 									</td>
 									<td align=center width='100%'>
 											<div id='plus'><font color="00FF00">+ 0</font></div>
 									</td>
 									<td align=right>
-										
-											<img src='images/po.png' name='img3' onClick="plusOne(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munmax'];?>)"  onMouseOver="img3.src='images/pi.png'"   onMouseOut="img3.src='images/po.png'" >
-										
+
+											<img src='image.php?img=po.png' name='img3' onClick="plusOne(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munmax'];?>)"  onMouseOver="img3.src='image.php?img=pi.png'"   onMouseOut="img3.src='image.php?img=po.png'" >
+
 									</td>
 									<td align=right>
-										
-											<img src='images/ppo.png' name='img4' onClick="plusTen(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munmax'];?>)"   onMouseOver="img4.src='images/ppi.png'"   onMouseOut="img4.src='images/ppo.png'">
-										
+
+											<img src='image.php?img=ppo.png' name='img4' onClick="plusTen(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munmax'];?>)"   onMouseOver="img4.src='image.php?img=ppi.png'"   onMouseOut="img4.src='image.php?img=ppo.png'">
+
 									</td>
 								</tr>
 							</table>
@@ -215,14 +215,14 @@
 							<table class='small' width='105'>
 								<tr>
 									<td align=center>
-											<div id='action'><?php  echo $_SESSION['mun'];?> / <?php  echo $_SESSION['munmax'];?></div> 
+											<div id='action'><?php  echo $_SESSION['mun'];?> / <?php  echo $_SESSION['munmax'];?></div>
 									</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
-					
-					<?php 
+
+					<?php
 					}else
 						echo "
 					<tr>
@@ -241,19 +241,19 @@
 							<table class='small' width='210'>
 								<tr>
 									<td>
-											<img src='images/mmo.png' name='img1p' onClick="minTenp(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img1p.src='images/mmi.png'"   onMouseOut="img1p.src='images/mmo.png'" >
+											<img src='image.php?img=mmo.png' name='img1p' onClick="minTenp(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img1p.src='image.php?img=mmi.png'"   onMouseOut="img1p.src='image.php?img=mmo.png'" >
 									</td>
 									<td>
-											<img src='images/mo.png' name='img2p' onClick="minOnep(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img2p.src='images/mi.png'"   onMouseOut="img2p.src='images/mo.png'">
+											<img src='image.php?img=mo.png' name='img2p' onClick="minOnep(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>)"  onMouseOver="img2p.src='image.php?img=mi.png'"   onMouseOut="img2p.src='image.php?img=mo.png'">
 									</td>
 									<td align=center width='100%'>
 											<div id='plusp'><font color="00FF00">+ 0</font></div>
 									</td>
 									<td align=right>
-											<img src='images/po.png' name='img3p' onClick="plusOnep(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munpmax'];?>)"  onMouseOver="img3p.src='images/pi.png'"   onMouseOut="img3p.src='images/po.png'">
+											<img src='image.php?img=po.png' name='img3p' onClick="plusOnep(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munpmax'];?>)"  onMouseOver="img3p.src='image.php?img=pi.png'"   onMouseOut="img3p.src='image.php?img=po.png'">
 									</td>
 									<td align=right>
-											<img src='images/ppo.png' name='img4p' onClick="plusTenp(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munpmax'];?>)"   onMouseOver="img4p.src='images/ppi.png'"   onMouseOut="img4p.src='images/ppo.png'">
+											<img src='image.php?img=ppo.png' name='img4p' onClick="plusTenp(<?php  echo $_SESSION['mun'];?>,<?php  echo $_SESSION['munp'];?>,<?php  echo $_SESSION['munpmax'];?>)"   onMouseOver="img4p.src='image.php?img=ppi.png'"   onMouseOut="img4p.src='image.php?img=ppo.png'">
 									</td>
 								</tr>
 							</table>
@@ -275,7 +275,7 @@
 							</table>
 						</td>
 					</tr>
-					<?php 
+					<?php
 					}
 					?>
 				</table>

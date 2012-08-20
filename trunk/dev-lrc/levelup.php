@@ -57,16 +57,16 @@
 	<tr>
 		<td width='50%' align=right class='title2'>Endurance :</td>
 		<td width='20%' align=center><?php echo $perso->getEndurance();?></td>
-		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=0"><img src="pic/plus.png" width='20px' height='20px'/></a></td>
+		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=0"><img src="image.php?img=plus.png" width='20px' height='20px'/></a></td>
 	</tr>
 	<tr>
 		<td width='50%' align=right class='title2'>Dextérité :</td>
 		<td width='20%' align=center><?php echo $perso->getDexterite();?></td>
-		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=1"><img src="pic/plus.png" width='20px' height='20px'/></a></td>
+		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=1"><img src="image.php?img=plus.png" width='20px' height='20px'/></a></td>
 	</tr>
 	<tr>
 		<td	width='50%' align=right class='title2'>Esquive :</td>
 		<td width='20%' align=center><?php echo $perso->getEsquive();?></td>
-		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=2"><img src="pic/plus.png" width='20px' height='20px'/></a></td>
+		<td width='30%' class='title2'><a href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=2"><img src="image.php?img=plus.png" width='20px' height='20px'/></a></td>
 	</tr>
 </table>

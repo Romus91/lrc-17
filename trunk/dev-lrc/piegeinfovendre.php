@@ -4,14 +4,14 @@
 				$arm=mysql_fetch_array(mysql_query("SELECT * FROM pieges WHERE image = '".$inv['pie'.$i]."'"));
 				$value=($arm['prix']/2);
 			?>
-				<tr height='100%' valign=top>
+				<tr valign=top>
 						<td colspan=3 bgcolor='333333'>
-								<table class='small' width='100%' height='30'>
+								<table class='small' width='100%'>
 									<tr>
 										<td align=center><font size=3>VENDRE <?php echo $arm['nom'];?> ? </font></td>
 									</tr>
 								</table>
-								<table  width='100%' height=76>
+								<table  width='100%'>
 									<tr valign=top>
 										<td align=center>
 											<font size=4 color="00FF00"> + <?php echo $value; ?> $</font>

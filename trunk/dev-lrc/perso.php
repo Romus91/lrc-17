@@ -58,41 +58,6 @@
 	<center>
 	<table class='small' align=center width='550'>
 		<tr>
-			<tD colspan=4 class='title2'>
-				<table class='title2' width='100%'>
-					<tr>
-						<td>
-							<table class='button'>
-								<tr>
-									<td id='button' width='140'>
-										<a href="index.php?page=citoyen" >RETOUR</a>
-									</td>
-								</tr>
-							</table>
-						</td>
-						<?php
-								if ($perso->getEnergie() > 0&&$pourc<100){
-									echo"
-											<td id='button' align=center width='100%'>
-												<a href='index.php?page=vague&perso=".$perso->getId()."' ><font color='FF0000'>A L'ATTAQUE</font></a>
-											</td>
-									";
-								}
-						?>
-						<td align=right>
-							<table class='button' width='140'>
-								<tr>
-									<td id='button' align=center <?php  if (isset($_GET['onglet'])&&(($_GET['onglet'] == '') OR ($_GET['onglet'] == 'infop'))) echo "class='current_page_item'";?>>
-										<a href='index.php?page=perso&perso=<?php  echo $perso->getId();?>'><?php  echo $perso->getNom();?></a>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
 			<td colspan=4>
 				<table class='small' width='100%'>
 					<tr>
@@ -109,7 +74,12 @@
 				</table>
 				<table class='button' width='100%'>
 					<tr>
-						<td>ARMURERIE : </td>
+						<td id='button' align=center>
+							<a href="index.php?page=citoyen"><-</a>
+						</td>
+						<td id='button' align=center <?php  if (!isset($_GET['onglet']) or (($_GET['onglet'] == '') OR ($_GET['onglet'] == 'infop'))) echo "class='current_page_item'";?>>
+							<a href='index.php?page=perso&perso=<?php  echo $perso->getId();?>'><?php  echo $perso->getNom();?></a>
+						</td>
 						<td id='button' <?php  if (isset($_GET['cat'])&&$_GET['cat'] == 'armes') echo "class='current_page_item'";?> align=center>
 							<a href="index.php?page=perso&onglet=achat&cat=armes&perso=<?php echo $perso->getId();?>">ARMES</a>
 						</td>
@@ -119,16 +89,21 @@
 						<td id='button' <?php  if (isset($_GET['cat'])&&$_GET['cat'] == 'vie') echo "class='current_page_item'";?> align=center>
 							<a href="index.php?page=perso&onglet=achat&cat=vie&perso=<?php echo $perso->getId();?>">CONSO</a>
 						</td>
+						<td id='button' align=center>
+						<?php
+								if ($perso->getEnergie() > 0&&$pourc<100){
+									echo"
+											<a href='index.php?page=vague&perso=".$perso->getId()."' ><font color='FF0000'>VAGUE</font></a>
+									";
+								}
+						?>
+						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
 	<?php
-	if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop'))
-		include ("infop.php");
-
-	if (isset($_GET['onglet'])&&$_GET['onglet'] == 'achat')
-		include ("achat.php");
-
+	if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop')) include ("infop.php");
+	if (isset($_GET['onglet'])&&$_GET['onglet'] == 'achat') include ("achat.php");
 	if (isset($_GET['onglet'])&&$_GET['onglet'] =='levelup') include 'levelup.php';
 		?>

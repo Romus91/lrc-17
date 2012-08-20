@@ -19,7 +19,7 @@
 		</td>
 	</tr>
 </table>
-<img src='pic/ravenholm.JPG' width="550">
+<img src='image.php?img=ravenholm.JPG' width="550">
 <br>
 <table width="100%" height="100%" class='color1'>
 	<tr>
