@@ -2,6 +2,7 @@
 //les données viennent de index.htm
 // on se connecte à la base de donnée
    include_once('pass.php');
+   require_once('autoload.php');
    $_SESSION['erreur']= "";
    $log = new Log();
 
