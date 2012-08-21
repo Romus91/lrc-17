@@ -19,27 +19,27 @@
 		</td>
 	</tr>
 </table>
-<img src='image.php?img=ravenholm.JPG' width="550">
+<img src='image.php?img=ravenholm.JPG&w=550' width="550">
 <br>
 <table width="100%" height="100%" class='color1'>
 	<tr>
 		<td>
 			<table class='color4' width="250" height="100%">
 				<tr>
-					<td align=center colspan=2 bgcolor=000000><b>Avancement des mises &agrave; jour</b></td>	
+					<td align=center colspan=2 bgcolor=000000><b>Avancement des mises &agrave; jour</b></td>
 				</tr>
 				<tr>
 					<td align=left>Kernel</td><td align=right><?php  echo $a80;?></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td align=left>Web disign</td><td align=right><?php  echo $a80;?></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td align=left>Citoyen</td><td align=right><?php  echo $a70;?></td>
 				</tr>
 				<tr>
 					<td align=left>Vague de zombie</td><td align=right><?php  echo $a70;?></td>
-				</tr>					
+				</tr>
 				<tr>
 					<td align=left>Wall</td><td align=right><?php  echo $a100;?></td>
 				</tr>
@@ -91,7 +91,7 @@
 				</tr>
 				<tr>
 					<td align=right colspan=2>
-					<?php 
+					<?php
 						$sql = "SELECT login FROM membre WHERE id=(SELECT MAX(id) FROM membre)";
 						$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 						$data = mysql_fetch_array($req);
@@ -101,7 +101,7 @@
 				</tr>
 				<tr>
 					<td align=right colspan=2>
-					<?php 
+					<?php
 						$sql = "SELECT nom,id_membre FROM perso WHERE id=(SELECT MAX(id) FROM perso)";
 						$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 						$data = mysql_fetch_array($req);
@@ -112,39 +112,39 @@
 				</tr>
 				<tr>
 					<td align=right >
-					<?php  
+					<?php
 						$sql = "SELECT login FROM membre";
 						$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 						$data = mysql_num_rows($req);
-						echo "<b>Membres inscrits :</b></td><td>&nbsp;"; 
+						echo "<b>Membres inscrits :</b></td><td>&nbsp;";
 						$M=floor($data/1000);
 						$C=floor(($data%1000)/100);
 						$D=floor(($data%100)/10);
 						$I=($data%10);
-						echo"<img src='page/".$M.".gif'><img src='page/".$C.".gif'><img src='page/".$D.".gif'><img src='page/".$I.".gif'>";
+						echo"<img src='pic/".$M.".gif'><img src='pic/".$C.".gif'><img src='pic/".$D.".gif'><img src='pic/".$I.".gif'>";
 					?>
 					</td>
 				</tr>
 				<tr>
 					<td align=right>
-					<?php  
+					<?php
 						$sql = "SELECT nom FROM perso";
 						$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 						$data = mysql_num_rows($req);
-						echo "<b>Nombre de citoyens :</b></td><td>&nbsp;"; 
+						echo "<b>Nombre de citoyens :</b></td><td>&nbsp;";
 						$M=floor($data/1000);
 						$C=floor(($data%1000)/100);
 						$D=floor(($data%100)/10);
 						$I=($data%10);
-						echo"<img src='page/".$M.".gif'><img src='page/".$C.".gif'><img src='page/".$D.".gif'><img src='page/".$I.".gif'>";
+						echo"<img src='pic/".$M.".gif'><img src='pic/".$C.".gif'><img src='pic/".$D.".gif'><img src='pic/".$I.".gif'>";
 					?>
 					</td>
 				</tr>
 				<tr>
-					<td align=right colspan=2 > 
-						<?php 
-							$sql = 'SELECT date,id_expediteur,message,id FROM messages WHERE id=(SELECT MAX(id) FROM messages)';  
-							$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+					<td align=right colspan=2 >
+						<?php
+							$sql = 'SELECT date,id_expediteur,message,id FROM messages WHERE id=(SELECT MAX(id) FROM messages)';
+							$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
 							$data = mysql_fetch_array($req);
 							echo"
 							<table class=small width='100%'>
@@ -177,16 +177,16 @@
 				<tr>
 					<td align=left valign=top>
 					<?php
-							$sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,15 ';  
-							$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+							$sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,15 ';
+							$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
 							$t=mysql_fetch_array($res);
 								echo"
-							  
+
 							<tr>
 								<td>",$t[4],"</td>
 							</tr>
 							<tr>
-								<td>",$t[2],"</td> 
+								<td>",$t[2],"</td>
 							</tr>
 							<tr>
 								<td align=center class='color4'>&nbsp;</td>

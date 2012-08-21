@@ -22,16 +22,16 @@ $prix=$arm['prixballes'];
 						<td width='100%'>
 							<table class='button' width='100%'>
 								<tr>
-									<td class='color3' width=40>DEGATS</td><td class='small' ><img src='image.php?img=vierge.png' width='<?php echo(($arm['force']/20)*100);?>%' height='10'><img src='image.php?img=viergec.png' width='0%' height='10'></td>
+									<td class='color3' width=40>DEGATS</td><td class='small' ><img src='image.php?img=vierge.png&h=10&d=1' width='<?php echo(($arm['force']/20)*100);?>%' height='10'><img src='image.php?img=viergec.png' width='0%' height='10'></td>
 								</tr>
 								<tr>
-									<td class='color5' width=40>PRECISION</td><td class='small' ><img src='image.php?img=vierge.png' width='<?php echo $arm['precision'];?>%' height='10'></td>
+									<td class='color5' width=40>PRECISION</td><td class='small' ><img src='image.php?img=vierge.png&h=10&d=1' width='<?php echo $arm['precision'];?>%' height='10'></td>
 								</tr>
 								<tr>
-									<td class='color3' width=40>CHARGEUR</td><td class='small' ><img src='image.php?img=vierge.png' width='<?php echo(($arm['munmax']/250)*100);?>%' height='10'></td>
+									<td class='color3' width=40>CHARGEUR</td><td class='small' ><img src='image.php?img=vierge.png&h=10&d=1' width='<?php echo(($arm['munmax']/250)*100);?>%' height='10'></td>
 								</tr>
 								<!--<tr>
-									<td class='color5' width=40>&nbsp;</td><td class='small' ><img src='image.php?img=vierge.png' width='0%' height='10'></td>
+									<td class='color5' width=40>&nbsp;</td><td class='small' ><img src='image.php?img=vierge.png&h=10&d=1' width='0%' height='10'></td>
 								</tr>-->
 							</table>
 							<table class='button' width='100%'>

@@ -20,8 +20,8 @@
 		<td>
 			<table border="0" class='color5' width="800">
 			<tr>
-				<td width="200%" background="image.php?img=blanc.png" bgcolor="000000" colspan="3" align=center>
-				   <a href="index.php"><img border="0" src="image.php?img=banneralpha.png" width="500" height="70" ></a>
+				<td width="200%" background="pic/blanc.png" bgcolor="000000" colspan="3" align=center>
+				   <a href="index.php"><img border="0" src="pic/banneralpha.png" width="500" height="70" ></a>
 				</td>
 			</tr>
 			<tr>
@@ -187,7 +187,7 @@
 												</tr>
 												<tr valign=top>
 													<td class='title2' >
-														<div id="pseudobox"><img src='image.php?img=charg.gif' width='100%'></div>
+														<div id="pseudobox"><img src='pic/charg.gif' width='100%'></div>
 													</td>
 												</tr>
 												<tr>
@@ -207,7 +207,7 @@
 
 												<tr class='title2'>
 													<td >
-														<div id="online" ><img src='image.php?img=charg.gif' width='100%'></div>
+														<div id="online" ><img src='pic/charg.gif' width='100%'></div>
 													</td>
 												</tr>
 
@@ -215,7 +215,7 @@
 
 											<table>
 												<tr>
-													<td><img src='image.php?img=r<?php  echo $_SESSION['nb'];?>.bmp' width='260'></td>
+													<td><img src='pic/r<?php  echo $_SESSION['nb'];?>.bmp' width='260'></td>
 												</tr>
 											</table>
 											<table class='color2' width="100%">

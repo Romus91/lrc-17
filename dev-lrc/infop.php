@@ -18,20 +18,20 @@
 				<table class='button' width='100%'>
 					<tr>
 						<td width='20' align=center class='color3'>VIE</td>
-						<td class='small'><img src='image.php?img=viergev.png' width='<?php echo $perso->getVie();?>%' height='10'></td>
+						<td class='small'><img src='image.php?img=viergev.png&h=10&d=1' width='<?php echo $perso->getVie();?>%' height='10'></td>
 						<td width='135' align=right class='color3'><?php echo $perso->getVie();?> | 100</td>
 					</tr>
 					<tr>
 						<td width='20' align=center class='color3'>NRG</td>
 						<td class='small'>
 							<?php $pourcEn = ($perso->getEnergie()/$perso->getMaxEnergie())*100;?>
-							<img src='image.php?img=viergeb.png' width='<?php echo (($pourcEn>100)?100:$pourcEn);?>%' height='10'>
+							<img src='image.php?img=viergeb.png&h=10&d=1' width='<?php echo (($pourcEn>100)?100:$pourcEn);?>%' height='10'>
 						</td>
 						<td width='135' align=right class='color3'><?php echo floor($perso->getEnergie());?> | <?php echo $perso->getMaxEnergie();?></td>
 					</tr>
 					<tr>
 						<td width='20' align=center class='color3'>EXP</td>
-						<td class='small'><img src='image.php?img=viergej.png' width='<?php echo $pourc;?>%' height='10'></td>
+						<td class='small'><img src='image.php?img=viergej.png&h=10&d=1' width='<?php echo $pourc;?>%' height='10'></td>
 						<td width='135' align=right class='color3'><?php echo $perso->getXp();?> | <?php echo floor($perso->getXpForNextLevel());?></td>
 					</tr>
 				</table>
@@ -64,16 +64,16 @@
 				<table bgcolor='111111' width='100%' >
 					<tr >
 						<td align=center  >
-							<img src='image.php?img=crabemini.png' width=55>
+							<img src='image.php?img=crabemini.png&w=55'>
 						</td>
 						<td align=center>
-							<img src='image.php?img=zombiemini.png' width=55>
+							<img src='image.php?img=zombiemini.png&w=55'>
 						</td>
 						<td align=center>
-							<img src='image.php?img=zombiefastmini.png' width=55>
+							<img src='image.php?img=zombiefastmini.png&w=55'>
 						</td>
 						<td align=center>
-							<img src='image.php?img=zombiepoisonmini.png' width=55>
+							<img src='image.php?img=zombiepoisonmini.png&w=55'>
 						</td>
 					</tr>
 					<tr>
@@ -128,7 +128,7 @@
 									if ($inventaire['arm'.$i])
 									{?>
 										<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $i;?>' >
-									<?php echo"<img src='image.php?img=".$inventaire['arm'.$i].".png' width='90'></a>";
+									<?php echo"<img src='image.php?img=".$inventaire['arm'.$i].".png&w=90'></a>";
 
 									}
 									echo"
@@ -168,7 +168,7 @@
 														<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=piege&i=<?php echo $i;?>' >
 
 													<?php
-													echo  "<img src='image.php?img=".$inventaire['pie'.$i].".png' width='80'></a>";
+													echo  "<img src='image.php?img=".$inventaire['pie'.$i].".png&w=80'></a>";
 												}
 												echo"
 												</td>
@@ -193,7 +193,7 @@
 												{
 												?>
 													<a href="useconso.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>">
-													<?php echo "<img src='".$consoController->fetch($inventaire['conso'.$i])->getImage()."' width='120' height='85'></a>";
+													<?php echo "<img src='image.php?img=".$consoController->fetch($inventaire['conso'.$i])->getImage()."&w=120&h=85'></a>";
 												}
 												echo"
 												</td>
