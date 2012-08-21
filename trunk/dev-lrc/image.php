@@ -1,6 +1,8 @@
 <?php
 header("Content-type: image/png");
 
+putenv('GDFONTPATH=' . realpath('.'));
+
 if(isset($_GET['img'])&&!empty($_GET['img'])){
 	$source = htmlentities($_GET['img']);
 	if(isset($_GET['h'])&&!empty($_GET['h'])) $h = (int)htmlentities($_GET['h']);
@@ -9,6 +11,8 @@ if(isset($_GET['img'])&&!empty($_GET['img'])){
 	else $w=0;
 	if(isset($_GET['l'])&&!empty($_GET['l'])) $l = (int)htmlentities($_GET['l']);
 	else $l=0;
+	if(isset($_GET['d'])&&!empty($_GET['d'])) $d = (int)htmlentities($_GET['d']);
+	else $d=0;
 
 	$parts = explode('.', $source);
 	$ext = strtolower($parts[count($parts)-1]);
@@ -30,18 +34,23 @@ if(isset($_GET['img'])&&!empty($_GET['img'])){
 
 	$source_ratio = imagesx($img_source)/imagesy($img_source);
 
-	if($h!=0 && $w!=0){
-		$dest_ratio = $w/$h;
-		if($dest_ratio!=$source_ratio){
-			if($dest_ratio>$source_ratio){
-				$w = $h*$source_ratio;
-			}else{
-				$h = $w/$source_ratio;
+	if($d==0){
+		if($h!=0 && $w!=0){
+			$dest_ratio = $w/$h;
+			if($dest_ratio!=$source_ratio){
+				if($dest_ratio>$source_ratio){
+					$w = $h*$source_ratio;
+				}else{
+					$h = $w/$source_ratio;
+				}
 			}
+		}else{
+			if($w==0) $w = $h*$source_ratio;
+			if($h==0) $h = $w/$source_ratio;
 		}
 	}else{
-		if($w==0) $w = $h*$source_ratio;
-		if($h==0) $h = $w/$source_ratio;
+		if($h==0) $h = imagesy($img_source);
+		if($w==0) $w = imagesx($img_source);
 	}
 
 	$img_dest = imagecreatetruecolor($w, $h);

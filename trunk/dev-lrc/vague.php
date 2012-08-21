@@ -439,7 +439,7 @@ if ($perso->getEnergie() > 0)
 				<tr>
 					<td align=center>";
 						if ($inv['arm'.$i])
-						echo "<img src='image.php?img=".$inv['arm'.$i].".png' width='90'>";
+						echo "<img src='image.php?img=".$inv['arm'.$i].".png&w=90' width='90'>";
 						if(isset($arme[$i])){
 							echo"</td>
 				</tr>
@@ -496,7 +496,7 @@ if ($perso->getEnergie() > 0)
 				<tr>
 					<td align=center>";
 						if ($inv['pie'.$i])
-						echo "<img src='image.php?img=".$inv['pie'.$i].".png' width='90'>";
+						echo "<img src='image.php?img=".$inv['pie'.$i].".png&w=90' width='90'>";
 						echo"</td>
 				</tr>
 			</table>
@@ -555,7 +555,7 @@ if ($perso->getEnergie() > 0)
 												if ($pourc < 0)
 												$pourc=0;
 												if($pourc>100)$pourc=100;
-												?> <img src='image.php?img=viergej.png' width='<?php echo $pourc;?>%'
+												?> <img src='image.php?img=viergej.png&h=10&d=1' width='<?php echo $pourc;?>%'
 													height='10'>
 												</td>
 											</tr>
@@ -580,7 +580,7 @@ if ($perso->getEnergie() > 0)
 						</table>
 						<table class='hev'>
 							<tr>
-								<td><img src='image.php?img=".$C.".png' width='33' ></td><td><img src='image.php?img=".$D.".png' width='33'></td><td><img src='image.php?img=".$I.".png' width='33'></td>
+								<td><img src='image.php?img=".$C.".png&w=33' width='33' ></td><td><img src='image.php?img=".$D.".png&w=33' width='33'></td><td><img src='image.php?img=".$I.".png&w=33' width='33'></td>
 							</tr>
 						</table>
 									";
@@ -619,7 +619,7 @@ if ($perso->getEnergie() > 0)
 									<td align=left>
 										<table class='button'>
 											<tr height='10' valign=bottom>
-												<td class='small' width='100'><img src='image.php?img=viergeb.png'
+												<td class='small' width='100'><img src='image.php?img=viergeb.png&h=10&d=1'
 													width='<?php
 													$pourcEn = ($perso->getEnergie()/$perso->getMaxEnergie())*100;
 													echo (($pourcEn>100)?100:$pourcEn);?>?>%'
@@ -637,7 +637,7 @@ if ($perso->getEnergie() > 0)
 			</td>
 		</tr>
 		<tr>
-			<td colspan='5' align=center><img src='image.php?img=finvague.JPG' width='540'>
+			<td colspan='5' align=center><img src='image.php?img=finvague.JPG&w=540' width='540'>
 			</td>
 		</tr>
 	</table>

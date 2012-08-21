@@ -26,7 +26,7 @@
 			<table border="0" class='color5' width="800">
 			<tr>
 				<td width="200%" background="blanc.png" bgcolor="000000" colspan="3" align=center>
-				   <a href="index.php"><img border="0" src="image.php?img=banneralpha.png" width="500" height="70" ></a>
+				   <a href="index.php"><img border="0" src="pic/banneralpha.png" width="500" height="70" ></a>
 				</td>
 			</tr>
 			<tr>
@@ -62,7 +62,7 @@
 																			<table class='button'>
 																				<tr>
 																					<td id='button'>
-																						<input type="image" src='image.php?img=img02go.png' value='connexion' width='110' height='30' onmouseover="src='image.php?img=img03go.png'" onmouseout="src='image.php?img=img02go.png'">
+																						<input type="image" src='image.php?img=img02go.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03go.png&w=110&h=30'" onmouseout="src='image.php?img=img02go.png&w=110&h=30'">
 																					</td>
 																				</tr>
 																			</table>
@@ -133,7 +133,7 @@
 																	<table class='button'>
 																		<tr>
 																			<td id='button'>
-																				<input type="image" src='image.php?img=img02ins.png' width='110' height='30' value='connexion' onmouseover="src='image.php?img=img03ins.png'" onmouseout="src='image.php?img=img02ins.png'">
+																				<input type="image" src='image.php?img=img02ins.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03ins.png&w=110&h=30'" onmouseout="src='image.php?img=img02ins.png&w=110&h=30'">
 																			</td>
 																		</tr>
 																	</table>
@@ -184,7 +184,7 @@
 												</table>
 												<table  valign=top align=center>
 													<tr>
-														<td><img src='image.php?img=ravenholm.JPG' width="550"></td>
+														<td><img src='image.php?img=ravenholm.JPG&w=550'></td>
 													</tr>
 												</table>
 											</font>

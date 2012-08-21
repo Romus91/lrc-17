@@ -125,7 +125,7 @@ Pour vous incrire il vous suffit simplement d'entrer un login et un mot de passe
 							<table class='button'>
 								<tr>
 									<td id='button'>
-										<input type="image" src='image.php?img=img02ins.png' width='110' height='30' value='connexion' onmouseover="src='image.php?img=img03ins.png'" onmouseout="src='image.php?img=img02ins.png'">
+										<input type="image" src='image.php?img=img02ins.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03ins.png&w=110&h=30'" onmouseout="src='image.php?img=img02ins.png&w=110&h=30'">
 									</td>
 								</tr>
 							</table>

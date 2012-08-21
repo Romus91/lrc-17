@@ -106,19 +106,19 @@
 							<table class='small' >
 								<tr>
 									<td>
-										<img src='image.php?img=mmo.png' name='img1' onClick="minTen(<?php  echo $inv['mun'.$i];?>)"  onMouseOver="img1.src='image.php?img=mmi.png'"   onMouseOut="img1.src='image.php?img=mmo.png'">
+										<img src='pic/mmo.png' name='img1' onClick="minTen(<?php  echo $inv['mun'.$i];?>)"  onMouseOver="img1.src='pic/mmi.png'"   onMouseOut="img1.src='pic/mmo.png'">
 									</td>
 									<td>
-										<img src='image.php?img=mo.png' name='img2' onClick="minOne(<?php  echo $inv['mun'.$i];?>)"  onMouseOver="img2.src='image.php?img=mi.png'"   onMouseOut="img2.src='image.php?img=mo.png'">
+										<img src='pic/mo.png' name='img2' onClick="minOne(<?php  echo $inv['mun'.$i];?>)"  onMouseOver="img2.src='pic/mi.png'"   onMouseOut="img2.src='pic/mo.png'">
 									</td>
 									<td align=center width='100%'>
 											<!--<div id='plus'><font color="00FF00">+ 0</font></div>-->	<div id='action'><?php  echo $inv['mun'.$i];?> | <?php  echo $arm['munmax']+($arm['munmax']*($inv['capa'.$i]/10));?></div>
 									</td>
 									<td align=right>
-										<img src='image.php?img=po.png' name='img3' onClick="plusOne(<?php  echo $inv['mun'.$i];?>,<?php  echo $arm['munmax']+($arm['munmax']*($inv['capa'.$i]/10));?>)"  onMouseOver="img3.src='image.php?img=pi.png'"   onMouseOut="img3.src='image.php?img=po.png'" >
+										<img src='pic/po.png' name='img3' onClick="plusOne(<?php  echo $inv['mun'.$i];?>,<?php  echo $arm['munmax']+($arm['munmax']*($inv['capa'.$i]/10));?>)"  onMouseOver="img3.src='pic/pi.png'"   onMouseOut="img3.src='pic/po.png'" >
 									</td>
 									<td align=right>
-										<img src='image.php?img=ppo.png' name='img4' onClick="plusTen(<?php  echo $inv['mun'.$i];?>,<?php  echo $arm['munmax']+($arm['munmax']*($inv['capa'.$i]/10));?>)"   onMouseOver="img4.src='image.php?img=ppi.png'"   onMouseOut="img4.src='image.php?img=ppo.png'">
+										<img src='pic/ppo.png' name='img4' onClick="plusTen(<?php  echo $inv['mun'.$i];?>,<?php  echo $arm['munmax']+($arm['munmax']*($inv['capa'.$i]/10));?>)"   onMouseOver="img4.src='pic/ppi.png'"   onMouseOut="img4.src='pic/ppo.png'">
 									</td>
 								</tr>
 							</table>

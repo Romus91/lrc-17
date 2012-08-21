@@ -16,7 +16,7 @@ if ($nb2 >= 5){
 	$_SESSION['erreur']="Plus assez de place ! (5 max)";
 }
 ?>
-<center>	
+<center>
 <table align="center" class='small' width='550'>
 	<tr>
 		<td colspan=5 class='title2'>
@@ -37,8 +37,8 @@ if ($nb2 >= 5){
 	</tr>
 	<tr>
 		<tD colspan=5 class='title' align=center>
-		<?php  
-			if ($erreur)
+		<?php
+			if (isset($erreur))
 				echo $erreur;
 			else
 				echo "UN NOUVEAU CITOYEN EST ARRIVE !";
@@ -50,7 +50,7 @@ if ($nb2 >= 5){
 		<?php  for ($i=1;$i<=5;$i++)
 				echo"
 		<td>
-			<img src='image.php?img=".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG&w=105'>
 		</td>
 					";
 		?>
@@ -69,7 +69,7 @@ if ($nb2 >= 5){
 		<?php  for ($i=6;$i<=10;$i++)
 				echo"
 		<td>
-			<img src='image.php?img=".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG&w=105'>
 		</td>
 					";
 		?>
@@ -83,12 +83,12 @@ if ($nb2 >= 5){
 					";
 		?>
 	</tr>
-	
+
 	<tr>
 		<?php  for ($i=11;$i<=15;$i++)
 				echo"
 		<td>
-			<img src='image.php?img=".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG&w=105'>
 		</td>
 					";
 		?>
@@ -102,12 +102,12 @@ if ($nb2 >= 5){
 					";
 		?>
 	</tr>
-	
+
 	<tr>
 		<?php  for ($i=16;$i<=20;$i++)
 				echo"
 		<td>
-			<img src='image.php?img=".$i.".JPG' width='105'>
+			<img src='image.php?img=".$i.".JPG&w=105'>
 		</td>
 					";
 		?>
@@ -120,9 +120,9 @@ if ($nb2 >= 5){
 		</td>
 					";
 		?>
-	</tr>				   
+	</tr>
     <tr>
 		<td colspan=2 align=right>Son nom :</td><td colspan=2><input type="text" name="nom" maxlength='10' value="<?php  if (isset($_POST['nom'])) echo stripslashes(htmlentities(trim($_POST['nom']))); ?>" ></td>
         <td><input type="submit" name="creer" value="Go !"></td>
-    </tr>					   
+    </tr>
 </table>

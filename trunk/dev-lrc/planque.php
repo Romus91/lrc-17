@@ -76,7 +76,7 @@
 				echo "
 				<table width='100%'>
 					<tr>
-						<td colspan=2><img src='image.php?img=pl1.jpg' width='100%'></td>
+						<td colspan=2><img src='pic/pl1.jpg' width='100%'></td>
 					</tr>
 					<tr class='color2'>
 						<td align=center width='50%'>POINTS DE DEFENSE</td>
