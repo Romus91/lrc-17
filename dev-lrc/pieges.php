@@ -4,13 +4,13 @@ include_once("level.php");?>
 	<tr>
 		<td>
 				<table class='small' width='100%'>
-					<?php 
+					<?php
 						$inventaire=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
 						$query=mysql_query("SELECT * FROM pieges");
-						
+
 						while ($piege=mysql_fetch_array($query))
 						{
-							
+
 							for ($i=1;($i<=2);$i++)
 							{
 								if ((strcmp($inventaire['pie'.$i],$piege['image'])) == 0)
@@ -20,13 +20,13 @@ include_once("level.php");?>
 								}
 								else
 									$trueornot=false;
-							
+
 							}
 							if ($piege['lvlrequis'] <= $perso->getLevel())
 							{
 								if ($trueornot == true)
 								{
-									
+
 									echo "
 									<tr >
 										<td class='color4' align=center>
@@ -55,14 +55,14 @@ include_once("level.php");?>
 											</table>
 										</td>
 										<td align=center class='color2'>
-											<img src='image.php?img=".$piege['image'].".png' width='80' height='80'><br>
-											
+											<img src='image.php?img=".$piege['image'].".png&w=80'><br>
+
 										</td>
 										<td align=center class='color4'>
 											DANS L'INVENTAIRE
 										</td>
 									</tr>
-									";	
+									";
 								}else
 								{
 									echo "
@@ -93,8 +93,8 @@ include_once("level.php");?>
 											</table>
 										</td>
 										<td align=center class='color3'>
-											<img src='image.php?img=".$piege['image'].".png' width='80' height='80'><br>
-											
+											<img src='image.php?img=".$piege['image'].".png&w=80'><br>
+
 										</td>
 										<td align=center class='color4'>
 											<table class='button'>
@@ -106,13 +106,13 @@ include_once("level.php");?>
 											</table>
 										</td>
 									</tr>
-									";	
+									";
 								}
 							}else
 							{
 								echo "
 									<tr height=90>
-										<td bgcolor='111111' align=center colspan=4> 
+										<td bgcolor='111111' align=center colspan=4>
 											<font color='333333'>NIVEAU REQUIS : <font size=4>".($piege['lvlrequis'])."</font></font>
 										</td>
 									</tr>";
@@ -125,6 +125,6 @@ include_once("level.php");?>
 						<td colspan=3 align=center>&nbsp;</td>
 					</tr>
 				</table>
-			</form>	
+			</form>
 		</td>
 	</tr>
