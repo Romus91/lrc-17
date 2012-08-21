@@ -37,35 +37,17 @@
 		<td colspan=4 class='title2'>
 			<table class='title2' width='100%'>
 				<tr>
-					<td>
-						<table class='button'>
-							<tr>
-								<td id='button'>
-									<?php
-										if ($ent==0)
-										echo '<a href="index.php?page=citoyencreer">NOUVEAU</a>';
-									?>
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td>
-						<font color='FF0000'><?php  echo $_SESSION['erreur'];?></font>
-					</td>
-					<td align=right>
-						<table class='button'>
-							<tr>
-								<td id='button'>
-									<?php
-										if ($ent == 1)
-											echo "<a href='index.php?page=citoyen&status=0'><b>VIVANTS</b></a>";
-										else
-											echo "<a href='index.php?page=citoyen&status=1'><b>CIMETIERE : ".$nb2."</b></a>";
-									?>
-								</td>
-							</tr>
-						</table>
-					</td>
+					<td id='button' width='30%'><?php
+						if ($ent==0)
+						echo '<a href="index.php?page=citoyencreer">NOUVEAU</a>';
+					?></td>
+					<td width='40%'><font color='FF0000'><?php  if(isset($_SESSION['erreur'])) echo $_SESSION['erreur'];else echo '&nbsp;';?> </font></td>
+					<td id='button' width='30%'><?php
+						if ($ent == 1)
+						echo "<a href='index.php?page=citoyen&status=0'><b>VIVANTS</b></a>";
+						else
+						echo "<a href='index.php?page=citoyen&status=1'><b>CIMETIERE : ".$nb2."</b></a>";
+					?></td>
 				</tr>
 			</table>
 		</td>
@@ -213,7 +195,7 @@
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>
-							<img src='image.php?img=viergev.png&h=10&d=1' width='".$perso->getVie()."%'>
+							<img src='image.php?img=viergev.png&h=10&d=1' width='".$perso->getVie()."%' height='10'>
 						</td>
 					</tr>
 				</table>
