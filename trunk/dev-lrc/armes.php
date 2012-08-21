@@ -48,7 +48,7 @@ include_once("level.php");?>
 										</table>
 									</td>
 									<td align=center class='color2'>
-										<img src='pic/".$arme['image'].".png' width='80' height='80'><br>
+										<img src='image.php?img=".$arme['image'].".png&w=80'><br>
 
 									</td>
 									<td align=center class='color4'>
@@ -85,7 +85,7 @@ include_once("level.php");?>
 										</table>
 									</td>
 									<td align=center class='color3'>
-										<img src='pic/".$arme['image'].".png' width='80' height='80'><br>
+										<img src='image.php?img=".$arme['image'].".png&w=80'><br>
 
 									</td>
 									<td align=center class='color4'>
