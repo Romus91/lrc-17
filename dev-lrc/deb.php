@@ -9,6 +9,9 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<script src="jquery.mousewheel.min.js"></script>
 	<script src="jquery.mCustomScrollbar.js"></script>
+	<script src="jquery.form.js"></script>
+	<script src="jquery.watermark.js"></script>
+	<script src="chat.js"></script>
   <meta http-equiv="content-language" content="fr">
  <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
   <?php
@@ -17,7 +20,7 @@
   ?>
 
 </head>
-<body onLoad="writeChat();whoIsOnline();">
+<body>
 <center>
 <table align=center>
 	<tr>
@@ -111,78 +114,6 @@
 														</table>
 													</td>
 												</tr>
-
-
-											<script type="text/javascript">
-											string='';
-											function writediv(texte)
-												 {
-												 document.getElementById('pseudobox').innerHTML = texte;
-												 }
-											function writedivonline(file)
-												 {
-												 document.getElementById('online').innerHTML = file;
-												 }
-
-											function construcMessage(text)
-											{
-												string=text;
-
-												string = string.replace(/\\/g,"\\\\");
-												string = string.replace(/\'/g,"\\'");
-												string = string.replace(/\"/g,"\\\"");
-
-												window.addEventListener('keydown', function(e)
-															{
-																//kkeys.push(e.keyCode);
-																	if(e.keyCode == 13)
-																	{
-																		sendMessage(string);
-																		string='';
-																		flush();
-																		//break;
-																	}
-															}, true);
-											}
-
-											function sendMessage(message)
-												{
-													if (message)
-														file('envoischat.php?mess='+message);
-													writediv(file('selectchat.php'));
-													document.getElementById('pseudo').focus();
-													document.getElementById('pseudo').value='';
-
-												}
-
-											function writeChat()
-												 {
-													writediv(file('selectchat.php'));
-													setTimeout('writeChat()', 2000);
-												 }
-
-											function whoIsOnline()
-											 {
-												writedivonline(file('online.php'));
-												setTimeout('whoIsOnline()', 5000);
-											 }
-
-											function file(fichier)
-												 {
-												 if(window.XMLHttpRequest) // FIREFOX
-													  xhr_object = new XMLHttpRequest();
-												 else if(window.ActiveXObject) // IE
-													  xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
-												 else
-													  return(false);
-												 xhr_object.open("GET", fichier, false);
-												 xhr_object.send(null);
-												 if(xhr_object.readyState == 4) return(xhr_object.responseText);
-												 else return(false);
-												 }
-
-											</script>
-
 											<table class='small' width='100%' >
 												<tr>
 													<td class='color2'align=center>
@@ -195,9 +126,8 @@
 													</td>
 												</tr>
 												<tr>
-													<td class='color1' align=center>
-														<input type="text"  id="pseudo" onKeyUp='construcMessage(this.value)' >
-														<input type='submit' name='ok' value='ENVOYER' onclick='sendMessage(string)' >
+													<td class='color1' align=center style="padding: 0;">
+														<form id="chatform"><input type="text" name="mess"/></form>
 													</td>
 												</tr>
 											</table>
