@@ -2,14 +2,15 @@
 /* vertical scrollbar */
 .mCSB_container{
 	width:auto;
-	margin-right:30px;
+	margin-right:10px;
 	overflow:hidden;
+	padding-bottom:10px;
 }
 .mCSB_container.mCS_no_scrollbar{
 	margin-right:0;
 }
 .mCustomScrollBox .mCSB_scrollTools{
-	width:16px;
+	width:10px;
 	height:100%;
 	top:0;
 	right:0;
@@ -85,7 +86,7 @@
 }
 .mCSB_horizontal .mCSB_scrollTools .mCSB_buttonLeft+.mCSB_draggerContainer{
 	padding-bottom:0;
-	padding-right:20px;
+	padding-right:15px;
 }
 .mCSB_horizontal .mCSB_scrollTools .mCSB_draggerRail{
 	width:100%;
@@ -96,7 +97,7 @@
 	border-radius:10px;
 }
 .mCSB_horizontal .mCSB_scrollTools .mCSB_dragger{
-	width:30px;
+	width:10px;
 	height:100%;
 }
 .mCSB_horizontal .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{

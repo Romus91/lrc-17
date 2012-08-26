@@ -202,3 +202,9 @@ tr.perso td.hover{
 #armeinfo, #piegeinfo{
 	display: none;
 }
+#chatform{
+	width: 100%;
+}
+#chatform input{
+	width: 100%;
+}
