@@ -1,42 +1,40 @@
 <?php
-	include_once("verif.php");
-	include_once("pass.php");
+include_once("verif.php");
+require_once 'autoload.php';
 
-	$log = new Log();
-	$persoController = new PersoController();
-	$perso=$persoController->fetchPerso($_GET['perso']);
-	$consoCont = new ConsoController();
+$i=(int)htmlentities($_GET['i']);
+$p=(int)htmlentities($_GET['perso']);
 
-	$inv=mysql_fetch_array(mysql_query("SELECT conso".$_GET['i']." FROM inventaire WHERE id_perso = '".$perso->getId()."'"));
+$persoCont = new PersoController();
+$perso = $persoCont->fetchPerso($p);
+$log=new Log();
 
-	if (isset($inv['conso'.$_GET['i']])){
-		$conso = $inv['conso'.$_GET['i']];
-		$pack = $consoCont->fetch($conso);
+include_once("pass.php");
 
-		switch($pack->getType()){
-			case 1:
-				$perso->addVie($pack->getValeurBase());
-				$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),'Valeur : '.$pack->getValeurBase());
-				break;
-			case 2:
-				$perso->addEnergie($pack->getEnergie($perso->getMaxEnergie()));
-				$log->insertLog("Use nrgpack",$_SESSION['member_id'],$perso->getId(),'Valeur : '.$pack->getValeurBase());
-				break;
-		}
+$consoCont = new ConsoController();
 
-	}else {
-		$_SESSION['text']= "<font color='FF0000'><b>CHEATER</b></font>";
-		$_SESSION['erreur']=true;
+$inv=mysql_fetch_array(mysql_query("SELECT conso".$i." FROM inventaire WHERE id_perso = '".$perso->getId()."'"));
+
+if (isset($inv['conso'.$i])){
+	$conso = $inv['conso'.$i];
+	$pack = $consoCont->fetch($conso);
+
+	$result = '';
+
+	switch($pack->getType()){
+		case 1:
+			$perso->addVie($pack->getValeurBase());
+			$result = array("type"=>"success","content"=>array("type"=>"vie","amount"=>$perso->getVie(),"jauge"=>($perso->getVie().'%')));
+			$log->insertLog("Use medipack",$_SESSION['member_id'],$perso->getId(),'Valeur : '.$pack->getValeurBase());
+			break;
+		case 2:
+			$perso->addEnergie($pack->getEnergie($perso->getMaxEnergie()));
+			$result = array("type"=>"success","content"=>array("type"=>"eng","amount"=>$perso->getEnergie(),"jauge"=>(floor($perso->getEnergie()*100/$perso->getMaxEnergie()).'%')));
+			$log->insertLog("Use nrgpack",$_SESSION['member_id'],$perso->getId(),'Valeur : '.$pack->getValeurBase());
+			break;
 	}
-	mysql_query("UPDATE inventaire SET conso".$_GET['i']." = NULL WHERE id_perso = '".$perso->getId()."'")or die(mysql_error());
-	$persoController->savePerso($perso);
+	mysql_query("UPDATE inventaire SET conso".$i." = NULL WHERE id_perso = '".$perso->getId()."';")or die(mysql_error());
+	$persoCont->savePerso($perso);
+	echo json_encode($result);
+}
 ?>
-
-<html>
-<head>
-  <title>LES RESCAPES DE CITE 17 - Vendre</title>
-  <link rel="icon" type="image/jpg" href="hl2logo.jpg" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <meta http-equiv="refresh" content="0; url=index.php?page=perso&onglet=infop&perso=<?php  echo $perso->getId();?>" />
-</head>
-</html>

@@ -1,5 +1,5 @@
 <?php
-require_once 'autoload.php';
+	require_once 'autoload.php';
 	$persoCont = new PersoController();
 	$query = 'select id from perso;';
 	$req = ConnectionSingleton::connect()->prepare($query);
@@ -10,8 +10,10 @@ require_once 'autoload.php';
 	while($data = $req->fetch(PDO::FETCH_OBJ)){
 		$start = microtime(true);
 		$perso = $persoCont->fetchPerso($data->id);
-		$perso->regenEnergie()->regenVie();
-		$persoCont->savePerso($perso);
+		if(!$perso->isDead()){
+			$perso->regenEnergie()->regenVie();
+			$persoCont->savePerso($perso);
+		}
 		$times[]=microtime(true)-$start;
 	}
 

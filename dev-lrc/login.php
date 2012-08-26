@@ -54,6 +54,12 @@
 	   $_SESSION['member_id'] = $data['id'];
       // on stocke ce login dans une variable de session
 
+	   $req = ConnectionSingleton::connect()->prepare('insert into chat (login) values (:login);');
+	   $req->execute(array('login'=>("<font color='#0F0'>+ ".$_POST['login']."</font>")));
+	   
+	   $req = ConnectionSingleton::connect()->prepare('insert into activity (id_membre, date) values (:id,NOW());');
+	   $req->execute(array('id'=>$data['id']));
+
 	  $log->insertLog("Connecté",$_SESSION['member_id'],"NULL",$_SESSION['login']);
      }
    }
@@ -62,7 +68,7 @@
 		include("loginb.php");
 		exit;
    }
- $_SESSION['nb']=rand(1,7);
+ $_SESSION['nb']=mt_rand(1,7);
 
 ?>
 <html>

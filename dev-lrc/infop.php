@@ -12,22 +12,22 @@
 	}
 	?>
 		<tr class='color1'>
-			<td rowspan=2><img src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&w=140&l=<?php echo$perso->getLevel()?>"/></td>
+			<td rowspan=2 valign=bottom><img src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&h=174&l=<?php echo$perso->getLevel()?>"/></td>
 			<td colspan=3 valign=bottom bgcolor=000000 style="border: 1px solid #333333">
 
 				<table class='button' width='100%'>
 					<tr>
 						<td width='20' align=center class='color3'>VIE</td>
-						<td class='small'><img src='image.php?img=viergev.png&h=10&d=1' width='<?php echo $perso->getVie();?>%' height='10'></td>
-						<td width='135' align=right class='color3'><?php echo $perso->getVie();?> | 100</td>
+						<td class='small'><img id="jaugevie" src='image.php?img=viergev.png&h=10&d=1' width='<?php echo $perso->getVie();?>%' height='10'></td>
+						<td width='135' align=right class='color3'><span id="vie"><?php echo $perso->getVie();?></span> | 100</td>
 					</tr>
 					<tr>
 						<td width='20' align=center class='color3'>NRG</td>
 						<td class='small'>
 							<?php $pourcEn = ($perso->getEnergie()/$perso->getMaxEnergie())*100;?>
-							<img src='image.php?img=viergeb.png&h=10&d=1' width='<?php echo (($pourcEn>100)?100:$pourcEn);?>%' height='10'>
+							<img id="jaugeeng" src='image.php?img=viergeb.png&h=10&d=1' width='<?php echo (($pourcEn>100)?100:$pourcEn);?>%' height='10'>
 						</td>
-						<td width='135' align=right class='color3'><?php echo floor($perso->getEnergie());?> | <?php echo $perso->getMaxEnergie();?></td>
+						<td width='135' align=right class='color3'><span id="eng"><?php echo floor($perso->getEnergie());?></span> | <?php echo $perso->getMaxEnergie();?></td>
 					</tr>
 					<tr>
 						<td width='20' align=center class='color3'>EXP</td>
@@ -112,39 +112,27 @@
 			<td colspan=4 align=center>ARMES</td>
 		</tr>
 		<tr>
-
 			<?php
 				$inventaire=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
-				for ($i=1;$i<=4;$i++)
-				{
+				for ($i=1;$i<=4;$i++):
 					$arme=mysql_fetch_array(mysql_query("SELECT * FROM armes WHERE image = '".$inventaire['arm'.$i]."'"));
 					if (!$arme['munmax'])
-						$arme['munmax']=0;
-					echo "
-						<td align=center >
-							<table style='background: none'>
-								<tr>
-									<td align=center class='hev'>";
-									if ($inventaire['arm'.$i])
-									{?>
-										<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $i;?>' >
-									<?php echo"<img src='image.php?img=".$inventaire['arm'.$i].".png&w=90'></a>";
+						$arme['munmax']=0;?>
+						<td align=center>
+							<div align=center class='hev arme' perso='<?php echo $perso->getId()?>' arme='<?php echo $i?>'>
+								<a href='<?php if ($inventaire['arm'.$i]) echo 'armeinfo.php?perso='.$perso->getId().'&i='.$i;else echo '#'?>'>
+									<?php if ($inventaire['arm'.$i]) echo"<img src='image.php?img=".$inventaire['arm'.$i].".png&w=90'>";?>
+								</a>
+							</div>
 
-									}
-									echo"
-									</td>
-								</tr>
-								<tr>
-									<td align=center>
-										".$inventaire['mun'.$i]." | ".($arme['munmax']+($arme['munmax']*($inventaire['capa'.$i]/10)))."
-									</td>
-								</tr>
-							</table>
+							<div align=center class='munarme'>
+								<?php echo $inventaire['mun'.$i]." | ".($arme['munmax']+($arme['munmax']*($inventaire['capa'.$i]/10)))?>
+							</div>
 						</td>
-					";
-				}
-			?>
+
+			<?php endfor;?>
 		</tr>
+		<tr id="armeinfo"><td colspan=4></td></tr>
 		<tr>
 			<td colspan=2 align=center>PIEGES</td>
 			<td colspan=2 align=center>CONSOMMABLES</td>
@@ -161,11 +149,11 @@
 									<td align=center>
 										<table style='background: none'>
 											<tr>
-												<td align=center class='hev' >";
+												<td align=center class='hev piege' perso='".$perso->getId()."' piege='".$i."'>";
 												if ($inventaire['pie'.$i])
 												{
 													?>
-														<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=piege&i=<?php echo $i;?>' >
+														<a href='piegeinfo.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>'>
 
 													<?php
 													echo  "<img src='image.php?img=".$inventaire['pie'.$i].".png&w=80'></a>";
@@ -188,12 +176,12 @@
 									<td align=center>
 										<table style='background: none'>
 											<tr>
-												<td align=center class='hev'>";
+												<td align=center class='hev conso' perso='".$perso->getId()."' conso='".$i."'>";
 												if ($inventaire['conso'.$i])
 												{
 												?>
 													<a href="useconso.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>">
-													<?php echo "<img src='image.php?img=".$consoController->fetch($inventaire['conso'.$i])->getImage()."&w=120&h=85'></a>";
+													<?php echo "<img src='image.php?img=".$consoController->fetch($inventaire['conso'.$i])->getImage()."&w=120' width='120' height='85'></a>";
 												}
 												echo"
 												</td>
@@ -208,15 +196,7 @@
 						?>
 
 		</tr>
-		<?php
-			if(isset($_GET['type'])){
-				echo "<tr><td colspan=4>";
-				if($_GET['type']=='arme'){
-					include("armeinfo.php");
-				}else if($_GET['type']=='piege'){
-					include("piegeinfo.php");
-				}
-				echo "</td></tr>";
-			}
-		?>
+		<tr id="piegeinfo"><td colspan=4></td></tr>
 	</table>
+	<div id="error"></div>
+	<script type="text/javascript" language="javascript" src="infop.js"></script>

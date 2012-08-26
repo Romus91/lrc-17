@@ -72,9 +72,11 @@ if(isset($_GET['img'])&&!empty($_GET['img'])){
 	}
 
 	imagepng($img_dest);
+	imagedestroy($img_dest);
 
 }else{
 	$img = imagecreate(5, 5);
 	$noir = imagecolorallocate($img, 0, 0, 0);
 	imagepng($img);
+	imagedestroy($img);
 }

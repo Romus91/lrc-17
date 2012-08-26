@@ -61,7 +61,7 @@
 																		<td align=center>
 																			<table class='button'>
 																				<tr>
-																					<td id='button'>
+																					<td id='button' width='100%' align="center">
 																						<input type="image" src='image.php?img=img02go.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03go.png&w=110&h=30'" onmouseout="src='image.php?img=img02go.png&w=110&h=30'">
 																					</td>
 																				</tr>
@@ -132,7 +132,7 @@
 																<td colspan="2" align="center">
 																	<table class='button'>
 																		<tr>
-																			<td id='button'>
+																			<td id='button' align="center">
 																				<input type="image" src='image.php?img=img02ins.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03ins.png&w=110&h=30'" onmouseout="src='image.php?img=img02ins.png&w=110&h=30'">
 																			</td>
 																		</tr>

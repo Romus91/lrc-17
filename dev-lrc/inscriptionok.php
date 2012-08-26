@@ -116,7 +116,7 @@ if (($_POST['login'] <> 'Administrateur') AND ($_POST['login'] <> 'test')){
  $data = mysql_fetch_array($req);
  mysql_query("UPDATE partenaires SET clic=clic+1 , login='".$_SESSION['login']."' where id='".$data[0]."'");
  }
- $_SESSION['nb']=rand(1,7);
+ $_SESSION['nb']=mt_rand(1,7);
  ?>
 <html>
 <head>
