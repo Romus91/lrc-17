@@ -4,7 +4,7 @@ include_once ("verif.php");
 $persoController = new PersoController();
 $log = new Log();
 
-$perso=$persoController->fetchPerso($_GET['perso']);
+$perso=$persoController->fetchPerso((int)htmlentities($_GET['perso']));
 
 include_once 'pass.php';
 $sql=mysql_query("SELECT * FROM level ORDER BY id ASC");
@@ -68,9 +68,9 @@ if ($perso->getEnergie() > 0)
 	}
 
 	###Calcul du nombre de zombie ce jour####
-	$zombie=$zombienb=($perso->getLevel()*3)+rand(-(floor($perso->getLevel()/6)),(floor($perso->getLevel()/6))); //compt nb zombie
-	$crabe=$crabenb=($perso->getLevel()*5)+rand(-(floor($perso->getLevel()/8)),(floor($perso->getLevel()/8))); // Compte le nombre de head-crabs
-	$zombiefast=$zombiefastnb=($perso->getLevel()*2)+rand(-(floor($perso->getLevel()/4)),(floor($perso->getLevel()/4)));
+	$zombie=$zombienb=($perso->getLevel()*3)+mt_rand(-(floor($perso->getLevel()/6)),(floor($perso->getLevel()/6))); //compt nb zombie
+	$crabe=$crabenb=($perso->getLevel()*5)+mt_rand(-(floor($perso->getLevel()/8)),(floor($perso->getLevel()/8))); // Compte le nombre de head-crabs
+	$zombiefast=$zombiefastnb=($perso->getLevel()*2)+mt_rand(-(floor($perso->getLevel()/4)),(floor($perso->getLevel()/4)));
 
 	$zombiefastkill=0;
 
@@ -78,7 +78,7 @@ if ($perso->getEnergie() > 0)
 	$shootMissed=0;
 	####Grande boucle de random pour les kill#####
 	while ((($zombienb > 0) OR ($crabenb > 0) OR ($zombiefastnb > 0)) AND (($munp[1] > 0) OR ($mun[1] > 0) OR ($munp[2] > 0) OR ($mun[2] > 0) OR ($mun[3] > 0) OR ($mun[4] > 0)) AND ($energie > 0)){
-		$randKill=rand(1,3);
+		$randKill=mt_rand(1,3);
 		$usePiege=true;
 		for ($i=1;$i<=4;$munEncore[$i++]=false);
 		for ($i=1;$i<=$cpt;$i++){//Il reste des munitions dans celle la ?
@@ -98,8 +98,8 @@ if ($perso->getEnergie() > 0)
 		if ($perso->getLevel() > 1){ //Si le nombre de vague est sup à 5 --> Attaque de fast-zombies
 			if (($randKill == 1) AND ($zombiefastnb > 0)){
 				while (1){
-					$randArme=rand(1,$cpt);
-					$randPiege=rand(1,$cptp);
+					$randArme=mt_rand(1,$cpt);
+					$randPiege=mt_rand(1,$cptp);
 					if ($munEncore[$randArme] == true)
 					break;
 					if (($munpEncore[$randPiege] == true) AND ($usePiege == true))
@@ -107,7 +107,7 @@ if ($perso->getEnergie() > 0)
 				}
 
 				if ($munEncore[$randArme] == true){
-					$random=rand(1,100);
+					$random=mt_rand(1,100);
 					if ($random <= ((($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))+$perso->getPrecision())/2)){
 						$zombiefastnb--;
 						$shootGoal++;
@@ -117,7 +117,7 @@ if ($perso->getEnergie() > 0)
 					}
 					$mun[$randArme]--;
 				}else{
-					$random=rand(1,100);
+					$random=mt_rand(1,100);
 					if ($random <= $arme[$randPiege]['precision']){
 						$zombiefastnb--;
 						$shootGoal++;
@@ -137,8 +137,8 @@ if ($perso->getEnergie() > 0)
 		###ZOMBIES## --> 2
 		if (($randKill == 2)AND ($zombienb > 0)){
 			while (1){
-				$randArme=rand(1,$cpt);
-				$randPiege=rand(1,$cptp);
+				$randArme=mt_rand(1,$cpt);
+				$randPiege=mt_rand(1,$cptp);
 				if ($munEncore[$randArme] == true)
 				break;
 				if (($munpEncore[$randPiege] == true) AND ($usePiege == true))
@@ -146,7 +146,7 @@ if ($perso->getEnergie() > 0)
 			}
 
 			if ($munEncore[$randArme] == true){
-				$random=rand(1,100);
+				$random=mt_rand(1,100);
 				if ($random <= ((($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))+$perso->getPrecision())/2)){
 					$zombienb--;
 					$shootGoal++;
@@ -156,7 +156,7 @@ if ($perso->getEnergie() > 0)
 				}
 				$mun[$randArme]--;
 			}else{
-				$random=rand(1,100);
+				$random=mt_rand(1,100);
 				if ($random <= $arme[$randPiege]['precision']){
 					$zombienb--;
 					$shootGoal++;
@@ -173,8 +173,8 @@ if ($perso->getEnergie() > 0)
 		###HEAD-CRABS###
 		if (($randKill == 3)AND ($crabenb > 0)){
 			while (1){
-				$randArme=rand(1,$cpt);
-				$randPiege=rand(1,$cptp);
+				$randArme=mt_rand(1,$cpt);
+				$randPiege=mt_rand(1,$cptp);
 				if ($munEncore[$randArme] == true)
 				break;
 				if (($munpEncore[$randPiege] == true) AND ($usePiege == true))
@@ -182,7 +182,7 @@ if ($perso->getEnergie() > 0)
 			}
 
 			if ($munEncore[$randArme] == true){
-				$random=rand(1,100);
+				$random=mt_rand(1,100);
 				if ($random <= ((($arme[$randArme]['precision']*(1+($inv['prec'.$randArme]/10)))+$perso->getPrecision())/2)){
 					$crabenb--;
 					$shootGoal++;
@@ -192,7 +192,7 @@ if ($perso->getEnergie() > 0)
 				}
 				$mun[$randArme]--;
 			}else{
-				$random=rand(1,100);
+				$random=mt_rand(1,100);
 				if ($random <= $arme[$randPiege]['precision']){
 					$crabenb--;
 					$shootGoal++;
@@ -219,7 +219,7 @@ if ($perso->getEnergie() > 0)
 
 	####ZOMBIE-POISON####### (cas spécial)
 	$zombiepoison=0;
-	$rand=rand(1,50);
+	$rand=mt_rand(1,50);
 	$totmunForZP=0;
 
 	if (($perso->getLevel()-3) >= $rand && $vie > 0)
@@ -241,8 +241,8 @@ if ($perso->getEnergie() > 0)
 		//{
 		for ($vieZP=150;($vieZP>0) && ($mun[1] > 0 OR $mun[2] > 0 OR $mun[3] > 0 OR $mun[4] > 0 OR $munp[1] > 0 OR $munp[2] > 0) && ($energie > 0) && ($vie > 0);$vieZP--){
 			while (1){
-				$randArme=rand(1,$cpt);
-				$randPiege=rand(1,$cptp);
+				$randArme=mt_rand(1,$cpt);
+				$randPiege=mt_rand(1,$cptp);
 				if ($munEncore[$randArme] == true)
 				break;
 				if ($munpEncore[$randPiege] == true)

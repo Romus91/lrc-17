@@ -199,3 +199,6 @@ body
 tr.perso td.hover{
 	background-color: #666666;
 }
+#armeinfo, #piegeinfo{
+	display: none;
+}

@@ -62,13 +62,15 @@
 				<table class='small' width='100%'>
 					<tr>
 						<td class='small'>
-							<font size=3>
+							<font class="error" size=3>
 								<?php echo $_SESSION['text'];?>
 							</font>
 						</td>
 						<td class='small' align=right>
-							<font size=5><div id='prix'><?php  echo $perso->getArgent();?></font>
-							<font color=1EB117 size=5>$</font></div>
+							<font size=5>
+								<span id='prix'><?php  echo $perso->getArgent();?></span>
+								<font color=1EB117>$</font>
+							</font>
 						</td>
 					</tr>
 				</table>

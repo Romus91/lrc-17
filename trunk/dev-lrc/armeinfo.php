@@ -1,6 +1,13 @@
 <table class="color1" width="100%">
 <?php
-$i=$_GET['i'];
+require_once 'autoload.php';
+
+$i=(int)htmlentities($_GET['i']);
+$p=(int)htmlentities($_GET['perso']);
+
+$persoCont = new PersoController();
+$perso = $persoCont->fetchPerso($p);
+
 include_once("pass.php");
 $inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
 $arm=mysql_fetch_array(mysql_query("SELECT * FROM armes WHERE image = '".$inv['arm'.$i]."'"));
@@ -24,50 +31,38 @@ $arme=$inv['arm'.$i];
 							<tr>
 								<td class='color3' width=60>DEGATS</td>
 								<td class='small'><img src='image.php?img=vierge.png&h=10&d=1' width='<?php echo($arm['force']*10);?>%' height='10'></td>
-								<td class='small' width=100><img src='image.php?img=viergec.png&h=10&d=1' width='<?php echo $inv['degat'.$i]*10;?>%' height='10'></td>
+								<td class='small' width=100><img id="jamdeg" src='image.php?img=viergec.png&h=10&d=1' width='<?php if($arm['deg']==0)echo 100;else echo $inv['degat'.$i]*100/$arm['deg'];?>%' height='10'></td>
 							</tr>
 							<tr>
 								<td class='color5' width=60>PRECISION</td>
 								<td class='small'><img src='image.php?img=vierge.png&h=10&d=1' width='<?php echo $arm['precision'];?>%' height='10'></td>
-								<td class='small' width=100><img src='image.php?img=viergec.png&h=10&d=1' width='<?php echo $inv['prec'.$i]*10;?>%' height='10'></td>
+								<td class='small' width=100><img id="jampre" src='image.php?img=viergec.png&h=10&d=1' width='<?php if($arm['pre']==0)echo 100;else echo $inv['prec'.$i]*100/$arm['pre'];?>%' height='10'></td>
 							</tr>
 							<tr>
 								<td class='color3' width=60>CHARGEUR</td>
 								<td class='small'><img src='image.php?img=vierge.png&h=10&d=1' width='<?php echo(($arm['munmax']/250)*100);?>%' height='10'></td>
-								<td class='small' width=100><img src='image.php?img=viergec.png&h=10&d=1' width='<?php echo $inv['capa'.$i]*10;?>%' height='10'></td>
+								<td class='small' width=100><img id="jamcap" src='image.php?img=viergec.png&h=10&d=1' width='<?php if($arm['cap']==0)echo 100;else echo $inv['capa'.$i]*100/$arm['cap'];?>%' height='10'></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td id='button' align=right>
-						<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $i;?>'>RECHARGER</a>
+					<td id='button' class="armeaction">
+						<a href='armeinforecharg.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>'>RECHARGER</a>
 					</td>
-					<td id='button' align=left>
-						<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $i;?>&part=vendre'>VENDRE</a>
+					<td id='button' class="armeaction">
+						<a href='armeinfovendre.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>'>VENDRE</a>
 					</td>
-					<td id='button' align=right>
-						<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=arme&i=<?php echo $_GET['i'];?>&part=gene'>AMELIORATION</a>
+					<td id='button' class="armeaction">
+						<a href='armeinfogene.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>'>AMELIORATION</a>
 					</td>
-					<td id='button' align=left>
-						<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>'>FERMER</a>
+					<td id='button' class="armeaction" action="close">
+						<a href='#'>FERMER</a>
 					</td>
 				</tr>
 				<tr>
-					<td colspan=4 align=center bgcolor=333333><?php
-					if (isset($_GET['part']))
-					{
-						if ($_GET['part'] == 'vendre')
-						include ("armeinfovendre.php");
-
-						if ($_GET['part'] == 'gene')
-						include ("armeinfogene.php");
-
-						if ($_GET['part'] == 'rech')
-						include ("armeinforecharg.php");
-					}else
-					include ("armeinforecharg.php");
-					?>
+					<td id="armedetail" colspan=4 align=center bgcolor=333333>
+					<?php include ("armeinforecharg.php"); ?>
 					</td>
 				</tr>
 				<?php
@@ -84,3 +79,4 @@ $arme=$inv['arm'.$i];
 		</td>
 	</tr>
 </table>
+<script type="text/javascript" language="javascript" src="armeinfo.js"></script>

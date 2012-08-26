@@ -4,7 +4,11 @@
   <title>LES RESCAPES DE CITE 17</title>
   <link rel="icon" type="image/jpg" href="hl2logo.gif" />
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script src="jquery.mousewheel.min.js"></script>
+	<script src="jquery.mCustomScrollbar.js"></script>
   <meta http-equiv="content-language" content="fr">
  <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
   <?php

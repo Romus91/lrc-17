@@ -308,7 +308,7 @@ class Perso{
 	public function regenEnergie(){
 		if($this->_energie<$this->getMaxEnergie() && !$this->isDead()) $this->_energie++;
 		if($this->_energie<$this->getMaxEnergie() && !$this->isDead()){
-			for($i=0;$i<25;$i++) $rand = rand(1,50);
+			for($i=0;$i<25;$i++) $rand = mt_rand(1,50);
 			if($rand<=$this->getComfort()) $this->_energie++;
 		}
 		return $this;
@@ -347,7 +347,7 @@ class Perso{
 		$this->_xpafk+=$amount;
 	}
 	public function retribXp(){
-		$amount= floor($this->_xpafk*0.75);
+		$amount= floor($this->_xpafk*0.5);
 		$this->_xp+=$amount;
 		$this->_xpafk-=$amount;
 		return $amount;
@@ -415,15 +415,15 @@ class Perso{
 		return $this->_invConso;
 	}
 	public function getTauxEsquive(){
-		return floor((1-(1/(2+($this->_esquive/3))))*10000)/100;
+		return floor((1-(1/(1.25+($this->_esquive/5))))*10000)/100;
 	}
 	public function damage($amount){
 		$rating = $this->getTauxEsquive()*100;
-		for($i=0;$i<25;$i++) $rand = rand(1,10000);
+		for($i=0;$i<25;$i++) $rand = mt_rand(1,10000);
 		if($rand<=$rating) return 0;
 		else return $amount;
 	}
 	public function getPrecision(){
-		return floor((1-(1/(4+($this->_dexterite/1.5))))*10000)/100;
+		return floor((1-(1/(3+($this->_dexterite/3))))*10000)/100;
 	}
 }

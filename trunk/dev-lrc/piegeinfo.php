@@ -2,7 +2,14 @@
 <table class="color1" width='100%'>
 
 <?php
-$i=$_GET['i'];
+require_once 'autoload.php';
+
+$i=(int)htmlentities($_GET['i']);
+$p=(int)htmlentities($_GET['perso']);
+
+$persoCont = new PersoController();
+$perso = $persoCont->fetchPerso($p);
+
 include_once("pass.php");
 $inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
 $arm=mysql_fetch_array(mysql_query("SELECT * FROM pieges WHERE image = '".$inv['pie'.$i]."'"));
@@ -36,16 +43,19 @@ $prix=$arm['prixballes'];
 							</table>
 							<table class='button' width='100%'>
 								<tr>
-									<td id='button' align=right>
+									<td id='button'>
 										<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=piege&i=<?php echo $i;?>' >RECHARGER</a>
 
 									</td>
-									<td id='button' align=left>
+									<td id='button'>
 										<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=piege&i=<?php echo $i;?>&part=vendre'>VENDRE</a>
 									</td>
 								<!--	<td id='button' align=center>
 										<a href='piegeinfo.php?perso=<?php echo $perso->getId();?>&i=<?php echo $_GET['i'];?>&onglet=gene'>AMELIORATION</a>
 									</td>-->
+									<td id='button'>
+										<a href='index.php?page=perso&perso=<?php echo $perso->getId();?>'>FERMER</a>
+									</td>
 								</tr>
 							</table>
 						</td>
