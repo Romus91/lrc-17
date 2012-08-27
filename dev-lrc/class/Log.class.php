@@ -1,5 +1,5 @@
 <?php
-
+include_once("ConnectionSingleton.class.php");
 class Log
 {
 	private $_id;
