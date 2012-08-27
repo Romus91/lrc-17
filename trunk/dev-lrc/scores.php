@@ -48,7 +48,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 			<td align=center>&nbsp;</td>
 			<td align=center>&nbsp;</td>
 			<td align=center>RIP</td>
-			<td align=center>CITOYEN</td>
+			<td align=center>SURVIVANT</td>
 			<td align=center>MEMBRE</td>
 			<td align=center>EXP</td>
 			<td align=center>NIVEAU</td>
@@ -69,7 +69,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 				if ($i == 3)
 					$bgcolor='ab7604';
 						else
-							$bgcolor='CC6600';
+							$bgcolor='222222';
 	echo "
 
 	<tr class='perso' perso='http://".$_SERVER['HTTP_HOST']."/stats.php?id=".$perso['id']."' style='cursor:hand;'>
