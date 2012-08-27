@@ -22,7 +22,7 @@
 </head>
 <body>
 <center>
-<table align=center class='main'>
+<table align=center class='main' width='800'>
 	<tr>
 		<td>
 			<table border="0" class='main' width="100%" >
