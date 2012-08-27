@@ -5,9 +5,17 @@ table
 	FONT-SIZE: 8pt;
 	FONT-FAMILY:Verdana;
 	COLOR: #FFFFFF;
-	background-color : #333333;
 	font-weight:bold;
+	
 }
+
+table .main
+{
+
+	background-color : #000000;
+	
+}
+
 table .color1
 {
 	background-color : #333333;
@@ -46,6 +54,11 @@ table .hev
 	height : 79px;
 }
 
+table .barremenu
+{
+	background : url(pic/barre.png) no-repeat center;
+}
+
 table .small
 {
 		background-color : #000000;
@@ -62,6 +75,24 @@ background : url(pic/blanc.png) repeat left;
 
 /*TD*/
 
+td .header
+{
+		/*background : url(pic/headerbackground.png) repeat-y center top;*/
+		background-color :#000000;
+		height: 95px;
+}
+
+td .bannerinfo
+{
+		background : url(pic/bannerinfo.png) no-repeat center top;
+		height: 65px;
+		FONT-SIZE: 14pt;
+		font-weight:bold;
+		border-style:solid;
+		border-width:2px;
+		border-color:#333333;
+}
+
 td .title
 {
 	background-color : #000000;
@@ -72,11 +103,61 @@ td .title2
 	background-color : #111111;
 }
 
+td .maincenter
+{
+	background-color : #333333;
+}
+
+td .verouille
+{
+	background-image:url(pic/fondverouillesmall.png);
+	background-position:center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	
+	color : 333333;
+	
+}
+
+td .verouilleh
+{
+	background-image:url(pic/fondverouille.png);
+	background-position:center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	
+	color : 333333;
+	
+}
+
+/*TAB INFO*/
+td .info
+{
+	FONT-SIZE: 14pt;
+	font-weight:bold;
+	
+}
+
+#info
+{
+	FONT-SIZE: 14pt;
+	font-weight:bold;
+	color : #f7a300;
+	
+}
+
 /*BODY*/
 body
 {
 	FONT-SIZE: 8pt;
 	FONT-FAMILY:New time roman;
+	background-image:url(pic/background.png);
+	background-repeat:no-repeat;
+	background-position:center top;
 	background-color : #000000;
 	font-weight:bold;
 }

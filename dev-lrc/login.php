@@ -40,6 +40,8 @@
      $req = mysql_query($sql) ;
      $data = mysql_fetch_array($req);
 	 $nb = mysql_num_rows($req);
+	 
+	 
 	 //echo "<br>",$data[0],"<br>",$nb,"<br>",$sql;
 //si il n'est pas correct, on affiche une erreur
 

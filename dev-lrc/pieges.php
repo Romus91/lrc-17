@@ -112,8 +112,9 @@ include_once("level.php");?>
 							{
 								echo "
 									<tr height=90>
-										<td bgcolor='111111' align=center colspan=4>
-											<font color='333333'>NIVEAU REQUIS : <font size=4>".($piege['lvlrequis'])."</font></font>
+										<td class='verouille' align=center colspan=4>
+											<font size=6>VEROUILLE</font><br>
+											NIVEAU REQUIS : <font size=4>".($piege['lvlrequis'])."</font></font>
 										</td>
 									</tr>";
 							}
