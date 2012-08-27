@@ -22,16 +22,29 @@
 </head>
 <body>
 <center>
-<table align=center>
+<table align=center class='main'>
 	<tr>
 		<td>
-			<table border="0" class='color5' width="800">
-			<tr>
-				<td width="200%" background="pic/blanc.png" bgcolor="000000" colspan="3" align=center>
-				   <a href="index.php"><img border="0" src="pic/banneralpha.png" width="500" height="70" ></a>
+			<table border="0" class='main' width="100%" >
+			<tr >
+				<td width="100%" class="header"  colspan="3" align=center>
+				   <a href="index.php"><img border="0" src="pic/banner.png" width="700" ></a>
 				</td>
 			</tr>
-			<tr>
+			<tr >
+				<td width="100%" class="bannerinfo" colspan="3" align=center>
+					<table width='100%'>
+						<tr>
+							<td class='info' align=center width="15%">NIV<br><span id='info'>-</span></td>
+							<td class='info' align=center width="15%">EXP<br><span id='info'>-</span></td>
+							<td class='info' align=center width="40%"><span id='info'>-</span></td>
+							<td class='info' align=center width="15%">ARG<br><span id='info'>-</span></td>
+							<td class='info' align=center width="15%">SUR<br><span id='info'>-</span></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class='maincenter'>
 				<td width="100%" height="100%" valign='top'>
 					<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
 						<tr>
@@ -39,18 +52,6 @@
 								<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
 									<tr>
 										<td valign=top align=center width="100%" height="100%"> <font color=FFFFFF>
-											<table class='color2' width="100%" >
-												<tr>
-													<td align=center>
-														<!--Bonjour intel-->
-														<?php
-															echo"<font color=FFFFFF><b>Bonjour ",$_SESSION['login']," !</b></font>";
-															$lien=$_SERVER["PHP_SELF"];
-														?>
-														<!--/bonjour intel-->
-													</td>
-												</tr>
-											</table>
 											<table  valign=top align=center>
 												<tr>
 													<td colspan='3' align=center>
@@ -65,7 +66,7 @@
 															<tr>
 																<td>
 																	<a href="index.php?page=citoyen">
-																		CITOYEN
+																		SURVIVANTS
 																	</a>
 																</td>
 															</tr>
@@ -116,8 +117,8 @@
 												</tr>
 											<table class='small' width='100%' >
 												<tr>
-													<td class='color2'align=center>
-														<font size=3>CHAT</font>
+													<td class='main' align=center>
+														<img src='pic/chat.png'>
 													</td>
 												</tr>
 												<tr valign=top>
@@ -134,8 +135,8 @@
 
 											<table class='small' width='100%'>
 												<tr>
-													<td class='color2' align=center>
-														<font size=3>EN LIGNE</font>
+													<td class='main' align=center>
+														<img src='pic/enligne.png'>
 													</td>
 												</tr>
 
@@ -149,12 +150,12 @@
 
 											<table>
 												<tr>
-													<td><img src='pic/r<?php  echo $_SESSION['nb'];?>.bmp' width='260'></td>
+													<td><img src='pic/zombiePorte.png' width='280'></td>
 												</tr>
 											</table>
-											<table class='color2' width="100%">
+											<table class='barremenu' width="100%">
 												<tr>
-													<td align=center>&nbsp;</td>
+													<td>&nbsp;</td>
 												</tr>
 											</table>
 										</td>
@@ -171,7 +172,7 @@
 								<table border="0" cellpadding="0" cellspacing="0" width="557">
 									<tr>
 										<td valign="top" align=center>
-											<table class='color2' width="100%">
+											<table class='barremenu' width="100%">
 												<tr>
 													<td align=center>&nbsp;</td>
 												</tr>

@@ -20,35 +20,36 @@
 </head>
 <body>
 <center>
-<table align=center>
-	<tr>
+<table align=center class='main' width='800'>
+	<tr >
 		<td>
-			<table border="0" class='color5' width="800">
-			<tr>
-				<td width="200%" background="blanc.png" bgcolor="000000" colspan="3" align=center>
-				   <a href="index.php"><img border="0" src="pic/banneralpha.png" width="500" height="70" ></a>
+			<table border="0" class='main' width="100%" >
+			<tr >
+				<td width="100%" class="header"  colspan="3" align=center>
+				   <a href="index.php"><img border="0" src="pic/banner.png" width="700" ></a>
 				</td>
 			</tr>
-			<tr>
+			
+			<tr class='maincenter' >
 				<td width="100%" height="100%" valign='top'>
 					<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
-						<tr>
+						<tr >
 							<td  style="border-left: 1px solid rgb(0,0,0); border-right: 1px solid rgb(0,0,0); border-top: 1px solid rgb(0,0,0); border-bottom: 1px solid rgb(0,0,0);"  class='color1' >
-								<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
-									<tr>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%" height="490" >
+									<tr >
 										<td valign=top align=center width="100%" height="100%"> <font color=FFFFFF>
-											<table class='color2' width="100%" >
-												<tr>
-													<td align=center>&nbsp;</td>
+											<table class='barremenu' width="100%">
+													<tr>
+														<td align=center>&nbsp;</td>
 													</tr>
 												</table>
 											</td>
 										</tr>
 										<tr>
-											<td align=center>
+											<td align=center >
 												<table>
-													<tr>
-														<td colspan='3'>
+													<tr >
+														<td colspan='3' >
 															<table align=center>
 																<form action="login.php" method='post'>
 																	<tr>
@@ -79,7 +80,7 @@
 															<table width='100%'>
 																<tr>
 																	<td align=center class='title'>
-																		<font size=3 color='FF9900'>LES RESCAPES DE CITE 17</font><br>
+																		<font size=3 color='555555'>LES RESCAPES DE CITE 17</font><br>
 																	</td>
 																</tr>
 																<tr>
@@ -154,7 +155,7 @@
 										</tr>
 										<tr>
 											<td>
-												<table class='color2' width="100%">
+												<table class='barremenu' width="100%">
 													<tr>
 														<td align=center>&nbsp;</td>
 													</tr>
@@ -177,18 +178,18 @@
 										<tr>
 											<td valign="top" align=center>
 											<font color=FFFFFF>
-												<table class='color2' width="100%">
+												<table class='barremenu' width="100%">
 													<tr>
 														<td align=center>&nbsp;</td>
 													</tr>
 												</table>
 												<table  valign=top align=center>
 													<tr>
-														<td><img src='image.php?img=ravenholm.JPG&w=550'></td>
+														<td><img src='pic/homelogin.png' width='557'></td>
 													</tr>
 												</table>
 											</font>
-												<table class='color2' width="100%">
+												<table class='barremenu' width="100%">
 													<tr>
 														<td align=center>&nbsp;</td>
 													</tr>

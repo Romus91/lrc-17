@@ -1,7 +1,7 @@
 													</td>
 												</tr>					
 											</table>
-											<table class='color2' width="100%">
+											<table class='barremenu' width="100%">
 												<tr>
 													<td align=center>&nbsp;</td>
 												</tr>

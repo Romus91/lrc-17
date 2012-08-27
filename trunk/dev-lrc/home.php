@@ -12,14 +12,7 @@
   $a90="<font color='09B00D'>|||||||||</font><font color='000000'>|</font>";
   $a100="<font color='1AF10F'>||||||||||</font>"
 ?>
-<table class='small' width='100%'>
-	<tr>
-		<td align=center>
-			<h2>Ceci est une version <font color='FFFF00'>ALPHA</font><br>Merci de bien vouloir noter les BUGS via le WALL</h2>
-		</td>
-	</tr>
-</table>
-<img src='image.php?img=ravenholm.JPG&w=550' width="550">
+<img src='pic/home.png' width="550">
 <br>
 <table width="100%" height="100%" class='color1'>
 	<tr>

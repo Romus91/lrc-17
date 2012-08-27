@@ -22,8 +22,9 @@
 							}else
 							{
 							echo"
-						<td align=center bgcolor='111111' width='33%'>
-							<font color='333333'>NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[0]->getLevelRequis()."</font>
+						<td align=center class='verouille' width='33%'>
+							<font size=5>VEROUILLE</font><br>
+							NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[0]->getLevelRequis()."</font>
 						</td>";
 							}
 							?>
@@ -40,8 +41,9 @@
 							}else
 							{
 							echo"
-						<td align=center bgcolor='111111' width='33%'>
-							<font color='333333'>NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[1]->getLevelRequis()."</font>
+						<td align=center class='verouille' width='33%'>
+							<font size=5>VEROUILLE</font><br>
+							NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[1]->getLevelRequis()."</font>
 						</td>";
 							}
 							?>
@@ -58,8 +60,9 @@
 							}else
 							{
 							echo"
-						<td align=center bgcolor='111111' width='33%'>
-							<font color='333333'>NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[2]->getLevelRequis()."</font>
+						<td align=center class='verouille' width='33%'>
+							<font size=5>VEROUILLE</font><br>
+							NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[2]->getLevelRequis()."</font>
 						</td>";
 							}
 							?>
@@ -81,8 +84,9 @@
 							}else
 							{
 							echo"
-						<td align=center bgcolor='111111' width='33%'>
-							<font color='333333'>NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[3]->getLevelRequis()."</font>
+						<td align=center class='verouille' width='33%'>
+							<font size=5>VEROUILLE</font><br>
+							NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[3]->getLevelRequis()."</font>
 						</td>";
 							}
 							?>
@@ -99,8 +103,9 @@
 							}else
 							{
 							echo"
-						<td align=center bgcolor='111111' width='33%'>
-							<font color='333333'>NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[4]->getLevelRequis()."</font>
+						<td align=center class='verouille' width='33%'>
+							<font size=5>VEROUILLE</font><br>
+							NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[4]->getLevelRequis()."</font>
 						</td>";
 							}
 							?>
@@ -117,8 +122,9 @@
 							}else
 							{
 							echo"
-						<td align=center bgcolor='111111' width='33%'>
-							<font color='333333'>NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[5]->getLevelRequis()."</font>
+						<td align=center class='verouille' width='33%'>
+							<font size=5>VEROUILLE</font><br>
+							NIVEAU REQUIS : </font><font size=4 color='333333'>".$consArray[5]->getLevelRequis()."</font>
 						</td>";
 							}
 							?>
