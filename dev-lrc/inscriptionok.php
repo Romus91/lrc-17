@@ -1,6 +1,6 @@
 <?php  session_start();
 include_once('pass.php');
-
+include_once('class/log.class.php');
 $log = new Log();
 		$login=$_POST['login'];
 		$_POST['login']=ucfirst($_POST['login']);
@@ -27,6 +27,8 @@ $log = new Log();
 		$_POST['login']=stripslashes(str_replace("#","_",$_POST['login']));
 		$_POST['login']=mysql_real_escape_string($_POST['login']);
 
+		echo "ici ça passe";
+		
 		$string = $_POST['login'];
 			for ($i = 0, $j = strlen($string); $i < $j; $i++)
 			{
@@ -83,7 +85,7 @@ if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']
              $_SESSION['id'] = $id;
              //exit();
 
-			 $log->inserLog("Nouveau membre",$_SESSION['member_id'],"NULL",$_SESSION['login']);
+			 $log->insertLog("Nouveau membre",$_SESSION['member_id'],"NULL",$_SESSION['login']);
           }
           else
 		  { //sinon on affiche un erreur pour le login deja pris
