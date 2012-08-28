@@ -22,25 +22,22 @@ $arme=mysql_fetch_array(mysql_query("SELECT * FROM armes WHERE image = '".$inv['
 		<td class='color3'>DEGATS</td>
 		<td class='small' width=60 align=right><font id="amdeg" color="00ff00"> + <?php echo $inv['degat'.$i]*10;?>%</font>
 		</td>
-		<td align=center class='color3 plusam'><a
-			href='ajoutpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=deg'><img
-				src="image.php?img=plus.png&w=20&h=20" /> </a></td>
+		<td align=center class='color3 plusam' width="20" height='20'><a href='ajoutpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=deg'><img src="pic/plus.png" /> </a></td>
+		<td align=center class='color3 moinsam' width="20" height='20'><a href='retraitpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=deg'><img src="pic/minus.png" /> </a></td>
 	</tr>
 	<tr>
 		<td class='color4'>PRECISION</td>
 		<td class='small' width=60 align=right><font id="ampre" color="00ff00"> + <?php echo $inv['prec'.$i]*10;?>%</font>
 		</td>
-		<td align=center class='color4 plusam'><a
-			href='ajoutpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=pre'><img
-				src="image.php?img=plus.png&w=20&h=20" /> </a></td>
+		<td align=center class='color4 plusam' width="20" height='20'><a href='ajoutpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=pre'><img src="pic/plus.png" /> </a></td>
+		<td align=center class='color4 moinsam' width="20" height='20'><a href='retraitpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=pre'><img src="pic/minus.png" /> </a></td>
 	</tr>
 	<tr>
 		<td class='color3'>CAPACITE CHARGEUR</td>
 		<td class='small' width=60 align=right><font id="amcap" color="00ff00"> + <?php echo $inv['capa'.$i]*10;?>%</font>
 		</td>
-		<td align=center class='color3 plusam'><a
-			href='ajoutpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=cap'><img
-				src="image.php?img=plus.png&w=20&h=20" /> </a></td>
+		<td align=center class='color3 plusam' width="20" height='20'><a href='ajoutpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=cap'><img src="pic/plus.png" /></a></td>
+		<td align=center class='color3 moinsam' width="20" height='20'><a href='retraitpt.php?perso=<?php echo $perso->getId();?>&i=<?php echo $i;?>&type=cap'><img src="pic/minus.png" /></a></td>
 		<!--	<tr>
 					<td class='color4' >&nbsp;</td><td class='small' width=35 align=right><font color="00ff00" > + <?php echo $inv['vie'.$i];?></font></td>
 					<td align=center  class='color4'><img src="pic/plus.png" width='20px' height='20px'/></td>
