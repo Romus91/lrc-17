@@ -28,15 +28,17 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 
 	if ($inv[$type] > 0)
 	{
-		mysql_query("UPDATE inventaire SET ".$type." = ".($inv[$type]-1)." WHERE id_perso = ".$perso->getId()."")
+		$munitions=0;
+		if($t=="cap"){
+			$munitions = "0 | ".($data[$j]['munmax']+($data[$j]['munmax']*(($inv[$type]-1)/10)));
+			$perso->addArgent($inv['mun'.$i]*$data[$j]['prixballes']);
+			$inv['mun'.$i]=0;
+		}
+
+		mysql_query("UPDATE inventaire SET ".$type." = ".($inv[$type]-1).", mun".$i." = ".$inv['mun'.$i]." WHERE id_perso = ".$perso->getId()."")
 		or die (mysql_error());
 		$perso->addPtsAmDispo(1);
 		$persoCont->savePerso($perso);
-
-		$munitions=0;
-		if($t=="cap"){
-			$munitions = $inv['mun'.$i]." | ".($data[$j]['munmax']+($data[$j]['munmax']*(($inv[$type]-1)/10)));
-		}
 
 		$response = array(
 					"type"=>"success",
@@ -46,7 +48,8 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 							"ampct"=>'+ '.floor(($inv[$type]-1)*10).'%',
 							"jauge"=>floor(($inv[$type]-1)*100/$data[$j][$t]).'%',
 							"ptam"=>$perso->getNbPtsAmDispo(),
-							"munitions"=>$munitions
+							"munitions"=>$munitions,
+							"argent"=>$perso->getArgent()
 		)
 		);
 	}else

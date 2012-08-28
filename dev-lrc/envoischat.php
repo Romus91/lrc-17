@@ -3,7 +3,7 @@ require_once 'autoload.php';
 include_once("verif.php");
 include_once("pass.php");
 
-$string = htmlentities($_GET['mess']);
+$string = htmlspecialchars($_POST['mess'], ENT_QUOTES, 'UTF-8');
 for ($i = 0,$cpt=0, $j = strlen($string); $i < $j; $i++,$cpt++)
 {
 	if ($string[$i] == " ")
@@ -17,8 +17,8 @@ for ($i = 0,$cpt=0, $j = strlen($string); $i < $j; $i++,$cpt++)
 	}
 }
 
-$sql="INSERT INTO chat (message,login) VALUES (:message,:login);";
+$sql="INSERT INTO chat (id_membre,message,login,timestamp) VALUES (:id,:message,:login,:t);";
 $req = ConnectionSingleton::connect()->prepare($sql);
-$req->execute(array("message"=>$string,"login"=>$_SESSION['login']));
+$req->execute(array("id"=>$_SESSION['member_id'],"message"=>$string,"login"=>$_SESSION['login'],"t"=>microtime(true)));
 
 ?>

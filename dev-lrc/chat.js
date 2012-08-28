@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#chatform input").watermark("Entrez votre message...");
+	$("#chatform input[name=mess]").watermark("Entrez votre message...");
 	$("#pseudobox").mCustomScrollbar({
 		set_height: 300
 	});
@@ -9,14 +9,9 @@ $(document).ready(function(){
 	$("#chatform").submit(function(){
 		$(this).ajaxSubmit({
 			url: 'envoischat.php',
-			type:'get',
-			success: function(data){
-				setTimeout(function(){
-					//$("#pseudobox").mCustomScrollbar("update");
-					$("#pseudobox").mCustomScrollbar("scrollTo","bottom");
-				},1111);
-			},
+			type:'post',
 			clearForm: true,
+			beforeSubmit: addMessage,
 			error: function(){
 				alert("Error");
 			}
@@ -25,16 +20,63 @@ $(document).ready(function(){
 	});
 });
 
+function addMessage(arr, form, options){
+	if(form[0].mess.value.length==0){
+		return false;
+	}else{
+		var d = new Date();
+		var date =  d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		addContent($(".mCSB_container"),form[0].pseudo.value,date,form[0].mess.value);
+	}
+}
 function loadChat(){
+	var url = 'selectchat.php';
+	if($("#chattimestamp").text()){
+		url=url+'?time='+$("#chattimestamp").text();
+	}
 	$.ajax({
-		url: 'selectchat.php',
+		url: url,
 		success: function(data){
-			$(".mCSB_container").empty();
-			$(".mCSB_container").append(data);
-			$("#pseudobox").mCustomScrollbar("update");
+			var result = JSON.parse(data);
+			if(result.type=='initial'){
+				var cont = result.content;
+				$("#chattimestamp").text(result.timestamp);
+				$(".mCSB_container").empty();
+				for(var i in cont){
+					addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
+				}
+				$('body').append('<span id="playSound"></span>');
+			}else{
+				var cont = result.content;
+				$("#chattimestamp").text(result.timestamp);
+				if(cont.length>0){
+					for(var i in cont){
+						addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
+					}
+					$('#playSound').html("<embed src='snd/chat.mp3' hidden='true' autostart='true' loop='false'>");
+				}
+			}
 		}
 	});
 	setTimeout(function(){loadChat();},1000);
+}
+function addContent(container, user, date, message){
+	container.append(
+			"<div class='small' style='clear:both;'>" +
+				"<div style='float:left;'>" +
+					"<font color='CC6600'>"+
+						user+
+					"</font>" +
+				"</div>" +
+				"<div style='float:right;'>"+
+					date+
+				"</div>" +
+			"</div>");
+	if(message){
+		container.append("<div class='color1' style='clear:both;'>"+message+"</div>");
+	}
+	$("#pseudobox").mCustomScrollbar("update");
+	$("#pseudobox").mCustomScrollbar("scrollTo","bottom");
 }
 
 function loadOnline(){

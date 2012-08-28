@@ -64,7 +64,7 @@
 					<td align=left>Energies</td><td align=right><?php  echo $a80;?></td>
 				</tr>
 				<tr>
-					<td align=left>Chat</td><td align=right><?php  echo $a30;?></td>
+					<td align=left>Chat</td><td align=right><?php  echo $a100;?></td>
 				</tr>
 				<tr>
 					<td align=left>Level - Exp</td><td align=right><?php  echo $a80;?></td>
