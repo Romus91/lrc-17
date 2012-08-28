@@ -35,6 +35,7 @@ if ($perso->getNbPtsAmDispo() > 0)
 			$perso->addPtsAmDispo(-1);
 			$persoCont->savePerso($perso);
 
+			$munitions=0;
 			if($t=="cap"){
 				$munitions = $inv['mun'.$i]." | ".($data[$j]['munmax']+($data[$j]['munmax']*(($inv[$type]+1)/10)));
 			}
