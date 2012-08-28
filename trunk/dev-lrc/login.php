@@ -40,8 +40,8 @@
      $req = mysql_query($sql) ;
      $data = mysql_fetch_array($req);
 	 $nb = mysql_num_rows($req);
-	 
-	 
+
+
 	 //echo "<br>",$data[0],"<br>",$nb,"<br>",$sql;
 //si il n'est pas correct, on affiche une erreur
 
@@ -56,9 +56,9 @@
 	   $_SESSION['member_id'] = $data['id'];
       // on stocke ce login dans une variable de session
 
-	   $req = ConnectionSingleton::connect()->prepare('insert into chat (login) values (:login);');
-	   $req->execute(array('login'=>("<font color='#0F0'>+ ".$_POST['login']."</font>")));
-	   
+	   $req = ConnectionSingleton::connect()->prepare('insert into chat (id_membre, login,timestamp) values (:id,:login,:t);');
+	   $req->execute(array('id'=>$data['id'],'login'=>("<font color='#0F0'>+ ".$_POST['login']."</font>"),"t"=>microtime(true)));
+
 	   $req = ConnectionSingleton::connect()->prepare('insert into activity (id_membre, date) values (:id,NOW());');
 	   $req->execute(array('id'=>$data['id']));
 

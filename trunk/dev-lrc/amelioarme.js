@@ -67,6 +67,7 @@ $(document).ready(function(){
 					case "cap":
 						$("#amcap").text(result.content.ampct);
 						$("#jamcap").animate({width: result.content.jauge},600);
+						$("span#prix").empty().append(result.content.argent);
 						var arme = $("#armeinfo").attr("arme");
 						$("div.arme").each(function(index){
 							if($(this).attr("arme")==arme){

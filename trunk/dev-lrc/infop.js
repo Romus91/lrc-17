@@ -3,8 +3,6 @@ $(document).ready(function(){
 		perso = $(this).attr("perso");
 		arme = $(this).attr("arme");
 		if($("#armeinfo").is(":hidden") || $("#armeinfo").attr("arme")!=arme){
-			$("#armeinfo").hide();
-			$("#armeinfo td").empty();
 			$("#piegeinfo").hide();
 			$("#armeinfo").attr("arme",arme);
 			var url = $(this).children("a").attr("href");
@@ -12,11 +10,11 @@ $(document).ready(function(){
 				$.ajax({
 					url: url,
 					success: function(data){
-						$("#armeinfo td").append(data);
+						$("#armeinfo td").empty().append(data);
 						$("#armeinfo").show();
 					},
 					error: function(){
-						$("#armeinfo td").append("Error");
+						$("#armeinfo td").empty().append("Error");
 						$("#armeinfo").show();
 					}
 				});
@@ -31,24 +29,19 @@ $(document).ready(function(){
 		perso = $(this).attr("perso");
 		piege = $(this).attr("piege");
 		if($("#piegeinfo").is(":hidden") || $("#piegeinfo").attr("piege")!=piege){
-			$("#piegeinfo").hide();
-			$("#piegeinfo td").empty();
 			$("#armeinfo").hide();
 			$("#piegeinfo").attr("piege",piege);
-
 			$.ajax({
 				url: $(this).children("a").attr("href"),
 				success: function(data){
-					$("#piegeinfo td").append(data);
+					$("#piegeinfo td").empty().append(data);
 					$("#piegeinfo").show();
 				},
 				error: function(){
-					$("#piegeinfo td").append("Error");
+					$("#piegeinfo td").empty().append("Error");
 					$("#piegeinfo").show();
 				}
 			});
-
-			$("#piegeinfo").show();
 		}else{
 			$("#piegeinfo").hide();
 			$("#piegeinfo td").empty();
