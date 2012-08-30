@@ -11,6 +11,7 @@
 	<script src="jquery.mCustomScrollbar.js"></script>
 	<script src="jquery.form.js"></script>
 	<script src="jquery.watermark.js"></script>
+	<script src="utf-8.js"></script>
 	<script src="chat.js"></script>
   <meta http-equiv="content-language" content="fr">
  <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
@@ -121,6 +122,7 @@
 														<img src='pic/chat.png'>
 													</td>
 												</tr>
+
 												<tr valign=top>
 													<td class='title2' >
 														<div id="pseudobox"><img src='pic/charg.gif' width='100%'></div>
@@ -128,11 +130,11 @@
 												</tr>
 												<tr>
 													<td class='color1' align=center style="padding: 0;">
-														<form id="chatform"><input type="text" name="mess"/></form>
+														<form id="chatform"><input type="text" name="mess"/><input name="pseudo" type="hidden" value="<?php $log=mysql_fetch_array(mysql_query("select login from membre where id = ".$_SESSION['member_id'].";")); echo $log[0];?>"/></form>
 													</td>
 												</tr>
 											</table>
-
+											<div id="chattimestamp" style="display: none;"></div>
 											<table class='small' width='100%'>
 												<tr>
 													<td class='main' align=center>
