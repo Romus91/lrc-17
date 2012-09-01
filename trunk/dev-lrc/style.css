@@ -6,14 +6,14 @@ table
 	FONT-FAMILY:Verdana;
 	COLOR: #FFFFFF;
 	font-weight:bold;
-	
+
 }
 
 table .main
 {
 
 	background-color : #000000;
-	
+
 }
 
 table .color1
@@ -116,9 +116,9 @@ td .verouille
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	
+
 	color : 333333;
-	
+
 }
 
 td .verouilleh
@@ -129,9 +129,9 @@ td .verouilleh
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	
+
 	color : 333333;
-	
+
 }
 
 /*TAB INFO*/
@@ -139,7 +139,7 @@ td .info
 {
 	FONT-SIZE: 14pt;
 	font-weight:bold;
-	
+
 }
 
 #info
@@ -147,7 +147,7 @@ td .info
 	FONT-SIZE: 14pt;
 	font-weight:bold;
 	color : #f7a300;
-	
+
 }
 
 /*BODY*/
@@ -280,7 +280,7 @@ body
 tr.perso td.hover{
 	background-color: #666666;
 }
-#armeinfo, #piegeinfo{
+#armeinfo, #piegeinfo, #piedbiche{
 	display: none;
 }
 #chatform{

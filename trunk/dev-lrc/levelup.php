@@ -1,14 +1,12 @@
 <?php
 require_once 'autoload.php';
-if(isset($_GET['onglet'])&&$_GET['onglet']=='levelup'&&isset($_GET['perso'])){
+require_once 'pass.php';
+require_once 'verif.php';
+if(isset($_GET['perso'])){
+	$persoController = new PersoController();
 	$perso=$persoController->fetchPerso((int)htmlentities($_GET['perso']));
 	$inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
-
-	if($pourc<100){
-		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
-		exit;
-	}
-	if(isset($_GET['stat'])&&$pourc>=100){
+	if(isset($_GET['stat'])&&$perso->getLevelPercent()>=100){
 
 		$stat = (int) htmlentities($_GET['stat']);
 		$valStat = 0;
@@ -30,7 +28,7 @@ if(isset($_GET['onglet'])&&$_GET['onglet']=='levelup'&&isset($_GET['perso'])){
 		if(($valStat+1)>ceil($perso->getLevel()/2)){
 			$_SESSION['text']= "<font color='FF0000'><b>Impossible de monter cette carac. actuellement !</b></font>";
 			$_SESSION['erreur']=true;
-			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&onglet=levelup&perso=".$perso->getId()."');</script>";
+			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 			exit;
 		}else{
 			$_SESSION['erreur']=false;
@@ -41,42 +39,12 @@ if(isset($_GET['onglet'])&&$_GET['onglet']=='levelup'&&isset($_GET['perso'])){
 			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 			exit;
 		}
+	}else{
+		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
+		exit;
 	}
 }else{
-	echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
+	echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php');</script>";
 	exit;
 }
 ?>
-<table width='100%' class='small'>
-	<tr>
-		<td class='title2' align=center><font color='00FF00' size=3> 2 </font>
-			points d'amélioration gagné !</td>
-	</tr>
-</table>
-<table width='100%' class='small'>
-	<tr>
-		<td colspan=3 align=center><font size="4">Une nouvelle compétence !</font>
-		</td>
-	</tr>
-	<tr>
-		<td width='50%' align=right class='title2'>Endurance :</td>
-		<td width='20%' align=center><?php echo $perso->getEndurance();?></td>
-		<td width='30%' class='title2'><a
-			href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=0"><img
-				src="pic/plus.png" /> </a></td>
-	</tr>
-	<tr>
-		<td width='50%' align=right class='title2'>Dextérité :</td>
-		<td width='20%' align=center><?php echo $perso->getDexterite();?></td>
-		<td width='30%' class='title2'><a
-			href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=1"><img
-				src="pic/plus.png" /> </a></td>
-	</tr>
-	<tr>
-		<td width='50%' align=right class='title2'>Esquive :</td>
-		<td width='20%' align=center><?php echo $perso->getEsquive();?></td>
-		<td width='30%' class='title2'><a
-			href="index.php?page=perso&onglet=levelup&perso=<?php echo $perso->getId();?>&stat=2"><img
-				src="pic/plus.png" /> </a></td>
-	</tr>
-</table>

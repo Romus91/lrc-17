@@ -1,5 +1,4 @@
 <?php
-
 class Perso{
 	//id
 	protected $_id;
@@ -35,6 +34,8 @@ class Perso{
 	protected $_invArme;
 	protected $_invPiege;
 	protected $_invConso;
+	//combat
+	protected $_poison;
 
 	public function __set($name, $value){
 		$method = 'set'.$name;
@@ -425,5 +426,27 @@ class Perso{
 	}
 	public function getPrecision(){
 		return floor((1-(1/(3+($this->_dexterite/3))))*10000)/100;
+	}
+	public function poison(int $pois = null){
+		$this->_poison+=(int) $pois;
+		if($this->_poison>0){
+			$this->_poison--;
+			$this->_vie--;
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function getLevelPercent(){
+		$pourc = floor(($this->_xp-Perso::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-Perso::getXpForLevel($this->_level))*100);
+		if($pourc < 0) return 0;
+		else if($pourc > 100) return 100;
+		else return $pourc;
+	}
+	public function getEnergyPercent(){
+		$pourc = floor(($this->_energie/$this->getMaxEnergie())*100);
+		if($pourc < 0) return 0;
+		else if($pourc > 100) return 100;
+		else return $pourc;
 	}
 }

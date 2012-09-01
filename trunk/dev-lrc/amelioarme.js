@@ -12,15 +12,15 @@ $(document).ready(function(){
 					switch(result.content.type){
 					case "deg":
 						$("#amdeg").text(result.content.ampct);
-						$("#jamdeg").animate({width: result.content.jauge},600);
+						$("#jamdeg").animate({width: result.content.jauge},100);
 						break;
 					case "pre":
 						$("#ampre").text(result.content.ampct);
-						$("#jampre").animate({width: result.content.jauge},600);
+						$("#jampre").animate({width: result.content.jauge},100);
 						break;
 					case "cap":
 						$("#amcap").text(result.content.ampct);
-						$("#jamcap").animate({width: result.content.jauge},600);
+						$("#jamcap").animate({width: result.content.jauge},100);
 						var arme = $("#armeinfo").attr("arme");
 						$("div.arme").each(function(index){
 							if($(this).attr("arme")==arme){
@@ -33,7 +33,7 @@ $(document).ready(function(){
 					}
 
 					$("#ptam").text(result.content.ptam);
-					setTimeout(function(){$("font.error").text("INFOS GENERALE");},3000);
+					setTimeout(function(){$("font.error").text("INFOS GENERALE");}, 5000);
 				}else{
 					$("font.error").append(result.content.message);
 				}
@@ -58,15 +58,15 @@ $(document).ready(function(){
 					switch(result.content.type){
 					case "deg":
 						$("#amdeg").text(result.content.ampct);
-						$("#jamdeg").animate({width: result.content.jauge},600);
+						$("#jamdeg").animate({width: result.content.jauge},100);
 						break;
 					case "pre":
 						$("#ampre").text(result.content.ampct);
-						$("#jampre").animate({width: result.content.jauge},600);
+						$("#jampre").animate({width: result.content.jauge},100);
 						break;
 					case "cap":
 						$("#amcap").text(result.content.ampct);
-						$("#jamcap").animate({width: result.content.jauge},600);
+						$("#jamcap").animate({width: result.content.jauge},100);
 						$("span#prix").empty().append(result.content.argent);
 						var arme = $("#armeinfo").attr("arme");
 						$("div.arme").each(function(index){
@@ -80,7 +80,7 @@ $(document).ready(function(){
 					}
 
 					$("#ptam").text(result.content.ptam);
-					setTimeout(function(){$("font.error").text("INFOS GENERALE");},3000);
+					setTimeout(function(){$("font.error").text("INFOS GENERALE");},5000);
 				}else{
 					$("font.error").append(result.content.message);
 				}

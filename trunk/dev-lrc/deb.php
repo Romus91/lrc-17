@@ -1,4 +1,4 @@
-<?php if(file_exists('lrc.lock')) {echo "Le site est actuellement en maintenance, allez vous faire un café et revenez dans quelques minutes !";exit();} ?>
+<?php if(file_exists('lrc.lock')) {exit("Le site est actuellement en maintenance, allez vous faire un café et revenez dans quelques minutes !");} ?>
 <html>
 <head>
   <title>LES RESCAPES DE CITE 17</title>
@@ -11,7 +11,6 @@
 	<script src="jquery.mCustomScrollbar.js"></script>
 	<script src="jquery.form.js"></script>
 	<script src="jquery.watermark.js"></script>
-	<script src="utf-8.js"></script>
 	<script src="chat.js"></script>
   <meta http-equiv="content-language" content="fr">
  <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
@@ -109,6 +108,9 @@
 																		?>
 																	</a>
 																</td>
+															</tr>
+															<tr>
+																<td><a href="index.php?page=lexique">LEXIQUE</a></td>
 															</tr>
 															<tr>
 																<td><a href="deconnexion.php">DECONNEXION</a></td>

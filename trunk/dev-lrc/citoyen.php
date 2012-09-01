@@ -13,24 +13,6 @@
 	foreach($tabPersos as $perso){
 		$nb2+=(($perso->isDead())?1:0);
 	}
-	/*
-	// on prépare une requete SQL cherchant le nom,sexe,photo,id_membre,argent,vie,date,jourvague,arme,piege du perso du memebre connecté par ordre croissant de l'id des perso
-	$sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,competance,id,level,energie FROM perso WHERE  "'.$login.'" = id_membre AND enterrer = '.$ent.' ORDER BY id ASC';
-	// lancement de la requete SQL
-	$res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-	$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
-	$nb = mysql_num_rows($req);	//Nombre de resultat trouvé
-
-	$sql2='SELECT count(*) FROM perso WHERE "'.$login.'" = id_membre AND enterrer = 1';
-	$req2 = mysql_query($sql2) or die('Erreur SQL !'.$sql2.''.mysql_error());
-	$nb2 = mysql_fetch_array($req2);
-	*/
-
-	include_once("level.php");
-
-
-
-	//On affiche le tout
 ?>
 <table align='center' class='small' width='550'>
 	<tr>
@@ -188,14 +170,14 @@
 
 
 		echo"
-	<table class='hev'>
+	<table class='hev perso' id='".$perso->getId()."'>
 
 		<tr align=center>
 			<td>
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>
-							<img src='image.php?img=viergev.png&h=10&d=1' width='".$perso->getVie()."%' height='10'>
+							<img class='jaugevie' src='pic/jvert.png' width='".$perso->getVie()."%' height='10'>
 						</td>
 					</tr>
 				</table>
@@ -203,9 +185,9 @@
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>";
-						$pourcEn = (($perso->getEnergie()/$perso->getMaxEnergie())*100);
+
 						echo"
-							<img src='image.php?img=viergeb.png&h=10&d=1' width='".(($pourcEn>100)?100:$pourcEn)."%' height='10'>
+							<img class='jaugeeng' src='pic/jbleu.png' width='".$perso->getEnergyPercent()."%' height='10'>
 						</td>
 					</tr>
 				</table>
@@ -213,11 +195,8 @@
 				<table class='button' width='100'>
 					<tr>
 						<td class='small' width='100%'>";
-										$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
-										if($pourc < 0) $pourc = 0;
-										if($pourc>100) $pourc = 100;
 									echo"
-									<img src='image.php?img=viergej.png&h=10&d=1' width='".$pourc."%' height='10'>
+									<img src='pic/jjaune.png' width='".$perso->getLevelPercent()."%' height='10'>
 						</td>
 					</tr>
 				</table>
@@ -239,3 +218,4 @@
 </table>";
 $_SESSION['erreur']='';
 ?>
+<script type="text/javascript" language="javascript" src="citoyen.js"></script>

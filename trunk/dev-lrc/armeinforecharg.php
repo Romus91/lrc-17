@@ -21,14 +21,14 @@ $nbmun = $max - $inv['mun'.$i];
 </table>
 <table>
 	<tr>
-	<?php 	if($nbmun!=0) echo "<td>Acheter ".$nbmun." balles pour ".($nbmun*$arm['prixballes'])." $ ? (".$arm['prixballes']."$ / balle)</td>";
+	<?php 	if($nbmun>0) echo "<td>Acheter ".$nbmun." balles pour ".($nbmun*$arm['prixballes'])." $ ? (".$arm['prixballes']."$ / balle)</td>";
 			else echo "<td><p>Arme d&eacute;j&#224; recharg&eacute;e !</p></td>"?>
 	</tr>
 </table>
 <table width=100%>
 	<tr>
 		<td><?php
-			if($nbmun!=0)
+			if($nbmun>0)
 			echo"<table class='button'  >
 				<tr>
 					<td align=center id='button' class='achatmunarme'>

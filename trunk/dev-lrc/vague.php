@@ -550,12 +550,8 @@ if ($perso->getEnergie() > 0)
 									<td align=left>
 										<table class='button'>
 											<tr height='10' valign=bottom>
-												<td class='small' width='100'><?php
-												$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
-												if ($pourc < 0)
-												$pourc=0;
-												if($pourc>100)$pourc=100;
-												?> <img src='image.php?img=viergej.png&h=10&d=1' width='<?php echo $pourc;?>%'
+												<td class='small' width='100'>
+												<img src='pic/jjaune.png' width='<?php echo $perso->getLevelPercent();?>%'
 													height='10'>
 												</td>
 											</tr>
@@ -619,10 +615,9 @@ if ($perso->getEnergie() > 0)
 									<td align=left>
 										<table class='button'>
 											<tr height='10' valign=bottom>
-												<td class='small' width='100'><img src='image.php?img=viergeb.png&h=10&d=1'
+												<td class='small' width='100'><img src='pic/jbleu.png'
 													width='<?php
-													$pourcEn = ($perso->getEnergie()/$perso->getMaxEnergie())*100;
-													echo (($pourcEn>100)?100:$pourcEn);?>?>%'
+													echo $perso->getEnergyPercent();?>?>%'
 													height='10'>
 												</td>
 											</tr>
