@@ -13,8 +13,8 @@
 		if(!$perso->isDead()){
 			$perso->regenEnergie()->regenVie();
 			$persoCont->savePerso($perso);
+			$times[]=microtime(true)-$start;
 		}
-		$times[]=microtime(true)-$start;
 	}
 
 	$max = floor(max($times)*100000)/100;

@@ -4,30 +4,33 @@
 	$persoController = new PersoController();
 	$log = new Log();
 
-	$idperso= (int) htmlentities($_GET['perso']);
-	$mun= (int) htmlentities($_GET['mun']);
-	$munpiege= (int) htmlentities($_GET['munpiege']);
+	$idperso=(int) htmlentities($_GET['perso']);
+	$i=(int) htmlentities($_GET['piege']);
 
 	$perso=$persoController->fetchPerso($idperso);
 
 	$inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
-	$piege=mysql_fetch_array(mysql_query("SELECT * FROM pieges WHERE image ='".$inv["pie".$munpiege]."'"));
+	$arme=mysql_fetch_array(mysql_query("SELECT * FROM pieges WHERE image ='".$inv["pie".$i]."'"));
 
-	if ($mun > $piege['munmax']) $mun=$piege['munmax'];
-	$perso->setArgent($perso->getArgent()-($mun*$piege['prixballes']));
 
-	$mun+=$inv['munp'.$munpiege];
-	$sql='UPDATE inventaire SET munp'.$munpiege.' = '.$mun.' WHERE id_perso = '.$perso->getId().' ';
+	$capa = $munmax = $arme['munmax'];
+	$mun = $inv['munp'.$i];
+	$munachat = $munmax-$mun;
+	$totalachat = $munachat*$arme['prixballes'];
+
+	if ($totalachat > $perso->getArgent()){
+		$munachat = floor($perso->getArgent()/$arme['prixballes']);
+		$munmax = $mun+$munachat;
+		$totalachat = $munachat*$arme['prixballes'];
+	}
+
+	$sql='UPDATE inventaire SET munp'.$i.' = "'.($munmax).'" WHERE id_perso = '.$perso->getId().' ';
 	mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
-
+	$perso->setArgent($perso->getArgent()-$totalachat);
 	$persoController->savePerso($perso);
-	$log->insertLog("Achat mun arme",$_SESSION['member_id'],$perso->getId()," munp".$munpiege." : ".$_GET['mun']."+".$inv['munp'.$munpiege]."");
+	$log->insertLog("Achat mun piege",$_SESSION['member_id'],$perso->getId()," munp".$i." : ".$munachat."+".$mun."");
+
+	$response = array('type'=>'reloadsuccess','content'=>array('munp'=>$munmax,'capa'=>$capa,'money'=>$perso->getArgent(),'piege'=>$i));
+
+	echo json_encode($response);
 ?>
-<html>
-<head>
-  <title>LES RESCAPES DE CITE 17 - Vendre</title>
-  <link rel="icon" type="image/jpg" href="hl2logo.jpg" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <meta http-equiv="refresh" content="0;  url='index.php?page=perso&perso=<?php echo $perso->getId();?>&type=piege&i=<?php echo $munpiege;?>'"/>
-</head>
-</html>

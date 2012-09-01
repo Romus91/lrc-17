@@ -62,6 +62,7 @@ if(isset($_GET['page'])){
 		mysql_query($sql);
 		include('maj.php');
 	}
+	if($_GET['page']=='lexique') include_once 'lexique.php';
 }
 
 

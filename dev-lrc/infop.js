@@ -2,53 +2,95 @@ $(document).ready(function(){
 	$("div.arme").click(function(){
 		perso = $(this).attr("perso");
 		arme = $(this).attr("arme");
+		$("#piedbiche").hide();
 		if($("#armeinfo").is(":hidden") || $("#armeinfo").attr("arme")!=arme){
-			$("#piegeinfo").hide();
+			hidePiegeinfo(false);
 			$("#armeinfo").attr("arme",arme);
 			var url = $(this).children("a").attr("href");
-			if(url!="#"){
+			if(url){
 				$.ajax({
 					url: url,
 					success: function(data){
-						$("#armeinfo td").empty().append(data);
-						$("#armeinfo").show();
+						var result = JSON.parse(data);
+						if(result.type=="success"){
+							$("#armeinfo").stop(true);
+							$("#armeinfo").show();
+							$("#jdeg").animate({width: result.content.jdeg},600);
+							$("#jamdeg").animate({width: result.content.jamdeg},600);
+							$("#jpre").animate({width: result.content.jpre},600);
+							$("#jampre").animate({width: result.content.jampre},600);
+							$("#jcap").animate({width: result.content.jcap},600);
+							$("#jamcap").animate({width: result.content.jamcap},600);
+							$("#nomarme").text(result.content.nomarme);
+							$.ajax({
+								url: "armeinforecharg.php?perso="+perso+"&i="+arme,
+								success: function(data){
+									$("#armedetail").html(data);
+									$("#armedetail").show();
+								},
+								error: function(){
+									$("#armedetail").html("Error");
+									$("#armedetail").show();
+								}
+							});
+						}else{
+							hideArmeinfo(false);
+							$("#piedbiche").show();
+						}
 					},
 					error: function(){
-						$("#armeinfo td").empty().append("Error");
-						$("#armeinfo").show();
+						alert("Error");
 					}
 				});
 			}
 		}else{
-			$("#armeinfo").hide();
-			$("#armeinfo td").empty();
+			hideArmeinfo(true);
 		}
 		return false;
 	});
-	$("td.piege").click(function(){
+	$("div.piege").click(function(){
 		perso = $(this).attr("perso");
 		piege = $(this).attr("piege");
 		if($("#piegeinfo").is(":hidden") || $("#piegeinfo").attr("piege")!=piege){
-			$("#armeinfo").hide();
+			hideArmeinfo(false);
 			$("#piegeinfo").attr("piege",piege);
-			$.ajax({
-				url: $(this).children("a").attr("href"),
-				success: function(data){
-					$("#piegeinfo td").empty().append(data);
-					$("#piegeinfo").show();
-				},
-				error: function(){
-					$("#piegeinfo td").empty().append("Error");
-					$("#piegeinfo").show();
-				}
-			});
+			var url = $(this).children("a").attr("href");
+			if(url){
+				$.ajax({
+					url: url,
+					success: function(data){
+						var result = JSON.parse(data);
+						if(result.type == "success"){
+							$("#piegeinfo").stop(true);
+							$("#piegeinfo").show();
+							$("#pjdeg").animate({width: result.content.pjdeg},600);
+							$("#pjpre").animate({width: result.content.pjpre},600);
+							$("#pjcap").animate({width: result.content.pjcap},600);
+							$("#nompiege").text(result.content.nomarme);
+							$.ajax({
+								url: "piegeinforecharg.php?perso="+perso+"&i="+piege,
+								success: function(data){
+									$("#piegedetail").html(data);
+									$("#piegedetail").show();
+								},
+								error: function(){
+									$("#piegedetail").html("Error");
+									$("#piegedetail").show();
+								}
+							});
+						}
+					},
+					error: function(){
+						alert("Error");
+					}
+				});
+			}
 		}else{
-			$("#piegeinfo").hide();
-			$("#piegeinfo td").empty();
+			hidePiegeinfo(true);
 		}
 		return false;
 	});
-	$("td.conso").click(function(){
+	$("div.conso").click(function(){
 		if($(this).is(":parent")){
 			$(this).empty();
 			$.ajax({
@@ -58,10 +100,10 @@ $(document).ready(function(){
 					if(result.type == "success"){
 						if(result.content.type=="vie"){
 							$("span#vie").text(result.content.amount);
-							$("#jaugevie").animate({width: result.content.jauge},1000);
+							$("#jaugevie").animate({width: result.content.jauge},600);
 						}else{
 							$("span#eng").text(result.content.amount);
-							$("#jaugeeng").animate({width: result.content.jauge},1000);
+							$("#jaugeeng").animate({width: result.content.jauge},600);
 						}
 					}
 				},
@@ -72,8 +114,49 @@ $(document).ready(function(){
 		}
 		return false;
 	});
-	setTimeout(function(){update();},20000);
+	$("td.armeaction").click(function(){
+		if($(this).attr("action")=="close"){
+			hideArmeinfo(true);
+		}else{
+			$("#armedetail").hide();
+			$("#armedetail").empty();
 
+			$.ajax({
+				url: $(this).children("a").attr("href")+$("#armeinfo").attr("arme"),
+				success: function(data){
+					$("#armedetail").append(data);
+					$("#armedetail").show();
+				},
+				error: function(){
+					$("#armedetail").append("Error");
+					$("#armedetail").show();
+				}
+			});
+		}
+		return false;
+	});
+	$("td.piegeaction").click(function(){
+		if($(this).attr("action")=="close"){
+			hidePiegeinfo(true);
+		}else{
+			$("#piegedetail").hide();
+			$("#piegedetail").empty();
+
+			$.ajax({
+				url: $(this).children("a").attr("href")+$("#piegeinfo").attr("piege"),
+				success: function(data){
+					$("#piegedetail").append(data);
+					$("#piegedetail").show();
+				},
+				error: function(){
+					$("#piegedetail").append("Error");
+					$("#piegedetail").show();
+				}
+			});
+		}
+		return false;
+	});
+	setTimeout(function(){update();},20000);
 });
 
 function update(){
@@ -89,4 +172,28 @@ function update(){
 		}
 	});
 	setTimeout(function(){update();},20000);
+}
+function hideArmeinfo(sync){
+	$("#jdeg").animate({width: '0%'},600);
+	$("#jamdeg").animate({width: '0%'},600);
+	$("#jpre").animate({width: '0%'},600);
+	$("#jampre").animate({width: '0%'},600);
+	$("#jcap").animate({width: '0%'},600);
+	if(sync){
+		$("#jamcap").animate({width: '0%'},600,function(){$("#armeinfo").hide();});
+	}else{
+		$("#jamcap").animate({width: '0%'},600);
+		$("#armeinfo").hide();
+	}
+	$("#piedbiche").hide();
+}
+function hidePiegeinfo(sync){
+	$("#pjdeg").animate({width: '0%'},600);
+	$("#pjpre").animate({width: '0%'},600);
+	if(sync){
+		$("#pjcap").animate({width: '0%'},600,function(){$("#piegeinfo").hide();});
+	}else{
+		$("#pjcap").animate({width: '0%'},600);
+		$("#piegeinfo").hide();
+	}
 }

@@ -11,28 +11,8 @@
 			</script>';
 		exit;
 	}
-	/*
-	$nom=$_GET['perso'];
-    $login=$_SESSION['login'];
-    $sql = 'SELECT nom,photo,id_membre,argent,vie,date,jourvague,zombiekill,zombiepois,crabe,competance,zombiefast,id,level,energie FROM perso WHERE  "'.$login.'" = id_membre and "'.$nom.'" = nom';
-    // lancement de la requete SQL
-    $res = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-	$t=mysql_fetch_array($res);
-
-	$_SESSION['tune']=$t['argent'];
-	$_SESSION['vie']=$t['vie'];
-
-	$localtime=localtime($t['date'], true);
-	$localtime['tm_sec']=0;
-	$localtime['tm_min']=0;
-	$localtime['tm_hour']=0; */
 
 	include_once 'pass.php';
-
-	$pourc=floor((($perso->getXp()-Perso::getXpForLevel($perso->getLevel())) / ($perso->getXpForNextLevel()-Perso::getXpForLevel($perso->getLevel())))*100);
-	if ($pourc < 0) $pourc=0;
-
-	include ("level.php");
 
 	if ($perso->getVie()==0)
 	{
@@ -93,7 +73,7 @@
 						</td>
 						<td id='button' align=center>
 						<?php
-								if ($perso->getEnergie() > 0&&$pourc<100){
+								if ($perso->getEnergie() > 0&&$perso->getLevelPercent()<100){
 									echo"
 											<a href='index.php?page=vague&perso=".$perso->getId()."' ><font color='FF0000'>VAGUE</font></a>
 									";
@@ -107,5 +87,4 @@
 	<?php
 	if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop')) include ("infop.php");
 	if (isset($_GET['onglet'])&&$_GET['onglet'] == 'achat') include ("achat.php");
-	if (isset($_GET['onglet'])&&$_GET['onglet'] =='levelup') include 'levelup.php';
 		?>
