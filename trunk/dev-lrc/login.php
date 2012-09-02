@@ -28,7 +28,6 @@ if(isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['login']) &&
 			$log->insertLog("Connecté",$member->getId(),"NULL",$_SESSION['login']);
 
 			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php');</script>";
-			exit;
 		}else{
 			throw new Exception();
 		}
@@ -36,9 +35,7 @@ if(isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['login']) &&
 		$_SESSION['erreur'] = '<center><font color="#FF0000"><b>Mauvais login/mot de passe...</b></font></center>';
 		include("loginb.php");
 		$_SESSION['erreur'] = "";
-		exit;
 	}
 }else{
 	include("loginb.php");
-}
-$_SESSION['nb']=mt_rand(1,7);?>
+}?>
