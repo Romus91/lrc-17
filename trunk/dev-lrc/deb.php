@@ -18,6 +18,9 @@
   <?php
 	if (isset($_GET['reloadcit'])&&$_GET['reloadcit'])
 		echo'<meta http-equiv="refresh" content="0; url=index.php?page=citoyen" />';
+
+	$memCont = new MemberController();
+	$mem = $memCont->fetchMembre($_SESSION['member_id']);
   ?>
 
 </head>
@@ -36,13 +39,24 @@
 				<td width="100%" class="bannerinfo" colspan="3" align=center>
 					<table width='100%'>
 						<tr>
-							<td class='info' align=center width="15%">NIV<br><span id='info'>-</span></td>
-							<td class='info' align=center width="15%">EXP<br><span id='info'>-</span></td>
-							<td class='info' align=center width="40%"><span id='info'>-</span></td>
-							<td class='info' align=center width="15%">ARG<br><span id='info'>-</span></td>
-							<td class='info' align=center width="15%">SUR<br><span id='info'>-</span></td>
+							<td class='info' align=center width="30%"><?php echo $mem->getLogin();?><br><span id='info'>-</span></td>
+							<td class='info' align=center width="40%"><span id='info'><img src="pic/wheel.png" height="40px"></span></td>
+							<td class='info' align=center width="15%">NIV<br><span id='info'><?php echo $mem->getLevel();?></span></td>
+							<td class='info' align=center width="15%">ARG<br><span id='info'><?php echo $mem->getArgent();?> $</span></td>
 						</tr>
 					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=3>
+					<div id='membre' class='jauge' width="856px">
+						<img class='grid' src="pic/fond-jauge.png" width="856px">
+						<img class='barre' src='pic/jblanc.png' width='<?php echo $mem->getLevelPercent();?>%'>
+						<div class='lib'>EXP</div>
+						<div class="texte">
+							<?php echo $mem->getXp();?> | <?php echo floor($mem->getXpForNextLevel());?>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr class='maincenter'>
