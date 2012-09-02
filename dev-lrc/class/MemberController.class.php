@@ -27,7 +27,8 @@ class MemberController{
 				->setMajTimestamp($data->majtimestamp)
 				->setWallTimestamp($data->walltimestamp)
 				->setTheme($data->theme)
-				->setXp($data->xp);
+				->setXp($data->xp)
+				->setLevel($data->level);
 		return $membre;
 	}
 	public function saveMember(Member $member){

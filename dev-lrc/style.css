@@ -289,11 +289,17 @@ tr.perso td.hover{
 #chatform input{
 	width: 100%;
 }
+#membre.jauge{
+	width: 856px;
+	height: 20px;
+	font-size: 15px;
+}
 .jauge{
 	position: relative;
 	width: 383px;
 	height:13px;
 	z-index: 1;
+	font-size: 11px;
 }
 .jauge .grid{
 	z-index: 2;
@@ -301,16 +307,16 @@ tr.perso td.hover{
 	top: 0px;
 	left:0px;
 	width: 100%;
-	height: 13px;
+	height: 100%;
 }
 .jauge .barre{
 	position: absolute;
-	height:13px;
+	height:100%;
 	z-index: 3;
 }
 .jauge .lib{
 	vertical-align:middle;
-	font-size: 11px;
+	font-size: inherit;
 	text-shadow: 1px 1px 3px #000;
 	box-sizing: border-box;
 	position: absolute;
@@ -318,11 +324,11 @@ tr.perso td.hover{
 	z-index: 4;
 	left:5px;
 	width: 30px;
-	height: 13px;
+	height: 100%;
 }
 .jauge .texte{
 	vertical-align:middle;
-	font-size: 11px;
+	font-size: inherit;
 	text-shadow: 1px 1px 3px #000;
 	text-align: right;
 	box-sizing: border-box;
@@ -331,7 +337,7 @@ tr.perso td.hover{
 	z-index: 5;
 	right:5px;
 	width: 200px;
-	height: 13px;
+	height: 100%;
 }
 .vote{
 	display: inline-block;
