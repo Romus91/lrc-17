@@ -333,3 +333,13 @@ tr.perso td.hover{
 	width: 200px;
 	height: 13px;
 }
+.vote{
+	display: inline-block;
+	margin:0;
+	background: #ccc;
+	font-shadow: 1px 1px 3px #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 2px;
+}
