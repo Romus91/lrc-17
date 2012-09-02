@@ -50,7 +50,7 @@ if($perso->getLevelPercent()>=100):?>
 <?php endif;?>
 <tr class='color1'>
 	<td rowspan=2 valign=bottom><img
-		src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&h=191&l=<?php echo$perso->getLevel()?>" />
+		src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&h=197&l=<?php echo$perso->getLevel()?>" />
 	</td>
 	<td colspan=3 valign=bottom bgcolor=000000
 		style="border: 1px solid #333333" width="100%">
@@ -59,6 +59,7 @@ if($perso->getLevelPercent()>=100):?>
 			<tr>
 				<td>
 					<div class='jauge'>
+						<img class='grid' src="pic/fond-jauge.png">
 						<img class='barre' id="jaugevie" src='pic/jvert.png' width='<?php echo $perso->getVie();?>%'>
 						<div class='lib'>VIE</div>
 						<div class="texte">
@@ -70,6 +71,7 @@ if($perso->getLevelPercent()>=100):?>
 			<tr>
 				<td>
 					<div class='jauge'>
+						<img class='grid' src="pic/fond-jauge.png">
 						<img class='barre' id="jaugeeng" src='pic/jbleu.png' width='<?php echo $perso->getEnergyPercent();?>%'>
 						<div class='lib'>NRG</div>
 						<div class="texte">
@@ -81,6 +83,7 @@ if($perso->getLevelPercent()>=100):?>
 			<tr>
 				<td>
 					<div class='jauge'>
+						<img class='grid' src="pic/fond-jauge.png">
 						<img class='barre' src='pic/jjaune.png' width='<?php echo $perso->getLevelPercent();?>%'>
 						<div class='lib'>EXP</div>
 						<div class="texte">
@@ -174,7 +177,7 @@ $arme['munmax']=0;?>
 			perso='<?php echo $perso->getId()?>' arme='<?php echo $i?>'>
 			<a
 				href='<?php if ($inventaire['arm'.$i]) echo 'armeinfo.php?perso='.$perso->getId().'&i='.$i;else echo '#'?>'>
-				<?php if ($inventaire['arm'.$i]) echo"<img src='image.php?img=".$inventaire['arm'.$i].".png&w=90'>";?>
+				<?php if ($inventaire['arm'.$i]) echo"<img src='image.php?img=".$inventaire['arm'.$i].".png&h=79'>";?>
 			</a>
 		</div>
 
@@ -286,7 +289,7 @@ $piege['munmax']=0;?>
 			perso='<?php echo $perso->getId()?>' piege='<?php echo $i;?>'>
 			<a
 				href='<?php if ($inventaire['pie'.$i]) echo 'piegeinfo.php?perso='.$perso->getId().'&i='.$i;else echo '#'?>'>
-				<?php if ($inventaire['pie'.$i]) echo"<img src='image.php?img=".$inventaire['pie'.$i].".png&w=90'>";?>
+				<?php if ($inventaire['pie'.$i]) echo"<img src='image.php?img=".$inventaire['pie'.$i].".png&h=79'>";?>
 			</a>
 		</div>
 		<div align=center class='munpiege'>
@@ -298,7 +301,7 @@ $piege['munmax']=0;?>
 	<td align="center">
 		<div align=center class='hev conso'
 			perso='<?php echo $perso->getId();?>' conso='<?php echo $i?>'>
-			<?php if($inventaire['conso'.$i]) echo '<a href="useconso.php?perso='.$perso->getId().'&i='.$i.'"><img src="image.php?img='.$consoController->fetch($inventaire['conso'.$i])->getImage().'&w=120" width="120" height="85"></a>';?>
+			<?php if($inventaire['conso'.$i]) echo '<a href="useconso.php?perso='.$perso->getId().'&i='.$i.'"><img src="pic/'.$consoController->fetch($inventaire['conso'.$i])->getImage().'" width="114" height="79"></a>';?>
 		</div>
 		<div align="center">&nbsp;</div>
 	</td>
