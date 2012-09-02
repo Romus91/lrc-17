@@ -14,7 +14,7 @@ $data = $req->fetchAll(PDO::FETCH_OBJ);
 
 foreach ($data as $i):?>
 <tr>
-	<td width="100" style="border: 1px black solid"><?php echo $i->date;?></td>
+	<td width="100" style="border: 1px black solid"><?php echo date("d/m/Y",strtotime($i->date));?></td>
 	<td width="200" style="border: 1px black solid"><img src="pic/jblanc.png" width="<?php echo ($i->count/$max*100)?>%" height="10"></td>
 	<td width="30" style="border: 1px black solid"><?php echo $i->count;?></td>
 </tr>

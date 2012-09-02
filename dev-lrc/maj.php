@@ -65,23 +65,23 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 	<tr>
 	<?php if ($i < $cpt):?>
 		<td>
-			<p><font size=3><?php echo $item->date;?></font></p>
+			<p><font size=3><?php echo date("d/m/Y H:i:s",strtotime($item->timestamp));?></font></p>
 			<p><font color=FF6600><?php echo $item->message?></font></p>
 		</td>
 	<?php else: ?>
 		<td>
-			<p><font size=3><?php echo $item->date;?></font></p>
-			<p><?php echo $item->message?></font></p>
+			<p><font size=3><?php echo date("d/m/Y H:i:s",strtotime($item->timestamp));?></font></p>
+			<p><?php echo $item->message?></p>
 		</td>
 	<?php endif;?>
-		<td align=right width="100px" style="padding:5px;">
+		<td align=right width="100px" style="padding:5px;" valign="bottom">
 			<div class="vote">
 				<div><a href="votemaj.php?maj=<?php echo $item->id;?>&vote=up"><img src="pic/thumb_up.png"></a></div>
-				<div align=center><font color="00cc00"><?php echo $voteup;?></font></div>
+				<div class="votecount" style="background-color: #00cc00;" align=center><font color="white"><?php echo $voteup;?></font></div>
 			</div>
 			<div class="vote">
 				<div><a href="votemaj.php?maj=<?php echo $item->id;?>&vote=down"><img src="pic/thumb_down.png"></a></div>
-				<div align=center><font color="cc0000"><?php echo $votedown;?></font></div>
+				<div class="votecount" style="background-color: #ff0000;" align=center><font color="white"><?php echo $votedown;?></font></div>
 			</div>
 		</td>
 	</tr>
