@@ -54,6 +54,6 @@ class Conso{
 		return (($maxEnergie*$this->_valeurBase)/100);
 	}
 	public function getPrix($level){
-		return ceil(($level/2.459)*$this->_prixBase);
+		return ceil(($level/2.459)*$this->_prixBase*$this->_valeurBase);
 	}
 }
