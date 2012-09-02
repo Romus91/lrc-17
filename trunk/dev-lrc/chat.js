@@ -36,8 +36,9 @@ function loadChat(){
 	}
 	$.ajax({
 		url: url,
+		dataType: 'json',
 		success: function(data){
-			var result = JSON.parse(data);
+			var result = data;
 			if(result.type=='initial'){
 				var cont = result.content;
 				$("#chattimestamp").text(result.timestamp);
