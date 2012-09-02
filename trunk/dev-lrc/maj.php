@@ -39,7 +39,7 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 	$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$_SESSION['login']."'";
 	mysql_query($sql);
 	// on prépare une requete SQL cherchant tous les dates, message ainsi que l'auteur des messages  par ordre décroissant en se limitant à 10 message
-	$sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,15 ';
+	$sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,30 ';
 	// lancement de la requete SQL
 	$res = ConnectionSingleton::connect()->prepare($sql);
 	$res->execute();

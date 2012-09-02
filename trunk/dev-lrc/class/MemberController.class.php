@@ -30,4 +30,32 @@ class MemberController{
 				->setXp($data->xp);
 		return $membre;
 	}
+	public function saveMember(Member $member){
+		$query =
+		'update membre set
+				theme = :theme,
+				walltimestamp = :wt,
+				majtimestamp = :mt,
+				argent = :argent,
+				xp = :xp,
+				level = :level
+			where id = :id;';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->execute(array(
+				'theme'		=> $member->getTheme(),
+				'wt'		=> $member->getWallTimestamp(),
+				'mt'		=> $member->getMajTimestamp(),
+				'argent'	=> $member->getArgent(),
+				'xp'		=> $member->getXp(),
+				'level'		=> $member->getLevel(),
+				'id'		=> $member->getId()
+		));
+	}
+	public function findByLogin($login){
+		$query = 'select id from membre where login = :l;';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->execute(array('l'=>$login));
+		if($req->rowCount()==0) throw new Exception('Login incorrect');
+		else return $this->fetchMembre($req->fetch(PDO::FETCH_OBJ)->id);
+	}
 }
