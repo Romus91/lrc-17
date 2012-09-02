@@ -336,10 +336,15 @@ tr.perso td.hover{
 .vote{
 	display: inline-block;
 	margin:0;
-	background: #ccc;
-	font-shadow: 1px 1px 3px #000;
+	background: #fff;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	padding: 2px;
+	padding: 3px;
+}
+.votecount{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-top:5px;
 }
