@@ -11,6 +11,7 @@ class Member{
 	protected $_majtimestamp;
 	protected $_argent;
 	protected $_xp;
+	protected $_level;
 
 	public function __set($name, $value){
 		$method = 'set'.$name;
@@ -89,11 +90,68 @@ class Member{
 		$this->_argent =(int) $a;
 		return $this;
 	}
+	public function addArgent($a){
+		$this->_argent+=(int)$a;
+		return $this;
+	}
 	public function getXp(){
 		return $this->_xp;
 	}
 	public function setXp($xp){
 		$this->_xp = (int) $xp;
 		return $this;
+	}
+	public function addXp($xp){
+		$this->_xp+=(int)$xp;
+		return $this;
+	}
+	public function getLevel() {
+		return $this->_level;
+	}
+	public function setLevel($level) {
+		$this->_level = $level;
+		return $this;
+	}
+	public function levelUp(){
+		$this->_level++;
+		return $this;
+	}
+	public static function getXpForLevel($i){
+		if($i==1) return 1;
+		else return 2*pow($i,3)+3*pow($i,2)+(self::getXpForLevel($i-1)/1.75)+15;
+	}
+	public function getXpForNextLevel(){
+		return self::getXpForLevel($this->getLevel()+1);
+	}
+	public function getLevelPercent(){
+		$pourc = floor(($this->_xp-self::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-self::getXpForLevel($this->_level))*100);
+		if($pourc < 0) return 0;
+		else if($pourc > 100) return 100;
+		else return $pourc;
+	}
+	public static function purifyLogin($log){
+		$log=ucfirst($log);
+		$log=stripslashes(str_replace("'","_",$log));
+		$log=stripslashes(str_replace(" ","_",$log));
+		$log=stripslashes(str_replace("*","_",$log));
+		$log=stripslashes(str_replace("/","_",$log));
+		$log=stripslashes(str_replace("-","_",$log));
+		$log=stripslashes(str_replace("+","_",$log));
+		$log=stripslashes(str_replace("$","_",$log));
+		$log=stripslashes(str_replace("^","_",$log));
+		$log=stripslashes(str_replace("µ","_",$log));
+		$log=stripslashes(str_replace(":","_",$log));
+		$log=stripslashes(str_replace(",","_",$log));
+		$log=stripslashes(str_replace("&","_",$log));
+		$log=stripslashes(str_replace("?","_",$log));
+		$log=stripslashes(str_replace("(","_",$log));
+		$log=stripslashes(str_replace(")","_",$log));
+		$log=stripslashes(str_replace("!","_",$log));
+		$log=stripslashes(str_replace("§","_",$log));
+		$log=stripslashes(str_replace("|","_",$log));
+		$log=stripslashes(str_replace("ç","_",$log));
+		$log=stripslashes(str_replace(";","_",$log));
+		$log=stripslashes(str_replace("#","_",$log));
+		return mysql_real_escape_string($log);
 	}
 }
