@@ -24,28 +24,25 @@ if($perso->getLevelPercent()>=100):?>
 			<tr>
 				<td width='50%' align=right class='title2'>Endurance :</td>
 				<td width='20%' align=center><?php echo $perso->getEndurance();?></td>
-				<td width='30%' class='title2'>
-					<a href="levelup.php?perso=<?php echo $perso->getId();?>&stat=0">
-						<img src="pic/plus.png" />
-					</a>
+				<td width='30%' class='title2'><a
+					href="levelup.php?perso=<?php echo $perso->getId();?>&stat=0"> <img
+						src="pic/plus.png" /> </a>
 				</td>
 			</tr>
 			<tr>
 				<td width='50%' align=right class='title2'>Dextérité :</td>
 				<td width='20%' align=center><?php echo $perso->getDexterite();?></td>
-				<td width='30%' class='title2'>
-					<a href="levelup.php?perso=<?php echo $perso->getId();?>&stat=1">
-						<img src="pic/plus.png" />
-					</a>
+				<td width='30%' class='title2'><a
+					href="levelup.php?perso=<?php echo $perso->getId();?>&stat=1"> <img
+						src="pic/plus.png" /> </a>
 				</td>
 			</tr>
 			<tr>
 				<td width='50%' align=right class='title2'>Esquive :</td>
 				<td width='20%' align=center><?php echo $perso->getEsquive();?></td>
-				<td width='30%' class='title2'>
-					<a href="levelup.php?perso=<?php echo $perso->getId();?>&stat=2">
-						<img src="pic/plus.png" />
-					</a>
+				<td width='30%' class='title2'><a
+					href="levelup.php?perso=<?php echo $perso->getId();?>&stat=2"> <img
+						src="pic/plus.png" /> </a>
 				</td>
 			</tr>
 		</table></td>
@@ -60,40 +57,52 @@ if($perso->getLevelPercent()>=100):?>
 
 		<table class='button' width='100%'>
 			<tr>
-				<td width='20' align=center class='color3'>VIE</td>
-				<td class='small'><img id="jaugevie" src='pic/jvert.png'
-					width='<?php echo $perso->getVie();?>%' height='10'></td>
-				<td width='140' align=right class='color3'><span id="vie"><?php echo $perso->getVie();?>
-				</span> | 100</td>
-			</tr>
-			<tr>
-				<td width='20' align=center class='color3'>NRG</td>
-				<td class='small'><?php $pourcEn = ($perso->getEnergie()/$perso->getMaxEnergie())*100;?>
-					<img id="jaugeeng" src='pic/jbleu.png'
-					width='<?php echo (($pourcEn>100)?100:$pourcEn);?>%' height='10'>
-				</td>
-				<td width='140' align=right class='color3'><span id="eng"><?php echo floor($perso->getEnergie());?>
-				</span> | <span id="maxeng"><?php echo $perso->getMaxEnergie();?> </span>
+				<td>
+					<div class='jauge'>
+						<img class='barre' id="jaugevie" src='pic/jvert.png' width='<?php echo $perso->getVie();?>%'>
+						<div class='lib'>VIE</div>
+						<div class="texte">
+							<span id="vie"><?php echo $perso->getVie();?> </span> | 100
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td width='20' align=center class='color3'>EXP</td>
-				<td class='small'><img src='pic/jjaune.png'
-					width='<?php echo $perso->getLevelPercent();?>%' height='10'></td>
-				<td width='140' align=right class='color3'><?php echo $perso->getXp();?>
-					| <?php echo floor($perso->getXpForNextLevel());?></td>
+				<td>
+					<div class='jauge'>
+						<img class='barre' id="jaugeeng" src='pic/jbleu.png' width='<?php echo $perso->getEnergyPercent();?>%'>
+						<div class='lib'>NRG</div>
+						<div class="texte">
+							<span id="eng"><?php echo floor($perso->getEnergie());?> </span> | <span id="maxeng"><?php echo $perso->getMaxEnergie();?> </span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class='jauge'>
+						<img class='barre' src='pic/jjaune.png' width='<?php echo $perso->getLevelPercent();?>%'>
+						<div class='lib'>EXP</div>
+						<div class="texte">
+							<?php echo $perso->getXp();?> | <?php echo floor($perso->getXpForNextLevel());?>
+						</div>
+					</div>
+				</td>
 			</tr>
 		</table>
 		<table class='button' width='100%'>
 			<tr>
-				<td align=center class='color1'>Endurance : <?php echo $perso->getEndurance();?></td>
+				<td align=center class='color1'>Endurance : <?php echo $perso->getEndurance();?>
+				</td>
 				<td align="center" class='color1'>Comfort : <?php echo $perso->getComfort()*2?>%</td>
-				</tr><tr>
+			</tr>
+			<tr>
 				<td align=center class='color1'>Dextérité : <?php echo $perso->getDexterite();?>
 				</td>
-					<td align=center class='color1'>Precision : <?php echo $perso->getPrecision();?>%
+				<td align=center class='color1'>Precision : <?php echo $perso->getPrecision();?>%
 				</td>
-				</tr><tr>
+			</tr>
+			<tr>
 				<td align=center class='color1'>Esquive : <?php echo $perso->getEsquive();?>
 				</td>
 				<td align=center class='color1'>Taux Esquive : <?php echo $perso->getTauxEsquive();?>%
@@ -133,7 +142,8 @@ if($perso->getLevelPercent()>=100):?>
 	<td align=center>
 		<table class='hev'>
 			<tr>
-				<td align=center><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?></font><br>VAGUE</td>
+				<td align=center><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?>
+				</font><br>VAGUE</td>
 			</tr>
 		</table>
 	</td>
@@ -349,4 +359,5 @@ $piege['munmax']=0;?>
 </tr>
 </table>
 <div id="error"></div>
-<script type="text/javascript" language="javascript" src="infop.js"></script>
+<script
+	type="text/javascript" language="javascript" src="infop.js"></script>
