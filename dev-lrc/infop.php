@@ -145,8 +145,7 @@ if($perso->getLevelPercent()>=100):?>
 	<td align=center>
 		<table class='hev'>
 			<tr>
-				<td align=center><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?>
-				</font><br>VAGUE</td>
+				<td align=center><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?></font><br>VAGUES</td>
 			</tr>
 		</table>
 	</td>
