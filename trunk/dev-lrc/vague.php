@@ -2,6 +2,7 @@
 include_once ("verif.php");
 
 $persoController = new PersoController();
+$memCont = new MemberController();
 $log = new Log();
 
 $perso=$persoController->fetchPerso((int)htmlentities($_GET['perso']));
@@ -22,8 +23,7 @@ if($pourc>=100){
 	echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
 	exit;
 }
-if ($perso->getEnergie() > 0)
-{
+if ($perso->getEnergie() > 0):
 	$saveEnergie = $energie = $perso->getEnergie();
 	$vieperdue=0;
 
@@ -290,16 +290,22 @@ if ($perso->getEnergie() > 0)
 	$zombiekillpois=$zombiepoison-$zombiepoisonnb;
 	#################################
 
+	$mem = $memCont->fetchMembre($_SESSION['member_id']);
+
 	###ARGENT GAGNE####
 	$gagne=ceil((($zombiekill)*8)+(($zombiefastkill)*16)+(($crabekill)*3));
 	$perso->addArgent($gagne);
+	$mem->addArgent(ceil($gagne*0.01));
 	###################
 
 	####CALCUL DES EXP#######
 	$comp=ceil(($zombiefastkill*10)+($zombiekillpois*1000)+($zombiekill*2)+$crabekill);
 	$bonusXP = $perso->retribXp();
 	$perso->addXp($comp);
+	$mem->addXp(ceil($comp*0.01));
 	################################
+
+	$memCont->saveMember($mem);
 
 	#####GO BDD !!##########
 	if ($energie < 0) $energie=0;
@@ -328,52 +334,36 @@ if ($perso->getEnergie() > 0)
 				WHERE id_perso = '.$perso->getId().'';
 	mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
 	#######################
-
-}else
-{
-	if ($perso->getVie() == 0)
-	{
-		echo '<script language="javascript" type="text/javascript">
-						window.location.replace("index.php?page=citoyen");
-					</script>';
-	}
-	else
-	{
-		echo '<script language="javascript" type="text/javascript">
-						window.location.replace("index.php?page=perso&perso='.$perso->getId().'");
-					</script>';
-	}
-}
-?>
+else:
+	if ($perso->getVie() == 0):?>
+		<script language="javascript" type="text/javascript">window.location.replace("index.php?page=citoyen");</script>
+	<?php else:?>
+		<script language="javascript" type="text/javascript">window.location.replace("index.php?page=perso&perso=<?php echo $perso->getId()?>");</script>
+	<?php endif;
+endif;?>
 	<table class='button' width='100%'>
 		<tr>
-			<td id='button' align=center
-			<?php  if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop')) echo "class='current_page_item'";?>>
+			<td id='button' align=center <?php if((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop')) echo "class='current_page_item'";?>>
 				<a href='index.php?page=perso&perso=<?php  echo $perso->getId();?>'>CONTINUER</a>
 			</td>
 		</tr>
 	</table>
 	<table class='small ' width='550'>
 		<tr>
-			<td colspan=5 align=center><font size=5> VAGUE : </font> <font size=5
-				color='CC6600'><?php  echo $perso->getNb_vague();?> </font></td>
+			<td colspan=5 align=center>
+				<font size=5> VAGUE : </font>
+				<font size=5 color='CC6600'><?php  echo $perso->getNb_vague();?></font>
+			</td>
 		</tr>
 		<tr>
-			<td colspan='5' align=center><font size=4>BILAN DE LA DERNIERE VAGUE</font>
-			</td>
+			<td colspan='5' align=center><font size=4>BILAN DE LA DERNIERE VAGUE</font></td>
 		</tr>
 		<tr>
 			<td class='title' align=center><b>&nbsp;</b></td>
 			<td class='title2' align=center><b>HEAD-CRABS</b></td>
-			<td class='title2' align=center><b>ZOMBIE
-
-			</td>
-			<td class='title2' align=center><b>FAST-ZOMBIE
-
-			</td>
-			<td class='title2' align=center><b>POISON-ZOMBIE
-
-			</td>
+			<td class='title2' align=center><b>ZOMBIE</b></td>
+			<td class='title2' align=center><b>FAST-ZOMBIE</b></td>
+			<td class='title2' align=center><b>POISON-ZOMBIE</b></td>
 		</tr>
 		<tr>
 			<td align=right class='title2'><b>INCOMING</b></td>
@@ -413,64 +403,47 @@ if ($perso->getEnergie() > 0)
 		</tr>
 		<tr>
 			<td align=right class='title2'><b>PRECISION</b></td>
-			<td align=center class='color2' colspan=4><font size=4><?php
-			$num=($shootGoal/($shootGoal+$shootMissed))*100;
-
-
-			echo (number_format($num,2));?> %</font></td>
+			<td align=center class='color2' colspan=4>
+				<font size=4><?php $num = (($shootGoal/($shootGoal+$shootMissed))*100); echo number_format($num,2);?> %</font>
+			</td>
 		</tr>
 		<tr>
 			<td align="center" colspan=5>
 				<table width='100%' class='title2'>
 					<tr>
-					<?php
-					for ($i=1;$i<=4;$i++)
-					{
-						echo "
-		<td align=center  class='title2'>
-			<table class='small' width='105'>
-				<tr>
-					<td align=center>
-						<font color='FF0000'>- ".($inv['mun'.$i]-$mun[$i])."</font>
-					</td>
-				</tr>
-			</table>
-			<table class='hev'>
-				<tr>
-					<td align=center>";
-						if ($inv['arm'.$i])
-						echo "<img src='image.php?img=".$inv['arm'.$i].".png&w=90' width='90'>";
-						if(isset($arme[$i])){
-							echo"</td>
-				</tr>
-			</table>
-			<table class='small' width='105'>
-				<tr>
-					<td align=center>
-						".$mun[$i]." | ".($arme[$i]['munmax']+($arme[$i]['munmax']*($inv['capa'.$i]/10)))."
-					</td>
-				</tr>
-			</table>
-		</td>
-
-				";
-						}else{
-							echo"</td>
-				</tr>
-			</table>
-			<table class='small' width='105'>
-				<tr>
-					<td align=center>
-						0 | 0
-					</td>
-				</tr>
-			</table>
-		</td>
-
-				";
-						}
-					}
-					?>
+					<?php for ($i=1;$i<=4;$i++):?>
+						<td align=center  class='title2'>
+							<table class='small' width='105'>
+								<tr>
+									<td align=center>
+										<font color='FF0000'>- <?php echo ($inv['mun'.$i]-$mun[$i])?></font>
+									</td>
+								</tr>
+							</table>
+							<table class='hev'>
+								<tr>
+									<td align=center>
+										<?php if ($inv['arm'.$i]):?>
+										<img src='image.php?img=<?php echo $inv['arm'.$i]?>.png&w=90' width='90'>
+										<?php endif;?>
+									</td>
+								</tr>
+							</table>
+							<?php if(isset($arme[$i])):?>
+							<table class='small' width='105'>
+								<tr>
+									<td align=center><?php echo $mun[$i]?> | <?php echo ($arme[$i]['munmax']+($arme[$i]['munmax']*($inv['capa'.$i]/10)))?></td>
+								</tr>
+							</table>
+							<?php else:?>
+							<table class='small' width='105'>
+								<tr>
+									<td align=center>0 | 0</td>
+								</tr>
+							</table>
+							<?php endif;?>
+						</td>
+					<?php endfor;?>
 					</tr>
 				</table>
 			</td>
@@ -480,38 +453,33 @@ if ($perso->getEnergie() > 0)
 				<table width='100%' class='title2'>
 					<tr>
 					<?php
-					for ($i=1;$i<=2;$i++)
-					{
-						echo "
-
-		<td align=center  class='title2'>
-			<table class='small' width='105'>
-				<tr>
-					<td align=center>
-						<font color='FF0000'>- ".($inv['munp'.$i]-$munp[$i])."</font>
-					</td>
-				</tr>
-			</table>
-			<table class='hev'>
-				<tr>
-					<td align=center>";
-						if ($inv['pie'.$i])
-						echo "<img src='image.php?img=".$inv['pie'.$i].".png&w=90' width='90'>";
-						echo"</td>
-				</tr>
-			</table>
-			<table class='small' width='105'>
-				<tr>
-					<td align=center>
-						".$munp[$i]." | ".((isset($piege[$i]['munmax']))?$piege[$i]['munmax']:0)."
-					</td>
-				</tr>
-			</table>
-		</td>
-
-				";
-					}
-					?>
+					for ($i=1;$i<=2;$i++):?>
+						<td align=center  class='title2'>
+							<table class='small' width='105'>
+								<tr>
+									<td align=center>
+										<font color='FF0000'>- <?php echo ($inv['munp'.$i]-$munp[$i])?></font>
+									</td>
+								</tr>
+							</table>
+							<table class='hev'>
+								<tr>
+									<td align=center>
+										<?php if ($inv['pie'.$i]):?>
+										<img src='image.php?img=<?php echo $inv['pie'.$i]?>.png&w=90' width='90'>
+										<?php endif;?>
+									</td>
+								</tr>
+							</table>
+							<table class='small' width='105'>
+								<tr>
+									<td align=center>
+										<?php echo $munp[$i]?> | <?php echo ((isset($piege[$i]['munmax']))?$piege[$i]['munmax']:0)?>
+									</td>
+								</tr>
+							</table>
+						</td>
+					<?php endfor;?>
 					</tr>
 				</table>
 			</td>
@@ -560,49 +528,36 @@ if ($perso->getEnergie() > 0)
 								</tr>
 							</table>
 						</td>
-						<td align=center class='title2'><?php
-						if ($perso->getVie() <> 0)
-						{
+						<td align=center class='title2'>
+							<table class='small' width='105'>
+								<tr>
+									<td align=center>
+										<font color='FF0000'>- <?php echo $vieperdue;?></font>
+									</td>
+								</tr>
+							</table>
+							<?php if ($perso->getVie() <> 0):
 							$C=floor($perso->getVie()/100);
 							$D=floor(($perso->getVie()%100)/10);
-							$I=($perso->getVie()%10);
-							echo"
-						<table class='small' width='105'>
-							<tr>
-								<td align=center>
-									<font color='FF0000'>- ".$vieperdue."</font>
-								</td>
-							</tr>
-						</table>
-						<table class='hev'>
-							<tr>
-								<td><img src='image.php?img=".$C.".png&w=33' width='33' ></td><td><img src='image.php?img=".$D.".png&w=33' width='33'></td><td><img src='image.php?img=".$I.".png&w=33' width='33'></td>
-							</tr>
-						</table>
-									";
-						}else
-						echo "
-						<table class='small' width='105'>
-							<tr>
-								<td align=center>
-									<font color='FF0000'>- ".$vieperdue."</font>
-								</td>
-							</tr>
-						</table>
-						<table class='hev'>
-							<tr>
-								<td align=center><font color=FFFF00 size=7>X</font></td>
-							</tr>
-						</table>
-									";
-						?>
+							$I=($perso->getVie()%10);?>
+							<table class='hev'>
+								<tr>
+									<td><img src='pic/<?php echo $C;?>-mini.png' width='33' ></td><td><img src='pic/<?php echo $D;?>-mini.png' width='33'></td><td><img src='pic/<?php echo $I;?>-mini.png' width='33'></td>
+								</tr>
+							</table>
+							<?php else:?>
+							<table class='hev'>
+								<tr>
+									<td align=center><font color=FFFF00 size=7>X</font></td>
+								</tr>
+							</table>
+							<?php endif;?>
 						</td>
 						<td class='title2' valign=bottom align=center>
 							<table class='small' width='105'>
 								<tr>
-									<td align=center><font color='FF0000'><?php
-
-									echo "- ".($saveEnergie-$perso->getEnergie())?> </font>
+									<td align=center>
+										<font color='FF0000'>- <?php echo ($saveEnergie-$perso->getEnergie())?></font>
 									</td>
 								</tr>
 							</table>
@@ -615,10 +570,8 @@ if ($perso->getEnergie() > 0)
 									<td align=left>
 										<table class='button'>
 											<tr height='10' valign=bottom>
-												<td class='small' width='100'><img src='pic/jbleu.png'
-													width='<?php
-													echo $perso->getEnergyPercent();?>?>%'
-													height='10'>
+												<td class='small' width='100'>
+													<img src='pic/jbleu.png' width='<?php echo $perso->getEnergyPercent();?>%' height='10'>
 												</td>
 											</tr>
 										</table>
@@ -632,12 +585,11 @@ if ($perso->getEnergie() > 0)
 			</td>
 		</tr>
 		<tr>
-			<td colspan='5' align=center><img src='image.php?img=finvague.JPG&w=540' width='540'>
-			</td>
+			<td colspan='5' align=center><img src='pic/finvague.JPG' width='540'></td>
 		</tr>
 	</table>
 </center>
-													<?php $log->insertLog("Vague",$_SESSION['member_id'],$perso->getId(),"BILAN VAGUE : <br>
+<?php $log->insertLog("Vague",$_SESSION['member_id'],$perso->getId(),"BILAN VAGUE : <br>
 		Nb Vague : ".$perso->getNb_vague()."<br>
 		Crabes IN : ".$crabe."<br>
 		Zombie IN : ".$zombie."<br>

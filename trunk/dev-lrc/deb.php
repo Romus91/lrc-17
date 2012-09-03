@@ -21,6 +21,10 @@
 
 	$memCont = new MemberController();
 	$mem = $memCont->fetchMembre($_SESSION['member_id']);
+	if($mem->getLevelPercent()>=100){
+		$mem->levelUp();
+		$memCont->saveMember($mem);
+	}
   ?>
 
 </head>
