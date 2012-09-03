@@ -354,3 +354,9 @@ tr.perso td.hover{
 	border-radius: 5px;
 	margin-top:5px;
 }
+#palmares{
+	text-align: center;
+	width: 100%;
+	background: #333;
+	vertical-align: middle;
+}
