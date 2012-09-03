@@ -1,9 +1,8 @@
 <?php
-header("Content-type: image/png");
-
 putenv('GDFONTPATH=' . realpath('.'));
 
 if(isset($_GET['img'])&&!empty($_GET['img'])){
+	header("Content-type: image/png");
 	$source = htmlentities($_GET['img']);
 	if(isset($_GET['h'])&&!empty($_GET['h'])) $h = (int)htmlentities($_GET['h']);
 	else $h=0;
@@ -14,6 +13,13 @@ if(isset($_GET['img'])&&!empty($_GET['img'])){
 	if(isset($_GET['d'])&&!empty($_GET['d'])) $d = (int)htmlentities($_GET['d']);
 	else $d=0;
 
+	$img_dest = genImg($source, $h, $w, $l, $d);
+
+	imagepng($img_dest);
+	imagedestroy($img_dest);
+}
+
+function genImg($source, $h=0, $w=0, $l=0, $d=0){
 	$parts = explode('.', $source);
 	$ext = strtolower($parts[count($parts)-1]);
 
@@ -71,12 +77,5 @@ if(isset($_GET['img'])&&!empty($_GET['img'])){
 		imagettftext($img_dest, $h/10, 0, 2, $h-2, $white, '28DaysLater.ttf', $l);
 	}
 
-	imagepng($img_dest);
-	imagedestroy($img_dest);
-
-}else{
-	$img = imagecreate(5, 5);
-	$noir = imagecolorallocate($img, 0, 0, 0);
-	imagepng($img);
-	imagedestroy($img);
+	return $img_dest;
 }

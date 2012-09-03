@@ -53,22 +53,10 @@
 			exit;
 		}
 
-		$persoController->createPerso($name, $_POST['photo'], $_SESSION['member_id']);
-		$tabPerso=$persoController->fetchMembre($_SESSION['member_id']);
+		$perso = $persoController->createPerso($name, $_POST['photo'], $_SESSION['member_id']);
+		imagepng(genImg($perso->getAvatar().'.JPG',207,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 		$log=new Log();
-		$log->insertLog("Perso Créé",$_SESSION['member_id'],$tabPerso[count($tabPerso)-1]->getId(),"Nom : ".$name);
-		/*
-		$localtime=localtime(time(), true);
-		$annee=(1900+$localtime[tm_year]);
-		$mktime=mktime(0, 0, 0, ($localtime[tm_mon]+1), $localtime[tm_mday], $annee);
-		$sql = 'INSERT INTO perso (id_membre,nom,photo,date,vie) VALUES("'.$_SESSION['login'].'","'.mysql_escape_string($_POST['nom']).'","'.(mysql_escape_string($_POST['photo'])).'","'.$mktime.'",100)';
-        mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
-		*/
-
-
-		/*$id=mysql_fetch_array(mysql_query("SELECT id FROM perso WHERE nom = '".$name."' AND id_membre='".$_SESSION['member_id']."'"));
-		$sql = 'INSERT INTO inventaire (id_perso) VALUES("'.$id['id'].'")';
-        mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());*/
+		$log->insertLog("Perso Créé",$_SESSION['member_id'],$perso->getId(),"Nom : ".$name);
     }
     else
 	{ //si un des champ est vide on affiche une erreur

@@ -122,8 +122,7 @@ class PersoController{
 			'memb'	=> $id_membre
 		));
 		$id_perso= ConnectionSingleton::connect()->lastInsertId();
-		//$id_perso=mysql_fetch_array(mysql_query("SELECT id FROM perso WHERE id_membre = ".$id_membre.""));
 		mysql_query("INSERT INTO inventaire (id_perso) VALUE (".$id_perso.")");
-		return $this;
+		return $this->fetchPerso($id_perso);
 	}
 }
