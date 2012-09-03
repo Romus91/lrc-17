@@ -48,12 +48,9 @@ if($perso->getLevelPercent()>=100):?>
 		</table></td>
 </tr>
 <?php endif;?>
-<tr class='color1'>
-	<td rowspan=2 valign=bottom><img
-		src="ava/<?php echo $perso->getId()?>.png" />
-	</td>
-	<td colspan=3 valign=bottom bgcolor=000000
-		style="border: 1px solid #333333" width="100%">
+<tr >
+	<td rowspan=2 valign='top' width="133px"><img src="ava/<?php echo $perso->getId()?>.png"/></td>
+	<td colspan=3 class='color1' valign=bottom bgcolor=000000 style="border: 1px solid #333333" width="100%">
 
 		<table class='button' width='100%'>
 			<tr>
@@ -120,37 +117,20 @@ if($perso->getLevelPercent()>=100):?>
 	</td>
 </tr>
 <tr>
-	<td colspan=2 align=center>
-		<table bgcolor='111111' width='100%'>
+	<td colspan=3 align=center>
+		<table id="palmares">
 			<tr>
-				<td align=center><img src='image.php?img=crabemini.png&w=55'>
-				</td>
-				<td align=center><img src='image.php?img=zombiemini.png&w=55'>
-				</td>
-				<td align=center><img src='image.php?img=zombiefastmini.png&w=55'>
-				</td>
-				<td align=center><img src='image.php?img=zombiepoisonmini.png&w=55'>
-				</td>
+				<td><img src='image.php?img=crabemini.png&w=45'></td>
+				<td><img src='image.php?img=zombiemini.png&w=45'></td>
+				<td><img src='image.php?img=zombiefastmini.png&w=45'></td>
+				<td><img src='image.php?img=zombiepoisonmini.png&w=45'></td>
+				<td rowspan=2><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?></font><br>VAGUES</td>
 			</tr>
 			<tr>
-				<td align=center class='small'><?php echo $perso->getNb_crabe_kill();?>
-				</td>
-
-				<td align=center class='small'><?php echo $perso->getNb_zomb_kill();?>
-				</td>
-
-				<td align=center class='small'><?php echo $perso->getNb_zfast_kill();?>
-				</td>
-
-				<td align=center class='small'><?php echo $perso->getNb_zpois_kill();?>
-				</td>
-			</tr>
-		</table>
-	</td>
-	<td align=center>
-		<table class='hev'>
-			<tr>
-				<td align=center><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?></font><br>VAGUES</td>
+				<td class='small'><?php echo $perso->getNb_crabe_kill();?></td>
+				<td class='small'><?php echo $perso->getNb_zomb_kill();?></td>
+				<td class='small'><?php echo $perso->getNb_zfast_kill();?></td>
+				<td class='small'><?php echo $perso->getNb_zpois_kill();?></td>
 			</tr>
 		</table>
 	</td>
@@ -165,7 +145,7 @@ for ($i=1;$i<=4;$i++):
 $arme=mysql_fetch_array(mysql_query("SELECT * FROM armes WHERE image = '".$inventaire['arm'.$i]."'"));
 if (!$arme['munmax'])
 $arme['munmax']=0;?>
-	<td align=center class='arme'>
+	<td align=center class='arme' width="133px">
 		<div align=center class='hev arme'
 			perso='<?php echo $perso->getId()?>' arme='<?php echo $i?>'>
 			<a

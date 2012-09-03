@@ -54,7 +54,7 @@
 		}
 
 		$perso = $persoController->createPerso($name, $_POST['photo'], $_SESSION['member_id']);
-		imagepng(genImg($perso->getAvatar().'.JPG',207,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
+		imagepng(genImg($perso->getAvatar().'.JPG',176,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 		$log=new Log();
 		$log->insertLog("Perso Créé",$_SESSION['member_id'],$perso->getId(),"Nom : ".$name);
     }
