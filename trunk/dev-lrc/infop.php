@@ -50,7 +50,7 @@ if($perso->getLevelPercent()>=100):?>
 <?php endif;?>
 <tr class='color1'>
 	<td rowspan=2 valign=bottom><img
-		src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&h=207&l=<?php echo$perso->getLevel()?>" />
+		src="ava/<?php echo $perso->getId()?>.png" />
 	</td>
 	<td colspan=3 valign=bottom bgcolor=000000
 		style="border: 1px solid #333333" width="100%">

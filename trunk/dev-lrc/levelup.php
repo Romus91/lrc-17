@@ -2,6 +2,8 @@
 require_once 'autoload.php';
 require_once 'pass.php';
 require_once 'verif.php';
+require_once 'image.php';
+
 if(isset($_GET['perso'])){
 	$persoController = new PersoController();
 	$perso=$persoController->fetchPerso((int)htmlentities($_GET['perso']));
@@ -34,6 +36,7 @@ if(isset($_GET['perso'])){
 			$_SESSION['erreur']=false;
 			$perso->levelUp($stat);
 			$persoController->savePerso($perso);
+			imagepng(genImg($perso->getAvatar().'.JPG',207,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 			$log=new Log();
 			$log->insertLog("Level up",$_SESSION['member_id'],$perso->getId(),"+1 ".$statChosen);
 			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";
