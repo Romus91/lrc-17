@@ -15,12 +15,22 @@ $(document).ready(function(){
 						if(result.type=="success"){
 							$("#armeinfo").stop(true);
 							$("#armeinfo").show();
+
 							$("#jdeg").animate({width: result.content.jdeg},600);
 							$("#jamdeg").animate({width: result.content.jamdeg},600);
+							$("#libdeg").text(result.content.libdeg);
+							$("#tdeg").text(result.content.tdeg);
+
 							$("#jpre").animate({width: result.content.jpre},600);
 							$("#jampre").animate({width: result.content.jampre},600);
+							$("#libpre").text(result.content.libpre);
+							$("#tpre").text(result.content.tpre);
+
 							$("#jcap").animate({width: result.content.jcap},600);
 							$("#jamcap").animate({width: result.content.jamcap},600);
+							$("#libcap").text(result.content.libcap);
+							$("#tcap").text(result.content.tcap);
+
 							$("#nomarme").text(result.content.nomarme);
 							$.ajax({
 								url: "armeinforecharg.php?perso="+perso+"&i="+arme,
@@ -154,6 +164,109 @@ $(document).ready(function(){
 				}
 			});
 		}
+		return false;
+	});
+	$(".plusam").click(function(){
+		var url=$(this).children("a").attr("href")+$('#armeinfo').attr("arme");
+		$.ajax({
+			url: url,
+			success: function(data){
+				var result = JSON.parse(data);
+				$("font.error").text(" ");
+				if(result.type=="success"){
+					$("font.error").append(result.content.message);
+
+					switch(result.content.type){
+					case "deg":
+						$("#amdeg").text(result.content.ampct);
+						$("#jamdeg").animate({width: result.content.jauge},100);
+						$("#libdeg").text(result.content.lib);
+						$("#tdeg").text(result.content.texte);
+						break;
+					case "pre":
+						$("#ampre").text(result.content.ampct);
+						$("#jampre").animate({width: result.content.jauge},100);
+						$("#libpre").text(result.content.jauge);
+						$("#tpre").text(result.content.texte);
+						break;
+					case "cap":
+						$("#amcap").text(result.content.ampct);
+						$("#jamcap").animate({width: result.content.jauge},100);
+						$("#libcap").text(result.content.lib);
+						$("#tcap").text(result.content.texte);
+						var arme = $("#armeinfo").attr("arme");
+						$("div.arme").each(function(index){
+							if($(this).attr("arme")==arme){
+								$(this).next("div.munarme")
+								.empty()
+								.append(result.content.munitions);
+							}
+						});
+						break;
+					}
+
+					$("#ptam").text(result.content.ptam);
+					setTimeout(function(){$("font.error").text("INFOS GENERALE");}, 5000);
+				}else{
+					$("font.error").append(result.content.message);
+				}
+			},
+			error: function(){
+				alert("Error");
+			}
+		});
+		return false;
+	});
+	$(".moinsam").click(function(){
+		var url=$(this).children("a").attr("href")+$('#armeinfo').attr("arme");
+		$.ajax({
+			url: url,
+			success: function(data){
+				var result = JSON.parse(data);
+				$("font.error").text(" ");
+				if(result.type=="success"){
+					$("font.error").append(result.content.message);
+
+					switch(result.content.type){
+					case "deg":
+						$("#amdeg").text(result.content.ampct);
+						$("#jamdeg").animate({width: result.content.jauge},100);
+						$("#libdeg").text(result.content.lib);
+						$("#tdeg").text(result.content.texte);
+						break;
+					case "pre":
+						$("#ampre").text(result.content.ampct);
+						$("#jampre").animate({width: result.content.jauge},100);
+						$("#libpre").text(result.content.jauge);
+						$("#tpre").text(result.content.texte);
+						break;
+					case "cap":
+						$("#amcap").text(result.content.ampct);
+						$("#jamcap").animate({width: result.content.jauge},100);
+						$("#libcap").text(result.content.lib);
+						$("#tcap").text(result.content.texte);
+						$("span#prix").empty().append(result.content.argent);
+						var arme = $("#armeinfo").attr("arme");
+						$("div.arme").each(function(index){
+							if($(this).attr("arme")==arme){
+								$(this).next("div.munarme")
+								.empty()
+								.append(result.content.munitions);
+							}
+						});
+						break;
+					}
+
+					$("#ptam").text(result.content.ptam);
+					setTimeout(function(){$("font.error").text("INFOS GENERALE");},5000);
+				}else{
+					$("font.error").append(result.content.message);
+				}
+			},
+			error: function(){
+				alert("Error");
+			}
+		});
 		return false;
 	});
 	setTimeout(function(){update();},20000);

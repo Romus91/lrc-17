@@ -9,8 +9,7 @@ $t=htmlentities($_GET['type']);
 $persoCont = new PersoController();
 $perso = $persoCont->fetchPerso($p);
 
-if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' || $t == 'cap'))
-{
+if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' || $t == 'cap')){
 	if ($t == 'deg') $type = "degat".$i;
 	else
 	if ($t == 'pre') $type = "prec".$i;
@@ -26,13 +25,23 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 	$j=0;
 	for(;$data[$j]['image']!=$arme;$j++);
 
-	if ($inv[$type] > 0)
-	{
-		$munitions=0;
+	if ($inv[$type] > 0){
+		$content = array();
+
 		if($t=="cap"){
-			$munitions = "0 | ".($data[$j]['munmax']+($data[$j]['munmax']*(($inv[$type]-1)/10)));
+			$content['munitions'] = "0 | ".($data[$j]['munmax']+($data[$j]['munmax']*(($inv[$type]-1)/10)));
 			$perso->addArgent($inv['mun'.$i]*$data[$j]['prixballes']);
 			$inv['mun'.$i]=0;
+			$content['jauge'] = number_format(($data[$j]['munmax']*(1+(($inv['capa'.$i]-1)/10))/500*100),2).'%';
+			$content['lib'] = number_format($data[$j]['munmax']*(1+(($inv['capa'.$i]-1)/10)),2);
+			$content['texte'] = ($inv['capa'.$i]-1).' / '.$data[$j]['cap'];
+		}else if($t=='deg'){
+			$content['jauge'] = number_format(($data[$j]['force']*(1+(($inv['degat'.$i]-1)/10))/20*100),2).'%';
+			$content['lib'] = number_format($data[$j]['force']*(1+(($inv['degat'.$i]-1)/10)),2);
+			$content['texte'] = ($inv['degat'.$i]-1).' / '.$data[$j]['deg'];
+		}else{
+			$content['jauge'] = number_format(($data[$j]['precision']*(1+(($inv['prec'.$i]-1)/10))),2).'%';
+			$content['texte'] = ($inv['prec'.$i]-1).' / '.$data[$j]['pre'];
 		}
 
 		mysql_query("UPDATE inventaire SET ".$type." = ".($inv[$type]-1).", mun".$i." = ".$inv['mun'.$i]." WHERE id_perso = ".$perso->getId()."")
@@ -40,25 +49,17 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 		$perso->addPtsAmDispo(1);
 		$persoCont->savePerso($perso);
 
-		$response = array(
-					"type"=>"success",
-					"content"=>array(
-							"message"=>"<font color = '00FF00'>Point d'am&eacute;lioration retir&eacute;</font>",
-							"type"=>$_GET['type'],
-							"ampct"=>'+ '.floor(($inv[$type]-1)*10).'%',
-							"jauge"=>floor(($inv[$type]-1)*100/$data[$j][$t]).'%',
-							"ptam"=>$perso->getNbPtsAmDispo(),
-							"munitions"=>$munitions,
-							"argent"=>$perso->getArgent()
-		)
-		);
-	}else
-	{
+		$content['message']="<font color = '00FF00'>Point d'am&eacute;lioration retir&eacute;</font>";
+		$content['type']=$t;
+		$content['ptam']=$perso->getNbPtsAmDispo();
+		$content['argent'] = $perso->getArgent();
+		$content['ampct'] = floor(($inv[$type]-1)*100/$data[$j][$t]).'%';
+
+		$response = array("type"=>"success", "content"=>$content);
+	}else{
 		$response = array("type"=>"success","content"=>array("message"=>"<font color = 'FF0000'>D&eacute;j&#224; au minimum</font>"));
 	}
-}else
-{
+}else{
 	$response = array("type"=>"success","content"=>array("message"=>"<font color = 'FF0000'>Erreur type</font>"));
 }
-
 echo json_encode($response);

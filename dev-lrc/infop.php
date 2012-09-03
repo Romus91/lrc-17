@@ -50,7 +50,7 @@ if($perso->getLevelPercent()>=100):?>
 <?php endif;?>
 <tr class='color1'>
 	<td rowspan=2 valign=bottom><img
-		src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&h=197&l=<?php echo$perso->getLevel()?>" />
+		src="image.php?img=<?php echo $perso->getAvatar()?>.JPG&h=207&l=<?php echo$perso->getLevel()?>" />
 	</td>
 	<td colspan=3 valign=bottom bgcolor=000000
 		style="border: 1px solid #333333" width="100%">
@@ -111,6 +111,11 @@ if($perso->getLevelPercent()>=100):?>
 				<td align=center class='color1'>Taux Esquive : <?php echo $perso->getTauxEsquive();?>%
 				</td>
 			</tr>
+			<tr>
+				<td align="center" class="color1" colspan=2>
+					Points d'amélioration disponibles : <font id="ptam" color="00ff00"><?php echo $perso->getNbPtsAmDispo();?></font>
+				</td>
+			</tr>
 		</table>
 	</td>
 </tr>
@@ -149,17 +154,6 @@ if($perso->getLevelPercent()>=100):?>
 			</tr>
 		</table>
 	</td>
-	<!-- 	<td align=center>
-				<table class='hev'>
-					<tr>
-						<td align=center>
-								VAGUE<br><font color='CC6600' size=6><?php  //echo $perso->getNb_vague();?></font>
-							</font>
-						</td>
-					</tr>
-				</table>
-			</td>-->
-
 </tr>
 <tr>
 	<td colspan=4 align=center>ARMES</td>
@@ -202,25 +196,42 @@ $arme['munmax']=0;?>
 								<table class='button' width='100%'>
 									<tr>
 										<td class='color3' width=60>DEGATS</td>
-										<td class='small'><img id="jdeg" src='pic/jgris.png'
-											width='0%' height='10'></td>
-										<td class='small' width=100><img id="jamdeg"
-											src='pic/jblanc.png' width='0%' height='10'></td>
+										<td class='small' width="100%">
+											<div class="jauge">
+												<img class="barre" id="jdeg" src='pic/jgris.png' width='0%'>
+												<img class="grid" id="jamdeg" src='pic/jblanc.png' width='0%'>
+												<div class='lib' id="libdeg">0</div>
+												<div class="texte" id="tdeg">0/0</div>
+											</div>
+										</td>
+										<td align=center class='color3 plusam'><a href='ajoutpt.php?perso=<?php echo $perso->getId();?>&type=deg&i='><img src="pic/plus.png"/></a></td>
+										<td align=center class='color3 moinsam'><a href='retraitpt.php?perso=<?php echo $perso->getId();?>&type=deg&i='><img src="pic/minus.png"/></a></td>
 									</tr>
 									<tr>
 										<td class='color5' width=60>PRECISION</td>
-										<td class='small'><img id="jpre" src='pic/jgris.png'
-											width='0%' height='10'></td>
-										<td class='small' width=100><img id="jampre"
-											src='pic/jblanc.png' width='0%' height='10'></td>
+										<td class='small' width="100%">
+											<div class="jauge">
+												<img class="barre" id="jpre" src='pic/jgris.png' width='0%'>
+												<img class="grid" id="jampre" src='pic/jblanc.png' width='0%'>
+												<div class='lib' id="libpre">0</div>
+												<div class="texte" id="tpre">0/0</div>
+											</div>
+										</td>
+										<td align=center class='color5 plusam'><a href='ajoutpt.php?perso=<?php echo $perso->getId();?>&type=pre&i='><img src="pic/plus.png"/></a></td>
+										<td align=center class='color5 moinsam'><a href='retraitpt.php?perso=<?php echo $perso->getId();?>&type=pre&i='><img src="pic/minus.png"/></a></td>
 									</tr>
 									<tr>
 										<td class='color3' width=60>CHARGEUR</td>
-										<td class='small'><img id="jcap" src='pic/jgris.png'
-											width='0%' height='10'>
+										<td class='small' width="100%">
+											<div class="jauge">
+												<img class="barre" id="jcap" src='pic/jgris.png' width='0%'>
+												<img class="grid" id="jamcap" src='pic/jblanc.png' width='0%'>
+												<div class='lib' id="libcap">0</div>
+												<div class="texte" id="tcap">0/0</div>
+											</div>
 										</td>
-										<td class='small' width=100><img id="jamcap"
-											src='pic/jblanc.png' width='0%' height='10'></td>
+										<td align=center class='color3 plusam'><a href='ajoutpt.php?perso=<?php echo $perso->getId();?>&type=cap&i='><img src="pic/plus.png"/></a></td>
+										<td align=center class='color3 moinsam'><a href='retraitpt.php?perso=<?php echo $perso->getId();?>&type=cap&i='><img src="pic/minus.png"/></a></td>
 									</tr>
 								</table>
 							</td>
@@ -231,9 +242,6 @@ $arme['munmax']=0;?>
 							</td>
 							<td id='button' class="armeaction"><a
 								href='armeinfovendre.php?perso=<?php echo $perso->getId();?>&i='>VENDRE</a>
-							</td>
-							<td id='button' class="armeaction"><a
-								href='armeinfogene.php?perso=<?php echo $perso->getId();?>&i='>AMELIORATION</a>
 							</td>
 							<td id='button' class="armeaction" action="close"><a href='#'>FERMER</a>
 							</td>
