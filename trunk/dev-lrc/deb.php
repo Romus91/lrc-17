@@ -7,7 +7,7 @@
   <link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  <script src="http://cdn.jquerytools.org/1.2.7/tiny/jquery.tools.min.js"></script>
+  <script src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
 	<script src="jquery.mousewheel.min.js"></script>
 	<script src="jquery.mCustomScrollbar.js"></script>
 	<script src="jquery.form.js"></script>
@@ -200,6 +200,13 @@
 													<td align=center>&nbsp;</td>
 												</tr>
 											</table>
+											<div style='position: relative'>
+												<div id="popup">
+													<div class='content'>
+														<div class='message'></div>
+														<div class="image"><img src="http://placehold.it/50x50"></div>
+													</div>
+												</div>
 											<table  valign=top align=center>
 												<tr>
 													<td>

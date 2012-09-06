@@ -5,7 +5,7 @@
 	$log = new Log();
 
 	$idperso=(int) htmlentities($_GET['perso']);
-	$i=(int) htmlentities($_GET['arme']);
+	$i=(int) htmlentities($_GET['i']);
 
 	$perso=$persoController->fetchPerso($idperso);
 
