@@ -1,4 +1,7 @@
 <?php
+require_once 'pass.php';
+require_once 'autoload.php';
+require_once 'image.php';
 	if ((isset($_POST['nom']) && !empty($_POST['nom'])) && (isset($_POST['photo']) && !empty($_POST['photo']))) {
 	//on vérifie qu'il ne sont pas vide
 		$_POST['nom']=ucfirst($_POST['nom']);
@@ -54,9 +57,12 @@
 		}
 
 		$perso = $persoController->createPerso($name, $_POST['photo'], $_SESSION['member_id']);
+		var_dump($perso);
 		imagepng(genImg($perso->getAvatar().'.JPG',176,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 		$log=new Log();
 		$log->insertLog("Perso Créé",$_SESSION['member_id'],$perso->getId(),"Nom : ".$name);
+		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=citoyen');</script>";
+		exit;
     }
     else
 	{ //si un des champ est vide on affiche une erreur
@@ -65,11 +71,3 @@
         exit();
     }
 ?>
-<html>
-<head>
-  <title>LES RESCAPES DE CITE 17 - Citoyen</title>
-  <link rel="icon" type="image/jpg" href="hl2logo.jpg" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <meta http-equiv="refresh" content="0; url=index.php?page=citoyen" />
-</head>
-</html>

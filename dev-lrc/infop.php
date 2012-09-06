@@ -217,19 +217,15 @@ $arme['munmax']=0;?>
 							</td>
 						</tr>
 						<tr>
-							<td id='button' class="armeaction"><a
-								href='armeinforecharg.php?perso=<?php echo $perso->getId();?>&i='>RECHARGER</a>
+							<td id='button' class="armeaction reload">
+								<a href='achatmunarme.php?perso=<?php echo $perso->getId();?>&i='>RECHARGER</a>
 							</td>
-							<td id='button' class="armeaction"><a
-								href='armeinfovendre.php?perso=<?php echo $perso->getId();?>&i='>VENDRE</a>
+							<td id='button' class="armeaction sell">
+								<a href='armeinfovendre.php?perso=<?php echo $perso->getId();?>&i='>VENDRE</a>
 							</td>
-							<td id='button' class="armeaction" action="close"><a href='#'>FERMER</a>
+							<td id='button' class="armeaction"><a href='javascript:hideArmeinfo(true);'>FERMER</a>
 							</td>
 						</tr>
-						<tr>
-							<td id="armedetail" colspan=4 align=center bgcolor=333333></td>
-						</tr>
-
 					</table>
 				</td>
 			</tr>
@@ -252,8 +248,8 @@ $arme['munmax']=0;?>
 							</td>
 						</tr>
 						<tr>
-							<td id='button' class="armeaction" action="close"><a
-								href='javascript:void(0);'>FERMER</a></td>
+							<td id='button' class="armeaction close"><a
+								href='javascript:hideArmeinfo(true);'>FERMER</a></td>
 						</tr>
 					</table>
 				</td>
@@ -327,20 +323,16 @@ $piege['munmax']=0;?>
 							</td>
 						</tr>
 						<tr>
-							<td id='button' class="piegeaction"><a
-								href='piegeinforecharg.php?perso=<?php echo $perso->getId();?>&i='>RECHARGER</a>
+							<td id='button' class="piegeaction reload"><a
+								href='achatmunpiege.php?perso=<?php echo $perso->getId();?>&i='>RECHARGER</a>
 							</td>
-							<td id='button' class="piegeaction"><a
+							<td id='button' class="piegeaction sell"><a
 								href='piegeinfovendre.php?perso=<?php echo $perso->getId();?>&i='>VENDRE</a>
 							</td>
-							<td id='button' class="piegeaction" action="close"><a
-								href='javascript:void(0);'>FERMER</a>
+							<td id='button' class="piegeaction close"><a
+								href='javascript:hidePiegeinfo(true);'>FERMER</a>
 							</td>
 						</tr>
-						<tr>
-							<td id="piegedetail" colspan=4 align=center bgcolor=333333></td>
-						</tr>
-
 					</table>
 				</td>
 			</tr>
@@ -349,5 +341,6 @@ $piege['munmax']=0;?>
 </tr>
 </table>
 <div id="error"></div>
-<script
-	type="text/javascript" language="javascript" src="infop.js"></script>
+<script type="text/javascript" language="javascript" src="infop.js"></script>
+<script type="text/javascript" language="javascript" src="infop-arme.js"></script>
+<script type="text/javascript" language="javascript" src="infop-piege.js"></script>

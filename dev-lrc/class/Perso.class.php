@@ -349,7 +349,7 @@ class Perso{
 	}
 	public function retribXp(){
 		$amount= ceil($this->_xpafk*0.5);
-		if($amount>$this->_level*20) $amount=$this->_level*20;
+		if($amount>$this->_level*25) $amount=$this->_level*25;
 		$this->_xp+=$amount;
 		$this->_xpafk-=$amount;
 		return $amount;

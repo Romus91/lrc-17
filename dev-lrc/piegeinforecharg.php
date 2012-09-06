@@ -13,31 +13,6 @@ $arm=mysql_fetch_array(mysql_query("SELECT * FROM pieges WHERE image = '".$inv['
 
 $max = $arm['munmax'];
 $nbmun = $max - $inv['munp'.$i];
+echo json_encode(array('type'=>'success','content'=>$nbmun*$arm['prixballes']));
+
 ?>
-<table class='small' width='100%' height='30'>
-	<tr>
-		<td align=center><font size=3>RECHARGER</font></td>
-	</tr>
-</table>
-<table>
-	<tr>
-	<?php 	if($nbmun!=0) echo "<td>Acheter ".$nbmun." balles pour ".($nbmun*$arm['prixballes'])." $ ? (".$arm['prixballes']."$ / balle)</td>";
-			else echo "<td><p>Arme d&eacute;j&#224; recharg&eacute;e !</p></td>"?>
-	</tr>
-</table>
-<table width=100%>
-	<tr>
-		<td><?php
-			if($nbmun!=0)
-			echo"<table class='button'  >
-				<tr>
-					<td align=center id='button' class='achatmunpiege'>
-						<a href='achatmunpiege.php?perso=".$p."&piege=".$i."'>OK</a>
-					</td>
-				</tr>
-			</table>";
-			?>
-		</td>
-	</tr>
-</table>
-<script type="text/javascript" language="javascript" src="rechargepiege.js"></script>
