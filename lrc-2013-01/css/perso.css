@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+#menuperso{
+	padding:0;
+	margin:0;
+}
+#menuperso ul ul{
+	display:none;
+}
+#menuperso ul li:hover > ul{
+	display:block;
+	z-index:10;
+}
+#menuperso ul{
+	background: transparent;
+	padding: 0 10px;
+	list-style: none;
+	position: relative;
+	display: inline-block;
+}
+#menuperso, #menuperso > ul{
+	width: 100%;
+}
+#menuperso ul:after{
+	content: ""; clear: both; display: block;
+}
+#menuperso ul li{
+	float:left;
+	background: #242424;
+	margin-right: 5px;
+}
+#menuperso > ul > li{
+	width:200px;
+	cursor: hand;
+}
+#menuperso > ul > li:first-child{
+	width:auto;
+}
+#menuperso ul li:hover{
+	background: #7f7f7f;
+}
+#menuperso ul li a{
+	display: block;
+	padding: 8px 40px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	text-align: center;
+	color: white;
+}
+#menuperso ul li a.current{
+	border: 1px solid #7f7f7f;
+}
+#menuperso > ul > li:first-child > a{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+#menuperso ul ul{
+	background: transparent;
+	padding:0;
+	border-radius:0;
+	position:absolute;
+	top: 100%;
+	width:200px;
+}
+#menuperso ul ul li{
+	float:none;
+	position:relative;
+	width:200px;
+}
+#menuperso ul ul li a{
+	padding:8px 40px;
+}
+#menuperso ul li a:hover{
+	background: #7f7f7f;
+	color:white;
+}
