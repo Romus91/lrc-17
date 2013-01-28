@@ -5,31 +5,78 @@ class WaveGenerator{
 	protected $_nb_zomb;
 	protected $_nb_fast;
 	protected $_nb_pois;
+	protected $_wave;
 
-	public function __construct(int $level){
+	public function __construct($level){
 		$this->_level = (int) $level;
 		$this->computeCrab();
 		$this->computeZombie();
 		$this->computeFast();
 		$this->computePoison();
+		$this->_wave = $this->buildWave();
 	}
 
 	private function computeCrab(){
-		$this->_nb_crab=($this->_level*5)+mt_rand(-(floor($this->_level/8)),(floor($this->_level/8)));
+		$nb = floor($this->_level*2);
+		$this->_nb_crab=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 	}
 	private function computeZombie(){
-		$this->_nb_zomb=($this->_level*3)+mt_rand(-(floor($this->_level/6)),(floor($this->_level/6)));
+		$nb = floor($this->_level*1.156);
+		$this->_nb_zomb=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 	}
 	private function computeFast(){
-		if($this->_level>1) $this->_nb_fast=($this->_level*2)+mt_rand(-(floor($this->_level/4)),(floor($this->_level/4)));
+		$nb=floor($this->_level*1.034);
+		if($this->_level>1) $this->_nb_fast=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 		else $this->_nb_fast=0;
 	}
 	private function computePoison(){
-		$nb=floor($this->_level/10);
+		$nb=floor($this->_level/15);
 		$this->_nb_pois= mt_rand(0,$nb);
-
-		/*$rand=mt_rand(10,99);
-		if($this->_level >= $rand) $this->_nb_pois = floor($this->_level/10)+mt_rand(-1,1);
-		else $this->_nb_pois=0;*/
 	}
+	private function buildWave(){
+		$z=$this->_nb_zomb;
+		$p=$this->_nb_pois;
+		$c=$this->_nb_crab;
+		$f=$this->_nb_fast;
+		$wave = array();
+		$shuffle=0;
+		while($z>0 || $p>0 || $c>0 || $f>0){
+			$choix = mt_rand(0,3);
+			$level = mt_rand((($this->_level-1>1)?$this->_level-1:1),(($this->_level+1>1)?$this->_level+1:1));
+			switch($choix){
+				case 0 : //zombie
+					if($z>0){
+						$wave[] = new Zombie($level);
+						$z--;
+					}
+					break;
+				case 1 : //fast
+					if($f>0){
+						$wave[] = new FastZombie($level);
+						$f--;
+					}
+					break;
+				case 2 : //poison
+					if($p>0){
+						$wave[] = new PoisonZombie($level);
+						$p--;
+					}
+					break;
+				case 3 : //crab
+					if($c>0){
+						$wave[] = new Crab($level);
+						$c--;
+					}
+					break;
+			}
+		}
+		shuffle($wave);
+		return $wave;
+	}
+	public function getLevel(){return $this->_level;}
+	public function getNbCrab(){return $this->_nb_crab;}
+	public function getNbZomb(){return $this->_nb_zomb;}
+	public function getNbFast(){return $this->_nb_fast;}
+	public function getNbPois(){return $this->_nb_pois;}
+	public function getWave(){return $this->_wave;}
 }

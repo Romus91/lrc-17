@@ -8,7 +8,7 @@ $req->execute();
 $data = $req->fetchAll(PDO::FETCH_OBJ);
 
 foreach($data as $p){
-	if(imagepng(genImg($p->photo.'.JPG',176,0,$p->level),'ava/'.$p->id.'.png')){
+	if(imagepng(genImg($p->photo.'.JPG',Perso::AVATAR_HEIGHT,0,$p->level),'ava/'.$p->id.'.png')){
 		echo $p->id.' done !<br>';
 	}else
 		echo $p->id.' failed !<br>';

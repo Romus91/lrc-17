@@ -2,43 +2,46 @@
 
 abstract class Monster{
 	protected $_baselife;
+	protected $_life;
 	protected $_level;
 	protected $_baseexp;
+	protected $_exp;
 	protected $_damage;
 	protected $_energycost;
+	protected $_hit;
 
 	public function getLife(){
-		return $this->computeLife($this->_level);
+		return $this->_life;
 	}
 	private function computeLife($level){
-		if($level==1) return $this->_baselife;
-		else return round(1.03*$this->computeLife($level-1),3);
+		return $this->_baselife*pow(1.003, $this->_level);
 	}
 	public function getExp(){
-		return $this->computeExp($this->_level);
+		return $this->_exp;
 	}
 	private function computeExp($level){
-		if($level==1) return $this->_baseexp;
-		else return round(1.015*$this->computeExp($level-1),3);
+		return $this->_baseexp*pow(1.015, $this->_level);
 	}
-	protected function setDamage(float $damage){
-		$this->_damage = (float) $damage;
+	protected function setDamage($damage){
+		$this->_damage = $damage;
 		return $this;
 	}
-	protected function setBaseLife(int $baselife){
-		$this->_baselife = (int) $baselife;
+	protected function setBaseLife($baselife){
+		$this->_baselife = $baselife;
+		$this->_life = $this->computeLife($this->_level);
 		return $this;
 	}
-	protected function setBaseExp(int $baseexp){
-		$this->_baseexp = (int) $baseexp;
+	protected function setBaseExp($baseexp){
+		$this->_baseexp = $baseexp;
+		$this->_exp = $this->computeExp($this->_level);
 		return $this;
 	}
-	protected function setLevel(int $level){
-		$this->_level = (int) $level;
+	protected function setLevel($level){
+		$this->_level = $level;
 		return $this;
 	}
-	protected function setEnergyCost(float $enregycost){
-		$this->_energycost = (float) $energycost;
+	protected function setEnergyCost($energycost){
+		$this->_energycost = $energycost;
 		return $this;
 	}
 	public function getLevel(){
@@ -49,5 +52,9 @@ abstract class Monster{
 	}
 	public function getEnergyCost(){
 		return $this->_energycost;
+	}
+	public function hit($dmg){
+		$this->_hit+=$dmg;
+		$this->_life-=$dmg;
 	}
 }

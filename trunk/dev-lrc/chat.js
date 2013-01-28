@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	$("#chatform input[name=mess]").watermark("Entrez votre message...");
 	$("#pseudobox").mCustomScrollbar({
-		set_height: 300
+		set_height: '86%'
 	});
 	loadChat();
 	loadOnline();
-	setTimeout(function(){$("#pseudobox").mCustomScrollbar("scrollTo","bottom");},555);
+	//setTimeout(function(){$("#pseudobox").mCustomScrollbar("scrollTo","bottom");},555);
 	$("#chatform").submit(function(){
 		$(this).ajaxSubmit({
 			url: 'envoischat.php',
@@ -18,6 +18,23 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+	$("#chat-tray").click(function(){
+		if($("#footer-block-wrapper").hasClass('shown')){
+			$("#footer-block-wrapper").animate({height:'31px'},600);
+		}else{
+			$("#footer-block-wrapper").animate({height:'400px'},600);
+			window.localStorage.setItem('unreadMessage',0);
+			$("#chatUnreadMessage").html(window.localStorage.getItem('unreadMessage'));
+		}
+		$("#footer-block-wrapper").toggleClass('shown');
+		$("#chat-tray-arrow").toggleClass('down');
+	});
+	if(window.localStorage.getItem('unreadMessage') != null){
+		$("#chatUnreadMessage").html(window.localStorage.getItem('unreadMessage'));
+	}
+	document.getElementById('chat-sound-player').addEventListener('ended',function(){
+		this.currentTime=0;
+	},false);
 });
 
 function addMessage(arr, form, options){
@@ -27,6 +44,7 @@ function addMessage(arr, form, options){
 		var d = new Date();
 		var date =  d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 		addContent($(".mCSB_container"),form[0].pseudo.value,date,form[0].mess.value);
+		updateScroll();
 	}
 }
 function loadChat(){
@@ -46,7 +64,9 @@ function loadChat(){
 				for(var i in cont){
 					addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
 				}
-				$('body').append('<span id="playSound"></span>');
+				//$('body').append('<span id="playSound"></span>');
+				if(window.localStorage.getItem('unreadMessage') == null) window.localStorage.setItem('unreadMessage',0);
+				updateScroll();
 			}else{
 				var cont = result.content;
 				$("#chattimestamp").text(result.timestamp);
@@ -54,12 +74,23 @@ function loadChat(){
 					for(var i in cont){
 						addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
 					}
-					$('#playSound').html("<embed src='snd/chat.mp3' hidden='true' autostart='true' loop='false'>");
+					playSound();
+					if(!$("#footer-block-wrapper").hasClass('shown')){
+						var count = parseInt(window.localStorage.getItem('unreadMessage'));
+						count+=cont.length;
+						$("#chatUnreadMessage").html(count);
+						window.localStorage.setItem('unreadMessage',count);
+					}
+					updateScroll();
 				}
 			}
 		}
 	});
 	setTimeout(function(){loadChat();},1000);
+}
+function updateScroll(){
+	$("#pseudobox").mCustomScrollbar("update");
+	$("#pseudobox").mCustomScrollbar("scrollTo","bottom");
 }
 function addContent(container, user, date, message){
 	container.append(
@@ -76,8 +107,9 @@ function addContent(container, user, date, message){
 	if(message){
 		container.append("<div class='color1' style='clear:both;'>"+message+"</div>");
 	}
-	$("#pseudobox").mCustomScrollbar("update");
-	$("#pseudobox").mCustomScrollbar("scrollTo","bottom");
+}
+function playSound(){
+	document.getElementById('chat-sound-player').play();
 }
 
 function loadOnline(){

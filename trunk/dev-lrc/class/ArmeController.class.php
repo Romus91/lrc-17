@@ -2,7 +2,7 @@
 
 class ArmeController{
 	public function fetchAll(){
-		$query = 'select id from armes;';
+		$query = 'select id from armes order by lvlrequis;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute();
 		$tabArme = array();
@@ -10,7 +10,7 @@ class ArmeController{
 			$arme = $this->fetchArme($data->id);
 			$tabArme[] = $arme;
 		}
-		return tabArme;
+		return $tabArme;
 	}
 	public function fetchArme($id){
 		$query = 'select * from armes where id = :id';
@@ -25,7 +25,11 @@ class ArmeController{
 					-> setPrix($data->prix)
 					-> setPrixballes($data->prixballes)
 					-> setForce($data->force)
-					-> setPrecision($data->precision);
+					-> setPrecision($data->preci_base)
+					-> setAmCapMax($data->cap_max)
+					-> setAmDegMax($data->deg_max)
+					-> setAmPreMax($data->pre_max)
+					-> setNbCible($data->nb_cible);
 		}
 		return $arme;
 	}
@@ -37,13 +41,94 @@ class ArmeController{
 		while($data=$req->fetch(PDO::FETCH_OBJ)){
 			$arme = $this->fetchArme($data->arme);
 			$arme	-> setMunitions($data->mun)
-					-> setOrdre($data->ordre)
-					-> setAmPreci($data->precision)
-					-> setAmForce($data->force)
-					-> setAmCapa($data->capa);
+					-> setAmPreci($data->preci)
+					-> setAmForce($data->degat)
+					-> setAmCapa($data->capa)
+					-> setOrdre($data->ordre);
 			$tabArme[] = $arme;
 		}
 		return $tabArme;
+	}
+	public function addArme($id_perso, Arme $arm){
+		$nb = count($this->fetchPerso($id_perso));
+		$query = 'select max(ordre) as max from inv_arme where perso = :p and arme <> 1;';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->execute(array('p'=>$id_perso));
+		$data = $req->fetch(PDO::FETCH_OBJ)->max;
+		if($arm->getId()==1){
+			$ordre=6;
+		}else{
+			$ordre=$data+1;
+		}
+		if($nb<6){
+			$query = "insert into inv_arme (perso,arme,mun,ordre) values (:p,:a,:m,:o);";
+			$req = ConnectionSingleton::connect()->prepare($query);
+			return $req->execute(array('p'=>$id_perso,'a'=>$arm->getId(),'m'=>$arm->getMunitions(),'o'=>$ordre));
+		}else{
+			return false;
+		}
+	}
+	public function savePerso(Perso $p){
+		$tabArme = $p->getInvArme();
+		$query = 'update inv_arme set
+			mun = :mun,
+			degat = :for,
+			preci = :pre,
+			capa = :cap,
+			ordre = :o
+			where arme = :arm and perso = :perso;';
+		$req =null;
+		foreach($tabArme as $arm){
+			$req = ConnectionSingleton::connect()->prepare($query);
+			$req->execute(array(
+						'mun'	=>$arm->getMunitions(),
+						'for'	=>$arm->getAmForce(),
+						'pre'	=>$arm->getAmPreci(),
+						'cap'	=>$arm->getAmCapa(),
+						'o'		=>$arm->getOrdre(),
+						'arm'	=>$arm->getId(),
+						'perso'	=>$p->getId()
+			));
+		}
+	}
+	public function moveArmeLeft(Perso $p, Arme $a){
+		if($a->getId()!=1 && $a->getOrdre()>1){
+			$armes = $p->getInvArme();
+			$o = $a->getOrdre();
+			foreach ($armes as $arm) {
+				if($arm->getOrdre()==$a->getOrdre()+1){
+					$arm->setOrdre($o);
+				}
+				if($arm->getId()==$a->getId()){
+					$arm->setOrdre($o+1);
+				}
+			}
+			$p->setInvArme($armes);
+			$this->savePerso($p);
+			return true;
+		}else return false;
+	}
+	public function moveArmeRight(Perso $p, Arme $a){
+		if($a->getId()!=1 && $a->getOrdre()<5){
+			$armes = $p->getInvArme();
+			$o = $a->getOrdre();
+			foreach ($armes as $arm) {
+				if($arm->getOrdre()==$a->getOrdre()-1){
+					$arm->setOrdre($o);
+				}
+				if($arm->getId()==$a->getId()){
+					$arm->setOrdre($o-1);
+				}
+			}
+			$p->setInvArme($armes);
+			$this->savePerso($p);
+			return true;
+		}else return false;
+	}
+	public function deleteArme(Perso $perso,Arme $arme){
+		$query = 'delete from inv_arme where perso = :p and arme = :a;';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		return $req->execute(array('p'=>$perso->getId(),'a'=>$arme->getId()));
 	}
 }
 ?>

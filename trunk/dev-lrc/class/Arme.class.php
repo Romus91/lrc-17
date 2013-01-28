@@ -1,5 +1,5 @@
 <?php
-	
+
 class Arme{
 	protected $_id;
 	protected $_nom;
@@ -10,11 +10,16 @@ class Arme{
 	protected $_lvlrequis;
 	protected $_force;
 	protected $_precision;
-	protected $_munitions;
 	protected $_ordre;
+	protected $_munitions;
 	protected $_amForce;
+	protected $_amDegMax;
 	protected $_amPrecision;
+	protected $_amPreMax;
 	protected $_amCapa;
+	protected $_amCapMax;
+	protected $_nbCible;
+
 	/**
 	 * @return the $_id
 	 */
@@ -144,13 +149,6 @@ class Arme{
 		if($this->_munitions > $this->getCapacity()) $this->setMunitions($this->getCapacity());
 		return $this;
 	}
-	public function getOrdre(){
-		return $this->_ordre;
-	}
-	public function setOrdre($o){
-		$this->_ordre = (int) $o;
-		return $this;
-	}
 	public function setAmPreci($amP){
 		$this->_amPrecision = (int) $amP;
 		return $this;
@@ -172,6 +170,27 @@ class Arme{
 	public function getAmForce(){
 		return $this->_amForce;
 	}
+	public function setAmPreMax($amP){
+		$this->_amPreMax = (int) $amP;
+		return $this;
+	}
+	public function setAmCapMax($amC){
+		$this->_amCapMax = (int) $amC;
+		return $this;
+	}
+	public function setAmDegMax($amF){
+		$this->_amDegMax = (int) $amF;
+		return $this;
+	}
+	public function getAmPreMax(){
+		return $this->_amPreMax;
+	}
+	public function getAmCapMax(){
+		return $this->_amCapMax;
+	}
+	public function getAmDegMax(){
+		return $this->_amDegMax;
+	}
 	public function addAmPreci(){
 		$this->_amPrecision++;
 		return $this;
@@ -184,14 +203,42 @@ class Arme{
 		$this->_amForce++;
 		return $this;
 	}
+	public function remAmPreci(){
+		$this->_amPrecision--;
+		return $this;
+	}
+	public function remAmCapa(){
+		$this->_amCapa--;
+		return $this;
+	}
+	public function remAmForce(){
+		$this->_amForce--;
+		return $this;
+	}
 	public function getHitChance(){
-		return 1-(2/(3+($this->_precision*(1+($this->_amPrecision/10)))));
+		$pre = $this->_precision*(1+($this->_amPrecision/10));
+		return (($pre>100)?100:$pre);
 	}
 	public function getDamage(){
 		return $this->_force*(1+($this->_amForce/10));
 	}
 	public function getCapacity(){
 		return $this->_munmax*(1+($this->_amCapa/10));
+	}
+	public function getNbCible($amelio){
+		if($this->_nbCible==1) return 1;
+		else return floor($this->_nbCible*$amelio);
+	}
+	public function setNbCible($nb){
+		$this->_nbCible = (int) $nb;
+		return $this;
+	}
+	public function setOrdre($ordre){
+		$this->_ordre = (int)$ordre;
+		return $this;
+	}
+	public function getOrdre(){
+		return $this->_ordre;
 	}
 }
 ?>

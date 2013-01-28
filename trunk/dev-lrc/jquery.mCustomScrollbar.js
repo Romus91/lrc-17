@@ -1,13 +1,13 @@
-/* 
-== malihu jquery custom scrollbars plugin == 
-version: 2.1 
-author: malihu (http://manos.malihu.gr) 
-plugin home: http://manos.malihu.gr/jquery-custom-content-scroller 
+/*
+== malihu jquery custom scrollbars plugin ==
+version: 2.1
+author: malihu (http://manos.malihu.gr)
+plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 */
 (function($){
 	var methods={
 		init:function(options){
-			var defaults={ 
+			var defaults={
 				set_width:false, /*optional element width: boolean, pixels, percentage*/
 				set_height:false, /*optional element height: boolean, pixels, percentage*/
 				horizontalScroll:false, /*scroll horizontally: boolean*/
@@ -118,7 +118,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 				}else{ /*is touch device*/
 					/*check for mobile os/browser not supporting overflow:auto (Android 2.xx)*/
 					var ua=navigator.userAgent;
-					if(ua.indexOf("Android")!=-1){ 
+					if(ua.indexOf("Android")!=-1){
 						var androidversion=parseFloat(ua.slice(ua.indexOf("Android")+8));
 						if(androidversion<3){
 							touchScroll("mCSB_"+$(document).data("mCustomScrollbar-index")); /*non overflow:auto fn*/
@@ -141,7 +141,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 					mCustomScrollBox.scroll(function(){
 						$this.mCustomScrollbar("callbacks",mCustomScrollBox,mCSB_container); /*user custom callback functions*/
 					});
-					/*non overflow:auto fn 
+					/*non overflow:auto fn
 					(source: http://chris-barr.com/index.php/entry/scrolling_a_overflowauto_element_on_a_touch_screen_device/)*/
 					function touchScroll(id){
 						var el=document.getElementById(id),
@@ -159,9 +159,9 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 							but their finger moves a few pixels down or up.  The event.preventDefault() function
 							will not be called in that case so that the whole page can scroll.*/
 							if((this.scrollTop<this.scrollHeight-this.offsetHeight && this.scrollTop+event.touches[0].pageY<scrollStartPosY-5) || (this.scrollTop!=0 && this.scrollTop+event.touches[0].pageY>scrollStartPosY+5))
-								event.preventDefault();	
+								event.preventDefault();
 							if((this.scrollLeft<this.scrollWidth-this.offsetWidth && this.scrollLeft+event.touches[0].pageX < scrollStartPosX-5) || (this.scrollLeft!=0&&this.scrollLeft+event.touches[0].pageX>scrollStartPosX+5))
-								event.preventDefault();	
+								event.preventDefault();
 							this.scrollTop=scrollStartPosY-event.touches[0].pageY;
 							this.scrollLeft=scrollStartPosX-event.touches[0].pageX;
 						},false);
@@ -293,7 +293,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 				}else{
 					var draggableAxis="y";
 				}
-				mCSB_dragger.draggable({ 
+				mCSB_dragger.draggable({
 					axis:draggableAxis,
 					containment:"parent",
 					drag:function(event,ui){
@@ -301,7 +301,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 						mCSB_dragger.addClass("mCSB_dragger_onDrag");
 					},
 					stop:function(event,ui){
-						mCSB_dragger.removeClass("mCSB_dragger_onDrag");	
+						mCSB_dragger.removeClass("mCSB_dragger_onDrag");
 					}
 				});
 			}
@@ -335,7 +335,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 					mousewheelVel=8; /*default mousewheel velocity*/
 					/*check for safari browser on mac osx to lower mousewheel velocity*/
 					var os=navigator.userAgent;
-					if(os.indexOf("Mac")!=-1 && os.indexOf("Safari")!=-1 && os.indexOf("AppleWebKit")!=-1 && os.indexOf("Chrome")==-1){ 
+					if(os.indexOf("Mac")!=-1 && os.indexOf("Safari")!=-1 && os.indexOf("AppleWebKit")!=-1 && os.indexOf("Chrome")==-1){
 						mousewheelVel=1;
 					}
 				}
@@ -450,7 +450,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 								mCSB_dragger.stop().animate({left:draggerScrollTo},scrollToSpeed,"linear");
 								$this.mCustomScrollbar("scroll");
 							},20);
-						});	
+						});
 						var mCSB_buttonLeft_stop=function(e){
 							e.preventDefault();
 							clearInterval(mCSB_buttonScrollLeft);
@@ -488,7 +488,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 								mCSB_dragger.stop().animate({top:draggerScrollTo},scrollToSpeed,"linear");
 								$this.mCustomScrollbar("scroll");
 							},20);
-						});	
+						});
 						var mCSB_buttonUp_stop=function(e){
 							e.preventDefault();
 							clearInterval(mCSB_buttonScrollUp);
@@ -670,7 +670,7 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 						$this.mCustomScrollbar("scroll",true);
 					}
 				}
-					
+
 			}
 		},
 		callbacks:function(mCustomScrollBox,mCSB_container){
@@ -719,4 +719,4 @@ plugin home: http://manos.malihu.gr/jquery-custom-content-scroller
 			$.error("Method "+method+" does not exist");
 		}
 	};
-})(jQuery);  
+})(jQuery);

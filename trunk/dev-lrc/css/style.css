@@ -1,0 +1,595 @@
+
+/*TABLE*/
+table
+{
+	FONT-SIZE: 8pt;
+	FONT-FAMILY:Verdana;
+	COLOR: #FFFFFF;
+	font-weight:bold;
+
+}
+
+table.main
+{
+
+	background-color : #000000;
+	min-width: 1000px;
+	width: 1000px;
+}
+
+.color1
+{
+	background-color : #333333;
+
+}
+.color2
+{
+	background-color : #CC6600;
+
+}
+.color3
+{
+	background-color : #333333;
+
+}
+.color4
+{
+	background-color : #555555;
+
+}
+.color5
+{
+	background-color : #484848;
+
+}
+
+table .hev
+{
+	background : url(http://anthares.be/lrc/pic/vierge.png) no-repeat center center;
+	background-size:contain;
+	width : 91px;
+	height : 63px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+table .barremenu
+{
+	background : url(http://anthares.be/lrc/pic/barre.png) no-repeat center #000;
+	background-size: cover;
+}
+
+.small{
+		background: #000000;
+}
+
+table .barre
+{
+background : url(http://anthares.be/lrc/pic/blanc.png) repeat left;
+	background-color : #000000;
+}
+
+
+/*TD*/
+
+td .header
+{
+		/*background : url(http://anthares.be/lrc/pic/headerbackground.png) repeat-y center top;*/
+		background-color :#000000;
+		height: 95px;
+}
+
+td .bannerinfo
+{
+		background : url(http://anthares.be/lrc/pic/bannerinfo.png) no-repeat center top;
+		height: 65px;
+		FONT-SIZE: 14pt;
+		font-weight:bold;
+		border-style:solid;
+		border-width:2px;
+		border-color:#333333;
+}
+
+td .title
+{
+	background-color : #000000;
+}
+
+td .title2
+{
+	background-color : #111111;
+}
+
+td .maincenter
+{
+	background-color : #333333;
+}
+
+td .verouille
+{
+	background-image:url(http://anthares.be/lrc/pic/fondverouillesmall.png);
+	background-position:center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	color : 333333;
+
+}
+
+td .verouilleh
+{
+	background-image:url(http://anthares.be/lrc/pic/fondverouille.png);
+	background-position:center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	color : 333333;
+
+}
+
+/*TAB INFO*/
+td .info
+{
+	FONT-SIZE: 14pt;
+	font-weight:bold;
+
+}
+
+#info
+{
+	FONT-SIZE: 14pt;
+	font-weight:bold;
+	color : #f7a300;
+
+}
+
+/*BODY*/
+body
+{
+	FONT-SIZE: 8pt;
+	FONT-FAMILY:New time roman;
+	background-image:url(http://anthares.be/lrc/pic/background.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-attachement: fixed;
+	background-color : #000000;
+	font-weight:bold;
+}
+
+ a
+  {
+    color:#FF9900;
+    text-decoration:none;
+    font-weight:bold;
+  }
+
+  a:hover
+  {
+    color:#CC6600;
+    text-decoration:underline;
+    font-weight:bold;
+  }
+  a img{border: 0;}
+.hev a:hover
+{
+	background : url(http://anthares.be/lrc/pic/viergec.png) no-repeat center center;
+	width : 91px;
+	height : 63px;
+}
+
+
+.hide {
+  display: none;
+}
+
+#left-column{
+	width:280px;
+}
+
+#right-column{
+	width: 100%;
+}
+
+/* Menu */
+
+#menu {
+	margin-left : auto;
+	margin-right : auto;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 5px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	float: center;
+}
+
+#menu a {
+	display: block;
+	width: 250px;
+	height: 25px;
+	margin-right: 1px;
+	padding: 5px 0px 0px 0px;
+	background: #242424;
+	text-decoration: none;
+	text-align: center;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	border: none;
+}
+
+#menu a:hover, #menu .current_page_item a {
+	background: #7f7f7f;
+}
+
+#menu .current_page_item a {
+	background: #7f7f7f;
+}
+
+/* Bouton */
+
+.button
+{
+	background : #111111;
+	width: 100%;
+}
+#button {
+	margin-left : auto;
+	margin-right : auto;
+}
+
+#button ul {
+	margin: 0;
+	padding: 5px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+}
+
+#button li {
+	float: center;
+}
+
+#button a {
+	display: block;
+	height: 25px;
+	width: 100%;
+	margin-right: 1px;
+	padding: 5px 0px 0px 0px;
+	background: #242424;
+	text-decoration: none;
+	text-align: center;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	border: none;
+}
+
+#button a:hover, #menu .current_page_item a {
+	background: #7f7f7f;
+}
+
+.current_page_item {
+	background: #7f7f7f;
+}
+tr.perso td.hover{
+	background-color: #666666;
+}
+#armeinfo, #piegeinfo, #piedbiche{
+	display: none;
+}
+#chatform{
+	width: 100%;
+}
+#chatform input{
+	width: 100%;
+}
+#membre.jauge{
+	width: 100%;
+	height: 20px;
+	font-size: 15px;
+}
+#meminfo{
+	display:none;
+}
+#shop{
+	width: 100%;
+}
+#shopList{
+	width: 100%;
+}
+#shopList td{
+	width:20%;
+}
+.shopitem{
+	margin:auto;
+	text-align: center;
+	vertical-align: middle;
+}
+.shopitem .hev{
+	margin:auto;
+	height: 100%;
+	display: block;
+	text-decoration: none;
+}
+.shopitem a.hev:hover{
+	background : url(http://anthares.be/lrc/pic/viergec.png) no-repeat center center;
+	background-size:contain;
+}
+.shopitem .hev p{
+	margin:0;
+}
+.shopitemdesc{
+	text-align: center;
+}
+#inventory{
+	width:100%;
+	border-top: 1px solid #555555;
+	border-collapse: collapse;
+}
+#inventory tr{
+	width:100%;
+	border-left: 1px solid #555555;
+}
+#inventory td.invSlot{
+	background: url(http://anthares.be/lrc/pic/inventory-bg2.png) no-repeat center 55;
+	border-right: 1px solid #555555;
+	border-bottom: 1px solid #555555;
+	height: 120px;
+	text-align:center;
+}
+.jauge{
+	position: relative;
+	width:100%;
+	height:13px;
+	z-index: 1;
+	font-size: 11px;
+}
+.jauge .grid{
+	z-index: 2;
+	position: absolute;
+	top: 0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+}
+.jauge .barre{
+	position: absolute;
+	height:100%;
+	z-index: 3;
+}
+.jauge .lib{
+	vertical-align:middle;
+	font-size: inherit;
+	text-shadow: 1px 1px 3px #000;
+	box-sizing: border-box;
+	position: absolute;
+	top: -1px;
+	z-index: 4;
+	left:5px;
+	width: 30px;
+	height: 100%;
+}
+.jauge .texte{
+	vertical-align:middle;
+	font-size: inherit;
+	text-shadow: 1px 1px 3px #000;
+	text-align: right;
+	box-sizing: border-box;
+	position: absolute;
+	top: -1px;
+	z-index: 5;
+	right:5px;
+	width: 200px;
+	height: 100%;
+}
+.vote{
+	display: inline-block;
+	margin:0;
+	background: #fff;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 3px;
+}
+.votecount{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-top:5px;
+}
+#palmares{
+	text-align: center;
+	width: 100%;
+	background: #333;
+	vertical-align: middle;
+}
+#popup{
+	position: absolute;
+	top: 30%;
+	width: 100%;
+	z-index: 9999;
+	display: none;
+}
+#popup .content{
+	background: #333333; /* Old browsers */
+	background: -moz-linear-gradient(top,  #333333 0%, #777777 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333333), color-stop(100%,#777777)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #333333 0%,#777777 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #333333 0%,#777777 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #333333 0%,#777777 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #333333 0%,#777777 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#777777',GradientType=0 ); /* IE6-9 */
+
+	border: 1px solid #cc6600;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	padding: 12px;
+	text-align: center;
+	vertical-align:middle;
+	clear: both;
+	width: 300px;
+}
+#popup .content .image{
+	width:19%;
+	height: 100%;
+	float: right;
+}
+#popup .content .message{
+	width: 79%;
+	float: left;
+	top:0;
+}
+#popup .content .popup-buttons{
+	padding-bottom: 10px;
+	width: 100%;
+	text-align:center;
+}
+table.wave{
+	width: 100%;
+
+}
+table.wave tr.round{
+	width: 100%;
+}
+table.wave tr.round td, table.wave tr.round div{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	font-size:7pt;
+	box-sizing: border-box;
+}
+table.wave tr.round .player{
+	background: #00cc00;
+	text-align: center;
+	vertical-align:middle;
+}
+table.wave tr.round .zomb{
+	background: #cc0000;
+	text-align: center;
+	vertical-align:middle;
+}
+table.wave tr.round > .zomb{
+	width:53px;
+}
+table.wave tr.round td.arme{
+	background: #0000cc;
+	text-align: center;
+	vertical-align:middle;
+	width: 72px;
+}
+table.wave tr.round td.content{
+	background: #555555;
+	padding-bottom:0;
+}
+table.wave tr.round td.content > .player, table.wave tr.round td.content > .zomb{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+table.armes-wave{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	border-collapse: collapse;
+	background: #111111;
+}
+.gp-wave{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	background: #555555;
+}
+#footer-block-wrapper{
+	position:fixed;
+	height:31px;
+	width:100%;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:100;
+	background:transparent;
+	color: white;
+}
+#footer-block{
+	position:relative;
+	width:75%;
+	background:#5f6975;
+	height:400px;
+	margin:auto;
+	border-radius:5px 5px 0 0;
+	border: 1px solid #6b727c;
+	text-align: left;
+	font-size: 11px;
+	font-family: verdana;
+}
+#chat-tray{
+	background-color: #5f6975;
+	border-radius:5px 5px 0 0;
+	height:30px;
+	text-align: center;
+	font-size: 22px;
+	cursor: hand;
+	position: relative;
+}
+#chat-tray > div{
+	height: 100%;
+	position: absolute;
+}
+#chat-tray-arrow{
+	width:30;
+	background: url(http://anthares.be/lrc/pic/chat-arrow-up.png) no-repeat center center;
+	background-size: 80%;
+	border-radius: 5px 0 0 0;
+	border-right:1px solid #575f6a;
+	left: 0;
+}
+#chat-tray-arrow.down{
+	background: url(http://anthares.be/lrc/pic/chat-arrow-down.png) no-repeat center center;
+	background-size: 80%;
+}
+#chat-tray-title{
+	left:31;
+	right:31;
+	border-left:1px solid #6b727c;
+	border-right:1px solid #575f6a;
+}
+#chat-tray-badge{
+	width:30;
+	background: url(http://anthares.be/lrc/pic/red_badge.png) no-repeat center center;
+	background-size: 80%;
+	border-radius: 0 5px 0 0;
+	right: 0;
+	border-left:1px solid #6b727c;
+}
+#chatUnreadMessage{
+	text-align: center;
+	font-size: 14px;
+	margin-top: 6px;
+}
+#pseudobox{
+	padding: 0 5px;
+	background: black;
+}
+.role-admin{
+	color: #FF0000;
+}
+.role-dev{
+	color: #FF9900;
+}
+.role-member{
+	color:#fff;
+}

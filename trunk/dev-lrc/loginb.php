@@ -1,8 +1,9 @@
+<?php require_once 'cdnHelper.php';?>
 <html>
 <head>
   <title>LES RESCAPES DE CITE 17 - Accueil</title>
   <link rel="icon" type="image/jpg" href="hl2logo.gif" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <meta http-equiv="content-language" content="fr">
   <script type="text/javascript">
 
@@ -20,37 +21,37 @@
 </head>
 <body>
 <center>
-<table align=center class='main' width='800'>
+<table align=center class='main'>
 	<tr >
 		<td>
-			<table border="0" class='main' width="100%" >
-			<tr >
-				<td width="100%" class="header"  colspan="3" align=center>
-				   <a href="index.php"><img border="0" src="pic/banner.png" width="700" ></a>
-				</td>
-			</tr>
-			
-			<tr class='maincenter' >
-				<td width="100%" height="100%" valign='top'>
-					<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
-						<tr >
-							<td  style="border-left: 1px solid rgb(0,0,0); border-right: 1px solid rgb(0,0,0); border-top: 1px solid rgb(0,0,0); border-bottom: 1px solid rgb(0,0,0);"  class='color1' >
-								<table border="0" cellpadding="0" cellspacing="0" width="100%" height="490" >
-									<tr >
-										<td valign=top align=center width="100%" height="100%"> <font color=FFFFFF>
-											<table class='barremenu' width="100%">
+			<table border="0" width="100%" >
+				<tr >
+					<td width="100%" class="header"  colspan="3" align=center>
+					   <a href="index.php"><img border="0" src="<?php echo convertToCDNUrl('pic/banner.png');?>" width="700" ></a>
+					</td>
+				</tr>
+
+				<tr class='maincenter' >
+					<td width="270" height="100%" valign='top'>
+						<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+							<tr height="100%">
+								<td height="100%" style="border-left: 1px solid rgb(0,0,0); border-right: 1px solid rgb(0,0,0); border-top: 1px solid rgb(0,0,0); border-bottom: 1px solid rgb(0,0,0);"  class='color1' >
+									<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" >
+										<tr  height="100%">
+											<td valign=top align=center width="100%" height="100%">
+												<table class='barremenu' width="100%" height="100%">
 													<tr>
 														<td align=center>&nbsp;</td>
 													</tr>
 												</table>
 											</td>
 										</tr>
-										<tr>
+										<tr height="100%">
 											<td align=center >
-												<table>
+												<table height="100%">
 													<tr >
-														<td colspan='3' >
-															<table align=center>
+														<td>
+															<table align=center height="100%" style="margin: 79 0;">
 																<form action="login.php" method='post'>
 																	<tr>
 																		<td align=right><font color='FFFFFF'><b>LOGIN </b></font><input type="text" name="login" maxlength="20"></td>
@@ -63,7 +64,7 @@
 																			<table class='button'>
 																				<tr>
 																					<td id='button' width='100%' align="center">
-																						<input type="image" src='image.php?img=img02go.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03go.png&w=110&h=30'" onmouseout="src='image.php?img=img02go.png&w=110&h=30'">
+																						<input type="image" src='<?php echo convertToCDNUrl('image.php?img=img02go.png&w=110&h=30');?>' value='connexion' onmouseover="src='<?php echo convertToCDNUrl('image.php?img=img03go.png&w=110&h=30');?>'" onmouseout="src='<?php echo convertToCDNUrl('image.php?img=img02go.png&w=110&h=30');?>'">
 																					</td>
 																				</tr>
 																			</table>
@@ -134,7 +135,7 @@
 																	<table class='button'>
 																		<tr>
 																			<td id='button' align="center">
-																				<input type="image" src='image.php?img=img02ins.png&w=110&h=30' value='connexion' onmouseover="src='image.php?img=img03ins.png&w=110&h=30'" onmouseout="src='image.php?img=img02ins.png&w=110&h=30'">
+																				<input type="image" src='<?php echo convertToCDNUrl('image.php?img=img02ins.png&w=110&h=30');?>' value='connexion' onmouseover="src='<?php echo convertToCDNUrl('image.php?img=img03ins.png&w=110&h=30');?>'" onmouseout="src='<?php echo convertToCDNUrl('image.php?img=img02ins.png&w=110&h=30');?>'">
 																			</td>
 																		</tr>
 																	</table>
@@ -160,7 +161,6 @@
 														<td align=center>&nbsp;</td>
 													</tr>
 												</table>
-												</font>
 											</td>
 										</tr>
 									</table>
@@ -169,26 +169,24 @@
 						</table>
 					</center>
 					</td>
-					<td width="560" valign='top'>
-						<table border="0" cellpadding="0" cellspacing="0" width="560">
+					<td width="100%" valign='top'>
+						<table border="0" cellpadding="0" cellspacing="0" width="100%">
 							<tr>
 								<td style="border-left: 1px solid rgb(0,0,0); border-right: 1px solid rgb(0,0,0); border-top: 1px solid rgb(0,0,0); border-bottom: 1px solid rgb(0,0,0);" class='color3' >
 									<center><!-- 52636B -->
-									<table border="0" cellpadding="0" cellspacing="0" width="557">
+									<table border="0" cellpadding="0" cellspacing="0" width="100%">
 										<tr>
-											<td valign="top" align=center>
-											<font color=FFFFFF>
+											<td valign="top" align=center width="100%">
 												<table class='barremenu' width="100%">
 													<tr>
 														<td align=center>&nbsp;</td>
 													</tr>
 												</table>
-												<table  valign=top align=center>
+												<table width="100%" valign=top align=center>
 													<tr>
-														<td><img src='pic/homelogin.png' width='557'></td>
+														<td><img src='<?php echo convertToCDNUrl('pic/homelogin.png');?>' width='100%'></td>
 													</tr>
 												</table>
-											</font>
 												<table class='barremenu' width="100%">
 													<tr>
 														<td align=center>&nbsp;</td>

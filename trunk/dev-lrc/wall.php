@@ -1,6 +1,6 @@
 <?php include_once ("verif.php");?>
 <center>
-	<table width='550' align='left'  class='small'>
+	<table width='100%' align='left'  class='small'>
 		<tr>
 			<td>
 			   <form action = "index.php?page=wall" method="post" name="wall">

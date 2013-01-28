@@ -4,7 +4,6 @@ $(document).ready(function(){
 		arme = $(this).attr("arme");
 		$("#piedbiche").hide();
 		if($("#armeinfo").is(":hidden") || $("#armeinfo").attr("arme")!=arme){
-			hidePiegeinfo(false);
 			$('#armeinfo').attr("perso",perso);
 			$("#armeinfo").attr("arme",arme);
 			var url = $(this).children("a").attr("href");
@@ -34,7 +33,7 @@ $(document).ready(function(){
 
 							$("#nomarme").text(result.content.nomarme);
 							$.ajax({
-								url: "armeinforecharg.php?perso="+perso+"&i="+arme,
+								url: "armeinforecharg.php?perso="+perso+"&id="+arme,
 								dataType: 'json',
 								success: function(data){
 									if(data.type=='success'){
@@ -106,11 +105,11 @@ $(document).ready(function(){
 			success: function(data){
 				$('#popup .content .message').html('<p>Voulez vous vendre '+data.arme+' pour <font color="#00ff00">'+data.prix+' $</font></p>'+'<span class="popup-buttons"><button id="popup-vente-yes">Oui</button><button id="popup-no">Non</button></span>');
 				$('#popup .content').append();
-				$('#popup .content .image').children("img").attr("src", 'pic/popup-question.png');
+				$('#popup .content .image').children("img").attr("src", 'http://anthares.be/lrc/pic/popup-question.png');
 				$("#popup").show();
 				$('#popup .content').animate({height : ($('#popup .content .message').outerHeight())},100);
 				$('#popup-vente-yes').click(function(e){
-					var url= 'armevendreok.php?perso='+$('#armeinfo').attr("perso")+'&i='+$('#armeinfo').attr('arme');
+					var url= 'armevendreok.php?perso='+$('#armeinfo').attr("perso")+'&id='+$('#armeinfo').attr('arme');
 					$.ajax({
 						url: url,
 						dataType: 'json',
@@ -149,6 +148,19 @@ $(document).ready(function(){
 			},
 			error: function(){
 				alert('Error !');
+			}
+		});
+		return false;
+	});
+	$("td.armeaction.move-left, td.armeaction.move-right").click(function(){
+		var url=$(this).children("a").attr("href")+"&id="+$('#armeinfo').attr("arme");
+		$.ajax({
+			url: url,
+			success: function(data){
+				window.location.reload();
+			},
+			error: function(){
+				alert("Error");
 			}
 		});
 		return false;

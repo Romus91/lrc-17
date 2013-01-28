@@ -1,20 +1,20 @@
-<?php include_once("verif.php");
-$id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESSION['login']."'"));?>
+<?php include_once("verif.php");?>
 <table width='100%' align='left' class='small'>
-<?php if ($id[0] == 4):?>
+	<tr class="button">
+		<td id='button' colspan="2"><a href='index.php?page=maj'>ACTUALISER</a></td>
+	</tr>
+<?php if ($mem->getRole()=='admin'||$mem->getRole()=='dev'):?>
 	<tr>
-		<td>
+		<td width="100%" colspan="2">
 			<form action='index.php?page=maj' method='post' name='wall'>
 				<table class='small' width='100%'>
-					<tr class="button">
-						<td id='button'><a href='index.php?page=maj'>ACTUALISER</a></td>
-					</tr>
+
 					<tr>
 						<td class='title2'><b>Message : </b>
 						</td>
 					</tr>
 					<tr>
-						<td align=center><textarea name='message' cols='60' rows='3'></textarea>
+						<td align=center><textarea name='message' cols='70' rows='5'></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -26,17 +26,16 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 			</form>
 		</td>
 	</tr>
-	<?php if (($_POST['go']=='Envoyer') AND ($_POST['message'] <> ''))
-	{
+	<?php if (isset($_POST['go']) && $_POST['go']=='Envoyer' && !empty($_POST['message'])){
 		//si tout a été bien rempli, on insère le message dans la table SQL
-		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$_SESSION['login'].'", "'.mysql_escape_string($_POST['message']).'")';
+		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$mem->getLogin().'", "'.mysql_escape_string($_POST['message']).'")';
 		mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
-		$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$_SESSION['login']."'";
+		$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$mem->getLogin()."'";
 		mysql_query($sql);
 	}
 	endif;
 
-	$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$_SESSION['login']."'";
+	$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$mem->getLogin()."'";
 	mysql_query($sql);
 	// on prépare une requete SQL cherchant tous les dates, message ainsi que l'auteur des messages  par ordre décroissant en se limitant à 10 message
 	$sql = 'SELECT date,id_expediteur,message,id,timestamp FROM maj ORDER BY id DESC LIMIT 0,30 ';
@@ -74,13 +73,13 @@ $id=mysql_fetch_array(mysql_query("SELECT id FROM membre WHERE login = '".$_SESS
 			<p><?php echo $item->message?></p>
 		</td>
 	<?php endif;?>
-		<td align=right width="100px" style="padding:5px;" valign="bottom">
+		<td align=right width="75px" style="padding:5px;" valign="bottom">
 			<div class="vote">
-				<div><a href="votemaj.php?maj=<?php echo $item->id;?>&vote=up"><img src="pic/thumb_up.png"></a></div>
+				<div><a href="votemaj.php?maj=<?php echo $item->id;?>&vote=up"><img src="<?php echo convertToCDNUrl('pic/thumb_up.png');?>"></a></div>
 				<div class="votecount" style="background-color: #00cc00;" align=center><font color="white"><?php echo $voteup;?></font></div>
 			</div>
 			<div class="vote">
-				<div><a href="votemaj.php?maj=<?php echo $item->id;?>&vote=down"><img src="pic/thumb_down.png"></a></div>
+				<div><a href="votemaj.php?maj=<?php echo $item->id;?>&vote=down"><img src="<?php echo convertToCDNUrl('pic/thumb_down.png');?>"></a></div>
 				<div class="votecount" style="background-color: #ff0000;" align=center><font color="white"><?php echo $votedown;?></font></div>
 			</div>
 		</td>

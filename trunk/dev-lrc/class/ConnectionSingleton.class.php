@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 class ConnectionSingleton{
 	protected static $_connection;
 	protected static $PARAM_host = 'localhost';
 	protected static $PARAM_port = '3306';
 	protected static $PARAM_db = 'cite17';
-	protected static $PARAM_user = 'root';
-	protected static $PARAM_pass = '';
-	
+	protected static $PARAM_user = 'lrc17';
+	protected static $PARAM_pass = 'lrc17*';
+
 	public static function connect(){
 		if(!isset(self::$_connection)){
 			try{

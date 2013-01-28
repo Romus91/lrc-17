@@ -24,6 +24,30 @@ class PersoController{
 		}
 		return $tabPerso;
 	}
+	public function fetchMembreAlive($id){
+		$query = 'select id from perso where id_membre = :id and enterrer = 0;';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->bindParam(':id', $id, PDO::PARAM_STR);
+		$req->execute();
+		$tabPerso = array();
+		while($data=$req->fetch(PDO::FETCH_OBJ)){
+			$perso = $this->fetchPerso($data->id);
+			$tabPerso[] = $perso;
+		}
+		return $tabPerso;
+	}
+	public function fetchMembreDead($id){
+		$query = 'select id from perso where id_membre = :id and enterrer = 1;';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->bindParam(':id', $id, PDO::PARAM_STR);
+		$req->execute();
+		$tabPerso = array();
+		while($data=$req->fetch(PDO::FETCH_OBJ)){
+			$perso = $this->fetchPerso($data->id);
+			$tabPerso[] = $perso;
+		}
+		return $tabPerso;
+	}
 	public function fetchPlanque($id){
 		$query = 'select id from perso where id_planque = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
@@ -37,6 +61,7 @@ class PersoController{
 	}
 	public function fetchPerso($id){
 		$armeCont = new ArmeController();
+		$consoCont = new ConsoController();
 		$query = 'select * from perso where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array('id' => $id));
@@ -65,10 +90,12 @@ class PersoController{
 				->setNbPtsAmMax($data->pt_amelio_max)
 				->setDead($data->enterrer)
 				->setXpWhenAfk($data->xpafk)
-				->setInvArme($armeCont->fetchPerso($data->id));
+				->setInvArme($armeCont->fetchPerso($data->id))
+				->setInvConso($consoCont->fetchPerso($data->id))
+				->setJaugePoison($data->jaugepois);
 		return $perso;
 	}
-	public function savePerso($perso){
+	public function savePerso(Perso $perso){
 		$query =
 			'update perso set
 				vie = :vie,
@@ -87,7 +114,8 @@ class PersoController{
 				enterrer = :dead,
 				pt_amelio_dispo = :pad,
 				pt_amelio_max = :pam,
-				xpafk = :xpafk
+				xpafk = :xpafk,
+				jaugepois = :jpoi
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -108,8 +136,11 @@ class PersoController{
 			'esq'	=> $perso->getEsquive(),
 			'pad'	=> $perso->getNbPtsAmDispo(),
 			'pam'	=> $perso->getNbPtsAmMax(),
-			'xpafk' => $perso->getXpWhenAfk()
+			'xpafk' => $perso->getXpWhenAfk(),
+			'jpoi'	=> $perso->getJaugePoison()
 		));
+		$armCont = new ArmeController();
+		$armCont->savePerso($perso);
 		return true;
 	}
 	public function createPerso($nom,$avatar,$id_membre){
@@ -122,7 +153,7 @@ class PersoController{
 			'memb'	=> $id_membre
 		));
 		$id_perso= ConnectionSingleton::connect()->lastInsertId();
-		mysql_query("INSERT INTO inventaire (id_perso) VALUE (".$id_perso.")");
+		mysql_query("insert into inv_arme (perso,arme,ordre,mun) value (".$id_perso.",1,".Perso::MAX_WEAP.",1)");
 		return $this->fetchPerso($id_perso);
 	}
 }

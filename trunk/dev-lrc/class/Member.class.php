@@ -4,6 +4,7 @@ class Member{
 	protected $_id;
 	protected $_login;
 	protected $_pass;
+	protected $_role;
 	protected $_date;
 	protected $_email;
 	protected $_theme;
@@ -12,6 +13,8 @@ class Member{
 	protected $_argent;
 	protected $_xp;
 	protected $_level;
+	protected $_piercing_ammo_level;
+	protected $_frag_ammo_level;
 
 	public function __set($name, $value){
 		$method = 'set'.$name;
@@ -50,6 +53,13 @@ class Member{
 	}
 	public function getDate(){
 		return $this->_date;
+	}
+	public function getRole(){
+		return $this->_role;
+	}
+	public function setRole($role){
+		$this->_role = $role;
+		return $this;
 	}
 	public function setDate($date){
 		$this->_date = $date;
@@ -153,5 +163,45 @@ class Member{
 		$log=stripslashes(str_replace(";","_",$log));
 		$log=stripslashes(str_replace("#","_",$log));
 		return mysql_real_escape_string($log);
+	}
+	public function getNbPersoMax(){
+		return self::getMaxPerso($this->_level);
+	}
+	public static function getMaxPerso($level){
+		if($level<5) return 1;
+		else if($level<15) return 2;
+		else if($level<30) return 3;
+		else if($level<50) return 4;
+		else return 5;
+	}
+	public function setFragLevel($am_frag_lvl){
+		$this->_frag_ammo_level=(int)$am_frag_lvl;
+		return $this;
+	}
+	public function setPierceLevel($am_pierce_lvl){
+		$this->_piercing_ammo_level=(int)$am_pierce_lvl;
+		return $this;
+	}
+	public function getFragLevel(){
+		return $this->_frag_ammo_level;
+	}
+	public function getPierceLevel(){
+		return $this->_piercing_ammo_level;
+	}
+	public function getFragAmelio(){
+		switch($this->_frag_ammo_level){
+			case 1 : return 1.10;
+			case 2 : return 1.25;
+			case 3 : return 1.50;
+			default : return 1;
+		}
+	}
+	public function getPierceChance(){
+		switch($this->_piercing_ammo_level){
+			case 1 : return 50;
+			case 2 : return 65;
+			case 3 : return 80;
+			default : return 35;
+		}
 	}
 }

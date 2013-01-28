@@ -12,12 +12,12 @@
   $a90="<font color='09B00D'>|||||||||</font><font color='000000'>|</font>";
   $a100="<font color='1AF10F'>||||||||||</font>"
 ?>
-<img src='pic/home.png' width="550">
+<img src='<?php echo convertToCDNUrl('pic/home.png');?>' width="100%">
 <br>
 <table width="100%" height="100%" class='color1'>
 	<tr>
 		<td>
-			<table class='color4' width="250" height="100%">
+			<table class='color4' width="100%" height="100%">
 				<tr>
 					<td align=center colspan=2 bgcolor=000000><b>Avancement des mises &agrave; jour</b></td>
 				</tr>
@@ -25,7 +25,7 @@
 					<td align=left>Kernel</td><td align=right><?php  echo $a80;?></td>
 				</tr>
 				<tr>
-					<td align=left>Web disign</td><td align=right><?php  echo $a80;?></td>
+					<td align=left>Web design</td><td align=right><?php  echo $a80;?></td>
 				</tr>
 				<tr>
 					<td align=left>Citoyen</td><td align=right><?php  echo $a70;?></td>
@@ -78,7 +78,7 @@
 			</table>
 		</td>
 		<td>
-			<table  class='color4' width="290" height="100%">
+			<table  class='color4' width="100%" height="100%">
 				<tr>
 					<td align=center colspan=2 class='title' HEIGHT="5%"><b>Infos</b></td>
 				</tr>
@@ -114,7 +114,7 @@
 						$C=floor(($data%1000)/100);
 						$D=floor(($data%100)/10);
 						$I=($data%10);
-						echo"<img src='pic/".$M.".gif'><img src='pic/".$C.".gif'><img src='pic/".$D.".gif'><img src='pic/".$I.".gif'>";
+						echo"<img src='".convertToCDNUrl('pic/'.$M.'.gif')."'><img src='".convertToCDNUrl('pic/'.$C.'.gif')."'><img src='".convertToCDNUrl('pic/'.$D.'.gif')."'><img src='".convertToCDNUrl('pic/'.$I.'.gif')."'>";
 					?>
 					</td>
 				</tr>
@@ -129,7 +129,7 @@
 						$C=floor(($data%1000)/100);
 						$D=floor(($data%100)/10);
 						$I=($data%10);
-						echo"<img src='pic/".$M.".gif'><img src='pic/".$C.".gif'><img src='pic/".$D.".gif'><img src='pic/".$I.".gif'>";
+						echo"<img src='".convertToCDNUrl('pic/'.$M.'.gif')."'><img src='".convertToCDNUrl('pic/'.$C.'.gif')."'><img src='".convertToCDNUrl('pic/'.$D.'.gif')."'><img src='".convertToCDNUrl('pic/'.$I.'.gif')."'>";
 					?>
 					</td>
 				</tr>

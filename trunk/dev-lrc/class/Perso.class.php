@@ -1,5 +1,9 @@
 <?php
 class Perso{
+	const POISON_DAMAGE_PER_TICK = 0.1;
+	const MAX_WEAP = 6;
+	//const AVATAR_HEIGHT = 140;
+	const AVATAR_HEIGHT = 125;
 	//id
 	protected $_id;
 	protected $_id_planque;
@@ -36,6 +40,7 @@ class Perso{
 	protected $_invConso;
 	//combat
 	protected $_poison;
+	protected $_jauge_poison;
 
 	public function __set($name, $value){
 		$method = 'set'.$name;
@@ -254,6 +259,10 @@ class Perso{
 		$this->_nb_crabe_kill = $_nb_crabe_kill;
 		return $this;
 	}
+	public function addNb_crabe_kill($_nb_crabe_kill) {
+		$this->_nb_crabe_kill +=(int) $_nb_crabe_kill;
+		return $this;
+	}
 	/**
 	 * @return the $_nb_zomb_kill
 	 */
@@ -265,6 +274,10 @@ class Perso{
 	 */
 	public function setNb_zomb_kill($_nb_zomb_kill) {
 		$this->_nb_zomb_kill = $_nb_zomb_kill;
+		return $this;
+	}
+	public function addNb_zomb_kill($_nb_zomb_kill) {
+		$this->_nb_zomb_kill +=(int) $_nb_zomb_kill;
 		return $this;
 	}
 	/**
@@ -280,6 +293,10 @@ class Perso{
 		$this->_nb_zfast_kill = $_nb_zfast_kill;
 		return $this;
 	}
+	public function addNb_zfast_kill($_nb_zfast_kill) {
+		$this->_nb_zfast_kill +=(int) $_nb_zfast_kill;
+		return $this;
+	}
 	/**
 	 * @return the $_nb_zpois_kill
 	 */
@@ -291,6 +308,10 @@ class Perso{
 	 */
 	public function setNb_zpois_kill($_nb_zpois_kill) {
 		$this->_nb_zpois_kill = $_nb_zpois_kill;
+		return $this;
+	}
+	public function addNb_zpois_kill($_nb_zpois_kill) {
+		$this->_nb_zpois_kill +=(int) $_nb_zpois_kill;
 		return $this;
 	}
 	public function isDead(){
@@ -307,15 +328,40 @@ class Perso{
 		return 1+($this->getEndurance());
 	}
 	public function regenEnergie(){
-		if($this->_energie<$this->getMaxEnergie() && !$this->isDead()) $this->_energie++;
-		if($this->_energie<$this->getMaxEnergie() && !$this->isDead()){
-			for($i=0;$i<25;$i++) $rand = mt_rand(1,50);
-			if($rand<=$this->getComfort()) $this->_energie++;
+		if(!$this->isDead()){
+			$this->_energie++;
+
+			$this->_energie += $this->getRegenFromComfort();
+
+			$this->_energie = min(
+				array(
+					$this->_energie,
+					$this->getMaxEnergie()
+				)
+			);
 		}
 		return $this;
 	}
+	public function getAbsoluteRegen(){
+		return 1+($this->getBaseForComfortRegen()/100);
+	}
+	private function getRegenFromComfort(){
+		$regen = (int)($this->getBaseForComfortRegen()/100);
+
+		if(mt_rand(1,100) <= $this->getCapForComfortRegen()) $regen++;
+
+		return $regen;
+	}
+	private function getCapForComfortRegen(){
+		return $this->getBaseForComfortRegen()%100;
+	}
+	private function getBaseForComfortRegen(){
+		return $this->getComfort()*10;
+	}
 	public function regenVie(){
-		if ($this->_vie<100 && !$this->isDead()) $this->_vie++;
+		if($this->_jauge_poison>0){
+			$this->_jauge_poison--;
+		}else if ($this->_vie<100 && !$this->isDead()) $this->_vie++;
 		return $this;
 	}
 	public function levelUp($stat){
@@ -339,7 +385,7 @@ class Perso{
 		$this->_level++;
 	}
 	public function addXP($xp){
-		$this->_xp+=(int)$xp;
+		$this->_xp+=$xp;
 		return $this;
 	}
 	public function addXpAfk(){
@@ -348,24 +394,24 @@ class Perso{
 		$this->_xpafk+=$amount;
 	}
 	public function retribXp(){
-		$amount= ceil($this->_xpafk*0.5);
-		if($amount>$this->_level*25) $amount=$this->_level*25;
+		$amount= ceil($this->_xpafk*0.25);
+		if($amount>$this->_level*100) $amount=$this->_level*100;
 		$this->_xp+=$amount;
 		$this->_xpafk-=$amount;
 		return $amount;
 	}
 	public function addVie($vie){
-		$this->_vie+=(int)$vie;
+		$this->_vie+=$vie;
 		if($this->getVie() > 100) $this->setVie(100);
 		return $this;
 	}
 	public function addEnergie($energie){
-		$this->_energie+=(int)$energie;
+		$this->_energie+=$energie;
 		if($this->getEnergie() > $this->getMaxEnergie()) $this->setEnergie($this->getMaxEnergie());
 		return $this;
 	}
 	public function addArgent($argent){
-		$this->_argent+=(int)$argent;
+		$this->_argent+=$argent;
 		if($this->getArgent() < 0) $this->setArgent(0);
 		return $this;
 	}
@@ -395,21 +441,14 @@ class Perso{
 		if($this->_nbPtsAmDispo > $this->_nbPtsAmMax) $this->_nbPtsAmDispo=$this->_nbPtsAmMax;
 		return $this;
 	}
-	public function setInvArme($tab){
+	public function setInvArme(array $tab){
 		$this->_invArme = $tab;
 		return $this;
 	}
 	public function getInvArme(){
 		return $this->_invArme;
 	}
-	public function setInvPiege($tab){
-		$this->_invPiege = $tab;
-		return $this;
-	}
-	public function getInvPiege(){
-		return $this->_invPiege;
-	}
-	public function setInvConso($tab){
+	public function setInvConso(array $tab){
 		$this->_invConso = $tab;
 		return $this;
 	}
@@ -426,13 +465,34 @@ class Perso{
 		else return $amount;
 	}
 	public function getPrecision(){
-		return floor((1-(1/(3+($this->_dexterite/3))))*10000)/100;
+		if($this->_energie<=0) return 0;
+		else return floor((1-(1/(3+($this->_dexterite/3))))*10000)/100;
 	}
-	public function poison(int $pois = null){
-		$this->_poison+=(int) $pois;
+	public function getJaugePoison(){
+		return $this->_jauge_poison;
+	}
+	public function setJaugePoison($j){
+		$this->_jauge_poison=(int)$j;
+		if($this->_jauge_poison>30) $this->_jauge_poison=30;
+		return $this;
+	}
+	public function addJaugePoison(){
+		$this->_jauge_poison+=floor($this->_poison);
+		if($this->_jauge_poison>30) $this->_jauge_poison=30;
+		if($this->_jauge_poison<0) $this->_jauge_poison=0;
+		return $this;
+	}
+	public function getPoisonPercent(){
+		return floor($this->_jauge_poison/30*100);
+	}
+	public function addVague(){
+		$this->_nb_vague++;
+	}
+	public function poison($pois = 0){
+		$this->_poison+= $pois;
 		if($this->_poison>0){
-			$this->_poison--;
-			$this->_vie--;
+			$this->_poison-=Perso::POISON_DAMAGE_PER_TICK;
+			$this->_vie-=Perso::POISON_DAMAGE_PER_TICK;
 			return true;
 		}else{
 			return false;

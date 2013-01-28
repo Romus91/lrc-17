@@ -21,6 +21,7 @@ class MemberController{
 		$membre	->setId($data->id)
 				->setLogin($data->login)
 				->setPass($data->pass)
+				->setRole($data->role)
 				->setDate($data->date)
 				->setArgent($data->argent)
 				->setEmail($data->email)
@@ -28,7 +29,9 @@ class MemberController{
 				->setWallTimestamp($data->walltimestamp)
 				->setTheme($data->theme)
 				->setXp($data->xp)
-				->setLevel($data->level);
+				->setLevel($data->level)
+				->setFragLevel($data->am_frag_lvl)
+				->setPierceLevel($data->am_pierce_lvl);
 		return $membre;
 	}
 	public function saveMember(Member $member){
@@ -39,7 +42,9 @@ class MemberController{
 				majtimestamp = :mt,
 				argent = :argent,
 				xp = :xp,
-				level = :level
+				level = :level,
+				am_frag_lvl = :afl,
+				am_pierce_lvl = :apl
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -49,7 +54,9 @@ class MemberController{
 				'argent'	=> $member->getArgent(),
 				'xp'		=> $member->getXp(),
 				'level'		=> $member->getLevel(),
-				'id'		=> $member->getId()
+				'id'		=> $member->getId(),
+				'afl'		=> $member->getFragLevel(),
+				'apl'		=> $member->getPierceLevel()
 		));
 	}
 	public function findByLogin($login){
