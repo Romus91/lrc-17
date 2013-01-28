@@ -1,35 +1,37 @@
 <?php
 	require_once 'autoload.php';
 	include_once("verif.php");
-	include_once("pass.php");
 
-	$i = (int) htmlentities($_GET['i']);
+	$id = (int) htmlentities($_GET['id']);
 	$p = (int) htmlentities($_GET['perso']);
 
 	$persoController = new PersoController();
+	$armeCont = new ArmeController();
 	$log = new Log();
 	$perso = $persoController->fetchPerso($p);
+	$armes = $perso->getInvArme();
 
-	$arme = mysql_fetch_array(mysql_query('select * from armes where image =(select arm'.$i.' from inventaire where id_perso = '.$perso->getId().');'));
+	$j=0;
+	for(;$j<count($armes) && $armes[$j]->getId()!=$id;$j++);
 
-	$inv = mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId()));
+	$perso->addPtsAmDispo($armes[$j]->getAmPreci()+$armes[$j]->getAmForce()+$armes[$j]->getAmCapa());
 
-	$perso->addPtsAmDispo(($inv['degat'.$i] + $inv['prec'.$i] + $inv['capa'.$i]));
+	$armeCont->deleteArme($perso, $armes[$j]);
+	unset($armes[$j]);
+	$armes=array_values($armes);
 
-	for ($cpt=$i;$cpt<4;$cpt++)
-	{
-		$sql="UPDATE inventaire SET arm".$cpt." = '".$inv['arm'.($cpt+1)]."', mun".$cpt." = '".$inv['mun'.($cpt+1)]."', degat".$cpt." = '".$inv['degat'.($cpt+1)]."', prec".$cpt." = '".$inv['prec'.($cpt+1)]."' , capa".$cpt." = '".$inv['capa'.($cpt+1)]."' WHERE id_perso = ".$perso->getId()."";
-		mysql_query($sql) or die('Erreur SQL ! '.$sql.' '.mysql_error());
-
+	$ordre=1;
+	foreach ($armes as $arm) {
+		if($arm->getId()!=1){
+			$arm->setOrdre($ordre);
+			$ordre++;
+		}
 	}
-	$sql='update inventaire set arm4=NULL, mun4=0, degat4=0, prec4=0, capa4=0 where id_perso = :id;';
-	$req = ConnectionSingleton::connect()->prepare($sql);
-	$req->execute(array('id'=>$perso->getId()));
 
-	$log->insertLog("Vendre arme",$_SESSION['member_id'],$perso->getId()," arm".$i." : ".$arme['image']);
 
-	$perso->addArgent(floor($arme['prix']/2));
+	$perso->setInvArme($armes);
+	$perso->addArgent(floor($armes[$i]->getPrix()/2));
 	$persoController->savePerso($perso);
 
-	echo json_encode(array('type'=>'success','content'=>array('money'=>$perso->getArgent(),'arme'=>$i)));
+	echo json_encode(array('type'=>'success','content'=>array('money'=>$perso->getArgent(),'arme'=>$id)));
 ?>

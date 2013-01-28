@@ -37,7 +37,7 @@ if(isset($_GET['perso'])){
 			$perso->addEnergie(floor($perso->getMaxEnergie()*0.15));
 			$perso->levelUp($stat);
 			$persoController->savePerso($perso);
-			imagepng(genImg($perso->getAvatar().'.JPG',176,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
+			imagepng(genImg($perso->getAvatar().'.JPG',Perso::AVATAR_HEIGHT,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 			$log=new Log();
 			$log->insertLog("Level up",$_SESSION['member_id'],$perso->getId(),"+1 ".$statChosen);
 			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>";

@@ -11,7 +11,8 @@
 		$start = microtime(true);
 		$perso = $persoCont->fetchPerso($data->id);
 		if(!$perso->isDead()){
-			$perso->regenEnergie()->regenVie();
+			$perso->regenEnergie();
+			$perso->regenVie();
 			$persoCont->savePerso($perso);
 			$times[]=microtime(true)-$start;
 		}

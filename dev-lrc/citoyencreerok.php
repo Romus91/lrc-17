@@ -57,8 +57,7 @@ require_once 'image.php';
 		}
 
 		$perso = $persoController->createPerso($name, $_POST['photo'], $_SESSION['member_id']);
-		var_dump($perso);
-		imagepng(genImg($perso->getAvatar().'.JPG',176,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
+		imagepng(genImg($perso->getAvatar().'.JPG',Perso::AVATAR_HEIGHT,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 		$log=new Log();
 		$log->insertLog("Perso Créé",$_SESSION['member_id'],$perso->getId(),"Nom : ".$name);
 		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=citoyen');</script>";

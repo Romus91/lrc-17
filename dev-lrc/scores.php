@@ -18,7 +18,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 	$cPage = $_GET['nb'] = 1;
 }
 
-	echo "<table width='550' class='small'>
+	echo "<table width='100%' class='small'>
 		<tr height=30>
 			<td colspan=7 align=center class='title2'>
 				<font size=3>CLASSEMENT</font>
@@ -75,16 +75,13 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 	<tr class='perso' perso='http://".$_SERVER['HTTP_HOST']."/stats.php?id=".$perso['id']."' style='cursor:hand;'>
 		<td bgcolor='".$bgcolor."' align=center><font size=4>".$i."</font></td>
 		";
-		if ($perso['vie'] == 0)
-		{
-			echo"<td align=center bgcolor='AA0000'><img src='image.php?img=".$perso['photo'].".JPG&h=50' height='50'></td>
-			<td class='color3' align=center width='20'><img src='image.php?img=mort.png' width='20'></td>";
-		}
-		else
-		{
-			echo"<td align=center bgcolor='999999' width='30'><img src='image.php?img=".$perso['photo'].".JPG&h=50' height='50'></td>
-			<td class='color3' align=center width='20'>&nbsp;</td>";
-		}
+		if ($perso['vie'] == 0):?>
+			<td align=center bgcolor='AA0000'><img src='<?php echo convertToCDNUrl('/image.php?img='.$perso['photo'].'.JPG&h=50');?>' height='50'></td>
+			<td class='color3' align=center width='20'><img src='<?php echo convertToCDNUrl('image.php?img=mort.png');?>' width='20'></td>
+		<?php else:?>
+			<td align=center bgcolor='999999' width='30'><img src='<?php echo convertToCDNUrl('/image.php?img='.$perso['photo'].'.JPG&h=50');?>' height='50'></td>
+			<td class='color3' align=center width='20'>&nbsp;</td>
+		<?php endif;
 
 		echo "
 		<td class='color4' align=center width='25%'>".$perso['nom']."</td>
@@ -96,8 +93,8 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 		<td colspan=3 class='color3'>&nbsp;</td>
 		<td class='color4' style='padding-left:3px;'><div>Endurance : ".$perso['endurance']."</div><div>Dexterite : ".$perso['dexterite']."</div><div>Esquive : ".$perso['esquive']."</div></td>
 		<td colspan=3 class='color3'>";
-		for($j=1;$j<=4;$j++)if($inv['arm'.$j]!=null) echo "<img src='image.php?img=".$inv['arm'.$j].".png&h=40' height='40'>";
-		for($j=1;$j<=2;$j++)if($inv['pie'.$j]!=null) echo "<img src='image.php?img=".$inv['pie'.$j].".png&h=40' height='40'>";
+		for($j=1;$j<=4;$j++)if($inv['arm'.$j]!=null):?><img src='<?php echo convertToCDNUrl('image.php?img='.$inv['arm'.$j].'.png&h=40');?>' height='40'><?php endif;
+		for($j=1;$j<=2;$j++)if($inv['pie'.$j]!=null):?><img src='<?php echo convertToCDNUrl('image.php?img='.$inv['pie'.$j].'.png&h=40');?>' height='40'><?php endif;
 		echo "</td>
 	</tr>
 	";

@@ -1,4 +1,5 @@
 <?php
+
 putenv('GDFONTPATH=' . realpath('.'));
 
 if(isset($_GET['img'])&&!empty($_GET['img'])){
@@ -72,9 +73,9 @@ function genImg($source, $h=0, $w=0, $l=0, $d=0){
 	if($l!=0){
 		$orange=imagecolorallocate($img_dest, 221, 119, 0);
 		$white=imagecolorallocate($img_dest, 255, 255, 255);
-		imagefilledellipse($img_dest, 0, $h, $h/2.6, $h/2.6, $orange);
-		imageellipse($img_dest, 0, $h, ($h/2.6), ($h/2.6), $white);
-		imagettftext($img_dest, $h/10, 0, 2, $h-2, $white, '28DaysLater.ttf', $l);
+		imagefilledellipse($img_dest, 0, $h, $h*8.5/12, $h*8.5/12, $orange);
+		imageellipse($img_dest, 0, $h, ($h*8.5/12), ($h*8.5/12), $white);
+		imagettftext($img_dest, $h/5.5, 0, 2, $h-2, $white, '28DaysLater.ttf', sprintf('%02d',$l));
 	}
 
 	return $img_dest;

@@ -2,7 +2,7 @@
 require_once 'autoload.php';
 include_once("verif.php");
 include_once("pass.php");
-$length=30;
+$length=100;
 if(!isset($_GET['time'])){
 	$nb=mysql_fetch_array(mysql_query("SELECT count(id) FROM chat"));
 	$query=mysql_query("SELECT * FROM chat ORDER BY timestamp ASC LIMIT ".(($nb[0]<$length)?0:$nb[0]-$length).",".$nb[0]."");

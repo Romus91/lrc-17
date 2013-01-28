@@ -4,20 +4,14 @@
 
 	$log = new Log();
 	$persoController=new PersoController();
-	$perso=$persoController->fetchPerso($_GET['perso']);
+	$perso=$persoController->fetchPerso((int)intval(htmlentities($_GET['perso'])));
 	$consoCont = new ConsoController();
 
-	$inventaire=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
-
 	if (($_GET['type'] == 'JKREJI8HYJ444YT')){
-		for ($i=1;$i<=2;$i++) if (($inventaire['conso'.$i] == NULL) OR ($inventaire['conso'.$i] == '')) break;
-
 		if (isset($_GET['pack'])&&($_GET['pack'] > 0 && $_GET['pack'] < 7)){
-			$pack = $consoCont->fetch($_GET['pack']);
+			$pack = $consoCont->fetch((int) intval(htmlentities($_GET['pack'])));
 			if ($perso->getArgent() >=  $pack->getPrix($perso->getLevel())){
-				if ($i <= 2){
-					$sql = 'UPDATE inventaire SET conso'.$i.'= "'.$pack->getId().'" WHERE id_perso = "'.$perso->getId().'"';
-					mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
+				if ($consoCont->addConso($perso, $pack)){
 					switch($pack->getType()){
 						case 1:
 							$log->insertLog("Achat medipack",$_SESSION['member_id'],$perso->getId(),"Valeur : ".$pack->getValeurBase()); break;
@@ -58,8 +52,8 @@
 <html>
 <head>
   <title>LES RESCAPES DE CITE 17 - Vendre</title>
-  <link rel="icon" type="image/jpg" href="hl2logo.jpg" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="icon" type="image/jpg" href="hl2logo.gif" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <meta http-equiv="refresh" content="0; url=index.php?page=perso&onglet=infop&perso=<?php  echo $perso->getId();?>" />
 </head>
 </html>

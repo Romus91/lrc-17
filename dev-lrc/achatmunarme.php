@@ -1,36 +1,32 @@
 <?php include_once ("verif.php");
-	include_once ("pass.php");
 
 	$persoController = new PersoController();
 	$log = new Log();
 
 	$idperso=(int) htmlentities($_GET['perso']);
-	$i=(int) htmlentities($_GET['i']);
+	$id=(int) htmlentities($_GET['id']);
 
 	$perso=$persoController->fetchPerso($idperso);
 
-	$inv=mysql_fetch_array(mysql_query("SELECT * FROM inventaire WHERE id_perso = ".$perso->getId().""));
-	$arme=mysql_fetch_array(mysql_query("SELECT * FROM armes WHERE image ='".$inv["arm".$i]."'"));
+	$armes = $perso->getInvArme();
+	$j=0;
+	for(;$j<count($armes) && $armes[$j]->getId()!=$id;$j++);
+	$arm = $armes[$j];
 
-
-	$capa = $munmax = $arme['munmax']+($arme['munmax']*($inv['capa'.$i]/10));
-	$mun = $inv['mun'.$i];
-	$munachat = $munmax-$mun;
-	$totalachat = $munachat*$arme['prixballes'];
+	$munachat = $arm->getCapacity()-$arm->getMunitions();
+	$totalachat = $munachat*$arm->getPrixballes();
 
 	if ($totalachat > $perso->getArgent()){
-		$munachat = floor($perso->getArgent()/$arme['prixballes']);
-		$munmax = $mun+$munachat;
-		$totalachat = $munachat*$arme['prixballes'];
+		$munachat = floor($perso->getArgent()/$arm->getPrixballes());
+		$totalachat = $munachat*$arm->getPrixballes();
+
 	}
 
-	$sql='UPDATE inventaire SET mun'.$i.' = "'.($munmax).'" WHERE id_perso = '.$perso->getId().' ';
-	mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
+	$arm->addMunitions($munachat);
 	$perso->setArgent($perso->getArgent()-$totalachat);
 	$persoController->savePerso($perso);
-	$log->insertLog("Achat mun arme",$_SESSION['member_id'],$perso->getId()," mun".$i." : ".$munachat."+".$mun."");
 
-	$response = array('type'=>'reloadsuccess','content'=>array('mun'=>$munmax,'capa'=>$capa,'money'=>$perso->getArgent(),'arme'=>$i));
+	$response = array('type'=>'reloadsuccess','content'=>array('mun'=>$arm->getMunitions(),'capa'=>$arm->getCapacity(),'money'=>$perso->getArgent(),'arme'=>$id));
 
 	echo json_encode($response);
 ?>
