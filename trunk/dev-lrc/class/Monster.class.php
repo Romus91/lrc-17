@@ -2,6 +2,7 @@
 
 abstract class Monster{
 	protected $_baselife;
+	protected $_maxLife;
 	protected $_life;
 	protected $_level;
 	protected $_baseexp;
@@ -12,6 +13,12 @@ abstract class Monster{
 
 	public function getLife(){
 		return $this->_life;
+	}
+	public function getMaxLife(){
+		return $this->_maxLife;
+	}
+	public function getLifePercentage(){
+		return  $this->_life/$this->_maxLife*100;
 	}
 	private function computeLife($level){
 		return $this->_baselife*pow(1.003, $this->_level);
