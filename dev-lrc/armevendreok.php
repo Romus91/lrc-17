@@ -17,6 +17,7 @@
 	$perso->addPtsAmDispo($armes[$j]->getAmPreci()+$armes[$j]->getAmForce()+$armes[$j]->getAmCapa());
 
 	$armeCont->deleteArme($perso, $armes[$j]);
+	$perso->addArgent(floor($armes[$j]->getPrix()/2));
 	unset($armes[$j]);
 	$armes=array_values($armes);
 
@@ -25,12 +26,12 @@
 		if($arm->getId()!=1){
 			$arm->setOrdre($ordre);
 			$ordre++;
+		}else{
+			$arm->setOrdre(Perso::MAX_WEAP);
 		}
 	}
 
-
 	$perso->setInvArme($armes);
-	$perso->addArgent(floor($armes[$i]->getPrix()/2));
 	$persoController->savePerso($perso);
 
 	echo json_encode(array('type'=>'success','content'=>array('money'=>$perso->getArgent(),'arme'=>$id)));

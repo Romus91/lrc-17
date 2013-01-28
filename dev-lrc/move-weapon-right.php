@@ -16,4 +16,4 @@
 
 	$arm=$armes[$j];
 
-	$armeCont->moveArmeLeft($perso, $arm);
+	$armeCont->moveArmeRight($perso, $arm);

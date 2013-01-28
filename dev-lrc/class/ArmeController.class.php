@@ -70,6 +70,11 @@ class ArmeController{
 	}
 	public function savePerso(Perso $p){
 		$tabArme = $p->getInvArme();
+		foreach($tabArme as $arm){
+			$this->saveArme($p, $arm);
+		}
+	}
+	public function saveArme(Perso $p, Arme $arm){
 		$query = 'update inv_arme set
 			mun = :mun,
 			degat = :for,
@@ -77,34 +82,38 @@ class ArmeController{
 			capa = :cap,
 			ordre = :o
 			where arme = :arm and perso = :perso;';
-		$req =null;
-		foreach($tabArme as $arm){
-			$req = ConnectionSingleton::connect()->prepare($query);
-			$req->execute(array(
-						'mun'	=>$arm->getMunitions(),
-						'for'	=>$arm->getAmForce(),
-						'pre'	=>$arm->getAmPreci(),
-						'cap'	=>$arm->getAmCapa(),
-						'o'		=>$arm->getOrdre(),
-						'arm'	=>$arm->getId(),
-						'perso'	=>$p->getId()
-			));
-		}
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->execute(array(
+					'mun'	=>$arm->getMunitions(),
+					'for'	=>$arm->getAmForce(),
+					'pre'	=>$arm->getAmPreci(),
+					'cap'	=>$arm->getAmCapa(),
+					'o'		=>$arm->getOrdre(),
+					'arm'	=>$arm->getId(),
+					'perso'	=>$p->getId()
+		));
 	}
 	public function moveArmeLeft(Perso $p, Arme $a){
 		if($a->getId()!=1 && $a->getOrdre()>1){
 			$armes = $p->getInvArme();
 			$o = $a->getOrdre();
-			foreach ($armes as $arm) {
-				if($arm->getOrdre()==$a->getOrdre()+1){
-					$arm->setOrdre($o);
-				}
-				if($arm->getId()==$a->getId()){
-					$arm->setOrdre($o+1);
-				}
-			}
-			$p->setInvArme($armes);
-			$this->savePerso($p);
+
+
+			$j=0;
+			for(;$j<count($armes) && $armes[$j]->getOrdre()!=($o-1);$j++);
+
+			$aBis = $armes[$j];
+
+			$a->setOrdre($o-1);
+
+			$aBis->setOrdre(0);
+			$this->saveArme($p, $aBis);
+
+			$this->saveArme($p, $a);
+
+			$aBis->setOrdre($o);
+			$this->saveArme($p, $aBis);
+
 			return true;
 		}else return false;
 	}
@@ -112,16 +121,21 @@ class ArmeController{
 		if($a->getId()!=1 && $a->getOrdre()<5){
 			$armes = $p->getInvArme();
 			$o = $a->getOrdre();
-			foreach ($armes as $arm) {
-				if($arm->getOrdre()==$a->getOrdre()-1){
-					$arm->setOrdre($o);
-				}
-				if($arm->getId()==$a->getId()){
-					$arm->setOrdre($o-1);
-				}
-			}
-			$p->setInvArme($armes);
-			$this->savePerso($p);
+
+			$j=0;
+			for(;$j<count($armes) && $armes[$j]->getOrdre()!=($o+1);$j++);
+
+			$aBis = $armes[$j];
+
+			$a->setOrdre($o+1);
+
+			$aBis->setOrdre(0);
+			$this->saveArme($p, $aBis);
+
+			$this->saveArme($p, $a);
+
+			$aBis->setOrdre($o);
+			$this->saveArme($p, $aBis);
 			return true;
 		}else return false;
 	}
