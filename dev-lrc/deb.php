@@ -93,6 +93,10 @@
 						</tr>
 						<tr>
 							<td colspan=3>
+								<?php if(isset($_SESSION['shop_error'])):?>
+									<p id="shop-error" style="color:#f00;text-align: center;font-size:18;"><?php echo $_SESSION['shop_error'];unset($_SESSION['shop_error']);?></p>
+									<script>setTimeout(function(){$("#shop-error").remove();},5000);</script>
+								<?php endif;?>
 								<div id='membre' class='jauge'>
 									<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>"> <img
 										class='barre' src='<?php echo convertToCDNUrl('pic/jblanc.png');?>'

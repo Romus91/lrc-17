@@ -5,7 +5,6 @@ $(document).ready(function(){
 	});
 	loadChat();
 	loadOnline();
-	//setTimeout(function(){$("#pseudobox").mCustomScrollbar("scrollTo","bottom");},555);
 	$("#chatform").submit(function(){
 		$(this).ajaxSubmit({
 			url: 'envoischat.php',
