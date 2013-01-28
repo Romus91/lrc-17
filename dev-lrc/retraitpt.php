@@ -17,6 +17,11 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 
 	if($t=="cap" && $armes[$i]->getAmCapa()>0){
 		$armes[$i]->remAmCapa();
+		if($armes[$i]->getMunitions()>$armes[$i]->getCapacity()){
+			$surplus = $armes[$i]->getMunitions()-$armes[$i]->getCapacity();
+			$armes[$i]->setMunitions($armes[$i]->getCapacity());
+			$perso->addArgent($surplus*$armes[$i]->getPrixballes());
+		}
 		$perso->addPtsAmDispo(1);
 		$perso->setInvArme($armes);
 		$persoCont->savePerso($perso);
@@ -28,6 +33,7 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 		$content['jauge'] = number_format($armes[$i]->getCapacity()/500*100,2).'%';
 		$content['lib'] = number_format($armes[$i]->getCapacity(),2);
 		$content['texte'] = $armes[$i]->getAmCapa().' / '.$armes[$i]->getAmCapMax();
+		$content['argent'] = $perso->getArgent();
 		$response = array("type"=>"success", "content"=>$content);
 	}else if($t=='deg' && $armes[$i]->getAmForce()>0){
 		$armes[$i]->remAmForce();
