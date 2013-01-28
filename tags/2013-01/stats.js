@@ -1,0 +1,13 @@
+$(document).ready(function(){
+	$("tr.perso").click(function(){
+		$(this).next("tr.stats").toggle();
+	});
+	$("tr.perso").hover(
+		function(){
+			$(this).children("td").addClass("hover");
+		},
+		function(){
+			$(this).children("td").removeClass("hover");
+		}
+	);
+});
