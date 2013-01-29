@@ -223,7 +223,7 @@ class Arme{
 		return $this->_force*(1+($this->_amForce/10));
 	}
 	public function getCapacity(){
-		return $this->_munmax*(1+($this->_amCapa/10));
+		return floor($this->_munmax*(1+($this->_amCapa/10)));
 	}
 	public function getNbCible($amelio){
 		if($this->_nbCible==1) return 1;
