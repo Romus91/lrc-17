@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$(".stats").hide();
 	$("tr.perso").click(function(){
 		$(this).next("tr.stats").toggle();
 	});
