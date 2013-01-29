@@ -4,6 +4,16 @@ class PersoController{
 	public function fetchAll(){
 		$query = 'select id from perso;';
 		$req = ConnectionSingleton::connect()->prepare($query);
+		return $this->fetchArray($req);
+	}
+	public function fetchRange($start,$length){
+		$query = 'select id from perso order by competance DESC, level ASC limit :s, :l';
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->bindParam(':s', $start, PDO::PARAM_INT);
+		$req->bindParam(':l', $length, PDO::PARAM_INT);
+		return $this->fetchArray($req);
+	}
+	private function fetchArray($req){
 		$req->execute();
 		$tabPerso = array();
 		while($data=$req->fetch(PDO::FETCH_OBJ)){
