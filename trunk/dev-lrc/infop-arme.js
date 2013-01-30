@@ -32,26 +32,7 @@ $(document).ready(function(){
 							$("#tcap").text(result.content.tcap);
 
 							$("#nomarme").text(result.content.nomarme);
-							$.ajax({
-								url: "armeinforecharg.php?perso="+perso+"&id="+arme,
-								dataType: 'json',
-								success: function(data){
-									if(data.type=='success'){
-										if(data.content!=0){
-											$("td.armeaction.reload").children("a").text("RECHARGER ? ("+data.content+" $)");
-											$("td.armeaction.reload").children("a").removeClass("disabled");
-											$("td.armeaction.reload").children("a").css("color","#ffffff");
-										}else{
-											$("td.armeaction.reload").children("a").text("RECHARGER");
-											$("td.armeaction.reload").children("a").addClass("disabled");
-											$("td.armeaction.reload").children("a").css("color","#333333");
-										}
-									}
-								},
-								error: function(){
-									alert("Error");
-								}
-							});
+							loadRefillCost(perso,arme);
 						}else{
 							hideArmeinfo(false);
 							$("#piedbiche").show();
@@ -201,6 +182,7 @@ $(document).ready(function(){
 								.append(result.content.munitions);
 							}
 						});
+						loadRefillCost($("#armeinfo").attr("perso"),$("#armeinfo").attr("arme"));
 						break;
 					}
 
@@ -253,6 +235,7 @@ $(document).ready(function(){
 								.append(result.content.munitions);
 							}
 						});
+						loadRefillCost($("#armeinfo").attr("perso"),$("#armeinfo").attr("arme"));
 						break;
 					}
 
@@ -269,6 +252,29 @@ $(document).ready(function(){
 		return false;
 	});
 });
+
+function loadRefillCost(perso,arme){
+	$.ajax({
+		url: "armeinforecharg.php?perso="+perso+"&id="+arme,
+		dataType: 'json',
+		success: function(data){
+			if(data.type=='success'){
+				if(data.content!=0){
+					$("td.armeaction.reload").children("a").text("RECHARGER ? ("+data.content+" $)");
+					$("td.armeaction.reload").children("a").removeClass("disabled");
+					$("td.armeaction.reload").children("a").css("color","#ffffff");
+				}else{
+					$("td.armeaction.reload").children("a").text("RECHARGER");
+					$("td.armeaction.reload").children("a").addClass("disabled");
+					$("td.armeaction.reload").children("a").css("color","#333333");
+				}
+			}
+		},
+		error: function(){
+			alert("Error");
+		}
+	});
+}
 function hideArmeinfo(sync){
 	$("#jdeg").animate({width: '0%'},600);
 	$("#jamdeg").animate({width: '0%'},600);
