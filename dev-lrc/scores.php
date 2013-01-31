@@ -23,14 +23,23 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 			</td>
 		</tr>
 		<tr>
-			<td colspan=4>
+			<td colspan=2>
 				<?php if ($cPage-1 != 0):?>
 					<a href="index.php?page=scores&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
 				<?php else:?>
 					<p>PRECEDENT</p>
 				<?php endif;?>
 			</td>
-			<td colspan=3 align=right>
+			<td colspan=4 align="center">
+			<?php for($i=1;$i<=$nbPage;$i++):?>
+				<?php if($i==1):?>
+				<a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<?php else:?>
+				<span> | </span><a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<?php endif;?>
+			<?php endfor;?>
+			</td>
+			<td colspan=1 align="right">
 				<?php if ($cPage+1 <= $nbPage):?>
 					<a href="index.php?page=scores&nb=<?php echo $cPage+1;?>">SUIVANT</a>
 				<?php else:?>
@@ -95,20 +104,29 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 	</tr>
 	<?php endfor;?>
 	<tr>
-		<td colspan=4>
-			<?php if ($cPage-1 != 0):?>
-				<a href="index.php?page=scores&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
-			<?php else:?>
-				<p>PRECEDENT</p>
-			<?php endif;?>
-		</td>
-		<td colspan=3 align=right>
-			<?php if ($cPage+1 <= $nbPage):?>
-				<a href="index.php?page=scores&nb=<?php echo $cPage+1;?>">SUIVANT</a>
-			<?php else:?>
-				<p>SUIVANT</p>
-			<?php endif;?>
-		</td>
+		<td colspan=2>
+				<?php if ($cPage-1 != 0):?>
+					<a href="index.php?page=scores&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
+				<?php else:?>
+					<p>PRECEDENT</p>
+				<?php endif;?>
+			</td>
+			<td colspan=4 align="center">
+			<?php for($i=1;$i<=$nbPage;$i++):?>
+				<?php if($i==1):?>
+				<a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<?php else:?>
+				<span> | </span><a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<?php endif;?>
+			<?php endfor;?>
+			</td>
+			<td colspan=1 align="right">
+				<?php if ($cPage+1 <= $nbPage):?>
+					<a href="index.php?page=scores&nb=<?php echo $cPage+1;?>">SUIVANT</a>
+				<?php else:?>
+					<p>SUIVANT</p>
+				<?php endif;?>
+			</td>
 	</tr>
 </table>
 
