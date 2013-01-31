@@ -22,6 +22,7 @@ class ArmeController{
 					-> setNom($data->nom)
 					-> setImage($data->image)
 					-> setMunmax($data->munmax)
+					-> setLvlrequis($data->lvlrequis)
 					-> setPrix($data->prix)
 					-> setPrixballes($data->prixballes)
 					-> setForce($data->force)

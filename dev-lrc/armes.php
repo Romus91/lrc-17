@@ -1,7 +1,7 @@
 <?php  if(isset($_GET['arme'])) $act=$_GET['arme'];
 
 	$armCont = new ArmeController();
-	$armes = (array) $armCont->fetchAll(PDO::FETCH_OBJ);
+	$armes = $armCont->fetchAll();
 	$memCont = new MemberController();
 	$membre = $memCont->fetchMembre($_SESSION['member_id']);
 ?>
