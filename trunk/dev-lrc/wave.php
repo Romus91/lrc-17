@@ -50,7 +50,7 @@ function selectMonster(&$wave){
 }
 function selectArme(&$armes){
 	do{
-		$rand_arme = mt_rand(1,100000);
+		for($z=0;$z<5;$z++)$rand_arme = mt_rand(1,100000);
 		if($rand_arme>71425){
 			$i=0;
 		}elseif($rand_arme>47620){
@@ -298,7 +298,7 @@ $perso->addVague();
 $perso->addNb_crabe_kill($crabkill)->addNb_zomb_kill($zombiekill)->addNb_zfast_kill($fastkill)->addNb_zpois_kill($poisonkill);
 
 ###ARGENT GAGNE####
-$gagne=ceil((($zombiekill)*8)+(($fastkill)*16)+(($crabkill)*3));
+$gagne=ceil((($zombiekill)*15)+(($fastkill)*30)+(($crabkill)*5))+$poisonkill*40;
 $perso->addArgent($gagne);
 $membre->addArgent(ceil($gagne*0.01));
 ###################
@@ -306,7 +306,7 @@ $membre->addArgent(ceil($gagne*0.01));
 ####CALCUL DES EXP#######
 $bonusXP = $perso->retribXp();
 $xpGagne = $perso->getXp()-$saveexp;
-$membre->addXp(ceil($xpGagne*0.05));
+$membre->addXp(ceil($xpGagne*0.03));
 ################################
 
 $persoController->savePerso($perso);
