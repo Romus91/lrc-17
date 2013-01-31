@@ -17,15 +17,15 @@ class WaveGenerator{
 	}
 
 	private function computeCrab(){
-		$nb = floor($this->_level*2);
+		$nb = floor($this->_level*1.426);
 		$this->_nb_crab=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 	}
 	private function computeZombie(){
-		$nb = floor($this->_level*1.156);
+		$nb = ceil($this->_level*0.725);
 		$this->_nb_zomb=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 	}
 	private function computeFast(){
-		$nb=floor($this->_level*1.034);
+		$nb=ceil($this->_level*0.415);
 		if($this->_level>1) $this->_nb_fast=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 		else $this->_nb_fast=0;
 	}
