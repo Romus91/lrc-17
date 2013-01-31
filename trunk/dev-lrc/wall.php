@@ -90,13 +90,13 @@
 						}else
 							echo ("PRECEDENT");
 
-				echo"</td><td align=center>|";
+				echo"</td><td align=center> | ";
 				for ($i=1; $i <= $nbPage ;$i++)
 				{
 					if ($_GET['nb'] == $i)
-						echo $i."|";
+						echo $i." | ";
 					else
-						echo  "<a href='index.php?page=wall&nb=".$i."'>".$i."</a>|";
+						echo  "<a href='index.php?page=wall&nb=".$i."'>".$i."</a> | ";
 
 				}
 				echo"</td><td align='right'>";
@@ -161,14 +161,14 @@
 						}else
 							echo ("PRECEDENT");
 
-			echo"</td><td align=center>|";
+			echo"</td><td align=center>| ";
 
 				for ($i=1; $i <= $nbPage ;$i++)
 				{
 					if ($_GET['nb'] == $i)
-						echo $i."|";
+						echo $i." | ";
 					else
-						echo  "<a href='index.php?page=wall&nb=".$i."'>".$i."</a>|";
+						echo  "<a href='index.php?page=wall&nb=".$i."'>".$i."</a> | ";
 
 				}
 				echo"</td><td align='right'>";
