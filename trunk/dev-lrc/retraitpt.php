@@ -30,7 +30,7 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 		$content['type']=$t;
 		$content['ptam']=$perso->getNbPtsAmDispo();
 		$content['munitions'] = $armes[$i]->getMunitions()." | ".$armes[$i]->getCapacity();
-		$content['jauge'] = number_format($armes[$i]->getCapacity()/500*100,2).'%';
+		$content['jauge'] = number_format($armes[$i]->getCapacity()/375*100,2).'%';
 		$content['lib'] = number_format($armes[$i]->getCapacity(),2);
 		$content['texte'] = $armes[$i]->getAmCapa().' / '.$armes[$i]->getAmCapMax();
 		$content['argent'] = $perso->getArgent();
@@ -43,7 +43,7 @@ if (isset($_GET['type']) && !empty($_GET['type']) &&($t == 'deg' || $t == 'pre' 
 		$content['message']="<font color = '00FF00'>Point d'am&eacute;lioration retir&eacute;</font>";
 		$content['type']=$t;
 		$content['ptam']=$perso->getNbPtsAmDispo();
-		$content['jauge'] = number_format($armes[$i]->getDamage()/15*100,2).'%';
+		$content['jauge'] = number_format($armes[$i]->getDamage()/20*100,2).'%';
 		$content['lib'] = number_format($armes[$i]->getDamage(),2);
 		$content['texte'] = $armes[$i]->getAmForce().' / '.$armes[$i]->getAmDegMax();
 		$response = array("type"=>"success", "content"=>$content);

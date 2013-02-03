@@ -4,7 +4,7 @@ class Zombie extends Monster{
 		$this->setLevel((int)$level);
 		$this->setBaseExp(2);
 		$this->setBaseLife(15);
-		$this->setDamage(1);
-		$this->setEnergyCost(0.4);
+		$this->setDamage(0.7);
+		$this->setEnergyCost(0.3);
 	}
 }

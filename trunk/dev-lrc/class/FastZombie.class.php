@@ -4,7 +4,7 @@ class FastZombie extends Monster{
 		$this->setLevel((int)$level);
 		$this->setBaseExp(7);
 		$this->setBaseLife(10);
-		$this->setDamage(2);
+		$this->setDamage(1.2);
 		$this->setEnergyCost(1);
 	}
 }

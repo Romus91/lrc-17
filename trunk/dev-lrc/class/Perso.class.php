@@ -483,7 +483,7 @@ class Perso{
 		return $this;
 	}
 	public function getPoisonPercent(){
-		return floor($this->_jauge_poison/30*100);
+		return $this->_jauge_poison/30*100;
 	}
 	public function addVague(){
 		$this->_nb_vague++;
@@ -499,13 +499,13 @@ class Perso{
 		}
 	}
 	public function getLevelPercent(){
-		$pourc = floor(($this->_xp-Perso::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-Perso::getXpForLevel($this->_level))*100);
+		$pourc = ($this->_xp-Perso::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-Perso::getXpForLevel($this->_level))*100;
 		if($pourc < 0) return 0;
 		else if($pourc > 100) return 100;
 		else return $pourc;
 	}
 	public function getEnergyPercent(){
-		$pourc = floor(($this->_energie/$this->getMaxEnergie())*100);
+		$pourc = ($this->_energie/$this->getMaxEnergie())*100;
 		if($pourc < 0) return 0;
 		else if($pourc > 100) return 100;
 		else return $pourc;

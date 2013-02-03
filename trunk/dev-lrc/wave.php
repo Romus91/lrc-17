@@ -261,10 +261,10 @@ while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
 	}
 	if($armes[$rand_arme]->getId()!=1){
 		$armes[$rand_arme]->addMunitions(-1);
-		if($nbCibles>1) $perso->addEnergie(-$z->getEnergyCost()*2);
+		if($nbCibles>1) $perso->addEnergie(-$z->getEnergyCost()*1.5);
 		else $perso->addEnergie(-$z->getEnergyCost());
 	}else{
-		$perso->addEnergie(-$z->getEnergyCost()*8);
+		$perso->addEnergie(-$z->getEnergyCost()*3);
 	}
 
 	$wRec->endRound();

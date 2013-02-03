@@ -51,7 +51,7 @@
 												<table height="100%">
 													<tr >
 														<td>
-															<table align=center height="100%" style="margin: 79 0;">
+															<table align=center style="margin: 79 0;">
 																<form action="login.php" method='post'>
 																	<tr>
 																		<td align=right><font color='FFFFFF'><b>LOGIN </b></font><input type="text" name="login" maxlength="20"></td>
