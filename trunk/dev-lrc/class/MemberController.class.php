@@ -12,6 +12,19 @@ class MemberController{
 		}
 		return $tabMember;
 	}
+	public function fetchRange($start, $length){
+		$query="select id from membre where xp > 0 order by xp desc, id limit :s, :l";
+		$req = ConnectionSingleton::connect()->prepare($query);
+		$req->bindParam(':s', $start, PDO::PARAM_INT);
+		$req->bindParam(':l', $length, PDO::PARAM_INT);
+		$req->execute();
+		$tabMember = array();
+		while($data=$req->fetch(PDO::FETCH_OBJ)){
+			$mem = $this->fetchMembre($data->id);
+			$tabMember[]=$mem;
+		}
+		return $tabMember;
+	}
 	public function fetchMembre($id){
 		$query = 'select * from membre where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);

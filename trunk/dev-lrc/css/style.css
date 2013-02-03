@@ -282,7 +282,13 @@ body
 .current_page_item {
 	background: #7f7f7f;
 }
-tr.perso td.hover{
+tr.ladder-row{
+	cursor: hand;
+}
+tr.ladder-row, tr.stats{
+	height: 50px;
+}
+tr.ladder-row td.hover{
 	background-color: #666666;
 }
 #armeinfo, #piegeinfo, #piedbiche{
@@ -301,6 +307,9 @@ tr.perso td.hover{
 }
 #meminfo{
 	display:none;
+}
+#wheel{
+	cursor: hand;
 }
 #shop{
 	width: 100%;

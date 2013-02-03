@@ -1,4 +1,6 @@
-<?php if(file_exists('lrc.lock')) {exit("Le site est actuellement en maintenance, allez vous faire un café et revenez dans quelques minutes !");} ?>
+<?php if(file_exists('lrc.lock')) {
+	include_once 'maintenance.php';
+}?>
 <html>
 <head>
 	<title>LES RESCAPES DE CITE 17</title>
@@ -15,7 +17,15 @@
 	<script src="jquery.watermark.js"></script>
 	<script src="chat.js"></script>
 	<script type="text/javascript">
+		var wheelUrl = '<?php echo convertToCDNUrl('pic/wheel.png');?>';
+		var arrowDownUrl = '<?php echo convertToCDNUrl('pic/meminfoArrowDown.png')?>';
+		var arrowUpUrl = '<?php echo convertToCDNUrl('pic/meminfoArrowUp.png')?>';
 		$(document).ready(function(){
+			$.fn.preload = function() {
+			    this.each(function(){
+			        $('<img/>')[0].src = this;
+			    });
+			};
 			$('#shop').accordion({
 				autoHeight: false
 			});
@@ -23,6 +33,34 @@
 				$('#meminfo').toggle();
 				$('#shop').accordion("resize");
 			});
+			$([arrowDownUrl,arrowUpUrl]).preload();
+			$('#wheel').hover(
+				function(){
+					var img = $(this).children("span#info").children('img');
+					if($('#meminfo').is(':visible')){
+						img.attr('src',arrowUpUrl);
+					}else{
+						img.attr('src',arrowDownUrl);
+					}
+					img.animate({
+						height: '+=10',
+						width: '+=10',
+						top: '-=5',
+						left: '-=5'
+					},200);
+				},
+				function(){
+					var img = $(this).children("span#info").children('img');
+					img.animate({
+						height: '-=10',
+						width: '-=10',
+						top: '+=5',
+						left: '+=5'
+					},200,function(){
+						img.attr('src',wheelUrl);
+					});
+				}
+			);
 		});
 	</script>
 	<meta http-equiv="content-language" content="fr">
@@ -62,6 +100,7 @@
 		">
 			<p>Votre navigateur est obsol&egrave;te et ne supporte pas l'HTML5 !</p>
 			<p>Merci de le mettre &agrave; jour pour profiter pleinement de l'exp&eacute;rience de jeu ;-)</p>
+			<p><a href="www.google.com/chrome"><img src="http://upload.wikimedia.org/wikipedia/fr/9/9e/Google_Chrome_logo.png" height="50px"></a> <a href="www.mozilla.org/fr/firefox/"><img src="http://upload.wikimedia.org/wikipedia/fr/8/84/Firefox_New_Logo.png" height="50px"></a></p>
 		</div>
 	</audio>
 		<table align=center class='main'>
@@ -160,15 +199,17 @@
 												<font size=6 color=999999>MAX</font>
 												<?php endif;?>
 											</td>
-											<td class="shopitem">
+											<!--<td class="shopitem">
 												<div class="hev">
-													<img src="<?php echo convertToCDNUrl('pic/antidote.png');?>" height="40px">
+													<img src="<?php/* echo convertToCDNUrl('pic/antidote.png');*/?>" height="40px">
 													<p><font size=3>5000 $</font></p>
 												</div>
-											</td>
+											</td>-->
 										</tr>
 										<tr>
-											<td class="shopitemdesc">Munitions Perforantes</td><td class="shopitemdesc">Munitions Frag</td><td class="shopitemdesc">Antidote</td>
+											<td class="shopitemdesc">Munitions Perforantes</td>
+											<td class="shopitemdesc">Munitions Frag</td>
+											<!--<td class="shopitemdesc">Antidote</td>-->
 										</tr>
 									</table>
 									</div>
@@ -217,7 +258,7 @@
 																				</td>
 																			</tr>
 																			<tr>
-																				<td><a href='index.php?page=scores'> CLASSEMENT </a>
+																				<td><a href='index.php?page=ladder'> CLASSEMENT </a>
 																				</td>
 																			</tr>
 																			<tr>

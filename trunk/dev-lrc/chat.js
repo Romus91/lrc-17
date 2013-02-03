@@ -63,7 +63,6 @@ function loadChat(){
 				for(var i in cont){
 					addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
 				}
-				//$('body').append('<span id="playSound"></span>');
 				if(window.localStorage.getItem('unreadMessage') == null) window.localStorage.setItem('unreadMessage',0);
 				updateScroll();
 			}else{

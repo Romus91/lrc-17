@@ -21,5 +21,5 @@ function update(){
 			$("#jaugepsn").animate({width: result.jaugepsn},2001);
 		}
 	});
-	setTimeout(function(){update();},2000);
+	setTimeout(function(){update();},10000);
 }

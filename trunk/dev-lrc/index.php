@@ -1,4 +1,6 @@
-<?php
+<?php if(file_exists('lrc.lock')) {
+	include_once 'maintenance.php';
+}
 
 include_once("verif.php");
 include_once('pass.php');
@@ -25,8 +27,8 @@ else if(isset($_GET['page'])){
 	if ($_GET['page'] == 'citoyen')
 	include('citoyen.php');
 	else
-	if ($_GET['page'] == 'scores')
-	include('scores.php');
+	if ($_GET['page'] == 'ladder')
+	include('ladder.php');
 	else
 	if ($_GET['page'] == 'perso')
 	include('perso.php');

@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	$(".stats").hide();
-	$("tr.perso").click(function(){
+	$("tr.ladder-row").click(function(){
 		$(this).next("tr.stats").toggle();
 	});
-	$("tr.perso").hover(
+	$("tr.ladder-row").hover(
 		function(){
 			$(this).children("td").addClass("hover");
 		},

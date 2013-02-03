@@ -1,4 +1,3 @@
-<script type="text/javascript" language="javascript" src="stats.js"></script>
 
 <?php
 include_once("verif.php");
@@ -16,16 +15,10 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 } else {
 	$cPage = 1;
 }?>
-	<table width='100%' class='small'>
-		<tr height=30>
-			<td colspan=7 align=center class='title2'>
-				<font size=3>CLASSEMENT</font>
-			</td>
-		</tr>
 		<tr>
 			<td colspan=2>
 				<?php if ($cPage-1 != 0):?>
-					<a href="index.php?page=scores&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
+					<a href="index.php?page=ladder&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
 				<?php else:?>
 					<p>PRECEDENT</p>
 				<?php endif;?>
@@ -33,15 +26,15 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 			<td colspan=4 align="center">
 			<?php for($i=1;$i<=$nbPage;$i++):?>
 				<?php if($i==1):?>
-				<a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<a href="index.php?page=ladder&nb=<?php echo $i?>"><?php echo $i;?></a>
 				<?php else:?>
-				<span> | </span><a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<span> | </span><a href="index.php?page=ladder&nb=<?php echo $i?>"><?php echo $i;?></a>
 				<?php endif;?>
 			<?php endfor;?>
 			</td>
 			<td colspan=1 align="right">
 				<?php if ($cPage+1 <= $nbPage):?>
-					<a href="index.php?page=scores&nb=<?php echo $cPage+1;?>">SUIVANT</a>
+					<a href="index.php?page=ladder&nb=<?php echo $cPage+1;?>">SUIVANT</a>
 				<?php else:?>
 					<p>SUIVANT</p>
 				<?php endif;?>
@@ -51,7 +44,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 			<td align=center>&nbsp;</td>
 			<td align=center>&nbsp;</td>
 			<td align=center>RIP</td>
-			<td align=center>SURVIVANT</td>
+			<td align=center>PERSONNAGE</td>
 			<td align=center>MEMBRE</td>
 			<td align=center>EXP</td>
 			<td align=center>NIVEAU</td>
@@ -66,7 +59,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 	for($i=0;$i<count($persArray);$i++):
 		$rank = (($cPage-1)*10+$i+1);?>
 
-	<tr class='perso'>
+	<tr class='ladder-row'>
 		<td bgcolor="<?php echo (($rank==1)?'ffc600':(($rank==2)?'aaaaaa':(($rank==3)?'ab7604':'222222')));?>" align=center>
 			<font size=4><?php echo $rank;?></font>
 		</td>
@@ -106,7 +99,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 	<tr>
 		<td colspan=2>
 				<?php if ($cPage-1 != 0):?>
-					<a href="index.php?page=scores&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
+					<a href="index.php?page=ladder&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
 				<?php else:?>
 					<p>PRECEDENT</p>
 				<?php endif;?>
@@ -114,20 +107,19 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 			<td colspan=4 align="center">
 			<?php for($i=1;$i<=$nbPage;$i++):?>
 				<?php if($i==1):?>
-				<a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<a href="index.php?page=ladder&nb=<?php echo $i?>"><?php echo $i;?></a>
 				<?php else:?>
-				<span> | </span><a href="index.php?page=scores&nb=<?php echo $i?>"><?php echo $i;?></a>
+				<span> | </span><a href="index.php?page=ladder&nb=<?php echo $i?>"><?php echo $i;?></a>
 				<?php endif;?>
 			<?php endfor;?>
 			</td>
 			<td colspan=1 align="right">
 				<?php if ($cPage+1 <= $nbPage):?>
-					<a href="index.php?page=scores&nb=<?php echo $cPage+1;?>">SUIVANT</a>
+					<a href="index.php?page=ladder&nb=<?php echo $cPage+1;?>">SUIVANT</a>
 				<?php else:?>
 					<p>SUIVANT</p>
 				<?php endif;?>
 			</td>
 	</tr>
-</table>
 
 
