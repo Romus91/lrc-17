@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	setInterval(function(){update();}, 2000);
+	setInterval(function(){update();}, 10000);
 });
 function update(){
 	$("table.perso").each(function(index,domEle){
