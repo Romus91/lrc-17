@@ -1,5 +1,5 @@
 <p><h1>Fréquentation du site</h1></p>
-<table class="small">
+<table class="small" width=100%>
 <?php
 require_once 'autoload.php';
 require_once 'cdnHelper.php';
@@ -15,9 +15,9 @@ $data = $req->fetchAll(PDO::FETCH_OBJ);
 
 foreach ($data as $i):?>
 <tr>
-	<td width="100" style="border: 1px black solid"><?php echo date("d/m/Y",strtotime($i->date));?></td>
-	<td width="200" style="border: 1px black solid"><img src="<?php echo convertToCDNUrl('pic/jblanc.png');?>" width="<?php echo ($i->count/$max*100)?>%" height="10"></td>
-	<td width="30" style="border: 1px black solid"><?php echo $i->count;?></td>
+	<td width="100px" style="border: 1px black solid"><?php echo date("d/m/Y",strtotime($i->date));?></td>
+	<td style="border: 1px black solid"><img src="<?php echo convertToCDNUrl('pic/jblanc.png');?>" width="<?php echo ($i->count/$max*100)?>%" height="10"></td>
+	<td width="30px" style="border: 1px black solid"><?php echo $i->count;?></td>
 </tr>
 <?php endforeach;?>
 </table>
