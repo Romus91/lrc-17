@@ -5,7 +5,7 @@
 <head>
 	<title>LES RESCAPES DE CITE 17</title>
 	<link rel="icon" type="image/jpg" href="hl2logo.gif" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmY");?>" />
 	<link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 	<link href="vader/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
 	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
@@ -15,7 +15,7 @@
 	<script src="jquery.mCustomScrollbar.js"></script>
 	<script src="jquery.form.js"></script>
 	<script src="jquery.watermark.js"></script>
-	<script src="chat.js"></script>
+	<script src="chat.js?<?php echo date("dmY");?>"></script>
 	<script type="text/javascript">
 		var wheelUrl = '<?php echo convertToCDNUrl('pic/wheel.png');?>';
 		var arrowDownUrl = '<?php echo convertToCDNUrl('pic/meminfoArrowDown.png')?>';
@@ -125,7 +125,7 @@
 										<td class='info' align=center width="15%">NIV<br> <span
 											id='info'><?php echo $mem->getLevel();?> </span></td>
 										<td class='info' align=center width="15%">ARG<br> <span
-											id='info'><?php echo $mem->getArgent();?> $</span></td>
+											id='info'><?php echo $mem->getArgent();?> <strike>Cr</strike></span></td>
 									</tr>
 								</table>
 							</td>
@@ -166,7 +166,7 @@
 												<?php if($mem->getLevel()>=$amPierce->getLevelRequis()):?>
 												<a class="hev" href="amcompte.php?type=<?php echo AmelioCompte::AM_PIERCE?>">
 													<img src="<?php echo convertToCDNUrl('pic/'.$amPierce->getImage());?>" height="40px">
-													<p><font size=3><?php echo $amPierce->getPrix()?> $</font></p>
+													<p><font size=3><?php echo $amPierce->getPrix()?> <strike>Cr</strike></font></p>
 												</a>
 												<?php else:?>
 												<div class="hev">
@@ -184,7 +184,7 @@
 													<?php if($mem->getLevel()>=$amFrag->getLevelRequis()):?>
 													<a class="hev" href="amcompte.php?type=<?php echo AmelioCompte::AM_FRAG?>">
 														<img src="<?php echo convertToCDNUrl('pic/'.$amFrag->getImage());?>" height="40px">
-														<p><font size=3><?php echo $amFrag->getPrix()?> $</font></p>
+														<p><font size=3><?php echo $amFrag->getPrix()?> <strike>Cr</strike></font></p>
 													</a>
 													<?php else:?>
 													<div class="hev">
@@ -202,7 +202,7 @@
 											<!--<td class="shopitem">
 												<div class="hev">
 													<img src="<?php/* echo convertToCDNUrl('pic/antidote.png');*/?>" height="40px">
-													<p><font size=3>5000 $</font></p>
+													<p><font size=3>5000 <strike>Cr</strike></font></p>
 												</div>
 											</td>-->
 										</tr>

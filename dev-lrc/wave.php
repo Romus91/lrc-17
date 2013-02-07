@@ -112,7 +112,7 @@ $log = new Log();
 
 $perso=$persoController->fetchPerso((int)htmlentities($_GET['perso']));
 
-if($perso->getLevelPercent()>99) exit("<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>");
+if($perso->getLevelPercent()>=100) exit("<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>");
 if($perso->getEnergie()<1) exit("<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=perso&perso=".$perso->getId()."');</script>");
 
 $wGen = new WaveGenerator($perso->getLevel());
@@ -312,7 +312,7 @@ $membre->addXp(ceil($xpGagne*0.03));
 $persoController->savePerso($perso);
 $memCont->saveMember($membre);
 ?>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmY");?>">
 	<table class='small' width='100%'>
 		<tr>
 			<td colspan=5 align=center>

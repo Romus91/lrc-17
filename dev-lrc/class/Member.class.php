@@ -168,10 +168,10 @@ class Member{
 		return self::getMaxPerso($this->_level);
 	}
 	public static function getMaxPerso($level){
-		if($level<5) return 1;
-		else if($level<15) return 2;
-		else if($level<30) return 3;
-		else if($level<50) return 4;
+		if($level<3) return 1;
+		else if($level<10) return 2;
+		else if($level<20) return 3;
+		else if($level<35) return 4;
 		else return 5;
 	}
 	public function setFragLevel($am_frag_lvl){
