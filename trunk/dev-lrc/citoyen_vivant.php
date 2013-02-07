@@ -1,5 +1,5 @@
 <?php
-$levels = array(1,5,15,30,50);
+$levels = array(1,3,10,20,35);
 $i=0;
 for(;$i<count($tabPersos);$i++):
 	$perso=$tabPersos[$i];?>
@@ -116,4 +116,4 @@ for(;$i<count($tabPersos);$i++):
 	</tr>
 
 	<?php endfor;?>
-	<script type="text/javascript" language="javascript" src="citoyen.js"></script>
+	<script type="text/javascript" language="javascript" src="citoyen.js?<?php echo date("dmY");?>"></script>

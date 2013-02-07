@@ -172,7 +172,7 @@ function isSelectedMenu($name){
 					<td align=center class='color1'>Esquive : <?php echo $perso->getEsquive();?></td>
 				</tr>
 				<tr>
-					<td align="center" class='color1'>Regen NRG : <?php echo $perso->getAbsoluteRegen();?></td>
+					<td align="center" class='color1'>Regen NRG : <?php echo $perso->getAbsoluteRegen();?> / min</td>
 					<td align=center class='color1'>Precision : <?php echo $perso->getPrecision();?>%</td>
 					<td align=center class='color1'>Taux Esquive : <?php echo $perso->getTauxEsquive();?>%</td>
 				</tr>
@@ -185,8 +185,8 @@ function isSelectedMenu($name){
 		</td>
 	</tr>
 </table>
-<script type="text/javascript" language="javascript" src="perso.js"></script>
-<link rel="stylesheet" type="text/css" href="css/perso.css" />
+<script type="text/javascript" language="javascript" src="perso.js?<?php echo date("dmY");?>"></script>
+<link rel="stylesheet" type="text/css" href="css/perso.css?<?php echo date("dmY");?>" />
 <?php
 if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop')) include ("infop.php");
 if (isset($_GET['onglet'])){
