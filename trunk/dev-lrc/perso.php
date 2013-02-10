@@ -109,7 +109,7 @@ function isSelectedMenu($name){
 	</tr>
 	<?php endif;?>
 	<tr>
-		<td valign='top'><img src="ava/<?php echo $perso->getId()?>.png" /></td>
+		<td valign='top'><img src="ava/<?php echo $perso->getId()?>.png?<?php echo $perso->getLevel();?>" /></td>
 		<td class='color1' valign=bottom bgcolor=000000 style="border: 1px solid #333333" width="100%">
 
 			<table class='button' width='100%'>

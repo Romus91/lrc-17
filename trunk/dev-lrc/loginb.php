@@ -37,9 +37,9 @@
 							<tr height="100%">
 								<td height="100%" style="border-left: 1px solid rgb(0,0,0); border-right: 1px solid rgb(0,0,0); border-top: 1px solid rgb(0,0,0); border-bottom: 1px solid rgb(0,0,0);"  class='color1' >
 									<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" >
-										<tr  height="100%">
+										<tr  height="14px">
 											<td valign=top align=center width="100%" height="100%">
-												<table class='barremenu' width="100%" height="100%">
+												<table class='barremenu' width="100%" height="14px">
 													<tr>
 														<td align=center>&nbsp;</td>
 													</tr>

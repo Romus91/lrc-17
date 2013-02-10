@@ -584,7 +584,7 @@ table.armes-wave{
 	margin-top: 6px;
 }
 #chatform-wrapper{
-	height:29px;
+	height:27px;
 	width:100%;
 	margin:0;
 	padding:0;
@@ -597,9 +597,9 @@ table.armes-wave{
 	padding:0;
 	display: inline-block;
 	position:absolute;
-	top:0;
-	left:0;
-	bottom:0;
+	top:1px;
+	left:1px;
+	bottom:1px;
 }
 #chatform input{
 	width: 100%;
@@ -610,9 +610,9 @@ table.armes-wave{
 	width:5%;
 	display:inline-block;
 	position: absolute;
-	right:0;
-	top:0;
-	bottom:0;
+	right:1px;
+	top:1px;
+	bottom:1px;
 	margin:0;
 	box-sizing:border-box;
 	background: transparent url(http://anthares.be/lrc/pic/chat_sound_on.png) center center no-repeat;
