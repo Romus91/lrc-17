@@ -32,10 +32,13 @@
 		<div id="pseudobox">
 			<img src='<?php echo convertToCDNUrl('pic/charg.gif');?>' width='100%'>
 		</div>
-		<form id="chatform">
-			<input type="text" name="mess" />
-			<input name="pseudo" type="hidden" value="<?php echo $mem->getLogin();?>" />
-		</form>
+		<div id="chatform-wrapper">
+			<form id="chatform">
+				<input type="text" name="mess" />
+				<input name="pseudo" type="hidden" value="<?php echo $mem->getLogin();?>" />
+			</form>
+			<div id="chat-sound"></div>
+		</div>
 		<div id="chattimestamp" style="display: none;"></div>
 	</div>
 </div>

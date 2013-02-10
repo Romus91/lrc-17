@@ -294,12 +294,6 @@ tr.ladder-row td.hover{
 #armeinfo, #piegeinfo, #piedbiche{
 	display: none;
 }
-#chatform{
-	width: 100%;
-}
-#chatform input{
-	width: 100%;
-}
 #membre.jauge{
 	width: 100%;
 	height: 20px;
@@ -588,6 +582,46 @@ table.armes-wave{
 	text-align: center;
 	font-size: 14px;
 	margin-top: 6px;
+}
+#chatform-wrapper{
+	height:29px;
+	width:100%;
+	margin:0;
+	padding:0;
+	position:relative;
+}
+#chatform{
+	width: 95%;
+	height:100%;
+	margin:0;
+	padding:0;
+	display: inline-block;
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+}
+#chatform input{
+	width: 100%;
+	height:100%;
+	margin:0;
+}
+#chat-sound{
+	width:5%;
+	display:inline-block;
+	position: absolute;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:0;
+	box-sizing:border-box;
+	background: transparent url(http://anthares.be/lrc/pic/chat_sound_on.png) center center no-repeat;
+	background-size: contain;
+	cursor: hand;
+}
+#chat-sound.off{
+	background: transparent url(http://anthares.be/lrc/pic/chat_sound_off.png) center center no-repeat;
+	background-size: contain;
 }
 #pseudobox{
 	padding: 0 5px;
