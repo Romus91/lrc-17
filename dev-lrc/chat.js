@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#chatform input[name=mess]").watermark("Entrez votre message...");
 	$("#pseudobox").mCustomScrollbar({
-		set_height: '86%'
+		set_height: '340'
 	});
 	loadChat();
 	loadOnline();
@@ -34,6 +34,17 @@ $(document).ready(function(){
 	document.getElementById('chat-sound-player').addEventListener('ended',function(){
 		this.currentTime=0;
 	},false);
+	if(window.localStorage.getItem('playChatSound')== null){
+		window.localStorage.setItem('playChatSound',true);
+	}
+	$('#chat-sound').click(function(){
+		if(window.localStorage.getItem('playChatSound') === 'true'){
+			window.localStorage.setItem('playChatSound',false);
+		}else{
+			window.localStorage.setItem('playChatSound',true);
+		}
+		$(this).toggleClass("off");
+	});
 });
 
 function addMessage(arr, form, options){
@@ -107,7 +118,9 @@ function addContent(container, user, date, message){
 	}
 }
 function playSound(){
-	document.getElementById('chat-sound-player').play();
+	if(window.localStorage.getItem('playChatSound') === 'true'){
+		document.getElementById('chat-sound-player').play();
+	}
 }
 
 function loadOnline(){
