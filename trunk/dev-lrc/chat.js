@@ -36,14 +36,21 @@ $(document).ready(function(){
 	},false);
 	if(window.localStorage.getItem('playChatSound')== null){
 		window.localStorage.setItem('playChatSound',true);
+	}else{
+		if(window.localStorage.getItem('playChatSound') === 'true'){
+			$('#chat-sound').addClass("off");
+		}else{
+			$('#chat-sound').removeClass("off");
+		}
 	}
 	$('#chat-sound').click(function(){
 		if(window.localStorage.getItem('playChatSound') === 'true'){
 			window.localStorage.setItem('playChatSound',false);
+			$(this).addClass("off");
 		}else{
 			window.localStorage.setItem('playChatSound',true);
+			$(this).removeClass("off");
 		}
-		$(this).toggleClass("off");
 	});
 });
 
