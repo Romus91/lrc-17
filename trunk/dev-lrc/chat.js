@@ -38,9 +38,9 @@ $(document).ready(function(){
 		window.localStorage.setItem('playChatSound',true);
 	}else{
 		if(window.localStorage.getItem('playChatSound') === 'true'){
-			$('#chat-sound').addClass("off");
-		}else{
 			$('#chat-sound').removeClass("off");
+		}else{
+			$('#chat-sound').addClass("off");
 		}
 	}
 	$('#chat-sound').click(function(){
