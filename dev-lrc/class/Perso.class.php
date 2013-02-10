@@ -322,7 +322,7 @@ class Perso{
 		return $this;
 	}
 	public function getMaxEnergie(){
-		return 100+(10*($this->getLevel()-1))+(10*$this->getEndurance());
+		return 100+(20*($this->getLevel()-1))+(5*$this->getEndurance());
 	}
 	public function getComfort(){
 		return 1+($this->getEndurance());
