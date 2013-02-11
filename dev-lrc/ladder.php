@@ -1,4 +1,4 @@
-<script type="text/javascript" language="javascript" src="stats.js?<?php echo date("dmY");?>"></script>
+<script type="text/javascript" language="javascript" src="stats.js?<?php echo date("dmYH");?>"></script>
 
 <table width='100%' class='small'>
 	<tr height=30>

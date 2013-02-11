@@ -5,6 +5,8 @@ $p=(int)htmlentities($_GET['perso']);
 
 $persoCont = new PersoController();
 $perso = $persoCont->fetchPerso($p);
+$perso->regenEnergie()->regenVie();
+$persoCont->savePerso($perso);
 
 echo json_encode(array(
 	"vie"=>$perso->getVie(),

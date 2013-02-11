@@ -153,5 +153,5 @@ do{?>
 </tr>
 </table>
 <div id="error"></div>
-<script type="text/javascript" language="javascript" src="infop.js?<?php echo date("dmY");?>"></script>
-<script type="text/javascript" language="javascript" src="infop-arme.js?<?php echo date("dmY");?>"></script>
+<script type="text/javascript" language="javascript" src="infop.js?<?php echo date("dmYH");?>"></script>
+<script type="text/javascript" language="javascript" src="infop-arme.js?<?php echo date("dmYH");?>"></script>

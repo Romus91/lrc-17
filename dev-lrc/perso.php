@@ -185,8 +185,8 @@ function isSelectedMenu($name){
 		</td>
 	</tr>
 </table>
-<script type="text/javascript" language="javascript" src="perso.js?<?php echo date("dmY");?>"></script>
-<link rel="stylesheet" type="text/css" href="css/perso.css?<?php echo date("dmY");?>" />
+<script type="text/javascript" language="javascript" src="perso.js?<?php echo date("dmYH");?>"></script>
+<link rel="stylesheet" type="text/css" href="css/perso.css?<?php echo date("dmYH");?>" />
 <?php
 if ((!isset($_GET['onglet'])) OR ($_GET['onglet'] == 'infop')) include ("infop.php");
 if (isset($_GET['onglet'])){

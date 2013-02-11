@@ -1,9 +1,10 @@
 <?php
 class Perso{
 	const POISON_DAMAGE_PER_TICK = 0.1;
+	const MAX_JAUGE_POISON = 30;
 	const MAX_WEAP = 6;
-	//const AVATAR_HEIGHT = 140;
 	const AVATAR_HEIGHT = 125;
+	const REGEN_TICK_INTERVAL = 60;
 	//id
 	protected $_id;
 	protected $_id_planque;
@@ -16,6 +17,8 @@ class Perso{
 	protected $_vie;
 	protected $_energie;
 	protected $_argent;
+	protected $_last_regen_vie;
+	protected $_last_regen_nrg;
 	//xp&leveling
 	protected $_xp;
 	protected $_level;
@@ -327,41 +330,70 @@ class Perso{
 	public function getComfort(){
 		return 1+($this->getEndurance());
 	}
+
 	public function regenEnergie(){
 		if(!$this->isDead()){
-			$this->_energie++;
+			//on recupere le timestamp actuel en microseconde
+			$now = microtime(true);
+			//on calcul l'interval de temps entre les deux
+			$timeSinceLastRegen = $now - $this->_last_regen_nrg;
 
-			$this->_energie += $this->getRegenFromComfort();
+			//si le temps depuis la dernière update est plus grand que le temps entre deux ticks
+			if($timeSinceLastRegen>$this->getTimeBetweenEnergyTick()){
+				//le nombre de tick pendant l'interval
+				$nbTick = $timeSinceLastRegen / $this->getTimeBetweenEnergyTick();
+				//on tronque en un entier
+				$nbRealTick = floor($nbTick);
+				//on recupere le temps entre le dernier tick et maintenant
+				$diff = $nbTick-$nbRealTick;
+				if($nbRealTick>5000)$nbRealTick=5000;
+				//on regen
+				$this->_energie+=$nbRealTick;
 
-			$this->_energie = min(
+				//on met à jour le timestamp de la dernière regen
+				$this->_last_regen_nrg = $now-($diff*$this->getTimeBetweenEnergyTick());
+				//on cap au max d'energie
+				$this->_energie = min(
 				array(
-					$this->_energie,
-					$this->getMaxEnergie()
+				$this->_energie,
+				$this->getMaxEnergie()
 				)
-			);
+				);
+			}
 		}
 		return $this;
 	}
+
 	public function getAbsoluteRegen(){
-		return 1+($this->getBaseForComfortRegen()/100);
+		return self::REGEN_TICK_INTERVAL/$this->getTimeBetweenEnergyTick();
 	}
-	private function getRegenFromComfort(){
-		$regen = (int)($this->getBaseForComfortRegen()/100);
-
-		if(mt_rand(1,100) <= $this->getCapForComfortRegen()) $regen++;
-
-		return $regen;
+	private function getTimeBetweenEnergyTick(){
+		return self::REGEN_TICK_INTERVAL - $this->getRegenDelayReduction();
 	}
-	private function getCapForComfortRegen(){
-		return $this->getBaseForComfortRegen()%100;
-	}
-	private function getBaseForComfortRegen(){
-		return $this->getComfort()*10;
+	private function getRegenDelayReduction(){
+		return self::REGEN_TICK_INTERVAL*(1-(1/(1+$this->getComfort()/20)));
 	}
 	public function regenVie(){
-		if($this->_jauge_poison>0){
-			$this->_jauge_poison--;
-		}else if ($this->_vie<100 && !$this->isDead()) $this->_vie++;
+		if(!$this->isDead()){
+			$now = microtime(true);
+			$timeSinceLastRegen = $now - $this->_last_regen_vie;
+			if($timeSinceLastRegen>self::REGEN_TICK_INTERVAL){
+				$nbTick = $timeSinceLastRegen / self::REGEN_TICK_INTERVAL;
+				$nbRealTick = floor($nbTick);
+				$diff = $nbTick-$nbRealTick;
+
+				if($nbRealTick>5000) $nbRealTick=5000;
+
+				for ($i = 0; $i < $nbRealTick; $i++) {
+					if($this->_jauge_poison>0){
+						$this->_jauge_poison--;
+					}else if ($this->_vie<100){
+						$this->_vie++;
+					}
+				}
+				$this->_last_regen_vie = $now-($diff*self::REGEN_TICK_INTERVAL);
+			}
+		}
 		return $this;
 	}
 	public function levelUp($stat){
@@ -370,15 +402,15 @@ class Perso{
 			case 0:
 				//endurance
 				$this->_endurance++;
-			break;
+				break;
 			case 1:
 				//dexterite
 				$this->_dexterite++;
-			break;
+				break;
 			case 2:
 				//esquive
 				$this->_esquive++;
-			break;
+				break;
 		}
 		$this->_nbPtsAmMax+=2;
 		$this->_nbPtsAmDispo+=2;
@@ -473,33 +505,47 @@ class Perso{
 	}
 	public function setJaugePoison($j){
 		$this->_jauge_poison=(int)$j;
-		if($this->_jauge_poison>30) $this->_jauge_poison=30;
+		if($this->_jauge_poison>self::MAX_JAUGE_POISON) $this->_jauge_poison=self::MAX_JAUGE_POISON;
 		return $this;
 	}
 	public function addJaugePoison(){
 		$this->_jauge_poison+=floor($this->_poison);
-		if($this->_jauge_poison>30) $this->_jauge_poison=30;
+		if($this->_jauge_poison > self::MAX_JAUGE_POISON) $this->_jauge_poison=self::MAX_JAUGE_POISON;
 		if($this->_jauge_poison<0) $this->_jauge_poison=0;
 		return $this;
 	}
 	public function getPoisonPercent(){
-		return $this->_jauge_poison/30*100;
+		return $this->_jauge_poison/self::MAX_JAUGE_POISON*100;
 	}
 	public function addVague(){
 		$this->_nb_vague++;
 	}
+	public function getLastRegenEnergie(){
+		return $this->_last_regen_nrg;
+	}
+	public function setLastRegenEnergie($last_regen){
+		$this->_last_regen_nrg = $last_regen;
+		return $this;
+	}
+	public function getLastRegenVie(){
+		return $this->_last_regen_vie;
+	}
+	public function setLastRegenVie($last_regen){
+		$this->_last_regen_vie = $last_regen;
+		return $this;
+	}
 	public function poison($pois = 0){
 		$this->_poison+= $pois;
 		if($this->_poison>0){
-			$this->_poison-=Perso::POISON_DAMAGE_PER_TICK;
-			$this->_vie-=Perso::POISON_DAMAGE_PER_TICK;
+			$this->_poison-=self::POISON_DAMAGE_PER_TICK;
+			$this->_vie-=self::POISON_DAMAGE_PER_TICK;
 			return true;
 		}else{
 			return false;
 		}
 	}
 	public function getLevelPercent(){
-		$pourc = ($this->_xp-Perso::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-Perso::getXpForLevel($this->_level))*100;
+		$pourc = ($this->_xp-self::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-self::getXpForLevel($this->_level))*100;
 		if($pourc < 0) return 0;
 		else if($pourc > 100) return 100;
 		else return $pourc;
