@@ -199,8 +199,8 @@ class Member{
 	public function getPierceChance(){
 		switch($this->_piercing_ammo_level){
 			case 1 : return 50;
-			case 2 : return 65;
-			case 3 : return 80;
+			case 2 : return 75;
+			case 3 : return 100;
 			default : return 35;
 		}
 	}

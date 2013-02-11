@@ -53,7 +53,7 @@
 <head>
   <title>LES RESCAPES DE CITE 17 - Vendre</title>
   <link rel="icon" type="image/jpg" href="hl2logo.gif" />
-  <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmY");?>" />
+  <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>" />
   <meta http-equiv="refresh" content="0; url=index.php?page=perso&onglet=infop&perso=<?php  echo $perso->getId();?>" />
 </head>
 </html>

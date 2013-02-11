@@ -102,6 +102,8 @@ class PersoController{
 				->setXpWhenAfk($data->xpafk)
 				->setInvArme($armeCont->fetchPerso($data->id))
 				->setInvConso($consoCont->fetchPerso($data->id))
+				->setLastRegenEnergie($data->last_regen_nrg)
+				->setLastRegenVie($data->last_regen_vie)
 				->setJaugePoison($data->jaugepois);
 		return $perso;
 	}
@@ -125,7 +127,9 @@ class PersoController{
 				pt_amelio_dispo = :pad,
 				pt_amelio_max = :pam,
 				xpafk = :xpafk,
-				jaugepois = :jpoi
+				jaugepois = :jpoi,
+				last_regen_nrg = :lregennrg,
+				last_regen_vie = :lregenvie
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -147,20 +151,25 @@ class PersoController{
 			'pad'	=> $perso->getNbPtsAmDispo(),
 			'pam'	=> $perso->getNbPtsAmMax(),
 			'xpafk' => $perso->getXpWhenAfk(),
-			'jpoi'	=> $perso->getJaugePoison()
+			'jpoi'	=> $perso->getJaugePoison(),
+			'lregennrg'=> $perso->getLastRegenEnergie(),
+			'lregenvie'=> $perso->getLastRegenVie()
 		));
 		$armCont = new ArmeController();
 		$armCont->savePerso($perso);
 		return true;
 	}
 	public function createPerso($nom,$avatar,$id_membre){
-		$query = 'insert into perso (nom,photo,id_membre)
-							values (:nom,:ava,:memb);';
+		$query = 'insert into perso (nom,photo,id_membre,date,last_regen_nrg,last_regen_vie)
+							values (:nom,:ava,:memb,:date,:lregennrg,:lregenvie);';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
 			'nom'	=> $nom,
 			'ava'	=> $avatar,
-			'memb'	=> $id_membre
+			'memb'	=> $id_membre,
+			'date'	=> time(),
+			'lregenvie'=> microtime(true),
+			'lregennrg'=> microtime(true)
 		));
 		$id_perso= ConnectionSingleton::connect()->lastInsertId();
 		mysql_query("insert into inv_arme (perso,arme,ordre,mun) value (".$id_perso.",1,".Perso::MAX_WEAP.",1)");

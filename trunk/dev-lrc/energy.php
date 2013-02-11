@@ -1,5 +1,8 @@
 <?php
 	require_once 'autoload.php';
+
+	$scriptStart=microtime(true);
+
 	$persoCont = new PersoController();
 	$query = 'select id from perso;';
 	$req = ConnectionSingleton::connect()->prepare($query);
@@ -18,6 +21,7 @@
 		}
 	}
 
+
 	$max = floor(max($times)*100000)/100;
 	$min = floor(min($times)*100000)/100;
 
@@ -25,4 +29,6 @@
 
 	echo 'Moyenne : '.$mean.' ms | max : '.$max.' | min : '.$min;
 
+	$diff=microtime(true)-$scriptStart;
+	echo '<br><br>Temps total : '.($diff*1000);
 ?>

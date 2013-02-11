@@ -50,16 +50,16 @@ function selectMonster(&$wave){
 }
 function selectArme(&$armes){
 	do{
-		for($z=0;$z<5;$z++)$rand_arme = mt_rand(1,100000);
-		if($rand_arme>71425){
+		$rand_arme = mt_rand(1,100000);
+		if($rand_arme>=71425){
 			$i=0;
-		}elseif($rand_arme>47620){
+		}elseif($rand_arme>=47620){
 			$i=1;
-		}elseif($rand_arme>28575){
+		}elseif($rand_arme>=28575){
 			$i=2;
-		}elseif($rand_arme>14290){
+		}elseif($rand_arme>=14290){
 			$i=3;
-		}elseif($rand_arme>4765){
+		}elseif($rand_arme>=4765){
 			$i=4;
 		}else{
 			$i=5;
@@ -188,7 +188,6 @@ while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
 				}else
 					$wRec->addEvent($e);
 			}else{
-				$shotmiss++;
 				$z->hit($dmg);
 
 				$e=new Event();
@@ -202,6 +201,7 @@ while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
 
 			}
 		}else{
+			$shotmiss++;
 			$e = new Event();
 			$e->_source = 'player';
 			$e->_target = get_class($z);
@@ -300,19 +300,19 @@ $perso->addNb_crabe_kill($crabkill)->addNb_zomb_kill($zombiekill)->addNb_zfast_k
 ###ARGENT GAGNE####
 $gagne=ceil((($zombiekill)*15)+(($fastkill)*30)+(($crabkill)*5))+$poisonkill*40;
 $perso->addArgent($gagne);
-$membre->addArgent(ceil($gagne*0.01));
+$membre->addArgent(ceil($gagne*0.015));
 ###################
 
 ####CALCUL DES EXP#######
 $bonusXP = $perso->retribXp();
 $xpGagne = $perso->getXp()-$saveexp;
-$membre->addXp(ceil($xpGagne*0.03));
+$membre->addXp(ceil($xpGagne*0.035));
 ################################
 
 $persoController->savePerso($perso);
 $memCont->saveMember($membre);
 ?>
-	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmY");?>">
+	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>">
 	<table class='small' width='100%'>
 		<tr>
 			<td colspan=5 align=center>

@@ -5,7 +5,7 @@
 <head>
 	<title>LES RESCAPES DE CITE 17</title>
 	<link rel="icon" type="image/jpg" href="hl2logo.gif" />
-	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmY");?>" />
+	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>" />
 	<link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 	<link href="vader/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
 	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
@@ -15,7 +15,9 @@
 	<script src="jquery.mCustomScrollbar.js"></script>
 	<script src="jquery.form.js"></script>
 	<script src="jquery.watermark.js"></script>
-	<script src="chat.js?<?php echo date("dmY");?>"></script>
+	<script src="js/mousetrap.js"></script>
+	<script src="js/mousetrap-global.js"></script>
+	<script src="chat.js?<?php echo date("dmYH");?>"></script>
 	<script type="text/javascript">
 		var wheelUrl = '<?php echo convertToCDNUrl('pic/wheel.png');?>';
 		var arrowDownUrl = '<?php echo convertToCDNUrl('pic/meminfoArrowDown.png')?>';

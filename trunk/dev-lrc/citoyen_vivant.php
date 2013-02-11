@@ -2,7 +2,9 @@
 $levels = array(1,3,10,20,35);
 $i=0;
 for(;$i<count($tabPersos);$i++):
-	$perso=$tabPersos[$i];?>
+	$perso=$tabPersos[$i];
+	$perso->regenEnergie()->regenVie();
+	$persoController->savePerso($perso);?>
 	<tr valign=bottom>
 		<td width='100%' align=center valign=bottom colspan=2>
 			<table class='color1' width='100%'>
@@ -116,4 +118,4 @@ for(;$i<count($tabPersos);$i++):
 	</tr>
 
 	<?php endfor;?>
-	<script type="text/javascript" language="javascript" src="citoyen.js?<?php echo date("dmY");?>"></script>
+	<script type="text/javascript" language="javascript" src="citoyen.js?<?php echo date("dmYH");?>"></script>
