@@ -26,8 +26,7 @@ class WaveGenerator{
 	}
 	private function computeFast(){
 		$nb=ceil($this->_level*0.415);
-		if($this->_level>1) $this->_nb_fast=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
-		else $this->_nb_fast=0;
+		$this->_nb_fast=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 	}
 	private function computePoison(){
 		$nb=floor($this->_level/15);
