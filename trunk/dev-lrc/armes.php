@@ -38,7 +38,7 @@
 								<td class='color1' width=40>CHARGEUR</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getMunmax()/250*100?>%' height='10'></td>
 							</tr>
 							<tr>
-								<td class='color1' width=40>NB CIBLES</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getNbCible($membre->getFragAmelio())/30*100?>%' height='10'></td>
+								<td class='color1' width=40>NB CIBLES</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getNbCible()/18*100?>%' height='10'></td>
 							</tr>
 						</table>
 					</td>
