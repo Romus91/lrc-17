@@ -45,7 +45,6 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 		</tr>
 
 		<?php
-			$memCont = new MemberController();
 			$memArray = $memCont->fetchRange((($cPage-1)*$perPage), $perPage);
 			$len=count($memArray);
 
