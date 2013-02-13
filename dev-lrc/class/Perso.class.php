@@ -367,7 +367,7 @@ class Perso{
 	public function getAbsoluteRegen(){
 		return self::REGEN_TICK_INTERVAL/$this->getTimeBetweenEnergyTick();
 	}
-	private function getTimeBetweenEnergyTick(){
+	public function getTimeBetweenEnergyTick(){
 		return self::REGEN_TICK_INTERVAL - $this->getRegenDelayReduction();
 	}
 	private function getRegenDelayReduction(){

@@ -159,7 +159,7 @@ function isSelectedMenu($name){
 							>
 							<div class='lib'>PSN</div>
 							<div class="texte">
-								<span id="psn"><?php echo $perso->getJaugePoison();?> </span> | 30
+								<span id="psn"><?php echo $perso->getJaugePoison();?> </span> | <?php echo Perso::MAX_JAUGE_POISON;?>
 							</div>
 						</div>
 					</td>
