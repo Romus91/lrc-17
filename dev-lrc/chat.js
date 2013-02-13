@@ -52,9 +52,9 @@ $(document).ready(function(){
 
 function toggleChat(){
 	if($("#footer-block-wrapper").hasClass('shown')){
-		$("#footer-block-wrapper").animate({height:'31px'},600);
+		$("#footer-block-wrapper").stop().animate({height:'31px'},600);
 	}else{
-		$("#footer-block-wrapper").animate({height:'400px'},600,function(){
+		$("#footer-block-wrapper").stop().animate({height:'400px'},600,function(){
 			$("#chatform input[name=mess]").focus();
 		});
 		window.localStorage.setItem('unreadMessage',0);
