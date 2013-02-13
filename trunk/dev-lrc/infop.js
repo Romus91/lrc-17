@@ -11,10 +11,10 @@ $(document).ready(function(){
 					if(result.type == "success"){
 						if(result.content.type=="vie"){
 							$("span#vie").text(result.content.amount);
-							$("#jaugevie").animate({width: result.content.jauge},600);
+							$("#jaugevie").stop(true,true).animate({width: result.content.jauge},2001);
 						}else{
 							$("span#eng").text(result.content.amount);
-							$("#jaugeeng").animate({width: result.content.jauge},600);
+							$("#jaugeeng").stop(true,true).animate({width: result.content.jauge},2001);
 						}
 						target.empty();
 					}else{

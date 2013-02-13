@@ -39,7 +39,7 @@ $(document).ready(function(){
 						}
 					},
 					error: function(){
-						alert("Error");
+						console.log("error while loading weapon data");
 					}
 				});
 			}
@@ -73,7 +73,7 @@ $(document).ready(function(){
 					}
 				},
 				error: function(){
-					alert("Error");
+					console.log("error while reloading weapon");
 				}
 			});
 		}
@@ -119,7 +119,7 @@ $(document).ready(function(){
 							}
 						},
 						error: function(){
-							alert('Error !');
+							console.log("error while selling weapon");
 						}
 					});
 				});
@@ -128,7 +128,7 @@ $(document).ready(function(){
 				});
 			},
 			error: function(){
-				alert('Error !');
+				console.log("error while getting selling info");
 			}
 		});
 		return false;
@@ -141,7 +141,7 @@ $(document).ready(function(){
 				window.location.reload();
 			},
 			error: function(){
-				alert("Error");
+				console.log("error while moving weapon");
 			}
 		});
 		return false;
@@ -193,7 +193,7 @@ $(document).ready(function(){
 				}
 			},
 			error: function(){
-				alert("Error");
+				console.log("error while adding am point");
 			}
 		});
 		return false;
@@ -246,7 +246,7 @@ $(document).ready(function(){
 				}
 			},
 			error: function(){
-				alert("Error");
+				console.log("error while removing am point");
 			}
 		});
 		return false;
@@ -271,7 +271,7 @@ function loadRefillCost(perso,arme){
 			}
 		},
 		error: function(){
-			alert("Error");
+			console.log("error while getting weapon refill cost");
 		}
 	});
 }
