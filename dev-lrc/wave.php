@@ -298,7 +298,7 @@ $perso->addVague();
 $perso->addNb_crabe_kill($crabkill)->addNb_zomb_kill($zombiekill)->addNb_zfast_kill($fastkill)->addNb_zpois_kill($poisonkill);
 
 ###ARGENT GAGNE####
-$gagne=ceil((($zombiekill)*15)+(($fastkill)*30)+(($crabkill)*5))+$poisonkill*40;
+$gagne=ceil((($zombiekill)*Zombie::MONEY)+(($fastkill)*FastZombie::MONEY)+(($crabkill)*Crab::MONEY))+$poisonkill*PoisonZombie::MONEY;
 $perso->addArgent($gagne);
 $membre->addArgent(ceil($gagne*0.015));
 ###################
