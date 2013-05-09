@@ -14,9 +14,9 @@ for(;$i<count($tabPersos);$i++):
 					</td>
 				</tr>
 			</table>
-			<table class='button' width='100%'>
+			<table width='100%'>
 				<tr>
-					<td id='button' align=center>
+					<td class='button' align=center>
 					<?php if($perso->getVie() > 0 ):?>
 						<a href='index.php?page=perso&perso=<?php echo $perso->getId()?>'>GESTION</a>
 					<?php else:?>
@@ -26,24 +26,24 @@ for(;$i<count($tabPersos);$i++):
 				</tr>
 			</table>
 		</td>
-		<td rowspan='2' align=center background='<?php echo convertToCDNUrl('pic/'.$perso->getAvatar().'.JPG');?>' width='130' style='background-size:cover;'>
+		<td rowspan='2' align=center background='<?php echo convertToCDNUrl('pic/'.$perso->getAvatar().'.JPG');?>' width='230' style='background-size:cover;'>
 			<?php if ($perso->getVie() == 0):?>
-				<img src='<?php echo convertToCDNUrl('pic/rouge.png');?>' width='185' height='150'>
+				<img src='<?php echo convertToCDNUrl('pic/rouge.png');?>' width='185' height='175'>
 			<?php else:?>
-				<a href='index.php?page=perso&perso=<?php echo $perso->getId()?>'><img src='<?php echo convertToCDNUrl('pic/blanc.png');?>' width='185' height='140'></a>
+				<a href='index.php?page=perso&perso=<?php echo $perso->getId()?>'><img src='<?php echo convertToCDNUrl('pic/blanc.png');?>' width='230' height='175'></a>
 			<?php endif;?>
 		</td>
 	</tr>
 	<tr >
-		<td width="90" align="center">
+		<td align="center">
 			<table class='hev'>
 				<tr>
-					<td align=center>NIVEAU<br><font color='CC6600' size=6><?php echo $perso->getLevel()?></font></td>
+					<td align=center>NIVEAU<br><font color='CC6600' size=8><?php echo $perso->getLevel()?></font></td>
 				</tr>
 			</table>
 		</td>
 		<td width="100%">
-			<table class='button perso' width='100%' id="<?php echo $perso->getId()?>">
+			<table class='perso' width='100%' id="<?php echo $perso->getId()?>">
 				<tr>
 					<td>
 						<div class='jauge'>
@@ -105,11 +105,11 @@ for(;$i<count($tabPersos);$i++):
 	for(;$i<count($levels);$i++):?>
 
 	<tr>
-		<td class="verouilleh" colspan=6 width=550 height=140 align=center valign=middle>
+		<td class="verouilleh" colspan=6 width=550 height=175 align=center valign=middle>
 			<?php if($mem->getLevel()<$levels[$i]):?>
-			<font size=7>VERROUILLE</font><br><font size=3>NIVEAU REQUIS : <?php echo $levels[$i];?></font>
+			<font size=9>VERROUILLE</font><br><font size=3>NIVEAU REQUIS : <?php echo $levels[$i];?></font>
 			<?php else:?>
-			<a href="index.php?page=citoyencreer" style="text-align: center;display: block;width: 100%;height: 100%;vertical-align: middle;padding: 35px 0;"><img src='<?php echo convertToCDNUrl('pic/plus-orange.png')?>' height=70></a>
+			<a href="index.php?page=citoyencreer" style="text-align: center;display: block;width: 100%;height: 100%;line-height:100%;vertical-align: middle;padding: 50px 0;"><img src='<?php echo convertToCDNUrl('pic/plus-orange.png')?>' height=75></a>
 			<?php endif;?>
 		</td>
 	</tr>

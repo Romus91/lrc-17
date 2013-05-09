@@ -1,12 +1,12 @@
 $(document).ready(function(){
-	setInterval(function(){update();}, 10000);
+	setInterval(function(){updateCitoyens();}, 10000);
 });
-function update(){
+function updateCitoyens(){
 	$("table.perso").each(function(index,domEle){
 		$.ajax({
 			url: "updatejauge.php?perso="+$(this).attr("id"),
-			success: function(data){
-				var result = JSON.parse(data);
+			dataType:'json',
+			success: function(result){
 				$(domEle).find("span#vie").text(result.vie);
 				$(domEle).find("span#eng").text(result.eng);
 				$(domEle).find("span#exp").text(result.exp);

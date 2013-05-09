@@ -109,10 +109,10 @@ function isSelectedMenu($name){
 	</tr>
 	<?php endif;?>
 	<tr>
-		<td valign='top'><img src="ava/<?php echo $perso->getId()?>.png?<?php echo $perso->getLevel();?>" /></td>
+		<td valign='top'><img src="ava/<?php echo $perso->getId()?>.png?<?php echo $perso->getLevel();?>" height="135" /></td>
 		<td class='color1' valign=bottom bgcolor=000000 style="border: 1px solid #333333" width="100%">
 
-			<table class='button' width='100%'>
+			<table id="jaugeperso" width='100%' style="background:#111">
 				<tr>
 					<td>
 						<div class='jauge'>
@@ -165,7 +165,7 @@ function isSelectedMenu($name){
 					</td>
 				</tr>
 			</table>
-			<table class='button' width='100%'>
+			<table width='100%' style="background:#111">
 				<tr>
 					<td align=center class='color1'>Endurance : <?php echo $perso->getEndurance();?></td>
 					<td align=center class='color1'>Dextérité : <?php echo $perso->getDexterite();?></td>
@@ -173,8 +173,8 @@ function isSelectedMenu($name){
 				</tr>
 				<tr>
 					<td align="center" class='color1'>Regen NRG : <?php echo $perso->getAbsoluteRegen();?> / min</td>
-					<td align=center class='color1'>Precision : <?php echo $perso->getPrecision();?>%</td>
-					<td align=center class='color1'>Taux Esquive : <?php echo $perso->getTauxEsquive();?>%</td>
+					<td align=center class='color1'>Precision : <?php if($perso->getEnergyPercent()>=5): echo $perso->getPrecision(); else:?><font color="red"><?php echo $perso->getPrecision();?></font><?php endif;?> %</td>
+					<td align=center class='color1'>Taux Esquive : <?php if($perso->getEnergyPercent()>=5): echo $perso->getTauxEsquive(); else:?><font color="red"><?php echo $perso->getTauxEsquive();?></font><?php endif;?> %</td>
 				</tr>
 				<tr>
 					<td align="center" class="color1" colspan=3>Points d'amélioration disponibles : <font id="ptam" color="00ff00"><?php echo $perso->getNbPtsAmDispo();?>

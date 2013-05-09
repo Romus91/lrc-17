@@ -1,6 +1,8 @@
 <?php
 require_once 'autoload.php';
 
+$log = new Log();
+
 function armesEmpty($armes){
 	$sum=0;
 	foreach ($armes as $wep) {
@@ -212,52 +214,61 @@ while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
 	}else{
 		$dmg = $armes[$rand_arme]->getDamage();
 		$rand_hit = mt_rand(1,100);
+		$saveNbCibles=$nbCibles;
 		while($rand_hit > (($armes[$rand_arme]->getHitChance())+($perso->getPrecision()))/2){
-			$nbCibles/=2;
+			$nbCibles*=0.9;
 			$rand_hit = mt_rand(1,100);
 		}
 		$nbCibles=floor($nbCibles);
-		if($nbCibles>0){
-			if($nbCibles>count($wave)) $nbCibles=count($wave);
-			for($i=0;$i<$nbCibles;$i++){
-				$pv=$wave[$i]->getLife();
-				$wave[$i]->hit($dmg);
-				if($wave[$i]->getLife()<=0){
-					$perso->addXP($wave[$i]->getExp());
-					$e=new Event();
-					$e->_source = 'player';
-					$e->_target = get_class($wave[$i]);
-					$e->_type = 'tue';
-					$e->_value = -$pv;
-					$wRec->addEvent($e);
-				}else{
-					$e=new Event();
-					$e->_source = 'player';
-					$e->_target = get_class($wave[$i]);
-					$e->_type = 'touche';
-					$e->_value = -$dmg;
-					$wRec->addEvent($e);
-				}
-			}
-			$j=0;
-			do{
-				if($wave[$j]->getLife()<=0){
-					unset($wave[$j]);
-					$wave = array_values($wave);
-					$j=0;
-				}else $j++;
-			}while($j<count($wave));
-			$shothit++;
-		}else{
-			$e = new Event();
-			$e->_source = 'player';
-			$e->_target = get_class($z);
-			$e->_type = 'rate';
-			$wRec->addEvent($e);
 
-			damagePerso($perso, $z, $wRec);
-			$shotmiss++;
+		if($nbCibles<0) $nbCibles=0;
+
+		if($nbCibles>count($wave)) $nbCibles=count($wave);
+
+		for($i=0;$i<$nbCibles;$i++){
+			$pv=$wave[$i]->getLife();
+			$wave[$i]->hit($dmg);
+			if($wave[$i]->getLife()<=0){
+				$perso->addXP($wave[$i]->getExp());
+				$e=new Event();
+				$e->_source = 'player';
+				$e->_target = get_class($wave[$i]);
+				$e->_type = 'tue';
+				$e->_value = -$pv;
+				$wRec->addEvent($e);
+			}else{
+				$e=new Event();
+				$e->_source = 'player';
+				$e->_target = get_class($wave[$i]);
+				$e->_type = 'touche';
+				$e->_value = -$dmg;
+				$wRec->addEvent($e);
+
+			}
+			$shothit++;
 		}
+
+		if($saveNbCibles>$nbCibles && $i<count($wave)){
+			$diff=$saveNbCibles-$nbCibles;
+			$count=count($wave);
+			for($y=$i;$y<($i+$diff) && $y<$count;$y++){
+				damagePerso($perso, $wave[$y], $wRec);
+				$shotmiss++;
+			}
+		}
+
+		$j=0;
+		$count=count($wave);
+		do{
+			if($wave[$j]->getLife()<=0){
+				unset($wave[$j]);
+				$count--;
+				$wave = array_values($wave);
+				$j--;
+				if($j<0)$j=0;
+			}else $j++;
+		}while($j<$count);
+
 	}
 	if($armes[$rand_arme]->getId()!=1){
 		$armes[$rand_arme]->addMunitions(-1);
@@ -304,13 +315,28 @@ $membre->addArgent(ceil($gagne*0.015));
 ###################
 
 ####CALCUL DES EXP#######
-$bonusXP = $perso->retribXp();
 $xpGagne = $perso->getXp()-$saveexp;
-$membre->addXp(ceil($xpGagne*0.035));
+
+$coef=Member::LOW_LVL_CHAR_XP_COEF;
+if($perso->isAtMaxLevel()){
+	$coef=Member::MAX_LVL_CHAR_XP_COEF;
+}
+$membre->addXp(ceil($xpGagne*$coef));
+
+$bonusXP = $perso->retribXp();
 ################################
 
 $persoController->savePerso($perso);
 $memCont->saveMember($membre);
+
+$log->insertLog("Vague",$_SESSION['member_id'],$perso->getId(),"BILAN VAGUE : <br>
+                Vie avant : ".$savevie."<br>
+                Vie apres : ".$perso->getVie()."<br>
+                Nrg avant : ".$savenrg."<br>
+                Nrg apres : ".$perso->getEnergie()."<br>
+				Argent gagné : ".$gagne."<br>
+				XP gagné : ".$xpGagne."<br>"
+                );
 ?>
 	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>">
 	<table class='small' width='100%'>
@@ -322,10 +348,18 @@ $memCont->saveMember($membre);
 		</tr>
 		<tr>
 			<td class='title' align=center width="80"><b>&nbsp;</b></td>
-			<td class='title2' align=center><b>HEAD-CRABS</b></td>
-			<td class='title2' align=center><b>ZOMBIE</b></td>
-			<td class='title2' align=center><b>FAST-ZOMBIE</b></td>
-			<td class='title2' align=center><b>POISON-ZOMBIE</b></td>
+			<td class='title2' align=center>
+				<img src='<?php echo convertToCDNUrl('pic/crab-wave.png');?>' width='35'>
+			</td>
+			<td class='title2' align=center>
+				<img src='<?php echo convertToCDNUrl('pic/zombie-wave.png');?>' width='35'>
+			</td>
+			<td class='title2' align=center>
+				<img src='<?php echo convertToCDNUrl('pic/fastzombie-wave.png');?>' width='35'>
+			</td>
+			<td class='title2' align=center>
+				<img src='<?php echo convertToCDNUrl('pic/poisonzombie-wave.png');?>' width='35'>
+			</td>
 		</tr>
 		<tr>
 			<td align=right class='title2'><b>INCOMING</b></td>
@@ -336,17 +370,6 @@ $memCont->saveMember($membre);
 			<td align=center class='color2'><font size=3><?php  echo $wGen->getNbFast();?>
 			</font></td>
 			<td align=center class='color2'><font size=3><?php  echo $wGen->getNbPois();?>
-			</font></td>
-		</tr>
-		<tr>
-			<td align=right class='title2'><b>KILL</b></td>
-			<td align=center class='color2'><font size=3><?php  echo $crabkill;?>
-			</font></td>
-			<td align=center class='color2'><font size=3><?php  echo $zombiekill;?>
-			</font></td>
-			<td align=center class='color2'><font size=3><?php  echo $fastkill;?>
-			</font></td>
-			<td align=center class='color2'><font size=3><?php  echo $poisonkill;?>
 			</font></td>
 		</tr>
 		<tr>
@@ -378,7 +401,7 @@ $memCont->saveMember($membre);
 							</p>
 							<p class='hev' align=center>
 								<?php if (isset($armes[$i])):?>
-								<img src='<?php echo convertToCDNUrl('image.php?img='.$armes[$i]->getImage().'.png&h=63');?>/'>
+								<img src='<?php echo convertToCDNUrl('image.php?img='.$armes[$i]->getImage().'.png&h=105');?>/'>
 								<?php endif;?>
 							</p>
 							<p class='small' width='100%' align=center>
@@ -399,7 +422,7 @@ $memCont->saveMember($membre);
 							</table>
 							<table class='hev'>
 								<tr>
-									<td align=center><font color='00FF00' size=3>+ <?php  echo $gagne;?></font></td>
+									<td align=center><font color='00FF00' size=5>+ <?php  echo $gagne;?></font></td>
 								</tr>
 							</table>
 						</td>
@@ -411,7 +434,7 @@ $memCont->saveMember($membre);
 							</table>
 							<table class='hev'>
 								<tr>
-									<td align=center><font color='00FF00' size=3>+ <?php  echo floor($xpGagne);?></font></td>
+									<td align=center><font color='00FF00' size=5>+ <?php  echo floor($xpGagne);?></font></td>
 								</tr>
 							</table>
 						</td>
@@ -425,7 +448,7 @@ $memCont->saveMember($membre);
 							</table>
 							<table class='hev'>
 								<tr>
-									<td align=center><font color=FFFF00 size=3><?php echo (($perso->getVie()==0)?'X':floor($perso->getVie()));?></font></td>
+									<td align=center><font color=FFFF00 size=5><?php echo (($perso->getVie()==0)?'X':floor($perso->getVie()));?></font></td>
 								</tr>
 							</table>
 						</td>
@@ -439,15 +462,15 @@ $memCont->saveMember($membre);
 							</table>
 							<table class='hev'>
 								<tr>
-									<td align=center><font size=4><b>NRG</b> </font>
+									<td align=center><font size=6><b>NRG</b> </font>
 									</td>
 								</tr>
 								<tr>
 									<td align=left>
-										<table class='button'>
-											<tr height='10' valign=bottom>
+										<table width=100%>
+											<tr height='20' valign=bottom>
 												<td class='small' width='100'>
-													<img src='<?php echo convertToCDNUrl('pic/jbleu.png');?>' width='<?php echo $perso->getEnergyPercent();?>%' height='10'>
+													<img src='<?php echo convertToCDNUrl('pic/jbleu.png');?>' width='<?php echo $perso->getEnergyPercent();?>%' height='20'>
 												</td>
 											</tr>
 										</table>
@@ -459,7 +482,9 @@ $memCont->saveMember($membre);
 				</table>
 			</td>
 		</tr>
-		<tr><td class=gp-wave colspan=5 align=center>La bataille fait remonter en vous les souvenirs des gloires passées : <br><font color='00FF00'>+ <?php echo $bonusXP;?> EXP</font></td></tr>
+		<?php if($bonusXP>0):?>
+		<tr><td class='gp-wave' colspan=5 align=center>La bataille fait remonter en vous les souvenirs des gloires passées : <br><font color='00FF00'>+ <?php echo $bonusXP;?> EXP</font></td></tr>
+		<?php endif;?>
 		<tr>
 			<td colspan='5' align=center>
 				<table class='wave'>

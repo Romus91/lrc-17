@@ -4,17 +4,17 @@ $consoController = new ConsoController();
 
 $_SESSION['erreur']=false;?>
 <table class='small' align=center width='100%'>
-<tr><td colspan=4 align=center>TABLEAU DE CHASSE</td><td colspan=2 align=center>CONSOMMABLES</td></tr>
+<tr><td colspan="4" align=center>TABLEAU DE CHASSE</td><td colspan="2" align=center>CONSOMMABLES</td></tr>
 <tr>
-	<td class="hev" align=center><font color='CC6600' size=6><?php  echo $perso->getNb_vague();?></font><br>VAGUES</td>
-	<td colspan=3 align=center>
+	<td align=center>
+	<div class="hev"><p><font color='CC6600' size=7><?php  echo $perso->getNb_vague();?></font><p>VAGUES</div></td>
+	<td colspan="3" align=center>
 		<table id="palmares">
 			<tr>
-
-				<td><img src='<?php echo convertToCDNUrl('image.php?img=crabemini.png&w=50');?>'></td>
-				<td><img src='<?php echo convertToCDNUrl('image.php?img=zombiemini.png&w=50');?>'></td>
-				<td><img src='<?php echo convertToCDNUrl('image.php?img=zombiefastmini.png&w=50');?>'></td>
-				<td><img src='<?php echo convertToCDNUrl('image.php?img=zombiepoisonmini.png&w=50');?>'></td>
+				<td><img src='<?php echo convertToCDNUrl('image.php?img=crabemini.png&w=80');?>'></td>
+				<td><img src='<?php echo convertToCDNUrl('image.php?img=zombiemini.png&w=80');?>'></td>
+				<td><img src='<?php echo convertToCDNUrl('image.php?img=zombiefastmini.png&w=80');?>'></td>
+				<td><img src='<?php echo convertToCDNUrl('image.php?img=zombiepoisonmini.png&w=80');?>'></td>
 			</tr>
 			<tr>
 				<td class='small'><?php echo $perso->getNb_crabe_kill();?></td>
@@ -24,18 +24,19 @@ $_SESSION['erreur']=false;?>
 			</tr>
 		</table>
 	</td>
+
 	<?php
 	$conso = $perso->getInvConso();
 	for ($i=0;$i<2;$i++):?>
-		<td align="center">
-			<div align=center class='hev conso'>
-				<?php if($conso[$i]!=null):
-					$pack = $consoController->fetch($conso[$i]);?>
-					<a href="useconso.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $pack->getId();?>"><img src="<?php echo convertToCDNUrl('pic/'.$pack->getImage());?>" width="91" height="63"></a>
-				<?php endif;?>
-			</div>
+		<td align=center class='hev conso' style="display:inline-block;">
+			<?php if($conso[$i]!=null):
+				$pack = $consoController->fetch($conso[$i]);?>
+				<a href="useconso.php?perso=<?php echo $perso->getId();?>&pack=<?php echo $pack->getId();?>">
+					<img src="<?php echo convertToCDNUrl('pic/'.$pack->getImage());?>" width="100%" height="100%">
+				</a>
+			<?php endif;?>
 		</td>
-	<?php endfor;?>
+<?php endfor;?>
 </tr>
 <tr>
 	<td colspan=6 align=center>ARMES</td>
@@ -45,11 +46,11 @@ $_SESSION['erreur']=false;?>
 $armes = $perso->getInvArme();
 $j=0;
 do{?>
-	<td align=center class='arme'>
+	<td align=center class='arme-wrapper' style="display:inline-block;">
 		<div align=center class='hev arme' perso='<?php echo $perso->getId()?>' arme='<?php if (isset($armes[$j])) echo $armes[$j]->getId()?>'>
 		<?php if(isset($armes[$j])):?>
 			<a href='armeinfo.php?perso=<?php echo $perso->getId()?>&id=<?php echo $armes[$j]->getId()?>'>
-				<img src='<?php echo convertToCDNUrl('image.php?img='.$armes[$j]->getImage().'.png&h=63');?>'>
+				<img src='<?php echo convertToCDNUrl('image.php?img='.$armes[$j]->getImage().'.png&h=105');?>'>
 			</a>
 		<?php else:?>
 			<a href='javascript:void(0);'>&nbsp;</a>
@@ -76,7 +77,7 @@ do{?>
 					<table class='small' width='100%'>
 						<tr valign=top>
 							<td width='100%' colspan=4>
-								<table class='button' width='100%'>
+								<table width='100%'>
 									<tr>
 										<td class='color3' width=60>DEGATS</td>
 										<td class='small' width="100%">
@@ -120,7 +121,7 @@ do{?>
 							</td>
 						</tr>
 						<tr>
-							<td id='button' class="armeaction reload">
+							<td class=" button armeaction reload">
 								<a href='achatmunarme.php?perso=<?php echo $perso->getId();?>&id='>RECHARGER</a>
 							</td>
 						</tr>

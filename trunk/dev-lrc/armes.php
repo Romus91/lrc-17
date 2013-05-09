@@ -20,40 +20,47 @@
 				}
 				if ($arme->getLvlrequis() <= $perso->getLevel()):?>
 				<tr>
+					<td align=center class='color3' width="100px">
+						<img src='<?php echo convertToCDNUrl('image.php?img='.$arme->getImage().'.png&w=80');?>'><br>
+					</td>
 					<td class='color4' align=center>
-						<table class='small' width='450'>
+						<table class='small' width="100%">
 							<tr>
-								<td class='small' colspan=2>
-									<div style="width: 49%;display: inline-block;text-align: left;"><?php echo $arme->getNom()?></div>
-									<div style="width: 49%;display: inline-block;text-align: right;"><font color='BC6600'><?php echo $arme->getPrix()?> $</font></div>
-								</td>
+								<td class='small' colspan="2"><?php echo $arme->getNom()?></td>
+								<td width="50px"><font color='ff9900'><?php echo $arme->getPrix()?> $</font></td>
 							</tr>
 							<tr>
-								<td class='color1' width=40>DEGATS</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getDamage()/7*100?>%' height='10'></td>
+								<td class='color1' width="40">DEGATS</td>
+								<td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getDamage()/7*100?>%' height='10'></td>
+								<td class='color1' width="50px"><?php echo $arme->getDamage()?></td>
 							</tr>
 							<tr>
-								<td class='color1' width=40>PRECISION</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getPrecision()?>%' height='10'></td>
+								<td class='color1' width="40">PRECISION</td>
+								<td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getPrecision()?>%' height='10'></td>
+								<td class='color1' width="50px"><?php echo number_format($arme->getPrecision())?> %</td>
 							</tr>
 							<tr>
-								<td class='color1' width=40>CHARGEUR</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getMunmax()/250*100?>%' height='10'></td>
+								<td class='color1' width="40">CHARGEUR</td>
+								<td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getMunmax()/250*100?>%' height='10'></td>
+								<td class='color1' width="50px"><?php echo $arme->getMunmax()?></td>
 							</tr>
 							<tr>
-								<td class='color1' width=40>NB CIBLES</td><td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getNbCible()/18*100?>%' height='10'></td>
+								<td class='color1' width="40">NB CIBLES</td>
+								<td class='small'><img src='<?php echo convertToCDNUrl('pic/jblanc.png');?>' width='<?php echo $arme->getNbCible($membre->getFragAmelio())/15*100?>%' height='10'></td>
+								<td class='color1' width="50px"><?php echo $arme->getNbCible($membre->getFragAmelio())?></td>
 							</tr>
 						</table>
 					</td>
-					<td align=center class='color3'>
-						<img src='<?php echo convertToCDNUrl('image.php?img='.$arme->getImage().'.png&w=80');?>'><br>
-					</td>
+
 					<?php if ($trueornot == true):?>
-					<td align=center class='color4'>
+					<td align=center class='color4' width="150px">
 						DANS L'INVENTAIRE
 					</td>
 					<?php else:?>
-					<td align=center class='color4'>
-						<table class='button'>
+					<td align=center class='color4' width="150px">
+						<table class='color1' width="100%">
 							<tr>
-								<td id='button' width='100%'>
+								<td class='button' width='100%'>
 									<a href='achatarmeok.php?perso=<?php echo $perso->getId()?>&acheterarme=<?php echo $arme->getId()?>'>ACHETER</a>
 								</td>
 							</tr>

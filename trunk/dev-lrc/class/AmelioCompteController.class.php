@@ -8,12 +8,20 @@ class AmelioCompteController{
 		if($type==AmelioCompte::AM_FRAG) $image = 'fragammo.png';
 		if($data = $req->fetch(PDO::FETCH_OBJ)){
 			$am = new AmelioCompte();
-			$am ->	setImage($image)
-				->	setLevelRequis($data->level_requis)
-				->	setNiveau($data->niveau)
-				->	setType(AmelioCompte::AM_PIERCE)
-				->	setPrix($data->prix);
+			$am -> setImage($image)
+				-> setLevelRequis($data->level_requis)
+				-> setNiveau($data->niveau)
+				-> setType(AmelioCompte::AM_PIERCE)
+				-> setPrix($data->prix);
 			return $am;
-		}else return null;
+		}else{
+			$am = new AmelioCompte();
+			$am	-> setImage($image)
+				-> setLevelRequis(0)
+				-> setNiveau(0)
+				-> setType(AmelioCompte::AM_PIERCE)
+				-> setPrix(0);
+			return $am;
+		}
 	}
 }

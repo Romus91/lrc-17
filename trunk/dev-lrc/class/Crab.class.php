@@ -1,6 +1,6 @@
 <?php
 class Crab extends Monster{
-	const MONEY = 5;
+	const MONEY = 3;
 	public function __construct($level){
 		$this->setLevel((int)$level);
 		$this->setBaseExp(1);

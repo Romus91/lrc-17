@@ -1,6 +1,6 @@
 <?php
 class Zombie extends Monster{
-	const MONEY = 15;
+	const MONEY = 7;
 	public function __construct($level){
 		$this->setLevel((int)$level);
 		$this->setBaseExp(2);

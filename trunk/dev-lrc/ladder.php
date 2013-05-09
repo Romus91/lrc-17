@@ -6,11 +6,11 @@
 	</tr>
 	<tr>
 		<td colspan=7>
-			<table class='button' width='100%'>
+			<table width='100%'>
 				<tr>
-					<td id='button' width="50%"><a href="index.php?page=ladder">PERSONNAGES</a>
+					<td class='button' width="50%"><a href="index.php?page=ladder">PERSONNAGES</a>
 					</td>
-					<td id='button' width="50%"><a href="index.php?page=ladder&tab=members">MEMBRES</a>
+					<td class='button' width="50%"><a href="index.php?page=ladder&tab=members">MEMBRES</a>
 					</td>
 				</tr>
 			</table></td>
