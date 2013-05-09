@@ -1,0 +1,14 @@
+$(document).ready(function(){
+	$(".stats").hide();
+	$("tr.ladder-row").click(function(){
+		$(this).next("tr.stats").toggle();
+	});
+	$("tr.ladder-row").hover(
+		function(){
+			$(this).children("td").addClass("hover");
+		},
+		function(){
+			$(this).children("td").removeClass("hover");
+		}
+	);
+});
