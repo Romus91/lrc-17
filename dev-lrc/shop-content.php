@@ -51,3 +51,40 @@ $amFrag = $amCont->fetchAmelio($mem->getFragLevel(),AmelioCompte::AM_FRAG);?>
 		</p>
 	</div>
 </div>
+<?php
+$shopCatCont = new ShopCategController();
+$shopItemCont = new ShopItemController();
+
+$categArray = $shopCatCont->fetchAll();
+
+foreach ($categArray as $categ) :
+	$items = $shopItemCont->fetchByCateg($categ);
+	foreach ($items as $item) :?>
+		<div class="shopitem">
+			<div class="logo">
+				<a href="#">
+					<img src="<?php echo convertToCDNUrl('pic/'.$item->getImage());?>">
+				</a>
+			</div>
+			<div class="desc">
+				<p>
+					<span class="tag">Objet :</span>
+					<span><?php echo $item->getName()?></span>
+				</p>
+				<p>
+					<span class="tag">Type :</span>
+					<span><?php echo $categ->getName()?></span>
+				</p>
+				<p>
+					<span class="tag">Niveau requis :</span>
+					<span><?php echo $item->getLevelRequis()?></span>
+				</p>
+				<p>
+					<span class="tag">Prix :</span>
+					<span><font color="00ff00"><?php echo $item->getPrix();?></font> <font color="f7a300"><strike>Cr</strike></font></span>
+				</p>
+			</div>
+		</div>
+	<?php endforeach;
+endforeach;
+?>
