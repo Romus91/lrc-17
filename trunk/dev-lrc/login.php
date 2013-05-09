@@ -25,7 +25,7 @@ if(isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['login']) &&
 			$req = ConnectionSingleton::connect()->prepare('insert into activity (id_membre, date) values (:id,NOW());');
 			$req->execute(array('id'=>$member->getId()));
 
-			$log->insertLog("Connecté",$member->getId(),"NULL",$_SESSION['login']);
+			$log->insertLog("Connect&eacute;",$member->getId(),"NULL",$_SESSION['login']);
 
 			echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php');</script>";
 		}else{

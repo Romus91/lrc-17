@@ -18,7 +18,7 @@ $(document).ready(function(){
 						}
 						target.empty();
 					}else{
-						$('#popup .content .message').html('<p>Consommable inexistant, réessayez !</p>');
+						$('#popup .content .message').html('<p>Consommable inexistant, r&eacute;essayez !</p>');
 						$('#popup .content .image').children("img").attr("src", 'http://anthares.be/lrc/pic/popup-wrong.png');
 						$("#popup").show();
 						$('#popup .content').animate({height : ($('#popup .content .message').outerHeight())},100);

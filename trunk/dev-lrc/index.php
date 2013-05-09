@@ -22,6 +22,7 @@ $log = new Log();
 <html>
 <head>
 <title>LES RESCAPES DE CITE 17</title>
+<meta charset="UTF-8">
 <link rel="icon" type="image/jpg" href="hl2logo.gif" />
 <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>" />
 <link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
@@ -202,7 +203,7 @@ $log = new Log();
 		<?php require_once 'chat.php';?>
 		<div id="footer">
 			<p>
-				<a href='http://romustech.dyndns.org'>Created by Romus</a><font color="FAC21D"> -- Copyright © Chaotic-Realms -- Co-developper : Anthares
+				<a href='http://romustech.dyndns.org'>Created by Romus</a><font color="FAC21D"> -- Copyright &copy; Chaotic-Realms -- Co-developper : Anthares
 					<!-- Mets l'adresse de ta plateforme personnelle ici ;) -->
 				</font>
 			</p>

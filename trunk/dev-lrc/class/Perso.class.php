@@ -41,7 +41,7 @@ class Perso{
 	protected $_nb_zomb_kill;
 	protected $_nb_zfast_kill;
 	protected $_nb_zpois_kill;
-	//améliorations
+	//ameliorations
 	protected $_nbPtsAmMax;
 	protected $_nbPtsAmDispo;
 	//inventaire

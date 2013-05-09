@@ -14,7 +14,7 @@ $amFrag = $amCont->fetchAmelio($mem->getFragLevel(),AmelioCompte::AM_FRAG);?>
 		</p>
 		<p>
 			<span class="tag">Type :</span>
-			<span>Amélioration de compte</span>
+			<span>Am&eacute;lioration de compte</span>
 		</p>
 		<p>
 			<span class="tag">Niveau requis :</span>
@@ -35,11 +35,11 @@ $amFrag = $amCont->fetchAmelio($mem->getFragLevel(),AmelioCompte::AM_FRAG);?>
 	<div class="desc">
 		<p>
 			<span class="tag">Objet :</span>
-			<span>Mun. à fragmentation<?php if($amFrag->getNiveau()!=0) echo " - Niv ".$amFrag->getNiveau();?></span>
+			<span>Mun. &agrave; fragmentation<?php if($amFrag->getNiveau()!=0) echo " - Niv ".$amFrag->getNiveau();?></span>
 		</p>
 		<p>
 			<span class="tag">Type :</span>
-			<span>Amélioration de compte</span>
+			<span>Am&eacute;lioration de compte</span>
 		</p>
 		<p>
 			<span class="tag">Niveau requis :</span>

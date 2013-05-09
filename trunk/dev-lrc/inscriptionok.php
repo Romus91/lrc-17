@@ -10,7 +10,7 @@ if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']
 
 	for($i = 0, $j = strlen($login); $i < $j; $i++){
 		if ($login[$i] == "_"){
-			$_SESSION['erreur2']= "<font color='FF0000'><b>Caractère non permis</b></font>";
+			$_SESSION['erreur2']= "<font color='FF0000'><b>Caract&egrave;re non permis</b></font>";
 			include("loginb.php");
 			$_SESSION['erreur2']="";
 			exit;
@@ -45,7 +45,7 @@ if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']
 
 				echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php');</script>";
 			} catch (Exception $e) {
-				$_SESSION['erreur2']= "<font color='FF0000'><b>Quelqu'un a déjà ce login ou cet email...</b></font>";
+				$_SESSION['erreur2']= "<font color='FF0000'><b>Quelqu'un a d&eacute;j&agrave; ce login ou cet email...</b></font>";
 				include("loginb.php");
 				$_SESSION['erreur2']="";
 			}

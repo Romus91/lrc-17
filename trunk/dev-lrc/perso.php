@@ -79,10 +79,10 @@ function isSelectedMenu($name){
 					<td align="center"><p>Niveau suivant atteind !</p></td>
 				</tr>
 				<tr>
-					<td class='title2' align=center>Vous gagnez <font color='00FF00' size=3> 2 </font> points d'amélioration...</td>
+					<td class='title2' align=center>Vous gagnez <font color='00FF00' size=3> 2 </font> points d'am&eacute;lioration...</td>
 				</tr>
 				<tr>
-					<td align=center><font size="4">... Et un point de compétence !</font>
+					<td align=center><font size="4">... Et un point de comp&eacute;tence !</font>
 					</td>
 				</tr>
 			</table>
@@ -94,7 +94,7 @@ function isSelectedMenu($name){
 					</td>
 				</tr>
 				<tr>
-					<td width='50%' align=right class='title2'>Dextérité :</td>
+					<td width='50%' align=right class='title2'>Dext&eacute;rit&eacute; :</td>
 					<td width='20%' align=center><?php echo $perso->getDexterite();?></td>
 					<td width='30%' class='title2'><a href="levelup.php?perso=<?php echo $perso->getId();?>&stat=1"> <img src="<?php echo convertToCDNUrl('pic/plus.png');?>" /> </a>
 					</td>
@@ -168,7 +168,7 @@ function isSelectedMenu($name){
 			<table width='100%' style="background:#111">
 				<tr>
 					<td align=center class='color1'>Endurance : <?php echo $perso->getEndurance();?></td>
-					<td align=center class='color1'>Dextérité : <?php echo $perso->getDexterite();?></td>
+					<td align=center class='color1'>Dext&eacute;rit&eacute; : <?php echo $perso->getDexterite();?></td>
 					<td align=center class='color1'>Esquive : <?php echo $perso->getEsquive();?></td>
 				</tr>
 				<tr>
@@ -177,7 +177,7 @@ function isSelectedMenu($name){
 					<td align=center class='color1'>Taux Esquive : <?php if($perso->getEnergyPercent()>=5): echo $perso->getTauxEsquive(); else:?><font color="red"><?php echo $perso->getTauxEsquive();?></font><?php endif;?> %</td>
 				</tr>
 				<tr>
-					<td align="center" class="color1" colspan=3>Points d'amélioration disponibles : <font id="ptam" color="00ff00"><?php echo $perso->getNbPtsAmDispo();?>
+					<td align="center" class="color1" colspan=3>Points d'am&eacute;lioration disponibles : <font id="ptam" color="00ff00"><?php echo $perso->getNbPtsAmDispo();?>
 					</font>
 					</td>
 				</tr>
