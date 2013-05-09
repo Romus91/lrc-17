@@ -1,4 +1,4 @@
-<p><h1>Fréquentation du site</h1></p>
+<p><h1>Fr&eacute;quentation du site</h1></p>
 <table class="small" width=100%>
 <?php
 require_once 'autoload.php';

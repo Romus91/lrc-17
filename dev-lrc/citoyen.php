@@ -2,7 +2,6 @@
 	include_once ("verif.php");
 ?>
 <?php
-	//Affichage des perso du membre connecté
 	$ent=0;
 	if (isset($_GET['status'])) $ent = (int) htmlentities($_GET['status']);
 
@@ -33,7 +32,7 @@
 	</tr>
 	<?php if($nb2 == 0 && $ent==1):?>
 	<tr height='175'>
-		<td colspan='6' align=center>Le cimetière est vide</td>
+		<td colspan='6' align=center>Le cimeti&egrave;re est vide</td>
 	</tr>
 	<?php endif;
 	if($ent==0) include_once 'citoyen_vivant.php';

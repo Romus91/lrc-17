@@ -5,6 +5,7 @@
 <link rel="icon" type="image/jpg" href="hl2logo.gif" />
 <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>" />
 <meta http-equiv="content-language" content="fr">
+<meta charset="UTF-8">
 <style>
 body{
 	background: none;
@@ -88,8 +89,8 @@ p.barremenu{
 		<div class="form col">
 			<div>
 				<p class="title"><font size=3 color='555555'>CHAOTIC REALMS</font></p>
-				<p class="desc">est un jeu de survie, le but étant de contrer des vagues de zombies chaque jour.<br>
-				Avec pour seul amis, vos armes, vos pièges et vos précieuses munitions... <br><br>
+				<p class="desc">est un jeu de survie, le but &eacute;tant de contrer des vagues de zombies chaque jour.<br>
+				Avec pour seul amis, vos armes, vos pi&egrave;ges et vos pr&eacute;cieuses munitions... <br><br>
 				</p>
 			</div>
 			<div>

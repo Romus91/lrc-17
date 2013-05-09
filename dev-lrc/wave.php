@@ -19,7 +19,7 @@ function damagePerso(Perso $perso, Monster $z, WaveRecorder $wRec){
 		$e->_source = get_class($z);
 		$e->_target = 'player';
 		if($vieperdue>0){
-			$e->_type = 'dégats';
+			$e->_type = 'd&eacute;gats';
 			$e->_value = -$vieperdue;
 			$perso->addVie(-$vieperdue);
 		}else{
@@ -334,8 +334,8 @@ $log->insertLog("Vague",$_SESSION['member_id'],$perso->getId(),"BILAN VAGUE : <b
                 Vie apres : ".$perso->getVie()."<br>
                 Nrg avant : ".$savenrg."<br>
                 Nrg apres : ".$perso->getEnergie()."<br>
-				Argent gagné : ".$gagne."<br>
-				XP gagné : ".$xpGagne."<br>"
+				Argent gagn&eacute; : ".$gagne."<br>
+				XP gagn&eacute; : ".$xpGagne."<br>"
                 );
 ?>
 	<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>">
@@ -483,7 +483,7 @@ $log->insertLog("Vague",$_SESSION['member_id'],$perso->getId(),"BILAN VAGUE : <b
 			</td>
 		</tr>
 		<?php if($bonusXP>0):?>
-		<tr><td class='gp-wave' colspan=5 align=center>La bataille fait remonter en vous les souvenirs des gloires passées : <br><font color='00FF00'>+ <?php echo $bonusXP;?> EXP</font></td></tr>
+		<tr><td class='gp-wave' colspan=5 align=center>La bataille fait remonter en vous les souvenirs des gloires pass&eacute;es : <br><font color='00FF00'>+ <?php echo $bonusXP;?> EXP</font></td></tr>
 		<?php endif;?>
 		<tr>
 			<td colspan='5' align=center>

@@ -3,7 +3,7 @@ require_once 'pass.php';
 require_once 'autoload.php';
 require_once 'image.php';
 	if ((isset($_POST['nom']) && !empty($_POST['nom'])) && (isset($_POST['photo']) && !empty($_POST['photo']))) {
-	//on vérifie qu'il ne sont pas vide
+	//on v&eacute;rifie qu'il ne sont pas vide
 		$_POST['nom']=ucfirst($_POST['nom']);
 		$_POST['nom']=stripslashes(str_replace("'","_",$_POST['nom']));
 		$_POST['nom']=stripslashes(str_replace(" ","_",$_POST['nom']));
@@ -36,21 +36,21 @@ require_once 'image.php';
 
 		for ($i = 0, $j = strlen($name); $i < $j; $i++){
 			if ($name[$i] == "_"){
-				 $erreur= "<font color='FF0000'><b>Caractère non permis</b></font>";
+				 $erreur= "<font color='FF0000'><b>Caract&egrave;re non permis</b></font>";
 				 include("citoyencreer.php");
 				 $erreur="";
 				 exit;
 			}
 		}
 
-		//on vérifie que le login n'est pas deja pris
+		//on v&eacute;rifie que le login n'est pas deja pris
 		$sql = 'SELECT * FROM perso WHERE id_membre="'.$_SESSION['member_id'].'" AND nom="'.$name.'"';
 		$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
 		$nb = mysql_num_rows($req);
 
 
 		if($nb > 0){
-			$erreur= "<font color='FF0000'><b>Perso deja existant !</b></font>";
+			$erreur= "<font color='FF0000'><b>Perso d&eacute;j&agrave; existant !</b></font>";
 			include("citoyencreer.php");
 			$erreur="";
 			exit;
@@ -59,7 +59,7 @@ require_once 'image.php';
 		$perso = $persoController->createPerso($name, $_POST['photo'], $_SESSION['member_id']);
 		imagepng(genImg($perso->getAvatar().'.JPG',Perso::AVATAR_HEIGHT,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 		$log=new Log();
-		$log->insertLog("Perso Créé",$_SESSION['member_id'],$perso->getId(),"Nom : ".$name);
+		$log->insertLog("Perso Cr&eacute;&eacute;",$_SESSION['member_id'],$perso->getId(),"Nom : ".$name);
 		echo "<script language='javascript' type='text/javascript'>window.location.replace('index.php?page=citoyen');</script>";
 		exit;
     }

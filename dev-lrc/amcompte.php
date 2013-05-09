@@ -32,7 +32,7 @@ if($t==AmelioCompte::AM_PIERCE || $t==AmelioCompte::AM_FRAG){
 		$_SESSION['shop_error'] = "Vous avez atteind le niveau maximum !";
 	}
 }else{
-	$_SESSION['shop_error'] = "Type d'amélioration inconnu !";
+	$_SESSION['shop_error'] = "Type d'am&eacutelioration inconnu !";
 }
 ?>
 <html>

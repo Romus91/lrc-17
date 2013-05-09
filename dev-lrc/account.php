@@ -3,13 +3,13 @@ $nbPersoAlive = count($persoController->fetchMembreAlive($mem->getId()));
 $nbPersoDead = count($persoController->fetchMembreDead($mem->getId()));
 ?>
 <div class="desc">
-	<p class="desc-title">Informations Générales</p>
+	<p class="desc-title">Informations G&eacute;n&eacute;rales</p>
 	<p>
 		<span class="tag">Nom :</span>
 		<span><?php echo $mem->getLogin();?></span>
 	</p>
 	<p>
-		<span class="tag">Compte créé le :</span>
+		<span class="tag">Compte cr&eacute;&eacute; le :</span>
 		<span><?php echo date('d-m-Y H:i:s',strtotime($mem->getDate()))?></span>
 	</p>
 	<p>
@@ -40,8 +40,8 @@ $nbPersoDead = count($persoController->fetchMembreDead($mem->getId()));
 		<span>Niveau <?php echo $mem->getPierceLevel();?> - <?php echo $mem->getPierceChance();?>% de chances d'empaler</span>
 	</p>
 	<p>
-		<span class="tag">Mun. à fragmentation :</span>
-		<span>Niveau <?php echo $mem->getFragLevel()?> - <?php echo $mem->getFragAmelio()?> fois plus de cibles touchées</span>
+		<span class="tag">Mun. &agrave; fragmentation :</span>
+		<span>Niveau <?php echo $mem->getFragLevel()?> - <?php echo $mem->getFragAmelio()?> fois plus de cibles touch&eacute;es</span>
 	</p>
 </div>
 <div class="desc">

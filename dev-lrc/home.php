@@ -46,16 +46,16 @@
 					<td align=left>Colocataire</td><td align=right><?php  echo $a0;?></td>
 				</tr>
 				<tr>
-					<td align=left>Quêtes aléatoire</td><td align=right><?php  echo $a0;?></td>
+					<td align=left>Qu&ecirc;tes al&eacute;atoire</td><td align=right><?php  echo $a0;?></td>
 				</tr>
 				<tr>
 					<td align=left>Inventaire</td><td align=right><?php  echo $a90;?></td>
 				</tr>
 				<tr>
-					<td align=left>Caractéristiques armes</td><td align=right><?php  echo $a80;?></td>
+					<td align=left>Caract&eacute;ristiques armes</td><td align=right><?php  echo $a80;?></td>
 				</tr>
 				<tr>
-					<td align=left>Caractéristiques pièges</td><td align=right><?php  echo $a60;?></td>
+					<td align=left>Caract&eacute;ristiques pi&egrave;ges</td><td align=right><?php  echo $a60;?></td>
 				</tr>
 				<tr>
 					<td align=left>Nations - Equipes - Guildes</td><td align=right><?php  echo $a0;?></td>
@@ -191,21 +191,4 @@
 			</table>
 		</td>
 	</tr>
-	<!--
-	<tr>
-		<td colspan=2>
-			<table class='color4' width="100%" height="100%">
-				<tr>
-					<td align=center class='title' HEIGHT="5%">
-						<b>A faire</b><br>
-					</td>
-				</tr>
-				<tr>
-					<td align=left valign=top>
-						- Bug pour la sélection de munitions (Ca foire quand on clique sur 'maximiser')
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>-->
 </table>

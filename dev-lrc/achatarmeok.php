@@ -12,12 +12,12 @@
 
 
 	//Chaque if correspond à chaque objets
-	//On vérifie si le POST de la page précédente correspond a l'objet, si l'argent est suffisant, et si il ne le possède pas déjà.
-	//Dans ce cas, on modifie dans la base de donnée (table perso) l'arme, ou le piege, ou la vie du perso du membre connecté
+	//On v&eacute;rifie si le POST de la page pr&eacute;c&eacute;dente correspond a l'objet, si l'argent est suffisant, et si il ne le possède pas d&eacute;jà.
+	//Dans ce cas, on modifie dans la base de donn&eacute;e (table perso) l'arme, ou le piege, ou la vie du perso du membre connect&eacute;
 	//Ensuite, son argent
-	//On vérifie toujours si il n'y a pas d'erreurs
+	//On v&eacute;rifie toujours si il n'y a pas d'erreurs
 	if (!isset($_GET['acheterarme'])){
-			$_SESSION['erreur']= "<font color='FF0000'><b>Tu as oublié de sélectionner !</b></font>";
+			$_SESSION['erreur']= "<font color='FF0000'><b>Tu as oubli&eacute; de s&eacute;lectionner !</b></font>";
 	}else{
 		if (count($inv) >= 6){
 			$_SESSION['text']= "<font color='FF0000'><b>Plus de place dans l'inventaire</b></font>";
