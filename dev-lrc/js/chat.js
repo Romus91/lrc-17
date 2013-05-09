@@ -144,6 +144,7 @@ function playSound(){
 	if(window.localStorage.getItem('playChatSound') === 'true'){
 		document.getElementById('chat-sound-player').play();
 	}
+	$('#chat-tray-badge').animate({top: "-=30px"},100).animate({top: "+=30px"},100);
 }
 
 function loadOnline(){
