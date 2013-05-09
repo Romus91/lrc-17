@@ -25,9 +25,9 @@ if ($nb2 >= $membre->getNbPersoMax()){
 			<table class='title2' width='100%'>
 				<tr>
 					<td>
-						<table class='button'>
+						<table width="100%">
 							<tr>
-								<td id='button'>
+								<td class='button'>
 									<a href="index.php?page=citoyen">RETOUR</a>
 								</td>
 							</tr>

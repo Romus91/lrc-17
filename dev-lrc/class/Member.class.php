@@ -1,6 +1,9 @@
 <?php
 
 class Member{
+	const MAX_AM_LEVEL=3;
+	const MAX_LVL_CHAR_XP_COEF=0.05;
+	const LOW_LVL_CHAR_XP_COEF=0.035;
 	protected $_id;
 	protected $_login;
 	protected $_pass;
@@ -176,10 +179,12 @@ class Member{
 	}
 	public function setFragLevel($am_frag_lvl){
 		$this->_frag_ammo_level=(int)$am_frag_lvl;
+		if($this->_frag_ammo_level>self::MAX_AM_LEVEL) $this->_frag_ammo_level=self::MAX_AM_LEVEL;
 		return $this;
 	}
 	public function setPierceLevel($am_pierce_lvl){
 		$this->_piercing_ammo_level=(int)$am_pierce_lvl;
+		if($this->_piercing_ammo_level>self::MAX_AM_LEVEL) $this->_piercing_ammo_level=self::MAX_AM_LEVEL;
 		return $this;
 	}
 	public function getFragLevel(){
@@ -189,7 +194,10 @@ class Member{
 		return $this->_piercing_ammo_level;
 	}
 	public function getFragAmelio(){
-		switch($this->_frag_ammo_level){
+		return self::getFragForLevel($this->_frag_ammo_level);
+	}
+	public static function getFragForLevel($level){
+		switch($level){
 			case 1 : return 1.10;
 			case 2 : return 1.25;
 			case 3 : return 1.50;
@@ -197,7 +205,10 @@ class Member{
 		}
 	}
 	public function getPierceChance(){
-		switch($this->_piercing_ammo_level){
+		return self::getPierceForLevel($this->_piercing_ammo_level);
+	}
+	public static function getPierceForLevel($level){
+		switch($level){
 			case 1 : return 50;
 			case 2 : return 75;
 			case 3 : return 100;

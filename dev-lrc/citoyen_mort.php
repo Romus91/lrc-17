@@ -5,13 +5,13 @@ foreach($tabDead as $perso):?>
 			<table class='color1' width='100%'>
 				<tr>
 					<td align=center>
-						<font size =4><?php echo $perso->getNom()?></font>
+						<font size =5><?php echo $perso->getNom()?></font>
 					</td>
 				</tr>
 			</table>
 		</td>
-		<td rowspan='2' align=center background='<?php echo convertToCDNUrl('pic/'.$perso->getAvatar().'.JPG');?>' style="background-position:center -10px;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;"width='130' height='70'>
-			<img src='<?php echo convertToCDNUrl('pic/rouge.png');?>' width='185' height='117'>
+		<td rowspan='2' align=center background='<?php echo convertToCDNUrl('pic/'.$perso->getAvatar().'.JPG');?>' style="background-position:center top;background-size: cover;" width='185' height='135'>
+			<img src='<?php echo convertToCDNUrl('pic/rouge.png');?>' width='185' height='135'>
 		</td>
 	</tr>
 	<tr >
@@ -19,7 +19,7 @@ foreach($tabDead as $perso):?>
 			<table class='hev'>
 				<tr>
 					<td align=center>
-						<b>A SURVECUS<br><font color='CC6600' size=3><?php echo $perso->getNb_vague()?></font><br>VAGUE</b>
+						<b>A SURVECUS<br><font color='CC6600' size=6><?php echo $perso->getNb_vague()?></font><br>VAGUE</b>
 					</td>
 				</tr>
 			</table>
@@ -28,7 +28,7 @@ foreach($tabDead as $perso):?>
 			<table class='hev'>
 				<tr>
 					<td align=center>
-						<font size=5><b>EXP</b></font><br><font color=FFFF00 size=2><b><?php echo $perso->getXp()?></b></font>
+						<font size=6><b>EXP</b></font><br><font color=FFFF00 size=4><b><?php echo $perso->getXp()?></b></font>
 					</td>
 				</tr>
 			</table>
@@ -37,21 +37,21 @@ foreach($tabDead as $perso):?>
 			<table class='hev perso' id='".$perso->getId()."'>
 				<tr align=center>
 					<td>
-						<table class='button' width='100' style="margin-bottom:5px;">
+						<table width='100%' style="margin-bottom:5px;">
 							<tr>
 								<td class='small' width='100%'>
 									<img class='jaugevie' src='<?php echo convertToCDNUrl('pic/jvert.png');?>' width='<?php echo $perso->getVie()?>%' height='10'>
 								</td>
 							</tr>
 						</table>
-						<table class='button' width='100' style="margin-bottom:5px;">
+						<table width='100%' style="margin-bottom:5px;">
 							<tr>
 								<td class='small' width='100%'>
 									<img class='jaugeeng' src='<?php echo convertToCDNUrl('pic/jbleu.png');?>' width='<?php echo $perso->getEnergyPercent()?>%' height='10'>
 								</td>
 							</tr>
 						</table>
-						<table class='button' width='100'>
+						<table width='100%'>
 							<tr>
 								<td class='small' width='100%'>
 									<img src='<?php echo convertToCDNUrl('pic/jjaune.png');?>' width='<?php echo $perso->getLevelPercent()?>%' height='10'>

@@ -1,209 +1,472 @@
-
 /*TABLE*/
-table
-{
-	FONT-SIZE: 8pt;
-	FONT-FAMILY:Verdana;
-	COLOR: #FFFFFF;
-	font-weight:bold;
-
+* {
+	FONT-FAMILY: Verdana;
+	font-weight: bold;
 }
 
-table.main
-{
+div {
+	color: #fff;
+}
 
-	background-color : #000000;
+table {
+	FONT-SIZE: 8pt;
+	COLOR: #FFFFFF;
+}
+
+.main {
+	background-color: #000000;
 	min-width: 1000px;
 	width: 1000px;
 }
 
-.color1
-{
-	background-color : #333333;
-
-}
-.color2
-{
-	background-color : #CC6600;
-
-}
-.color3
-{
-	background-color : #333333;
-
-}
-.color4
-{
-	background-color : #555555;
-
-}
-.color5
-{
-	background-color : #484848;
-
+.color1 {
+	background-color: #333333;
 }
 
-table .hev
-{
-	background : url(http://anthares.be/lrc/pic/vierge.png) no-repeat center center;
-	background-size:contain;
-	width : 91px;
-	height : 63px;
-	text-align:center;
-	vertical-align:middle;
+.color2 {
+	background-color: #CC6600;
 }
 
-table .barremenu
-{
-	background : url(http://anthares.be/lrc/pic/barre.png) no-repeat center #000;
+.color3 {
+	background-color: #333333;
+}
+
+.color4 {
+	background-color: #555555;
+}
+
+.color5 {
+	background-color: #484848;
+}
+
+.hev {
+	background: #666666; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #666666 0%, #333333 50%, #111111 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#666666), color-stop(50%,#333333), color-stop(100%,#111111)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #666666 0%,#333333 50%,#111111 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #666666 0%,#333333 50%,#111111 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #666666 0%,#333333 50%,#111111 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #666666 0%,#333333 50%,#111111 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#111111',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	width: 140px;
+	height: 95px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	box-sizing: border-box;
+	border-radius: 12px;
+}
+
+.hev>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 100%;
+}
+
+.hev img {
+	height:100%
+}
+
+.hev a:hover {
+	background: #b5b5b5; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #b5b5b5 0%, #8c8c8c 36%, #343434 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#b5b5b5), color-stop(36%,#8c8c8c), color-stop(100%,#343434)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5b5b5', endColorstr='#343434',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 12px;
+}
+
+.barremenu {
+	background: url(http://anthares.be/lrc/pic/barre.png) no-repeat center
+		#000;
 	background-size: cover;
 }
 
-.small{
-		background: #000000;
+.small {
+	background: #000000;
 }
 
-table .barre
-{
-background : url(http://anthares.be/lrc/pic/blanc.png) repeat left;
-	background-color : #000000;
+.barre {
+	background: url(http://anthares.be/lrc/pic/blanc.png) repeat left;
+	background-color: #000000;
 }
-
 
 /*TD*/
-
-td .header
-{
-		/*background : url(http://anthares.be/lrc/pic/headerbackground.png) repeat-y center top;*/
-		background-color :#000000;
-		height: 95px;
+.bannerinfo {
+	background: url(http://anthares.be/lrc/pic/bannerinfo.png) no-repeat
+		center top;
+	height: 65px;
+	FONT-SIZE: 14pt;
+	font-weight: bold;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #333333;
 }
 
-td .bannerinfo
-{
-		background : url(http://anthares.be/lrc/pic/bannerinfo.png) no-repeat center top;
-		height: 65px;
-		FONT-SIZE: 14pt;
-		font-weight:bold;
-		border-style:solid;
-		border-width:2px;
-		border-color:#333333;
+.title {
+	background-color: #000000;
 }
 
-td .title
-{
-	background-color : #000000;
+.title2 {
+	background-color: #111111;
 }
 
-td .title2
-{
-	background-color : #111111;
+.maincenter {
+	background-color: #333333;
 }
 
-td .maincenter
-{
-	background-color : #333333;
-}
-
-td .verouille
-{
-	background-image:url(http://anthares.be/lrc/pic/fondverouillesmall.png);
-	background-position:center center;
+.verouille {
+	background-image: url(http://anthares.be/lrc/pic/fondverouillesmall.png);
+	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-
-	color : 333333;
-
+	color: 333333;
 }
 
-td .verouilleh
-{
-	background-image:url(http://anthares.be/lrc/pic/fondverouille.png);
-	background-position:center center;
+.verouilleh {
+	background-image: url(http://anthares.be/lrc/pic/fondverouille.png);
+	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-
-	color : 333333;
-
+	color: 333333;
 }
 
 /*TAB INFO*/
-td .info
-{
+div.info {
 	FONT-SIZE: 14pt;
-	font-weight:bold;
-
+	font-weight: bold;
+	color: #fff;
+	float: left;
+	text-align: center;
+	height: 100%;
+	width: 20%;
 }
 
-#info
-{
-	FONT-SIZE: 14pt;
-	font-weight:bold;
-	color : #f7a300;
+.bannerinfo>div.info:first-child {
+	width: 40%;
+}
 
+div.info p {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+div.info span {
+	FONT-SIZE: 14pt;
+	font-weight: bold;
+	color: #f7a300;
 }
 
 /*BODY*/
-body
-{
-	FONT-SIZE: 8pt;
-	FONT-FAMILY:New time roman;
-	background-image:url(http://anthares.be/lrc/pic/background.png);
-	background-repeat:no-repeat;
-	background-position:center top;
+html {
+	background-image: url(http://anthares.be/lrc/pic/background.png);
+	background-repeat: no-repeat;
+	background-position: center top;
 	background-attachement: fixed;
-	background-color : #000000;
-	font-weight:bold;
+	background-color: #000000;
 }
 
- a
-  {
-    color:#FF9900;
-    text-decoration:none;
-    font-weight:bold;
-  }
-
-  a:hover
-  {
-    color:#CC6600;
-    text-decoration:underline;
-    font-weight:bold;
-  }
-  a img{border: 0;}
-.hev a:hover
-{
-	background : url(http://anthares.be/lrc/pic/viergec.png) no-repeat center center;
-	width : 91px;
-	height : 63px;
+body {
+	FONT-SIZE: 8pt;
+	font-weight: bold;
+	width: 1000px;
+	margin: auto;
+	height: 100%;
+	position: relative; overflow : hidden; background : #000;
+	border: 1px solid black;
+	box-sizing: border-box;
+	background: #000;
+	overflow: hidden;
 }
 
+#header {
+	text-align: center;
+}
+
+#header>a {
+	line-height: 100%;
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+}
+
+#content {
+	overflow: hidden;
+	background: #000;
+	min-height: 400px;
+}
+
+.row,.col {
+	overflow: hidden;
+	position: absolute;
+}
+
+.row {
+	left: 0px;
+	right: 0px;
+}
+
+.col {
+	top: 0px;
+	bottom: 0px;
+}
+
+.scroll-x {
+	overflow-x: auto;
+}
+
+.scroll-y {
+	overflow-y: auto;
+}
+
+#header.row {
+	top: 0px;
+}
+
+.bannerinfo.row {
+	top: 70px;
+}
+
+#membre.row {
+	top: 139px;
+}
+
+#content.row {
+	top: 159px;
+	bottom: 43px;
+}
+
+.left.col {
+	width: 75px;
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, #45484d),
+		color-stop(100%, #000000) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* IE10+ */
+	background: linear-gradient(to right, #45484d 0%, #000000 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#45484d',
+		endColorstr='#000000', GradientType=1 ); /* IE6-9 */
+}
+
+.backtray {
+	background: #111;
+	display: none;
+	z-index: 1;
+}
+
+.backtray.col {
+	width: 200px;
+}
+
+.backtray#persos {
+	width: 230px;
+}
+
+.backtray#shop{
+	width:500px;
+}
+.backtray#compte{
+	width:500px;
+}
+
+.right.col {
+	border-top: #666 1px solid;
+	left: 75px;
+	right: 0;
+	left: 75px;
+}
+
+.body.row {
+	border-top: 3px #222 solid;
+	top: 0;
+	bottom: 0;
+	background: #333333;
+	min-height: 308px;
+}
+
+.barremenu.row {
+	bottom: 30px;
+	height: 19px;
+	border-top: 1px black solid;
+}
+
+.footer.row {
+	height: 30px;
+	bottom: 0;
+	line-height: 30px;
+	padding-left: 10px;
+	background: #000;
+}
+
+#wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	right: 0;
+	border-left: 1px solid black;
+	z-index: 2;
+}
+
+.menu>div {
+	width: 75px;
+	text-align: center;
+	border-top: #666 solid 1px;
+	border-bottom: #333 solid 1px;
+}
+
+.menu>div:hover {
+	background: #000000; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #45484d 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%,
+		color-stop(0%, #000000), color-stop(100%, #45484d) );
+	/* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #45484d 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #000000 0%, #45484d 100%);
+	/* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #000000 0%, #45484d 100%);
+	/* IE10+ */
+	background: radial-gradient(ellipse at center, #000000 0%, #45484d 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(        startColorstr='#000000',
+		endColorstr='#45484d', GradientType=1 );
+	/* IE6-9 fallback on horizontal gradient */
+	cursor: hand;
+}
+
+.menu>p {
+	margin: 0;
+	border-top: #666 solid 1px;
+}
+
+.menu>div>a {
+	width: 75px;
+	line-height: 75px;
+	text-align: center;
+	color: #999;
+}
+
+.menu>div:hover>a {
+	color: #FF9900;
+}
+
+.menu>div>a:hover {
+	text-decoration: none;
+	color: #FF9900;
+}
+
+.smallperso {
+	margin: 5 0 5 10;
+	border: #333 1px solid;
+	float: left;
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, #45484d),
+		color-stop(100%, #000000) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #45484d 0%, #000000 100%);
+	/* IE10+ */
+	background: linear-gradient(to right, #45484d 0%, #000000 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#45484d',
+		endColorstr='#000000', GradientType=1 ); /* IE6-9 */
+}
+.smallperso a:hover{
+	background: #45484d;
+}
+
+.smallperso>a {
+	width: 100%;
+	text-align: center;
+	display: block;
+	text-align: center;
+}
+
+.smallperso>a>img {
+	width: 150px;
+	margin: 10;
+	border: 1px solid black;
+}
+
+#mainmenu>ul,#mainmenu>ul>li {
+	margin: 0;
+	padding: 0;
+}
+
+#mainmenu>ul,#mainmenu>ul>li,#mainmenu>ul>li>a {
+	width: 100%;
+	display: block;
+}
+
+#mainmenu>ul>li {
+	margin-top: 5px;
+}
+
+#mainmenu>ul>li>a:active {
+	color: #ff9900;
+}
+
+a {
+	color: #FF9900;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #CC6600;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+a img {
+	border: 0;
+}
 
 .hide {
-  display: none;
+	display: none;
 }
 
-#left-column{
-	width:280px;
+#left-column {
+
 }
 
-#right-column{
+#right-column {
 	width: 100%;
 }
 
 /* Menu */
-
 #menu {
-	margin-left : auto;
-	margin-right : auto;
+
 }
 
 #menu ul {
 	margin: 0;
-	padding: 5px 0px 0px 0px;
+	padding: 5px 0px 5px 0px;
 	list-style: none;
 	line-height: normal;
 }
@@ -214,10 +477,10 @@ body
 
 #menu a {
 	display: block;
-	width: 250px;
-	height: 25px;
-	margin-right: 1px;
-	padding: 5px 0px 0px 0px;
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	margin: 1px;
 	background: #242424;
 	text-decoration: none;
 	text-align: center;
@@ -228,7 +491,7 @@ body
 	border: none;
 }
 
-#menu a:hover, #menu .current_page_item a {
+#menu a:hover,#menu .current_page_item a {
 	background: #7f7f7f;
 }
 
@@ -238,33 +501,27 @@ body
 
 /* Bouton */
 
-.button
-{
-	background : #111111;
-	width: 100%;
-}
-#button {
-	margin-left : auto;
-	margin-right : auto;
+.button {
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#button ul {
+.button ul {
 	margin: 0;
 	padding: 5px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
 }
 
-#button li {
+.button li {
 	float: center;
 }
 
-#button a {
+.button a {
 	display: block;
-	height: 25px;
+	height: 40px;
+	line-height: 40px;
 	width: 100%;
-	margin-right: 1px;
-	padding: 5px 0px 0px 0px;
 	background: #242424;
 	text-decoration: none;
 	text-align: center;
@@ -275,116 +532,202 @@ body
 	border: none;
 }
 
-#button a:hover, #menu .current_page_item a {
+.button a:hover,#menu .current_page_item a {
 	background: #7f7f7f;
 }
 
 .current_page_item {
 	background: #7f7f7f;
 }
-tr.ladder-row{
+
+tr.ladder-row {
 	cursor: hand;
 }
-tr.ladder-row, tr.stats{
+
+tr.ladder-row,tr.stats {
 	height: 50px;
 }
-tr.ladder-row td.hover{
+
+tr.ladder-row td.hover {
 	background-color: #666666;
 }
-#armeinfo, #piegeinfo, #piedbiche{
+
+#armeinfo,#piegeinfo,#piedbiche {
 	display: none;
 }
-#membre.jauge{
+
+#membre.jauge {
 	width: 100%;
 	height: 20px;
 	font-size: 15px;
+	color: #fff;
 }
-#meminfo{
-	display:none;
+
+#meminfo {
+	display: none;
 }
-#wheel{
+
+#wheel {
 	cursor: hand;
 }
-#shop{
+
+#shop {
 	width: 100%;
 }
-#shopList{
+
+#shopList {
 	width: 100%;
 }
-#shopList td{
-	width:20%;
+
+#shopList td {
+	width: 20%;
 }
-.shopitem{
-	margin:auto;
-	text-align: center;
+
+.shopitem {
 	vertical-align: middle;
+	width:475px;
+	margin: 5px auto 0px auto;
+	box-sizing: border-box;
+	padding:0;
+	position:relative;
+	height:100px;
+	overflow:hidden;
+	background:#333;
 }
-.shopitem .hev{
-	margin:auto;
-	height: 100%;
-	display: block;
+
+.shopitem > .logo {
+	margin: 0;
+	display: inline-block;
 	text-decoration: none;
-}
-.shopitem a.hev:hover{
-	background : url(http://anthares.be/lrc/pic/viergec.png) no-repeat center center;
-	background-size:contain;
-}
-.shopitem .hev p{
-	margin:0;
-}
-.shopitemdesc{
-	text-align: center;
-}
-#inventory{
-	width:100%;
-	border-top: 1px solid #555555;
-	border-collapse: collapse;
-}
-#inventory tr{
-	width:100%;
-	border-left: 1px solid #555555;
-}
-#inventory td.invSlot{
-	background: url(http://anthares.be/lrc/pic/inventory-bg2.png) no-repeat center 55;
-	border-right: 1px solid #555555;
-	border-bottom: 1px solid #555555;
-	height: 120px;
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	width: 150px !important;
+	max-width:150px !important;
+	border-top:2px #eee solid;
+	border-bottom:2px #666 solid;
+	border-right:2px #2f2f2f solid;
+
+	box-sizing: border-box;
+
+	background: #bbb;
+
 	text-align:center;
 }
-.jauge{
-	position: relative;
+.shopitem > .logo > a{
+	height: 100%;
 	width:100%;
-	height:13px;
-	z-index: 1;
-	font-size: 11px;
+	line-height:100%;
+	display:block;
+	padding:10px 0;
+	box-sizing: border-box;
 }
-.jauge .grid{
+.shopitem > .logo > a:hover {
+	background: #666;
+}
+
+.shopitem > .logo > a > img{
+	height:75px;
+	margin:auto;
+}
+
+.shopitem > .desc{
+	position:absolute;
+	left: 152;
+	top:0;
+	bottom:0;
+	right:0;
+}
+
+.desc{
+	padding: 10px;
+	box-sizing:border-box
+}
+
+.desc > p{
+	margin: 5px 0;
+}
+
+.desc > p > .tag{
+	display:inline-block;
+	width:110px;
+	font-weight: bold;
+	color:#999;
+}
+
+.backtray#compte > .desc{
+	border:1px solid #999;
+	margin: 5px 5px 0 5px;
+	border-radius: 0 10px 10px 10px;
+}
+
+.backtray#compte > .desc > .desc-title{
+	font-size: 18px;
+	margin-top:0;
+}
+
+.backtray#compte > .desc > p > .tag{
+	width:150px;
+}
+#inventory {
+	width: 100%;
+	border-top: 1px solid #999;
+	border-collapse: collapse;
+}
+
+#inventory tr {
+	width: 100%;
+	border-left: 1px solid #999;
+}
+
+#inventory td.invSlot {
+	background: url(http://anthares.be/lrc/pic/inventory-bg2.png) no-repeat
+		center 55;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	height: 120px;
+	text-align: center;
+}
+
+.jauge {
+	position: relative;
+	width: 100%;
+	height: 15px;
+	z-index: 1;
+	font-size: 13px;
+}
+
+.jauge .grid {
 	z-index: 2;
 	position: absolute;
 	top: 0px;
-	left:0px;
+	left: 0px;
 	width: 100%;
 	height: 100%;
 }
-.jauge .barre{
+
+.jauge .barre {
 	position: absolute;
-	height:100%;
+	height: 100%;
 	z-index: 3;
 }
-.jauge .lib{
-	vertical-align:middle;
+
+.jauge .lib {
+	vertical-align: middle;
 	font-size: inherit;
 	text-shadow: 1px 1px 3px #000;
 	box-sizing: border-box;
 	position: absolute;
 	top: -1px;
 	z-index: 4;
-	left:5px;
+	left: 5px;
 	width: 30px;
 	height: 100%;
 }
-.jauge .texte{
-	vertical-align:middle;
+
+.jauge .texte {
+	vertical-align: middle;
 	font-size: inherit;
 	text-shadow: 1px 1px 3px #000;
 	text-align: right;
@@ -392,116 +735,141 @@ tr.ladder-row td.hover{
 	position: absolute;
 	top: -1px;
 	z-index: 5;
-	right:5px;
+	right: 5px;
 	width: 200px;
 	height: 100%;
 }
-.vote{
+
+.vote {
 	display: inline-block;
-	margin:0;
+	margin: 0;
 	background: #fff;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	padding: 3px;
 }
-.votecount{
+
+.votecount {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	margin-top:5px;
+	margin-top: 5px;
 }
-#palmares{
+
+#palmares {
 	text-align: center;
 	width: 100%;
 	background: #333;
 	vertical-align: middle;
 }
-#popup{
+
+#popup {
 	position: absolute;
 	top: 30%;
 	width: 100%;
 	z-index: 9999;
 	display: none;
 }
-#popup .content{
-	background: #333333; /* Old browsers */
-	background: -moz-linear-gradient(top,  #333333 0%, #777777 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333333), color-stop(100%,#777777)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #333333 0%,#777777 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #333333 0%,#777777 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #333333 0%,#777777 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #333333 0%,#777777 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#777777',GradientType=0 ); /* IE6-9 */
 
+#popup .content {
+	background: #333333; /* Old browsers */
+	background: -moz-linear-gradient(top, #333333 0%, #777777 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333),
+		color-stop(100%, #777777) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #333333 0%, #777777 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #333333 0%, #777777 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #333333 0%, #777777 100%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, #333333 0%, #777777 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#333333',
+		endColorstr='#777777', GradientType=0 ); /* IE6-9 */
 	border: 1px solid #cc6600;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	padding: 12px;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 	clear: both;
-	width: 300px;
+	width: 400px;
+	margin: auto;
 }
-#popup .content .image{
-	width:19%;
+
+#popup .content .image {
+	width: 20%;
 	height: 100%;
-	float: right;
-}
-#popup .content .message{
-	width: 79%;
 	float: left;
-	top:0;
 }
-#popup .content .popup-buttons{
+
+#popup .content .message {
+	width: 80%;
+	float: left;
+	top: 0;
+}
+
+#popup .content .popup-buttons {
 	padding-bottom: 10px;
 	width: 100%;
-	text-align:center;
+	text-align: center;
 }
-table.wave{
-	width: 100%;
 
-}
-table.wave tr.round{
+table.wave {
 	width: 100%;
 }
-table.wave tr.round td, table.wave tr.round div{
+
+table.wave tr.round {
+	width: 100%;
+}
+
+table.wave tr.round td,table.wave tr.round div {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	padding: 5px;
-	font-size:7pt;
+	font-size: 7pt;
 	box-sizing: border-box;
 }
-table.wave tr.round .player{
+
+table.wave tr.round .player {
 	background: #00cc00;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 }
-table.wave tr.round .zomb{
+
+table.wave tr.round .zomb {
 	background: #cc0000;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 }
-table.wave tr.round > .zomb{
-	width:53px;
+
+table.wave tr.round>.zomb {
+	width: 53px;
 }
-table.wave tr.round td.arme{
+
+table.wave tr.round td.arme {
 	background: #0000cc;
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 	width: 72px;
 }
-table.wave tr.round td.content{
+
+table.wave tr.round td.content {
 	background: #555555;
-	padding-bottom:0;
+	padding-bottom: 0;
 }
-table.wave tr.round td.content > .player, table.wave tr.round td.content > .zomb{
+
+table.wave tr.round td.content>.player,table.wave tr.round td.content>.zomb
+	{
 	display: inline-block;
 	margin-bottom: 5px;
 }
-table.armes-wave{
+
+table.armes-wave {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -509,130 +877,225 @@ table.armes-wave{
 	border-collapse: collapse;
 	background: #111111;
 }
-.gp-wave{
+
+.gp-wave {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	padding: 5px;
 	background: #555555;
 }
-#footer-block-wrapper{
-	position:fixed;
-	height:31px;
-	width:100%;
-	bottom:0;
-	left:0;
-	right:0;
-	z-index:100;
-	background:transparent;
+
+#footer-block-wrapper {
+	position: fixed;
+	height: 31px;
+	width: 100%;
+	bottom: 13;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	background: transparent;
 	color: white;
 }
-#footer-block{
-	position:relative;
-	width:75%;
-	background:#5f6975;
-	height:400px;
-	margin:auto;
-	border-radius:5px 5px 0 0;
+
+#footer-block {
+	position: relative;
+	width: 1060px;
+	background: #5f6975;
+	height: 400px;
+	margin: auto;
+	border-radius: 5px 5px 0 0;
 	border: 1px solid #6b727c;
 	text-align: left;
 	font-size: 11px;
 	font-family: verdana;
 }
-#chat-tray{
+
+#chat-tray {
 	background-color: #5f6975;
-	border-radius:5px 5px 0 0;
-	height:30px;
+	border-radius: 5px 5px 0 0;
+	height: 30px;
 	text-align: center;
 	font-size: 22px;
 	cursor: hand;
 	position: relative;
 }
-#chat-tray > div{
+
+#chat-tray>div {
 	height: 100%;
 	position: absolute;
 }
-#chat-tray-arrow{
-	width:30;
-	background: url(http://anthares.be/lrc/pic/chat-arrow-up.png) no-repeat center center;
+
+#chat-tray-arrow {
+	width: 30;
+	background: url(http://anthares.be/lrc/pic/chat-arrow-up.png) no-repeat
+		center center;
 	background-size: 80%;
 	border-radius: 5px 0 0 0;
-	border-right:1px solid #575f6a;
+	border-right: 1px solid #575f6a;
 	left: 0;
 }
-#chat-tray-arrow.down{
-	background: url(http://anthares.be/lrc/pic/chat-arrow-down.png) no-repeat center center;
+
+#chat-tray-arrow.down {
+	background: url(http://anthares.be/lrc/pic/chat-arrow-down.png)
+		no-repeat center center;
 	background-size: 80%;
 }
-#chat-tray-title{
-	left:31;
-	right:31;
-	border-left:1px solid #6b727c;
-	border-right:1px solid #575f6a;
+
+#chat-tray-title {
+	left: 31;
+	right: 31;
+	border-left: 1px solid #6b727c;
+	border-right: 1px solid #575f6a;
 }
-#chat-tray-badge{
-	width:30;
-	background: url(http://anthares.be/lrc/pic/red_badge.png) no-repeat center center;
+
+#chat-tray-badge {
+	width: 30;
+	background: url(http://anthares.be/lrc/pic/red_badge.png) no-repeat
+		center center;
 	background-size: 80%;
 	border-radius: 0 5px 0 0;
 	right: 0;
-	border-left:1px solid #6b727c;
+	border-left: 1px solid #6b727c;
 }
-#chatUnreadMessage{
+
+#chatUnreadMessage {
 	text-align: center;
 	font-size: 14px;
 	margin-top: 6px;
 }
-#chatform-wrapper{
-	height:27px;
-	width:100%;
-	margin:0;
-	padding:0;
-	position:relative;
-}
-#chatform{
-	width: 95%;
-	height:100%;
-	margin:0;
-	padding:0;
-	display: inline-block;
-	position:absolute;
-	top:1px;
-	left:1px;
-	bottom:1px;
-}
-#chatform input{
+
+#chatform-wrapper {
+	height: 27px;
 	width: 100%;
-	height:100%;
-	margin:0;
+	margin: 0;
+	padding: 0;
+	position: relative;
 }
-#chat-sound{
-	width:5%;
-	display:inline-block;
+
+#chatform {
+	width: 95%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
 	position: absolute;
-	right:1px;
-	top:1px;
-	bottom:1px;
-	margin:0;
-	box-sizing:border-box;
-	background: transparent url(http://anthares.be/lrc/pic/chat_sound_on.png) center center no-repeat;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+}
+
+#chatform input {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+#chat-sound {
+	width: 5%;
+	display: inline-block;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
+	margin: 0;
+	box-sizing: border-box;
+	background: transparent
+		url(http://anthares.be/lrc/pic/chat_sound_on.png) center center
+		no-repeat;
 	background-size: contain;
 	cursor: hand;
 }
-#chat-sound.off{
-	background: transparent url(http://anthares.be/lrc/pic/chat_sound_off.png) center center no-repeat;
+
+#chat-sound.off {
+	background: transparent
+		url(http://anthares.be/lrc/pic/chat_sound_off.png) center center
+		no-repeat;
 	background-size: contain;
 }
-#pseudobox{
+
+#chat-content {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	height: 341px;
+	clear: both;
+	overflow: hidden;
+}
+
+#pseudobox {
 	padding: 0 5px;
 	background: black;
+	float: left;
+	width: 88%;
 }
-.role-admin{
+
+#chat-online {
+	height: 100%;
+	text-align: right;
+	background: #111;
+}
+
+#online-header {
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+#online {
+	height: 270;
+	padding: 2px;
+	box-sizing: border-box;
+}
+
+#online .mCSB_container {
+	padding: 2px;
+	box-sizing: border-box;
+}
+
+#online-legende {
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.role-admin {
 	color: #FF0000;
 }
-.role-dev{
+
+.role-dev {
 	color: #FF9900;
 }
-.role-member{
-	color:#fff;
+
+.role-member {
+	color: #fff;
+}
+
+#footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: black;
+	z-index: 100;
+	border-top: 1px solid #333;
+}
+
+#footer>p {
+	width: 1060;
+	margin: 0 auto 0 auto;
+	text-align: center;
+}
+
+@media screen and (max-width:1060px) {
+	#footer-block {
+		width: 98%;
+	}
+}
+
+@media screen and (max-width:650px) {
+	#chat-online {
+		display: none;
+	}
+	#pseudobox {
+		width: 99%
+	}
 }

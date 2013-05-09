@@ -7,7 +7,7 @@ $log = new Log();
 
 if(isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['login']) && !empty($_POST['pass'])){
 	$login=Member::purifyLogin($_POST['login']);
-	$pass= md5(mysql_escape_string($_POST['pass']));
+	$pass= md5(mysql_real_escape_string($_POST['pass']));
 
 	$memCont = new MemberController();
 	try {

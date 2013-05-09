@@ -3,6 +3,9 @@ $(document).ready(function(){
 	$("#pseudobox").mCustomScrollbar({
 		set_height: '340'
 	});
+	$("#online").mCustomScrollbar({
+		set_height: '270'
+	});
 	loadChat();
 	loadOnline();
 	$("#chatform").submit(function(){
@@ -54,7 +57,7 @@ function toggleChat(){
 	if($("#footer-block-wrapper").hasClass('shown')){
 		$("#footer-block-wrapper").stop().animate({height:'31px'},600);
 	}else{
-		$("#footer-block-wrapper").stop().animate({height:'400px'},600,function(){
+		$("#footer-block-wrapper").stop().animate({height:'402px'},600,function(){
 			$("#chatform input[name=mess]").focus();
 		});
 		window.localStorage.setItem('unreadMessage',0);
@@ -70,7 +73,7 @@ function addMessage(arr, form, options){
 	}else{
 		var d = new Date();
 		var date =  d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-		addContent($(".mCSB_container"),form[0].pseudo.value,date,form[0].mess.value);
+		addContent($("#pseudobox .mCSB_container"),form[0].pseudo.value,date,form[0].mess.value);
 		updateScroll();
 	}
 }
@@ -87,9 +90,9 @@ function loadChat(){
 			if(result.type=='initial'){
 				var cont = result.content;
 				$("#chattimestamp").text(result.timestamp);
-				$(".mCSB_container").empty();
+				$("#pseudobox .mCSB_container").empty();
 				for(var i in cont){
-					addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
+					addContent($("#pseudobox .mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
 				}
 				if(window.localStorage.getItem('unreadMessage') == null) window.localStorage.setItem('unreadMessage',0);
 				updateScroll();
@@ -98,7 +101,7 @@ function loadChat(){
 				$("#chattimestamp").text(result.timestamp);
 				if(cont.length>0){
 					for(var i in cont){
-						addContent($(".mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
+						addContent($("#pseudobox .mCSB_container"),cont[i].user,cont[i].date,cont[i].message);
 					}
 					playSound();
 					if(!$("#footer-block-wrapper").hasClass('shown')){
@@ -110,9 +113,12 @@ function loadChat(){
 					updateScroll();
 				}
 			}
+			setTimeout(function(){loadChat();},1000);
+		},
+		error: function(){
+			setTimeout(function(){loadChat();},500);
 		}
 	});
-	setTimeout(function(){loadChat();},1000);
 }
 function updateScroll(){
 	$("#pseudobox").mCustomScrollbar("update");
@@ -144,7 +150,8 @@ function loadOnline(){
 	$.ajax({
 		url: 'online.php',
 		success: function(data){
-			$("#online").empty().append(data);
+			$("#online .mCSB_container").empty().append(data);
+			$("#online").mCustomScrollbar("update");
 		}
 	});
 	setTimeout(function(){loadOnline();},5000);

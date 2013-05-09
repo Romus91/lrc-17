@@ -35,8 +35,6 @@ if(isset($_GET['perso'])){
 		}else{
 			$_SESSION['erreur']=false;
 			$perso->levelUp($stat);
-			$perso->addEnergie(floor($perso->getMaxEnergie()*0.2));
-			$perso->addVie(20);
 			$persoController->savePerso($perso);
 			imagepng(genImg($perso->getAvatar().'.JPG',Perso::AVATAR_HEIGHT,0,$perso->getLevel(),0),'ava/'.$perso->getId().'.png');
 			$log=new Log();

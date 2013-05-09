@@ -1,10 +1,17 @@
 <?php
 class Perso{
-	const POISON_DAMAGE_PER_TICK = 0.1;
+	const POISON_DAMAGE_PER_TICK = 0.15;
 	const MAX_JAUGE_POISON = 30;
 	const MAX_WEAP = 6;
-	const AVATAR_HEIGHT = 125;
+	const AVATAR_HEIGHT = 135;
 	const REGEN_TICK_INTERVAL = 60;
+	const LEVEL_UP_RES_BONUS_PERCENTAGE = 0.1;
+	const MAX_VIE = 100;
+	const MAX_LEVEL = 60;
+	const BASE_ENERGY = 100;
+	const ENERGY_MAX_BONUS_PER_LEVEL = 10;
+	const ENERGY_MAX_BONUS_PER_STAMINA = 5;
+	const NB_PT_AM_PER_LEVEL = 2;
 	//id
 	protected $_id;
 	protected $_id_planque;
@@ -325,10 +332,10 @@ class Perso{
 		return $this;
 	}
 	public function getMaxEnergie(){
-		return 100+(20*($this->getLevel()-1))+(5*$this->getEndurance());
+		return self::BASE_ENERGY+(self::ENERGY_MAX_BONUS_PER_LEVEL*($this->getLevel()-1))+(self::ENERGY_MAX_BONUS_PER_STAMINA*$this->getEndurance());
 	}
 	public function getComfort(){
-		return 1+($this->getEndurance());
+		return $this->getEndurance();
 	}
 
 	public function regenEnergie(){
@@ -354,10 +361,10 @@ class Perso{
 				$this->_last_regen_nrg = $now-($diff*$this->getTimeBetweenEnergyTick());
 				//on cap au max d'energie
 				$this->_energie = min(
-				array(
-				$this->_energie,
-				$this->getMaxEnergie()
-				)
+						array(
+								$this->_energie,
+								$this->getMaxEnergie()
+						)
 				);
 			}
 		}
@@ -387,7 +394,7 @@ class Perso{
 				for ($i = 0; $i < $nbRealTick; $i++) {
 					if($this->_jauge_poison>0){
 						$this->_jauge_poison--;
-					}else if ($this->_vie<100){
+					}else if ($this->_vie<self::MAX_VIE){
 						$this->_vie++;
 					}
 				}
@@ -412,12 +419,22 @@ class Perso{
 				$this->_esquive++;
 				break;
 		}
-		$this->_nbPtsAmMax+=2;
-		$this->_nbPtsAmDispo+=2;
+		$this->_nbPtsAmMax+=self::NB_PT_AM_PER_LEVEL;
+		$this->_nbPtsAmDispo+=self::NB_PT_AM_PER_LEVEL;
 		$this->_level++;
+
+		$this->addVie(self::MAX_VIE*self::LEVEL_UP_RES_BONUS_PERCENTAGE);
+		$this->addEnergie($this->getMaxEnergie()*self::LEVEL_UP_RES_BONUS_PERCENTAGE);
+		$this->_jauge_poison-=self::MAX_JAUGE_POISON*self::LEVEL_UP_RES_BONUS_PERCENTAGE;
+
+		if($this->_jauge_poison<0){
+			$this->_jauge_poison=0;
+		}
 	}
 	public function addXP($xp){
-		$this->_xp+=$xp;
+		if($this->_level<self::MAX_LEVEL){
+			$this->_xp+=$xp;
+		}
 		return $this;
 	}
 	public function addXpAfk(){
@@ -426,15 +443,15 @@ class Perso{
 		$this->_xpafk+=$amount;
 	}
 	public function retribXp(){
-		$amount= ceil($this->_xpafk*0.25);
-		if($amount>$this->_level*100) $amount=$this->_level*100;
+		$coef = 0.25-(0.20*($this->_level/self::MAX_LEVEL));
+		$amount= ceil($this->_xpafk*$coef);
 		$this->_xp+=$amount;
 		$this->_xpafk-=$amount;
 		return $amount;
 	}
 	public function addVie($vie){
 		$this->_vie+=$vie;
-		if($this->getVie() > 100) $this->setVie(100);
+		if($this->getVie() > self::MAX_VIE) $this->setVie(self::MAX_VIE);
 		return $this;
 	}
 	public function addEnergie($energie){
@@ -488,16 +505,25 @@ class Perso{
 		return $this->_invConso;
 	}
 	public function getTauxEsquive(){
-		return floor((1-(1/(1.25+($this->_esquive/5))))*10000)/100;
+		$esq = floor((1-(1/(1.25+($this->_esquive/5))))*10000)/100;
+		$esq*=0.75;
+		if($this->getEnergyPercent()<5) return floor($esq/3*100)/100;
+		else return $esq;
 	}
 	public function damage($amount){
 		$rating = $this->getTauxEsquive()*100;
 		for($i=0;$i<25;$i++) $rand = mt_rand(1,10000);
 		if($rand<=$rating) return 0;
-		else return $amount;
+		else return $amount*$this->getDamageCoeffFromPoison();
+	}
+	public function getDamageCoeffFromPoison(){
+		if($this->_jauge_poison<(self::MAX_JAUGE_POISON*0.25)) return 1;
+		else if($this->_jauge_poison<(self::MAX_JAUGE_POISON*0.50)) return 1.25;
+		else if($this->_jauge_poison<(self::MAX_JAUGE_POISON*0.75)) return 1.5;
+		else return 2;
 	}
 	public function getPrecision(){
-		if($this->_energie<=0) return 0;
+		if($this->getEnergyPercent()<5) return 0;
 		else return floor((1-(1/(3+($this->_dexterite/3))))*10000)/100;
 	}
 	public function getJaugePoison(){
@@ -555,5 +581,8 @@ class Perso{
 		if($pourc < 0) return 0;
 		else if($pourc > 100) return 100;
 		else return $pourc;
+	}
+	public function isAtMaxLevel(){
+		return $this->_level>=self::MAX_LEVEL;
 	}
 }

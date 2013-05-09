@@ -1,7 +1,7 @@
 <?php include_once("verif.php");?>
 <table width='100%' align='left' class='small'>
-	<tr class="button">
-		<td id='button' colspan="2"><a href='index.php?page=maj'>ACTUALISER</a></td>
+	<tr width="100%">
+		<td class='button' colspan="2"><a href='index.php?page=maj'>ACTUALISER</a></td>
 	</tr>
 <?php if ($mem->getRole()=='admin'||$mem->getRole()=='dev'):?>
 	<tr>
@@ -28,12 +28,17 @@
 	</tr>
 	<?php if (isset($_POST['go']) && $_POST['go']=='Envoyer' && !empty($_POST['message'])){
 		//si tout a été bien rempli, on insère le message dans la table SQL
-		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$mem->getLogin().'", "'.mysql_escape_string($_POST['message']).'")';
+		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$mem->getLogin().'", "'.mysql_real_escape_string($_POST['message']).'")';
 		mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
-		$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$mem->getLogin()."'";
-		mysql_query($sql);
 	}
 	endif;
+
+	$cpt=0;
+	$sql="SELECT maj.timestamp, membre.majtimestamp FROM maj, membre WHERE membre.id =  '".$mem->getId()."' AND maj.timestamp > membre.majtimestamp";
+	$res=mysql_query($sql);
+	while($t=mysql_fetch_array($res)){
+		$cpt++;
+	}
 
 	$sql = "UPDATE membre SET majtimestamp = (SELECT MAX( timestamp ) FROM maj) WHERE login ='".$mem->getLogin()."'";
 	mysql_query($sql);

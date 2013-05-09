@@ -18,7 +18,7 @@
 			<table class='title2' width='100%'>
 				<tr>
 					<td width='70%'><font color='FF0000'><?php  if(isset($_SESSION['erreur'])) echo $_SESSION['erreur'];else echo '&nbsp;';?> </font></td>
-					<td id='button' width='30%'><?php
+					<td class='button' width='30%'><?php
 						if ($ent == 1)
 						echo "<a href='index.php?page=citoyen&status=0'><b>VIVANTS</b></a>";
 						else

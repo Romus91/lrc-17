@@ -6,7 +6,7 @@ $log = new Log();
 
 if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass'])) && (isset($_POST['pass_confirm']) && !empty($_POST['pass_confirm'])) && (isset($_POST['email']) && !empty($_POST['email']))){
 	$login=Member::purifyLogin($_POST['login']);
-	$mail=mysql_escape_string($_POST['email']);
+	$mail=mysql_real_escape_string($_POST['email']);
 
 	for($i = 0, $j = strlen($login); $i < $j; $i++){
 		if ($login[$i] == "_"){

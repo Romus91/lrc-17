@@ -11,7 +11,7 @@ if ($loginOnline['id'])
 mysql_query("INSERT INTO online (login,member_id) VALUES ('".$_SESSION['login']."','".$_SESSION['member_id']."')");
 
 $query=mysql_query("SELECT * FROM online");
-$sql=mysql_query("SELECT * FROM online ORDER BY login ASC LIMIT 0,10");
+$sql=mysql_query("SELECT * FROM online ORDER BY login ASC;");
 while($delOnline=mysql_fetch_array($query))
 {
 	if (((strtotime($time))-(strtotime($delOnline['timestamp']))) > 100)
@@ -22,7 +22,7 @@ $query=mysql_fetch_array($sql);
 echo getColoredUserLogin($query);
 
 while ($query=mysql_fetch_array($sql)){
-	echo ", ".getColoredUserLogin($query);
+	echo "<br/>".getColoredUserLogin($query);
 }
 
 function getColoredUserLogin($input){

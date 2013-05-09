@@ -7,9 +7,9 @@
 					<table class='small' width='100%'>
 						<tr>
 							<td>
-								<table class='button' width='100%'>
+								<table class='small' width='100%'>
 									<tr>
-										<td id='button'>
+										<td class='button'>
 											<a href="index.php?page=wall">ACTUALISER</a>
 										</td>
 									</tr>
@@ -37,7 +37,16 @@
 			</td>
 		</tr>
 <?php
-	$timestampMembre=mysql_fetch_array(mysql_query("SELECT walltimestamp FROM membre WHERE login =  '".mysql_real_escape_string($_SESSION['login'])."'"));
+
+	$cptwall=0;
+   	$sql="SELECT messages.timestamp, membre.walltimestamp FROM messages, membre WHERE membre.id =  '".$_SESSION['member_id']."' AND messages.timestamp > membre.walltimestamp";
+   	$res=mysql_query($sql);
+    while($t=mysql_fetch_array($res)){
+    	$cptwall++;
+    }
+
+    $sql = "UPDATE  membre SET walltimestamp = (SELECT MAX( TIMESTAMP ) FROM messages) WHERE login ='".$_SESSION['login']."'";
+    mysql_query($sql);
 
     if (isset($_POST['go']) AND($_POST['go']=='Envoyer') AND ($_POST['message'] <> ''))
     {
@@ -46,12 +55,14 @@
 		{
 
 			//si tout a été bien rempli, on insère le message dans la table SQL
-			$sql = 'INSERT INTO messages(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.mysql_real_escape_string($_SESSION['login']).'", "'.mysql_real_escape_string($_POST['message']).'")';
+			$sql = 'INSERT INTO messages(date,id_expediteur,id_membre,message) VALUES( "'.date("H:i:s").'","'.mysql_real_escape_string($_SESSION['login']).'",'.$_SESSION['member_id'].', "'.mysql_real_escape_string($_POST['message']).'")';
 			mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
 			$sql = "UPDATE  membre SET walltimestamp = (SELECT MAX( TIMESTAMP ) FROM messages) WHERE login ='".$_SESSION['login']."'";
 			mysql_query($sql);
 		}
     }
+
+
 
 
 
