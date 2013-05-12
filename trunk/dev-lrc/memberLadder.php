@@ -59,9 +59,11 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 				<td class='color4' align="center"><font color='CC6600' size=4><?php echo $memArray[$i]->getLevel();?></font></td>
 			</tr>
 			<tr class="stats">
-				<td align=center class='color4' style='position: relative; background: #555 url(<?php echo convertToCDNUrl('pic/piercingammo.png')?>) no-repeat center center; background-size: contain;'>
-					<img style='position: absolute; bottom:0; right:0;' src='<?php echo convertToCDNUrl('pic/red_badge.png')?>' height="25">
-					<span style='position: absolute; bottom:7; right:7;'><?php echo $memArray[$i]->getPierceLevel()?></span>
+				<td align=center class='color4' style='background: #555 url(<?php echo convertToCDNUrl('pic/piercingammo.png')?>) no-repeat center center; background-size: contain;'>
+					<div style="position: relative;width:100%;height:100%;margin:0;padding:0;">
+						<img style='position: absolute; bottom:0; right:0;' src='<?php echo convertToCDNUrl('pic/red_badge.png')?>' height="25">
+						<span style='position: absolute; bottom:7; right:7;'><?php echo $memArray[$i]->getPierceLevel()?></span>
+					</div>
 				</td>
 				<td align="center" class='color4' colspan='2'>
 				<?php $persoCont =  new PersoController();
@@ -70,9 +72,11 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 					<img src="ava/<?php echo $perso->getId();?>.png" height="50px"/>
 				<?php endforeach;?>
 				</td>
-				<td align=center class='color4' style='position: relative; background: #555 url(<?php echo convertToCDNUrl('pic/fragammo.png')?>) no-repeat center center; background-size: contain;'>
-					<img style='position: absolute; bottom:0; right:0;' src='<?php echo convertToCDNUrl('pic/red_badge.png')?>' height="25">
-					<span style='position: absolute; bottom:7; right:7;'><?php echo $memArray[$i]->getFragLevel()?></span>
+				<td align=center class='color4' style='background: #555 url(<?php echo convertToCDNUrl('pic/fragammo.png')?>) no-repeat center center; background-size: contain;'>
+					<div style="position: relative;width:100%;height:100%;margin:0;padding:0;">
+						<img style='position: absolute; bottom:0; right:0;' src='<?php echo convertToCDNUrl('pic/red_badge.png')?>' height="25">
+						<span style='position: absolute; bottom:7; right:7;'><?php echo $memArray[$i]->getFragLevel()?></span>
+					</div>
 				</td>
 
 			</tr>

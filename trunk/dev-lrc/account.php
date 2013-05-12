@@ -25,7 +25,7 @@ $nbPersoDead = count($persoController->fetchMembreDead($mem->getId()));
 	</p>
 	<p>
 		<span class="tag">Argent :</span>
-		<span><?php echo $mem->getArgent()?> <strike>Cr</strike></span>
+		<span><span class="account-money"><?php echo $mem->getArgent();?></span> <strike>Cr</strike></span>
 	</p>
 	<p>
 		<span class="tag">Nombre de persos :</span>
@@ -43,15 +43,29 @@ $nbPersoDead = count($persoController->fetchMembreDead($mem->getId()));
 		<span class="tag">Mun. &agrave; fragmentation :</span>
 		<span>Niveau <?php echo $mem->getFragLevel()?> - <?php echo $mem->getFragAmelio()?> fois plus de cibles touch&eacute;es</span>
 	</p>
+	<p>
+		<span class="tag">Am&eacute;lio. inventaire :</span>
+		<span>Niveau <?php echo $mem->getInventoryLevel()?> - <?php echo ($mem->getInventoryLevel()*Member::INVENTORY_ROW_SIZE);?> emplacements suppl&eacute;mentaire</span>
+	</p>
 </div>
+<?php
+$memInvCont=new MemberInventoryController();
+$inventory = $memInvCont->getInventoryForMember($mem);
+$count = count($inventory);
+?>
 <div class="desc">
 	<p class="desc-title">Inventaire</p>
 	<table id="inventory">
-	<?php for ($i = 0; $i<2; $i++):?>
+	<?php for ($i = 0; $i<$mem->getInventorySize();):?>
 		<tr>
-		<?php for($j=0;$j<4;$j++):?>
+		<?php for($j=0;$j<4;$i++,$j++):?>
 			<td class="invSlot">
-
+				<?php if($i<$count):?>
+					<div class="invItem" data-item-id="<?php echo $inventory[$i]->getItem()->getId();?>">
+						<img src="<?php echo convertToCDNUrl('pic/'.$inventory[$i]->getItem()->getImage());?>">
+						<div class="invCount"><?php echo $inventory[$i]->getQuantity()?></div>
+					</div>
+				<?php endif;?>
 			</td>
 		<?php endfor;?>
 		</tr>

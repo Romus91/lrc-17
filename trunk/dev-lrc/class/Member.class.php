@@ -4,6 +4,7 @@ class Member{
 	const MAX_AM_LEVEL=3;
 	const MAX_LVL_CHAR_XP_COEF=0.05;
 	const LOW_LVL_CHAR_XP_COEF=0.035;
+	const INVENTORY_ROW_SIZE = 4;
 	protected $_id;
 	protected $_login;
 	protected $_pass;
@@ -18,6 +19,7 @@ class Member{
 	protected $_level;
 	protected $_piercing_ammo_level;
 	protected $_frag_ammo_level;
+	protected $_inventory_level;
 
 	public function __set($name, $value){
 		$method = 'set'.$name;
@@ -214,5 +216,18 @@ class Member{
 			case 3 : return 100;
 			default : return 35;
 		}
+	}
+
+	public function getInventorySize(){
+		return self::INVENTORY_ROW_SIZE*(1+$this->_inventory_level);
+	}
+
+	public function getInventoryLevel() {
+		return $this->_inventory_level;
+	}
+
+	public function setInventoryLevel($level) {
+		$this->_inventory_level=$level;
+		return $this;
 	}
 }

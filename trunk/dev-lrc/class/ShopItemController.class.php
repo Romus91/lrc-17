@@ -18,17 +18,23 @@ class ShopItemController{
 		$shopCatCont = new ShopCategController();
 		$query='select * from shop where id = :id';
 		$req = ConnectionSingleton::connect()->prepare($query);
-		$req->bindParam(':id', $id,PDO::PARAM_INT);
+		$req->bindParam(':id', $id, PDO::PARAM_INT);
 		$req->execute();
-		$data=$req->fetch(PDO::FETCH_OBJ);
-		$item = new ShopItem();
-		$item	->setId($data->id)
-				->setName($data->name)
-				->setLevelRequis($data->level_requis)
-				->setPrix($data->prix)
-				->setImage($data->image)
-				->setCateg($shopCatCont->fetchCateg($data->categ_id));
-		return $item;
+		if($req->rowCount()==0){
+			return null;
+		}else{
+			$data=$req->fetch(PDO::FETCH_OBJ);
+
+			$item = new ShopItem();
+			$item	->setId($data->id)
+					->setName($data->name)
+					->setLevelRequis($data->level_requis)
+					->setPrix($data->prix)
+					->setImage($data->image)
+					->setCateg($shopCatCont->fetchCateg($data->categ_id))
+					->setDescrip($data->descrip);
+			return $item;
+		}
 	}
 
 	public function fetchByCateg(ShopCateg $cat) {
@@ -44,6 +50,7 @@ class ShopItemController{
 					->setLevelRequis($data->level_requis)
 					->setPrix($data->prix)
 					->setImage($data->image)
+					->setDescrip($data->descrip)
 					->setCateg($cat);
 			$tab[]=$item;
 		}

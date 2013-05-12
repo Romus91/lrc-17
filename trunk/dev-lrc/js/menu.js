@@ -40,7 +40,7 @@ $(document).ready(function() {
 				&& $(".backtray#shop").is(":visible")) {
 			hideBacktray();
 		} else {
-			changeBacktray(500,function(callback) {
+			changeBacktray(650,function(callback) {
 				$(".backtray#shop").show(1, callback);
 			});
 		}

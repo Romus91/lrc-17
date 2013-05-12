@@ -44,7 +44,8 @@ class MemberController{
 				->setXp($data->xp)
 				->setLevel($data->level)
 				->setFragLevel($data->am_frag_lvl)
-				->setPierceLevel($data->am_pierce_lvl);
+				->setPierceLevel($data->am_pierce_lvl)
+				->setInventoryLevel($data->inventory_level);
 		return $membre;
 	}
 	public function saveMember(Member $member){
@@ -57,7 +58,8 @@ class MemberController{
 				xp = :xp,
 				level = :level,
 				am_frag_lvl = :afl,
-				am_pierce_lvl = :apl
+				am_pierce_lvl = :apl,
+				inventory_level = :inv
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -69,7 +71,8 @@ class MemberController{
 				'level'		=> $member->getLevel(),
 				'id'		=> $member->getId(),
 				'afl'		=> $member->getFragLevel(),
-				'apl'		=> $member->getPierceLevel()
+				'apl'		=> $member->getPierceLevel(),
+				'inv'		=> $member->getInventoryLevel()
 		));
 	}
 	public function findByLogin($login){
