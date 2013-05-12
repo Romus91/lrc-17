@@ -62,10 +62,6 @@
 		}
     }
 
-
-
-
-
 	$data=mysql_fetch_assoc(mysql_query("SELECT COUNT(*) as nbArticle FROM messages"));
 
 	//Affiche 30 logs et calcule le nombre de log par page

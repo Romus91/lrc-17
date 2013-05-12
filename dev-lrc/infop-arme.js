@@ -86,7 +86,7 @@ $(document).ready(function(){
 			success: function(data){
 				$('#popup .content .message').html('<p>Voulez vous vendre '+data.arme+' pour <font color="#00ff00">'+data.prix+' $</font></p>'+'<span class="popup-buttons"><button id="popup-vente-yes">Oui</button><button id="popup-no">Non</button></span>');
 				$('#popup .content').append();
-				$('#popup .content .image').children("img").attr("src", 'http://anthares.be/lrc/pic/popup-question.png');
+				$('#popup .content .image').children("img").attr("src", 'http://chaotic-realms.net/pic/popup-question.png');
 				$("#popup").show();
 				$('#popup .content').animate({height : ($('#popup .content .message').outerHeight())},100);
 				$('#popup-vente-yes').click(function(e){

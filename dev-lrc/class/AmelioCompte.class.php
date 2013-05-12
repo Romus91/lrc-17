@@ -5,8 +5,9 @@ class AmelioCompte{
 	protected $_level_requis;
 	protected $_prix;
 	protected $_image;
-	const AM_PIERCE=1;
-	const AM_FRAG=2;
+	const AM_PIERCE = 1;
+	const AM_FRAG = 2;
+	const AM_INV = 3;
 
 	public function getNiveau(){return $this->_niveau;}
 	public function getType(){return $this->_type;}

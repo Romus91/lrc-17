@@ -24,82 +24,40 @@ $log = new Log();
 <title>LES RESCAPES DE CITE 17</title>
 <meta charset="UTF-8">
 <link rel="icon" type="image/jpg" href="hl2logo.gif" />
-<link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date("dmYH");?>" />
-<link href="jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css?<?php echo date("dmYH");?>" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 <script src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
-<script src="jquery.mousewheel.min.js"></script>
-<script src="jquery.mCustomScrollbar.js"></script>
-<script src="jquery.form.js"></script>
-<script src="jquery.watermark.js"></script>
-<script src="js/mousetrap.js"></script>
-<script src="js/mousetrap-global.js"></script>
+<script src="js/lib/jquery.mousewheel.min.js"></script>
+<script src="js/lib/jquery.mCustomScrollbar.js"></script>
+<script src="js/lib/jquery.form.js"></script>
+<script src="js/lib/jquery.watermark.js"></script>
+<script src="js/lib/mousetrap.js"></script>
+<script src="js/lib/mousetrap-global.js"></script>
 <script src="js/chat.js?<?php echo date("dmYH");?>"></script>
 <script src="js/menu.js?<?php echo date("dmYH");?>"></script>
-<script type="text/javascript">
-		var wheelUrl = '<?php echo convertToCDNUrl('pic/wheel.png');?>';
-		var arrowDownUrl = '<?php echo convertToCDNUrl('pic/meminfoArrowDown.png')?>';
-		var arrowUpUrl = '<?php echo convertToCDNUrl('pic/meminfoArrowUp.png')?>';
-		$(document).ready(function(){
-			$.fn.preload = function() {
-			    this.each(function(){
-			        $('<img/>')[0].src = this;
-			    });
-			};
-			$('#wheel').click(function(){
-				$('#meminfo').toggle();
-			});
-			$([arrowDownUrl,arrowUpUrl]).preload();
-			$('#wheel').hover(
-				function(){
-					var img = $(this).children("span#info").children('img');
-					if($('#meminfo').is(':visible')){
-						img.attr('src',arrowUpUrl);
-					}else{
-						img.attr('src',arrowDownUrl);
-					}
-					img.animate({
-						height: '+=10',
-						width: '+=10',
-						top: '-=5',
-						left: '-=5'
-					},200);
-				},
-				function(){
-					var img = $(this).children("span#info").children('img');
-					img.animate({
-						height: '-=10',
-						width: '-=10',
-						top: '+=5',
-						left: '+=5'
-					},200,function(){
-						img.attr('src',wheelUrl);
-					});
-				}
-			);
-			//$("body").height($(document).height()-2);
-		});
-	</script>
+<script src="js/shop.js?<?php echo date("dmYH");?>"></script>
 <meta http-equiv="content-language" content="fr">
 </head>
+
 <body>
 	<audio id="chat-sound-player" preload>
 		<source src="snd/chat.mp3" type="audio/mpeg">
 		<source src="snd/chat.ogg" type="audio/ogg">
 		<source src="snd/chat.wav" type="audio/wav">
-		<div style="position: fixed; text-align: center; left: 30; right: 30; top: 100; padding: 30px; color: #f00; font-family: verdana; font-size: 20px; background: #666; z-index: 30;">
+		<div style="position: fixed; text-align: center; left: 0px; right: 0px; top: 150px; padding: 30px; color: #f00; font-family: verdana; font-size: 20px; background: #666; z-index: 10000;">
 			<p>Votre navigateur est obsol&egrave;te et ne supporte pas l'HTML5 !</p>
 			<p>Merci de le mettre &agrave; jour pour profiter pleinement de l'exp&eacute;rience de jeu ;-)</p>
 			<p>
-				<a href="www.google.com/chrome">
-					<img src="http://upload.wikimedia.org/wikipedia/fr/9/9e/Google_Chrome_logo.png" height="50px">
+				<a href="http://www.google.com/chrome">
+					<img src="<?php echo convertToCDNUrl('pic/chrome_logo.png')?>" height="64px">
 				</a>
 				<a href="http://windows.microsoft.com/fr-FR/internet-explorer/downloads/ie-10/worldwide-languages">
-					<img src="http://upload.wikimedia.org/wikipedia/fr/a/a0/Internet_Explorer_9_logo.png" height="50px">
+					<img src="<?php echo convertToCDNUrl('pic/ie_logo.png')?>" height="64px">
 				</a>
-				<a href="www.mozilla.org/fr/firefox/">
-					<img src="http://upload.wikimedia.org/wikipedia/fr/8/84/Firefox_New_Logo.png" height="50px">
+				<a href="http://www.mozilla.org/fr/firefox/">
+					<img src="<?php echo convertToCDNUrl('pic/firefox_logo.png')?>" height="64px">
 				</a>
 			</p>
 		</div>
@@ -121,7 +79,7 @@ $log = new Log();
 			</div>
 			<div class="info">
 				<p>ARG</p>
-				<span><?php echo $mem->getArgent();?> <strike>Cr</strike> </span>
+				<span><span class="account-money"><?php echo $mem->getArgent();?></span> <strike>Cr</strike></span>
 			</div>
 			<div class="info"></div>
 		</div>
@@ -137,6 +95,14 @@ $log = new Log();
 			</div>
 		</div>
 		<div id="content" class="row">
+			<div id="popup">
+				<div class='content'>
+					<div class='message'></div>
+					<div class="image">
+						<img src="http://placehold.it/50x50">
+					</div>
+				</div>
+			</div>
 			<div class="left col menu">
 				<div class="mainmenu">
 					<a href=#>MENU</a>
@@ -166,14 +132,6 @@ $log = new Log();
 					<?php require_once 'shop-content.php';?>
 				</div>
 				<div id="wrapper">
-					<div id="popup">
-						<div class='content'>
-							<div class='message'></div>
-							<div class="image">
-								<img src="http://placehold.it/50x50">
-							</div>
-						</div>
-					</div>
 					<div class="body row scroll-y">
 						<?php
 						if ((!isset($_GET['page'])) or (isset($_GET['page']) && $_GET['page'] == 'home')){

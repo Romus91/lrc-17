@@ -85,7 +85,7 @@ table {
 }
 
 .barremenu {
-	background: url(http://anthares.be/lrc/pic/barre.png) no-repeat center
+	background: url(http://chaotic-realms.net/pic/barre.png) no-repeat center
 		#000;
 	background-size: cover;
 }
@@ -95,13 +95,13 @@ table {
 }
 
 .barre {
-	background: url(http://anthares.be/lrc/pic/blanc.png) repeat left;
+	background: url(http://chaotic-realms.net/pic/blanc.png) repeat left;
 	background-color: #000000;
 }
 
 /*TD*/
 .bannerinfo {
-	background: url(http://anthares.be/lrc/pic/bannerinfo.png) no-repeat
+	background: url(http://chaotic-realms.net/pic/bannerinfo.png) no-repeat
 		center top;
 	height: 65px;
 	FONT-SIZE: 14pt;
@@ -124,7 +124,7 @@ table {
 }
 
 .verouille {
-	background-image: url(http://anthares.be/lrc/pic/fondverouillesmall.png);
+	background-image: url(http://chaotic-realms.net/pic/fondverouillesmall.png);
 	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -134,7 +134,7 @@ table {
 }
 
 .verouilleh {
-	background-image: url(http://anthares.be/lrc/pic/fondverouille.png);
+	background-image: url(http://chaotic-realms.net/pic/fondverouille.png);
 	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -171,7 +171,7 @@ div.info span {
 
 /*BODY*/
 html {
-	background-image: url(http://anthares.be/lrc/pic/background.png);
+	background-image: url(http://chaotic-realms.net/pic/background.png);
 	background-repeat: no-repeat;
 	background-position: center top;
 	background-attachement: fixed;
@@ -282,7 +282,7 @@ body {
 }
 
 .backtray#shop{
-	width:500px;
+	width:650px;
 }
 .backtray#compte{
 	width:500px;
@@ -585,12 +585,12 @@ tr.ladder-row td.hover {
 
 .shopitem {
 	vertical-align: middle;
-	width:475px;
+	width:98%;
 	margin: 5px auto 0px auto;
 	box-sizing: border-box;
 	padding:0;
 	position:relative;
-	height:100px;
+	height:120px;
 	overflow:hidden;
 	background:#333;
 }
@@ -628,7 +628,7 @@ tr.ladder-row td.hover {
 }
 
 .shopitem > .logo > a > img{
-	height:75px;
+	height:90px;
 	margin:auto;
 }
 
@@ -647,6 +647,7 @@ tr.ladder-row td.hover {
 
 .desc > p{
 	margin: 5px 0;
+	position: relative;
 }
 
 .desc > p > .tag{
@@ -654,6 +655,11 @@ tr.ladder-row td.hover {
 	width:110px;
 	font-weight: bold;
 	color:#999;
+}
+
+.desc > p > .text{
+	position:absolute;
+	left: 115px;
 }
 
 .backtray#compte > .desc{
@@ -682,12 +688,39 @@ tr.ladder-row td.hover {
 }
 
 #inventory td.invSlot {
-	background: url(http://anthares.be/lrc/pic/inventory-bg2.png) no-repeat
-		center 55;
+	background: url(http://chaotic-realms.net/pic/inventory-bg2.png) no-repeat
+		center 55px;
 	border-right: 1px solid #999;
 	border-bottom: 1px solid #999;
 	height: 120px;
 	text-align: center;
+	width: 25%;
+}
+
+#inventory td.invSlot > .invItem{
+	height: 70px;
+	width: 70px;
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+#inventory td.invSlot > .invItem > img{
+	width: 100%;
+	height: 100%;
+}
+
+#inventory td.invSlot > .invItem > .invCount{
+	position: absolute;
+	bottom: -5px;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	background: url(http://chaotic-realms.net/pic/red_badge.png) no-repeat center center;
+	background-size: 80%;
+	line-height: 30px;
+	vertical-align: bottom;
 }
 
 .jauge {
@@ -928,7 +961,7 @@ table.armes-wave {
 
 #chat-tray-arrow {
 	width: 30;
-	background: url(http://anthares.be/lrc/pic/chat-arrow-up.png) no-repeat
+	background: url(http://chaotic-realms.net/pic/chat-arrow-up.png) no-repeat
 		center center;
 	background-size: 80%;
 	border-radius: 5px 0 0 0;
@@ -937,7 +970,7 @@ table.armes-wave {
 }
 
 #chat-tray-arrow.down {
-	background: url(http://anthares.be/lrc/pic/chat-arrow-down.png)
+	background: url(http://chaotic-realms.net/pic/chat-arrow-down.png)
 		no-repeat center center;
 	background-size: 80%;
 }
@@ -951,7 +984,7 @@ table.armes-wave {
 
 #chat-tray-badge {
 	width: 30;
-	background: url(http://anthares.be/lrc/pic/red_badge.png) no-repeat
+	background: url(http://chaotic-realms.net/pic/red_badge.png) no-repeat
 		center center;
 	background-size: 80%;
 	border-radius: 0 5px 0 0;
@@ -1001,7 +1034,7 @@ table.armes-wave {
 	margin: 0;
 	box-sizing: border-box;
 	background: transparent
-		url(http://anthares.be/lrc/pic/chat_sound_on.png) center center
+		url(http://chaotic-realms.net/pic/chat_sound_on.png) center center
 		no-repeat;
 	background-size: contain;
 	cursor: hand;
@@ -1009,7 +1042,7 @@ table.armes-wave {
 
 #chat-sound.off {
 	background: transparent
-		url(http://anthares.be/lrc/pic/chat_sound_off.png) center center
+		url(http://chaotic-realms.net/pic/chat_sound_off.png) center center
 		no-repeat;
 	background-size: contain;
 }
