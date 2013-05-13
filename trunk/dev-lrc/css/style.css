@@ -1161,7 +1161,6 @@ ul.pagination li.details {
 
 ul.pagination li.dot {
 	padding: 3px 0;
-	min-width: 0;
 	display: block;
 }
 
