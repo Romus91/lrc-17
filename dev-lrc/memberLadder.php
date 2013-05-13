@@ -1,6 +1,7 @@
 <?php
 include_once 'verif.php';
 include_once 'cdnHelper.php';
+include_once 'pagination.php';
 $data = mysql_fetch_assoc(mysql_query('select count(*) as nbMem from membre where xp > 0;'));
 
 $nbMembre = $data['nbMem'];
@@ -13,28 +14,8 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 	$cPage = 1;
 }?>
 		<tr>
-			<td colspan=1 width="50">
-				<?php if ($cPage-1 != 0):?>
-					<a href="index.php?page=ladder&tab=members&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
-				<?php else:?>
-					<p>PRECEDENT</p>
-				<?php endif;?>
-			</td>
-			<td colspan=2 align="center">
-			<?php for($i=1;$i<=$nbPage;$i++):?>
-				<?php if($i==1):?>
-				<a href="index.php?page=ladder&tab=members&nb=<?php echo $i?>"><?php echo $i;?></a>
-				<?php else:?>
-				<span> | </span><a href="index.php?page=ladder&tab=members&nb=<?php echo $i?>"><?php echo $i;?></a>
-				<?php endif;?>
-			<?php endfor;?>
-			</td>
-			<td colspan=1 align="right" width="50">
-				<?php if ($cPage+1 <= $nbPage):?>
-					<a href="index.php?page=ladder&tab=members&nb=<?php echo $cPage+1;?>">SUIVANT</a>
-				<?php else:?>
-					<p>SUIVANT</p>
-				<?php endif;?>
+			<td colspan=4>
+				<?php echo pagination($perPage,$cPage,'index.php?page=ladder&tab=member&nb=',$nbMembre);?>
 			</td>
 		</tr>
 		<tr>
@@ -82,27 +63,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 			</tr>
 		<?php endfor;?>
 		<tr>
-			<td colspan=1 width="50">
-				<?php if ($cPage-1 != 0):?>
-					<a href="index.php?page=ladder&tab=members&nb=<?php echo $cPage-1;?>">PRECEDENT</a>
-				<?php else:?>
-					<p>PRECEDENT</p>
-				<?php endif;?>
-			</td>
-			<td colspan=2 align="center">
-			<?php for($i=1;$i<=$nbPage;$i++):?>
-				<?php if($i==1):?>
-				<a href="index.php?page=ladder&tab=members&nb=<?php echo $i?>"><?php echo $i;?></a>
-				<?php else:?>
-				<span> | </span><a href="index.php?page=ladder&tab=members&nb=<?php echo $i?>"><?php echo $i;?></a>
-				<?php endif;?>
-			<?php endfor;?>
-			</td>
-			<td colspan=1 align="right" width="50">
-				<?php if ($cPage+1 <= $nbPage):?>
-					<a href="index.php?page=ladder&tab=members&nb=<?php echo $cPage+1;?>">SUIVANT</a>
-				<?php else:?>
-					<p>SUIVANT</p>
-				<?php endif;?>
+		<td colspan=4>
+				<div class='pagination-wrapper'><ul class='pagination pages'><li><a href="#top">Haut de la page</a></li></ul></div>
 			</td>
 		</tr>

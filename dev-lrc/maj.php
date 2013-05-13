@@ -28,7 +28,7 @@
 	</tr>
 	<?php if (isset($_POST['go']) && $_POST['go']=='Envoyer' && !empty($_POST['message'])){
 		//si tout a été bien rempli, on insère le message dans la table SQL
-		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$mem->getLogin().'", "'.mysql_real_escape_string($_POST['message']).'")';
+		$sql = 'INSERT INTO maj(date,id_expediteur,message) VALUES( "'.date("H:i:s").'","'.$mem->getLogin().'", "'.mysql_real_escape_string(str_replace("\r\n", "<br>", $_POST['message'])).'")';
 		mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
 	}
 	endif;

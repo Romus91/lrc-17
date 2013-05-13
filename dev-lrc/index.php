@@ -133,6 +133,7 @@ $log = new Log();
 				</div>
 				<div id="wrapper">
 					<div class="body row scroll-y">
+						<span id="top"></span>
 						<?php
 						if ((!isset($_GET['page'])) or (isset($_GET['page']) && $_GET['page'] == 'home')){
 							include('home.php');
