@@ -1,6 +1,6 @@
 <?php include_once("verif.php");?>
 <table width='100%' align='left' class='small'>
-	<tr width="100%">
+	<tr>
 		<td class='button' colspan="2"><a href='index.php?page=maj'>ACTUALISER</a></td>
 	</tr>
 <?php if ($mem->getRole()=='admin'||$mem->getRole()=='dev'):?>
@@ -8,17 +8,12 @@
 		<td width="100%" colspan="2">
 			<form action='index.php?page=maj' method='post' name='wall'>
 				<table class='small' width='100%'>
-
 					<tr>
-						<td class='title2'><b>Message : </b>
+						<td align=center><textarea name='message' cols='124' rows='7' placeholder="Note de mise &agrave; jour..."></textarea>
 						</td>
 					</tr>
 					<tr>
-						<td align=center><textarea name='message' cols='70' rows='5'></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td align=center><input type='submit' name='go' value='Envoyer'>
+						<td align=center><input type='submit' name='go' value='Publier'>
 						</td>
 					</tr>
 				</table>
@@ -55,7 +50,7 @@
 		<td align=center class='color4' colspan=2>&nbsp;</td>
 	</tr>
 	<?php
-	foreach ($data as $item):
+	foreach ($data as $key => $item):
 		$statement = 'select * from votemaj where id_maj = :maj and vote = :vote;';
 
 		$req = ConnectionSingleton::connect()->prepare($statement);
@@ -67,6 +62,11 @@
 		$votedown = $req->rowCount();
 		?>
 	<tr>
+	<?php if($key!=0):?>
+	<tr>
+		<td align=center class='color4' colspan=2>&nbsp;</td>
+	</tr>
+	<?php endif;?>
 	<?php if ($i < $cpt):?>
 		<td>
 			<p><font size=3><?php echo date("d/m/Y H:i:s",strtotime($item->timestamp));?></font></p>
@@ -89,9 +89,11 @@
 			</div>
 		</td>
 	</tr>
-	<tr>
-		<td align=center class='color4' colspan=2>&nbsp;</td>
-	</tr>
 	<?php $i++;
 	endforeach;?>
+	<tr>
+		<td class='color6' colspan="2">
+			<div class='pagination-wrapper'><ul class='pagination pages'><li><a href="#top">Haut de la page</a></li></ul></div>
+		</td>
+	</tr>
 </table>

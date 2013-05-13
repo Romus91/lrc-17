@@ -2,7 +2,7 @@
 include_once 'verif.php';
 include_once 'cdnHelper.php';
 include_once 'pagination.php';
-$data = mysql_fetch_assoc(mysql_query('select count(*) as nbMem from membre where xp > 0;'));
+$data = mysql_fetch_assoc(mysql_query('select count(*) as nbMem from membre'));
 
 $nbMembre = $data['nbMem'];
 $perPage = 10;
@@ -15,7 +15,7 @@ if(isset($_GET['nb']) && $_GET['nb']>0 && $_GET['nb']<=$nbPage){
 }?>
 		<tr>
 			<td colspan=4>
-				<?php echo pagination($perPage,$cPage,'index.php?page=ladder&tab=member&nb=',$nbMembre);?>
+				<?php echo pagination($perPage,$cPage,'index.php?page=ladder&tab=members&nb=',$nbMembre);?>
 			</td>
 		</tr>
 		<tr>
