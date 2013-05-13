@@ -26,9 +26,10 @@ class MemberController{
 		return $tabMember;
 	}
 	public function fetchMembre($id){
-		$query = 'select * from membre where id = :id;';
+		$query = 'select * from membre where id = :id';
 		$req = ConnectionSingleton::connect()->prepare($query);
-		$req->execute(array('id'=>$id));
+		$req->bindParam(':id', $id, PDO::PARAM_INT);
+		$req->execute();
 		$data = $req->fetch(PDO::FETCH_OBJ);
 		$membre = new Member();
 		$membre	->setId($data->id)
