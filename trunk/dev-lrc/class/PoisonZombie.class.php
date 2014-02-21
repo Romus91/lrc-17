@@ -5,7 +5,7 @@ class PoisonZombie extends Monster{
 		$this->setLevel((int)$level);
 		$this->setBaseExp(100);
 		$this->setBaseLife(75);
-		$this->setDamage(1.6);
-		$this->setEnergyCost(0.75);
+		$this->setDamage(1);
+		$this->setEnergyCost(0.375);
 	}
 }

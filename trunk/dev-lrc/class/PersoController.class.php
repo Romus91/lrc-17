@@ -7,7 +7,7 @@ class PersoController{
 		return $this->fetchArray($req);
 	}
 	public function fetchRange($start,$length){
-		$query = 'select id from perso order by competance DESC, level ASC limit :s, :l';
+		$query = "select id, coalesce(max_level_reached_date, date('3000-01-01')) as max_level_date  from perso order by `max_level_date` ASC, competance DESC, level ASC limit :s, :l";
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->bindParam(':s', $start, PDO::PARAM_INT);
 		$req->bindParam(':l', $length, PDO::PARAM_INT);
@@ -104,7 +104,8 @@ class PersoController{
 				->setInvConso($consoCont->fetchPerso($data->id))
 				->setLastRegenEnergie($data->last_regen_nrg)
 				->setLastRegenVie($data->last_regen_vie)
-				->setJaugePoison($data->jaugepois);
+				->setJaugePoison($data->jaugepois)
+				->setMaxLevelReachedDate($data->max_level_reached_date);
 		return $perso;
 	}
 	public function savePerso(Perso $perso){
@@ -129,7 +130,8 @@ class PersoController{
 				xpafk = :xpafk,
 				jaugepois = :jpoi,
 				last_regen_nrg = :lregennrg,
-				last_regen_vie = :lregenvie
+				last_regen_vie = :lregenvie,
+				max_level_reached_date = FROM_UNIXTIME(:mlrdate)
 			where id = :id;';
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array(
@@ -153,7 +155,8 @@ class PersoController{
 			'xpafk' => $perso->getXpWhenAfk(),
 			'jpoi'	=> $perso->getJaugePoison(),
 			'lregennrg'=> $perso->getLastRegenEnergie(),
-			'lregenvie'=> $perso->getLastRegenVie()
+			'lregenvie'=> $perso->getLastRegenVie(),
+			'mlrdate'=>$perso->getMaxLevelReachedDate()
 		));
 		$armCont = new ArmeController();
 		$armCont->savePerso($perso);

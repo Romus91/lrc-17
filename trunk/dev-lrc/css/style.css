@@ -38,20 +38,29 @@ table {
 .color5 {
 	background-color: #484848;
 }
-.color6{
+
+.color6 {
 	background-color: #3e3e3e;
 }
 
 .hev {
 	background: #666666; /* Old browsers */
-	background: -moz-radial-gradient(center, ellipse cover,  #666666 0%, #333333 50%, #111111 100%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#666666), color-stop(50%,#333333), color-stop(100%,#111111)); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover,  #666666 0%,#333333 50%,#111111 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover,  #666666 0%,#333333 50%,#111111 100%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover,  #666666 0%,#333333 50%,#111111 100%); /* IE10+ */
-	background: radial-gradient(ellipse at center,  #666666 0%,#333333 50%,#111111 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#111111',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+	background: -moz-radial-gradient(center, ellipse cover, #666666 0%, #333333 50%,
+		#111111 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%,
+		color-stop(0%, #666666), color-stop(50%, #333333),
+		color-stop(100%, #111111)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #666666 0%, #333333 50%,
+		#111111 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #666666 0%, #333333 50%,
+		#111111 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #666666 0%, #333333 50%,
+		#111111 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, #666666 0%, #333333 50%, #111111 100%
+		); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#666666',
+		endColorstr='#111111', GradientType=1);
+	/* IE6-9 fallback on horizontal gradient */
 	width: 140px;
 	height: 95px;
 	text-align: center;
@@ -69,27 +78,35 @@ table {
 }
 
 .hev img {
-	height:100%
+	height: 100%
 }
 
 .hev a:hover {
 	background: #b5b5b5; /* Old browsers */
-	background: -moz-radial-gradient(center, ellipse cover,  #b5b5b5 0%, #8c8c8c 36%, #343434 100%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#b5b5b5), color-stop(36%,#8c8c8c), color-stop(100%,#343434)); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* IE10+ */
-	background: radial-gradient(ellipse at center,  #b5b5b5 0%,#8c8c8c 36%,#343434 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5b5b5', endColorstr='#343434',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+	background: -moz-radial-gradient(center, ellipse cover, #b5b5b5 0%, #8c8c8c 36%,
+		#343434 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%,
+		color-stop(0%, #b5b5b5), color-stop(36%, #8c8c8c),
+		color-stop(100%, #343434)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #b5b5b5 0%, #8c8c8c 36%,
+		#343434 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #b5b5b5 0%, #8c8c8c 36%,
+		#343434 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #b5b5b5 0%, #8c8c8c 36%,
+		#343434 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, #b5b5b5 0%, #8c8c8c 36%, #343434 100%
+		); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#b5b5b5',
+		endColorstr='#343434', GradientType=1);
+	/* IE6-9 fallback on horizontal gradient */
 	text-align: center;
 	vertical-align: middle;
 	border-radius: 12px;
 }
 
 .barremenu {
-	background: url(http://chaotic-realms.net/pic/barre.png) no-repeat center
-		#000;
+	background: url(http://chaotic-realms.net/pic/barre.png) no-repeat
+		center #000;
 	background-size: cover;
 }
 
@@ -127,7 +144,8 @@ table {
 }
 
 .verouille {
-	background-image: url(http://chaotic-realms.net/pic/fondverouillesmall.png);
+	background-image:
+		url(http://chaotic-realms.net/pic/fondverouillesmall.png);
 	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -179,6 +197,7 @@ html {
 	background-position: center top;
 	background-attachement: fixed;
 	background-color: #000000;
+	height: 100%;
 }
 
 body {
@@ -187,7 +206,9 @@ body {
 	width: 1000px;
 	margin: auto;
 	height: 100%;
-	position: relative; overflow : hidden; background : #000;
+	position: relative;
+	overflow: hidden;
+	background: #000;
 	border: 1px solid black;
 	box-sizing: border-box;
 	background: #000;
@@ -211,11 +232,11 @@ body {
 	min-height: 400px;
 }
 
-#top{
+#top {
 	width: 0px;
 	height: 0px;
 	margin: 0px;
-	border:0px;
+	border: 0px;
 	padding: 0px;
 	line-height: 0px;
 }
@@ -266,7 +287,7 @@ body {
 	background: -moz-linear-gradient(left, #45484d 0%, #000000 100%);
 	/* FF3.6+ */
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%, #45484d),
-		color-stop(100%, #000000) ); /* Chrome,Safari4+ */
+		color-stop(100%, #000000)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(left, #45484d 0%, #000000 100%);
 	/* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(left, #45484d 0%, #000000 100%);
@@ -275,8 +296,8 @@ body {
 	/* IE10+ */
 	background: linear-gradient(to right, #45484d 0%, #000000 100%);
 	/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#45484d',
-		endColorstr='#000000', GradientType=1 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#45484d',
+		endColorstr='#000000', GradientType=1); /* IE6-9 */
 }
 
 .backtray {
@@ -293,24 +314,25 @@ body {
 	width: 230px;
 }
 
-.backtray#shop{
-	width:650px;
+.backtray#shop {
+	width: 650px;
 }
-.backtray#compte{
-	width:500px;
+
+.backtray#compte {
+	width: 500px;
 }
 
 .right.col {
 	border-top: #666 1px solid;
 	left: 75px;
-	right: 0;
+	right: 0px;
 	left: 75px;
 }
 
 .body.row {
 	border-top: 3px #222 solid;
-	top: 0;
-	bottom: 0;
+	top: 0px;
+	bottom: 0px;
 	background: #333333;
 	min-height: 308px;
 }
@@ -323,7 +345,7 @@ body {
 
 .footer.row {
 	height: 30px;
-	bottom: 0;
+	bottom: 0px;
 	line-height: 30px;
 	padding-left: 10px;
 	background: #000;
@@ -333,8 +355,8 @@ body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	left: 0;
-	right: 0;
+	left: 0px;
+	right: 0px;
 	border-left: 1px solid black;
 	z-index: 2;
 }
@@ -351,7 +373,7 @@ body {
 	background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #45484d 100%);
 	/* FF3.6+ */
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%,
-		color-stop(0%, #000000), color-stop(100%, #45484d) );
+		color-stop(0%, #000000), color-stop(100%, #45484d));
 	/* Chrome,Safari4+ */
 	background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #45484d 100%);
 	/* Chrome10+,Safari5.1+ */
@@ -361,14 +383,14 @@ body {
 	/* IE10+ */
 	background: radial-gradient(ellipse at center, #000000 0%, #45484d 100%);
 	/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(        startColorstr='#000000',
-		endColorstr='#45484d', GradientType=1 );
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#000000',
+		endColorstr='#45484d', GradientType=1);
 	/* IE6-9 fallback on horizontal gradient */
 	cursor: hand;
 }
 
 .menu>p {
-	margin: 0;
+	margin: 0px;
 	border-top: #666 solid 1px;
 }
 
@@ -389,14 +411,14 @@ body {
 }
 
 .smallperso {
-	margin: 5 0 5 10;
+	margin: 5px 0px 5px 10px;
 	border: #333 1px solid;
 	float: left;
 	background: #45484d; /* Old browsers */
 	background: -moz-linear-gradient(left, #45484d 0%, #000000 100%);
 	/* FF3.6+ */
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%, #45484d),
-		color-stop(100%, #000000) ); /* Chrome,Safari4+ */
+		color-stop(100%, #000000)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(left, #45484d 0%, #000000 100%);
 	/* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(left, #45484d 0%, #000000 100%);
@@ -405,10 +427,11 @@ body {
 	/* IE10+ */
 	background: linear-gradient(to right, #45484d 0%, #000000 100%);
 	/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#45484d',
-		endColorstr='#000000', GradientType=1 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#45484d',
+		endColorstr='#000000', GradientType=1); /* IE6-9 */
 }
-.smallperso a:hover{
+
+.smallperso a:hover {
 	background: #45484d;
 }
 
@@ -421,13 +444,13 @@ body {
 
 .smallperso>a>img {
 	width: 150px;
-	margin: 10;
+	margin: 10px;
 	border: 1px solid black;
 }
 
 #mainmenu>ul,#mainmenu>ul>li {
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
 
 #mainmenu>ul,#mainmenu>ul>li,#mainmenu>ul>li>a {
@@ -456,7 +479,7 @@ a:hover {
 }
 
 a img {
-	border: 0;
+	border: 0px;
 }
 
 .hide {
@@ -477,7 +500,7 @@ a img {
 }
 
 #menu ul {
-	margin: 0;
+	margin: 0px;
 	padding: 5px 0px 5px 0px;
 	list-style: none;
 	line-height: normal;
@@ -512,14 +535,13 @@ a img {
 }
 
 /* Bouton */
-
 .button {
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .button ul {
-	margin: 0;
+	margin: 0px;
 	padding: 5px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
@@ -597,97 +619,97 @@ tr.ladder-row td.hover {
 
 .shopitem {
 	vertical-align: middle;
-	width:98%;
+	width: 98%;
 	margin: 5px auto 0px auto;
 	box-sizing: border-box;
-	padding:0;
-	position:relative;
-	height:120px;
-	overflow:hidden;
-	background:#333;
+	padding: 0px;
+	position: relative;
+	height: 120px;
+	overflow: hidden;
+	background: #333;
 }
 
-.shopitem > .logo {
-	margin: 0;
+.shopitem>.logo {
+	margin: 0px;
 	display: inline-block;
 	text-decoration: none;
-	position:absolute;
-	top:0;
-	left:0;
-	bottom:0;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
 	width: 150px !important;
-	max-width:150px !important;
-	border-top:2px #eee solid;
-	border-bottom:2px #666 solid;
-	border-right:2px #2f2f2f solid;
-
+	max-width: 150px !important;
+	border-top: 2px #eee solid;
+	border-bottom: 2px #666 solid;
+	border-right: 2px #2f2f2f solid;
 	box-sizing: border-box;
-
 	background: #bbb;
-
-	text-align:center;
+	text-align: center;
 }
-.shopitem > .logo > a{
+
+.shopitem>.logo>a {
 	height: 100%;
-	width:100%;
-	line-height:100%;
-	display:block;
-	padding:10px 0;
+	width: 100%;
+	line-height: 100%;
+	display: block;
+	padding: 10px 0px;
 	box-sizing: border-box;
 }
-.shopitem > .logo > a:hover {
+
+.shopitem>.logo>a:hover {
 	background: #666;
 }
 
-.shopitem > .logo > a > img{
-	height:90px;
-	margin:auto;
+.shopitem>.logo>a>img {
+	height: 90px;
+	margin: auto;
 }
 
-.shopitem > .desc{
-	position:absolute;
-	left: 152;
-	top:0;
-	bottom:0;
-	right:0;
+.shopitem>.desc {
+	position: absolute;
+	left: 152px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
 }
 
-.desc{
+.desc {
 	padding: 10px;
-	box-sizing:border-box
+	box-sizing: border-box
 }
 
-.desc > p{
-	margin: 5px 0;
+.desc>p {
+	margin: 5px 0px;
 	position: relative;
 }
 
-.desc > p > .tag{
-	display:inline-block;
-	width:110px;
+.desc>p>.tag {
+	display: inline-block;
+	width: 110px;
 	font-weight: bold;
-	color:#999;
+	color: #999;
 }
 
-.desc > p > .text{
-	position:absolute;
+.desc>p>.text {
+	position: absolute;
 	left: 115px;
 }
 
-.backtray#compte > .desc{
-	border:1px solid #999;
-	margin: 5px 5px 0 5px;
-	border-radius: 0 10px 10px 10px;
+.backtray#compte>.desc {
+	border: 1px solid #999;
+	margin: 5px 5px 0px 5px;
+	border-radius: 0px 10px 10px 10px;
 }
 
-.backtray#compte > .desc > .desc-title{
+.backtray#compte>.desc>.desc-title {
 	font-size: 18px;
-	margin-top:0;
+	margin-top: 0px;
 }
 
-.backtray#compte > .desc > p > .tag{
-	width:150px;
+.backtray#compte>.desc>p>.tag {
+	width: 150px;
 }
+
 #inventory {
 	width: 100%;
 	border-top: 1px solid #999;
@@ -700,8 +722,8 @@ tr.ladder-row td.hover {
 }
 
 #inventory td.invSlot {
-	background: url(http://chaotic-realms.net/pic/inventory-bg2.png) no-repeat
-		center 55px;
+	background: url(http://chaotic-realms.net/pic/inventory-bg2.png)
+		no-repeat center 55px;
 	border-right: 1px solid #999;
 	border-bottom: 1px solid #999;
 	height: 120px;
@@ -709,27 +731,28 @@ tr.ladder-row td.hover {
 	width: 25%;
 }
 
-#inventory td.invSlot > .invItem{
+#inventory td.invSlot>.invItem {
 	height: 70px;
 	width: 70px;
 	position: relative;
 	display: inline-block;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
 
-#inventory td.invSlot > .invItem > img{
+#inventory td.invSlot>.invItem>img {
 	width: 100%;
 	height: 100%;
 }
 
-#inventory td.invSlot > .invItem > .invCount{
+#inventory td.invSlot>.invItem>.invCount {
 	position: absolute;
 	bottom: -5px;
-	right: 0;
+	right: 0px;
 	width: 30px;
 	height: 30px;
-	background: url(http://chaotic-realms.net/pic/red_badge.png) no-repeat center center;
+	background: url(http://chaotic-realms.net/pic/red_badge.png) no-repeat
+		center center;
 	background-size: 80%;
 	line-height: 30px;
 	vertical-align: bottom;
@@ -822,7 +845,7 @@ tr.ladder-row td.hover {
 	background: -moz-linear-gradient(top, #333333 0%, #777777 100%);
 	/* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333),
-		color-stop(100%, #777777) ); /* Chrome,Safari4+ */
+		color-stop(100%, #777777)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top, #333333 0%, #777777 100%);
 	/* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, #333333 0%, #777777 100%);
@@ -831,8 +854,8 @@ tr.ladder-row td.hover {
 	/* IE10+ */
 	background: linear-gradient(to bottom, #333333 0%, #777777 100%);
 	/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#333333',
-		endColorstr='#777777', GradientType=0 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient(           startColorstr='#333333',
+		endColorstr='#777777', GradientType=0); /* IE6-9 */
 	border: 1px solid #cc6600;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -854,7 +877,7 @@ tr.ladder-row td.hover {
 #popup .content .message {
 	width: 80%;
 	float: left;
-	top: 0;
+	top: 0px;
 }
 
 #popup .content .popup-buttons {
@@ -905,7 +928,7 @@ table.wave tr.round td.arme {
 
 table.wave tr.round td.content {
 	background: #555555;
-	padding-bottom: 0;
+	padding-bottom: 0px;
 }
 
 table.wave tr.round td.content>.player,table.wave tr.round td.content>.zomb
@@ -915,8 +938,6 @@ table.wave tr.round td.content>.player,table.wave tr.round td.content>.zomb
 }
 
 table.armes-wave {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	padding: 5px;
 	border-collapse: collapse;
@@ -924,8 +945,6 @@ table.armes-wave {
 }
 
 .gp-wave {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	padding: 5px;
 	background: #555555;
@@ -935,9 +954,9 @@ table.armes-wave {
 	position: fixed;
 	height: 31px;
 	width: 100%;
-	bottom: 13;
-	left: 0;
-	right: 0;
+	bottom: 13px;
+	left: 0px;
+	right: 0px;
 	z-index: 100;
 	background: transparent;
 	color: white;
@@ -949,7 +968,7 @@ table.armes-wave {
 	background: #5f6975;
 	height: 400px;
 	margin: auto;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0px 0px;
 	border: 1px solid #6b727c;
 	text-align: left;
 	font-size: 11px;
@@ -958,7 +977,7 @@ table.armes-wave {
 
 #chat-tray {
 	background-color: #5f6975;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0px 0px;
 	height: 30px;
 	text-align: center;
 	font-size: 22px;
@@ -972,13 +991,13 @@ table.armes-wave {
 }
 
 #chat-tray-arrow {
-	width: 30;
-	background: url(http://chaotic-realms.net/pic/chat-arrow-up.png) no-repeat
-		center center;
+	width: 30px;
+	background: url(http://chaotic-realms.net/pic/chat-arrow-up.png)
+		no-repeat center center;
 	background-size: 80%;
-	border-radius: 5px 0 0 0;
+	border-radius: 5px 0px 0px 0px;
 	border-right: 1px solid #575f6a;
-	left: 0;
+	left: 0px;
 }
 
 #chat-tray-arrow.down {
@@ -988,19 +1007,19 @@ table.armes-wave {
 }
 
 #chat-tray-title {
-	left: 31;
-	right: 31;
+	left: 31px;
+	right: 31px;
 	border-left: 1px solid #6b727c;
 	border-right: 1px solid #575f6a;
 }
 
 #chat-tray-badge {
-	width: 30;
+	width: 30px;
 	background: url(http://chaotic-realms.net/pic/red_badge.png) no-repeat
 		center center;
 	background-size: 80%;
-	border-radius: 0 5px 0 0;
-	right: 0;
+	border-radius: 0px 5px 0px 0px;
+	right: 0px;
 	border-left: 1px solid #6b727c;
 }
 
@@ -1013,16 +1032,16 @@ table.armes-wave {
 #chatform-wrapper {
 	height: 27px;
 	width: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	position: relative;
 }
 
 #chatform {
 	width: 95%;
 	height: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	display: inline-block;
 	position: absolute;
 	top: 1px;
@@ -1033,7 +1052,7 @@ table.armes-wave {
 #chatform input {
 	width: 100%;
 	height: 100%;
-	margin: 0;
+	margin: 0px;
 }
 
 #chat-sound {
@@ -1043,7 +1062,7 @@ table.armes-wave {
 	right: 1px;
 	top: 1px;
 	bottom: 1px;
-	margin: 0;
+	margin: 0px;
 	box-sizing: border-box;
 	background: transparent
 		url(http://chaotic-realms.net/pic/chat_sound_on.png) center center
@@ -1061,15 +1080,15 @@ table.armes-wave {
 
 #chat-content {
 	position: relative;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 	height: 341px;
 	clear: both;
 	overflow: hidden;
 }
 
 #pseudobox {
-	padding: 0 5px;
+	padding: 0px 5px;
 	background: black;
 	float: left;
 	width: 88%;
@@ -1087,7 +1106,7 @@ table.armes-wave {
 }
 
 #online {
-	height: 270;
+	height: 270px;
 	padding: 2px;
 	box-sizing: border-box;
 }
@@ -1116,9 +1135,9 @@ table.armes-wave {
 
 #footer {
 	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
 	background: black;
 	z-index: 100;
 	border-top: 1px solid #333;
@@ -1126,20 +1145,27 @@ table.armes-wave {
 
 #footer>p {
 	width: 1060;
-	margin: 0 auto 0 auto;
+	margin: 0px auto 0px auto;
 	text-align: center;
 }
 
-.pagination-wrapper{
+.pagination-wrapper {
 	display: block;
 	width: 100%;
 	padding: 0px;
 	margin: 0px;
 	height: 26px;
-	background-color:#3e3e3e;
+	background-color: #3e3e3e;
 }
-ul.details{float:left;}
-ul.pages{float:right;}
+
+ul.details {
+	float: left;
+}
+
+ul.pages {
+	float: right;
+}
+
 ul.pagination {
 	font-size: 11px;
 	font-family: Tahoma, Arial, Helvetica, Sans-serif;
@@ -1147,11 +1173,11 @@ ul.pagination {
 	list-style-type: none;
 	margin: 0px;
 	overflow: hidden;
-	padding: 0;
+	padding: 0px;
 }
 
 ul.pagination li.details {
-	background-color:#3e3e3e;
+	background-color: #3e3e3e;
 	color: #fff;
 	font-weight: bold;
 	padding: 2px 5px 2px 5px;
@@ -1160,7 +1186,7 @@ ul.pagination li.details {
 }
 
 ul.pagination li.dot {
-	padding: 3px 0;
+	padding: 3px 0px;
 	display: block;
 }
 
@@ -1172,14 +1198,14 @@ ul.pagination li {
 	text-align: center;
 }
 
-ul.pagination li a.current, ul.pagination li a.current:hover {
+ul.pagination li a.current,ul.pagination li a.current:hover {
 	font-weight: bold;
 	background-color: #313131;
 	color: #fff;
 }
 
-ul.pagination li a.disabled, ul.pagination li a.disabled:hover {
-	background-color:#3e3e3e;
+ul.pagination li a.disabled,ul.pagination li a.disabled:hover {
+	background-color: #3e3e3e;
 	color: #868686;
 }
 
@@ -1189,7 +1215,7 @@ ul.pagination li a:hover {
 }
 
 ul.pagination li a {
-	background-color:#3e3e3e;
+	background-color: #3e3e3e;
 	color: #fff;
 	display: block;
 	font-weight: bold;
@@ -1198,8 +1224,102 @@ ul.pagination li a {
 	text-decoration: none;
 }
 
-.unreadMsg{
+.unreadMsg {
 	color: #ff6600;
+}
+
+#tiles {
+	position: relative;
+	clear: both;
+	float: none;
+	margin: 0px auto;
+	width: 910px;
+	height: 15px;
+}
+
+.tile {
+	background: #3e3e3e;
+	width: 296px;
+	height: 225px;
+	margin: 1px;
+	border: 1px #ec5210 solid;
+	border: 1px #7f7f7f solid;
+	float: left;
+	font-size: 14px;
+	overflow: hidden;
+	position: relative;
+}
+
+.tile:hover {
+	border: 1px #ec5210 solid;
+}
+
+.tile:active {
+	background: #7f7f7f;
+}
+
+.tile-header {
+	font-size: 16px;
+	position: absolute;
+	padding: 2%;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	height: 20%;
+	color: white;
+	background: -moz-linear-gradient(top, rgba(69, 72, 77, 0.7) 0%,
+		rgba(0, 0, 0, 0.7) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(69,
+		72, 77, 0.7)), color-stop(100%, rgba(0, 0, 0, 0.7)));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(69, 72, 77, 0.7) 0%,
+		rgba(0, 0, 0, 0.7) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(69, 72, 77, 0.7) 0%,
+		rgba(0, 0, 0, 0.7) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(69, 72, 77, 0.7) 0%,
+		rgba(0, 0, 0, 0.7) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(69, 72, 77, 0.7) 0%,
+		rgba(0, 0, 0, 0.7) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#b345484d',
+		endColorstr='#b3000000', GradientType=0); /* IE6-9 */
+}
+
+.tile-header-lib {
+	float: left;
+	padding-left: 5px;
+}
+
+.tile-header-count {
+	float: right;
+	background: url(http://chaotic-realms.net/pic/red_badge.png) no-repeat
+		center center;
+	width: 50px;
+	text-align: center;
+	height: 50px;
+}
+
+.tile-header-count-lib {
+	margin-top: 15px;
+}
+
+.tile>a {
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.tile-wrapper {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: block;
+}
+
+.tile-wrapper>* {
+	margin: 0px 5px;
+}
+
+textarea {
+	max-width: 850px;
 }
 
 @media screen and (max-width:1060px) {

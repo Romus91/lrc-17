@@ -26,8 +26,8 @@ if ($armes[$i]->getImage()!='piedbiche'){
 	$content['libpre'] = $content['jampre'];
 	$content['tpre'] = $armes[$i]->getAmPreci().' / '.$armes[$i]->getAmPreMax();
 
-	$content['jcap'] =($armes[$i]->getMunmax()/375*100).'%';
-	$content['jamcap'] =($armes[$i]->getCapacity()/375*100).'%';
+	$content['jcap'] =($armes[$i]->getMunmax()/225*100).'%';
+	$content['jamcap'] =($armes[$i]->getCapacity()/225*100).'%';
 	$content['libcap'] = number_format($armes[$i]->getCapacity(),2);
 	$content['tcap'] = $armes[$i]->getAmCapa().' / '.$armes[$i]->getAmCapMax();
 

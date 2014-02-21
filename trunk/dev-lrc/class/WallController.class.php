@@ -1,11 +1,14 @@
 <?php
 class WallController{
 	public function getNbUnreadMessages(Member $membre){
-		$query = "SELECT mes.id FROM messages as mes, membre as mem WHERE mem.id = :id AND mes.timestamp > mem.walltimestamp;";
+		$query = "SELECT count(*) as count FROM messages as mes, membre as mem WHERE mem.id = :id AND mes.timestamp > mem.walltimestamp;";
 		$req = ConnectionSingleton::connect()->prepare($query);
 		$req->execute(array('id'=>$membre->getId()));
-		$data = $req->fetch(PDO::FETCH_OBJ);
-		return count($data);
+		if($req->rowCount()!=0){
+			return $req->fetch(PDO::FETCH_OBJ)->count;
+		}else{
+			return 0;
+		}
 	}
 
 	public function fetchAllMessages() {

@@ -21,7 +21,7 @@ $log = new Log();
 ?>
 <html>
 <head>
-<title>LES RESCAPES DE CITE 17</title>
+<title>CHAOTIC REALMS</title>
 <meta charset="UTF-8">
 <link rel="icon" type="image/jpg" href="hl2logo.gif" />
 <link href="css/style.css?<?php echo date("dmYH");?>" rel="stylesheet" type="text/css"/>

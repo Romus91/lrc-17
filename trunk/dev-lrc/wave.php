@@ -8,7 +8,7 @@ function armesEmpty($armes){
 	foreach ($armes as $wep) {
 		$sum+=$wep->getMunitions();
 	}
-	if($sum>0) return false;
+	if($sum>1) return false;
 	else return true;
 }
 function damagePerso(Perso $perso, Monster $z, WaveRecorder $wRec){
@@ -66,6 +66,9 @@ function selectArme(&$armes){
 		}else{
 			$i=5;
 		}
+		if(isset($armes[$i]) && $armes[$i]->getId()==1 && !armesEmpty($armes)){
+			$i=1000;
+		}
 	}while(!isset($armes[$i]) || $armes[$i]->getMunitions()<=0);
 	return $i;
 }
@@ -88,7 +91,10 @@ function piercingDamage($pierceChance,WaveRecorder $wRec,Perso $perso,$dmg,&$wav
 		unset($wave[$rand_zomb]);
 		$wave = array_values($wave);
 
-		$rand=mt_rand(1,100);
+		$rand=1;
+		if($pierceChance<100){
+			$rand=mt_rand(1,100);
+		}
 		if($dmg>0 && count($wave)>0 && $rand<=$pierceChance){
 			$e->_type = 'empale';
 			$wRec->addEvent($e);
@@ -135,7 +141,9 @@ foreach ($armes as $key => $value) {
 	$savemun[$key] = $value->getMunitions();
 }
 
-while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
+$perso->initPoison();
+
+while(count($wave)>0 && $perso->getVie()>0){
 	//inflige les dégats de poisons au perso
 	if($perso->poison()){
 		$e = new Event();
@@ -182,7 +190,10 @@ while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
 				unset($wave[$rand_zomb]);
 				$wave = array_values($wave);
 
-				$rand=mt_rand(1,100);
+				$rand=1;
+				if($membre->getPierceChance()<100){
+					$rand=mt_rand(1,100);
+				}
 				if($dmg>0 && count($wave)>0 && $armes[$rand_arme]->getId()!=1 && $rand<=$membre->getPierceChance()){
 					$e->_type = 'empale';
 					$wRec->addEvent($e);
@@ -223,9 +234,18 @@ while(count($wave)>0 && $perso->getVie()>0 && !armesEmpty($armes)){
 
 		if($nbCibles<0) $nbCibles=0;
 
-		if($nbCibles>count($wave)) $nbCibles=count($wave);
+		$nbZombInWave = count($wave);
 
-		for($i=0;$i<$nbCibles;$i++){
+		if($nbCibles>$nbZombInWave) $nbCibles=$nbZombInWave;
+
+		$maxID = $nbZombInWave-$nbCibles-1;
+
+		if($maxID<0) $maxID = 0;
+
+		$i = mt_rand(0,$maxID);
+		$startID = $i;
+
+		for(;$i<$startID+$nbCibles;$i++){
 			$pv=$wave[$i]->getLife();
 			$wave[$i]->hit($dmg);
 			if($wave[$i]->getLife()<=0){

@@ -1,17 +1,20 @@
 <?php
 class Perso{
-	const POISON_DAMAGE_PER_TICK = 0.15;
+	const POISON_DAMAGE_PER_TICK = 0.05;
+	const LEVEL_UP_RES_BONUS_PERCENTAGE = 0.1;
+
 	const MAX_JAUGE_POISON = 30;
 	const MAX_WEAP = 6;
 	const AVATAR_HEIGHT = 135;
+	const LIFE_TICK_INTERVAL = 20;
 	const REGEN_TICK_INTERVAL = 60;
-	const LEVEL_UP_RES_BONUS_PERCENTAGE = 0.1;
 	const MAX_VIE = 100;
 	const MAX_LEVEL = 60;
 	const BASE_ENERGY = 100;
-	const ENERGY_MAX_BONUS_PER_LEVEL = 10;
-	const ENERGY_MAX_BONUS_PER_STAMINA = 5;
+	const ENERGY_MAX_BONUS_PER_LEVEL = 5;
+	const ENERGY_MAX_BONUS_PER_STAMINA = 2;
 	const NB_PT_AM_PER_LEVEL = 2;
+
 	//id
 	protected $_id;
 	protected $_id_planque;
@@ -31,6 +34,7 @@ class Perso{
 	protected $_level;
 	protected $_dead;
 	protected $_xpafk;
+	protected $_max_level_reached_date;
 	//caracteristiques
 	protected $_endurance;
 	protected $_dexterite;
@@ -324,6 +328,16 @@ class Perso{
 		$this->_nb_zpois_kill +=(int) $_nb_zpois_kill;
 		return $this;
 	}
+
+	public function setMaxLevelReachedDate($date){
+		$this->_max_level_reached_date=$date;
+		return $this;
+	}
+
+	public function getMaxLevelReachedDate(){
+		return $this->_max_level_reached_date;
+	}
+
 	public function isDead(){
 		return $this->_dead;
 	}
@@ -353,7 +367,7 @@ class Perso{
 				$nbRealTick = floor($nbTick);
 				//on recupere le temps entre le dernier tick et maintenant
 				$diff = $nbTick-$nbRealTick;
-				if($nbRealTick>5000)$nbRealTick=5000;
+				if($nbRealTick>2000)$nbRealTick=2000;
 				//on regen
 				$this->_energie+=$nbRealTick;
 
@@ -372,7 +386,7 @@ class Perso{
 	}
 
 	public function getAbsoluteRegen(){
-		return self::REGEN_TICK_INTERVAL/$this->getTimeBetweenEnergyTick();
+		return self::REGEN_TICK_INTERVAL/$this->getTimeBetweenEnergyTick()*(60/self::REGEN_TICK_INTERVAL);
 	}
 	public function getTimeBetweenEnergyTick(){
 		return self::REGEN_TICK_INTERVAL - $this->getRegenDelayReduction();
@@ -384,12 +398,12 @@ class Perso{
 		if(!$this->isDead()){
 			$now = microtime(true);
 			$timeSinceLastRegen = $now - $this->_last_regen_vie;
-			if($timeSinceLastRegen>self::REGEN_TICK_INTERVAL){
-				$nbTick = $timeSinceLastRegen / self::REGEN_TICK_INTERVAL;
+			if($timeSinceLastRegen>self::LIFE_TICK_INTERVAL){
+				$nbTick = $timeSinceLastRegen / self::LIFE_TICK_INTERVAL;
 				$nbRealTick = floor($nbTick);
 				$diff = $nbTick-$nbRealTick;
 
-				if($nbRealTick>5000) $nbRealTick=5000;
+				if($nbRealTick>500) $nbRealTick=500;
 
 				for ($i = 0; $i < $nbRealTick; $i++) {
 					if($this->_jauge_poison>0){
@@ -398,7 +412,8 @@ class Perso{
 						$this->_vie++;
 					}
 				}
-				$this->_last_regen_vie = $now-($diff*self::REGEN_TICK_INTERVAL);
+				$this->_last_regen_vie = $now-($diff*self::LIFE_TICK_INTERVAL);
+				if($this->_jauge_poison<0) $this->_jauge_poison=0;
 			}
 		}
 		return $this;
@@ -429,6 +444,10 @@ class Perso{
 
 		if($this->_jauge_poison<0){
 			$this->_jauge_poison=0;
+		}
+
+		if($this->_level==self::MAX_LEVEL){
+			$this->_max_level_reached_date=time();
 		}
 	}
 	public function addXP($xp){
@@ -530,12 +549,12 @@ class Perso{
 		return $this->_jauge_poison;
 	}
 	public function setJaugePoison($j){
-		$this->_jauge_poison=(int)$j;
+		$this->_jauge_poison=$j;
 		if($this->_jauge_poison>self::MAX_JAUGE_POISON) $this->_jauge_poison=self::MAX_JAUGE_POISON;
 		return $this;
 	}
 	public function addJaugePoison(){
-		$this->_jauge_poison+=floor($this->_poison);
+		$this->_jauge_poison=$this->_poison;
 		if($this->_jauge_poison > self::MAX_JAUGE_POISON) $this->_jauge_poison=self::MAX_JAUGE_POISON;
 		if($this->_jauge_poison<0) $this->_jauge_poison=0;
 		return $this;
@@ -559,6 +578,9 @@ class Perso{
 	public function setLastRegenVie($last_regen){
 		$this->_last_regen_vie = $last_regen;
 		return $this;
+	}
+	public function initPoison(){
+		$this->_poison=$this->_jauge_poison;
 	}
 	public function poison($pois = 0){
 		$this->_poison+= $pois;
