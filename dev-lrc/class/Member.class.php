@@ -2,8 +2,8 @@
 
 class Member{
 	const MAX_AM_LEVEL=3;
-	const MAX_LVL_CHAR_XP_COEF=0.05;
-	const LOW_LVL_CHAR_XP_COEF=0.035;
+	const MAX_LVL_CHAR_XP_COEF=0.08;
+	const LOW_LVL_CHAR_XP_COEF=0.05;
 	const INVENTORY_ROW_SIZE = 4;
 	protected $_id;
 	protected $_login;
@@ -139,7 +139,7 @@ class Member{
 		return self::getXpForLevel($this->getLevel()+1);
 	}
 	public function getLevelPercent(){
-		$pourc = floor(($this->_xp-self::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-self::getXpForLevel($this->_level))*100);
+		$pourc = ($this->_xp-self::getXpForLevel($this->_level)) / ($this->getXpForNextLevel()-self::getXpForLevel($this->_level))*100;
 		if($pourc < 0) return 0;
 		else if($pourc > 100) return 100;
 		else return $pourc;
@@ -173,7 +173,7 @@ class Member{
 		return self::getMaxPerso($this->_level);
 	}
 	public static function getMaxPerso($level){
-		if($level<3) return 1;
+		if($level<2) return 1;
 		else if($level<10) return 2;
 		else if($level<20) return 3;
 		else if($level<35) return 4;

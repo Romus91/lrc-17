@@ -24,6 +24,9 @@ if(isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['login']) &&
 
 			$req = ConnectionSingleton::connect()->prepare('insert into activity (id_membre, date) values (:id,NOW());');
 			$req->execute(array('id'=>$member->getId()));
+			
+			$req = ConnectionSingleton::connect()->prepare('UPDATE membre SET last_login=NOW() where id = :id;');
+			$req->execute(array('id'=>$member->getId()));
 
 			$log->insertLog("Connect&eacute;",$member->getId(),"NULL",$_SESSION['login']);
 

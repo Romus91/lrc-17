@@ -29,8 +29,18 @@ class WaveGenerator{
 		$this->_nb_fast=$nb+mt_rand(-floor($this->_level/15),floor($this->_level/15));
 	}
 	private function computePoison(){
-		$nb=floor($this->_level/15);
-		$this->_nb_pois= mt_rand(0,$nb);
+		$nb=floor($this->_level/10)-1;
+		if($nb>=0){
+			$this->_nb_pois= $nb;
+			$reste = $this->_level % 10;
+			$pct = $reste*10000;
+			$rand=mt_rand(1,100000);
+			if($rand<=$pct){
+				$this->_nb_pois++;
+			}
+		}else{
+			$this->_nb_pois=0;
+		}
 	}
 	private function buildWave(){
 		$z=$this->_nb_zomb;
@@ -69,7 +79,7 @@ class WaveGenerator{
 					break;
 			}
 		}
-		shuffle($wave);
+		//shuffle($wave);
 		return $wave;
 	}
 	public function getLevel(){return $this->_level;}

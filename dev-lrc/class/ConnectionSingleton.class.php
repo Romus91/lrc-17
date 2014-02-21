@@ -6,7 +6,7 @@ class ConnectionSingleton{
 	protected static $PARAM_port = '3306';
 	protected static $PARAM_db = 'cite17';
 	protected static $PARAM_user = 'lrc17';
-	protected static $PARAM_pass = 'lrc17*';
+	protected static $PARAM_pass = '6fLfCUnpCZAN4ARA';
 
 	public static function connect(){
 		if(!isset(self::$_connection)){

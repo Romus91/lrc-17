@@ -53,7 +53,7 @@ include_once 'pagination.php';
 
 	//Affiche 30 logs et calcule le nombre de log par page
 	$nbArticle = $data['nbArticle'];
-	$perPage = 15;
+	$perPage = 20;
 	$nbPage = ceil($nbArticle /$perPage);
 
 	$cPage=1;
@@ -69,20 +69,24 @@ include_once 'pagination.php';
 			<?php echo pagination($perPage,$cPage,'index.php?page=wall&p=',$nbArticle);?>
 		</td>
 	</tr>
-<?php
-foreach ($messages as $key => $mess):
-	if($key!=0):?>
-	<tr><td align=center class='color6'>&nbsp;</td></tr>
-	<?php endif;?>
-	<tr><td><?php echo $mess->getTimestamp()?> -- <b><?php echo $mess->getMembre()->getLogin()?></b></td></tr>
 	<tr>
+	<td>
+<?php
+foreach ($messages as $key => $mess):?>
+	<div style='clear:both'>
+		<div style='float:left;'><font color='CC6600'><?php echo $mess->getMembre()->getLogin()?></font></div>
+		<div style='float:right;'><?php echo date('d-m-Y H:i:s',strtotime($mess->getTimestamp()))?></div>
+	</div>
+	<div style='clear:both;background-color:#222222'>
 		<?php if(strtotime($mess->getTimestamp())>strtotime($mem->getWallTimestamp())):?>
-			<td class='unreadMsg'><?php echo $mess->getMessage()?></td>
+			<span class='unreadMsg'><?php echo $mess->getMessage()?></span>
 		<?php else:?>
-			<td><?php echo $mess->getMessage()?></td>
+			<span><?php echo $mess->getMessage()?></span>
 		<?php endif;?>
-	</tr>
+	</div>
 <?php endforeach;?>
+</td>
+</tr>
 	<tr>
 		<td class='color6'>
 			<div class='pagination-wrapper'><ul class='pagination pages'><li><a href="#top">Haut de la page</a></li></ul></div>

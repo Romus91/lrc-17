@@ -1,5 +1,5 @@
 <?php
-$levels = array(1,3,10,20,35);
+$levels = array(1,2,10,20,35);
 $i=0;
 for(;$i<count($tabPersos);$i++):
 	$perso=$tabPersos[$i];
@@ -47,7 +47,8 @@ for(;$i<count($tabPersos);$i++):
 				<tr>
 					<td>
 						<div class='jauge'>
-							<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>"> <img class='barre' id="jaugevie" src='<?php echo convertToCDNUrl('pic/jvert.png');?>' width='<?php echo $perso->getVie();?>%'>
+							<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>">
+							<img class='barre' id="jaugevie" src='<?php echo convertToCDNUrl('pic/jvert.png');?>' width='<?php echo $perso->getVie();?>%'>
 							<div class='lib'>VIE</div>
 							<div class="texte">
 								<span id="vie"><?php echo $perso->getVie();?> </span> | 100
@@ -58,7 +59,8 @@ for(;$i<count($tabPersos);$i++):
 				<tr>
 					<td>
 						<div class='jauge'>
-							<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>"> <img class='barre' id="jaugeeng" src='<?php echo convertToCDNUrl('pic/jbleu.png');?>'
+							<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>">
+							<img class='barre' id="jaugeeng" src='<?php echo convertToCDNUrl('pic/jbleu.png');?>'
 								width='<?php echo $perso->getEnergyPercent();?>%'
 							>
 							<div class='lib'>NRG</div>
@@ -85,12 +87,13 @@ for(;$i<count($tabPersos);$i++):
 				<tr>
 					<td>
 						<div class='jauge'>
-							<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>"> <img class='barre' id="jaugepsn" src='<?php echo convertToCDNUrl('pic/jvert.png');?>'
+							<img class='grid' src="<?php echo convertToCDNUrl('pic/fond-jauge.png');?>">
+							<img class='barre' id="jaugepsn" src='<?php echo convertToCDNUrl('pic/jvert.png');?>'
 								width='<?php echo $perso->getPoisonPercent();?>%'
 							>
 							<div class='lib'>PSN</div>
 							<div class="texte">
-								<span id="psn"><?php echo $perso->getJaugePoison();?> </span> | <?php echo Perso::MAX_JAUGE_POISON;?>
+								<span id="psn"><?php echo number_format($perso->getJaugePoison(),0);?> </span> | <?php echo Perso::MAX_JAUGE_POISON;?>
 							</div>
 						</div>
 					</td>

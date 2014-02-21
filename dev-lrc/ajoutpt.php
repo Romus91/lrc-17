@@ -23,7 +23,7 @@ if ($perso->getNbPtsAmDispo() > 0){
 			$content['type']=$t;
 			$content['ptam']=$perso->getNbPtsAmDispo();
 			$content['munitions'] = $armes[$i]->getMunitions()." | ".$armes[$i]->getCapacity();
-			$content['jauge'] = number_format($armes[$i]->getCapacity()/375*100,2).'%';
+			$content['jauge'] = number_format($armes[$i]->getCapacity()/225*100,2).'%';
 			$content['lib'] = number_format($armes[$i]->getCapacity(),2);
 			$content['texte'] = $armes[$i]->getAmCapa().' / '.$armes[$i]->getAmCapMax();
 			$response = array("type"=>"success", "content"=>$content);
